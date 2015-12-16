@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HNAImagePickerView">
+            <connections>
+                <outlet property="pickerBtn" destination="gzJ-Ik-VMs" id="hv6-6m-hT0"/>
+                <outlet property="removeBtn" destination="eYz-Hx-hec" id="TBe-or-AZI"/>
+                <outlet property="view" destination="03r-jT-eIJ" id="nhE-pf-lnF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="03r-jT-eIJ">
+            <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Ik-VMs">
+                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
+                    <color key="backgroundColor" red="0.88636363636363635" green="0.88636363636363635" blue="0.88636363636363635" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="添加"/>
+                    <connections>
+                        <action selector="pickerBtnClicked:" destination="-1" eventType="touchUpInside" id="BJ4-eE-YUA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYz-Hx-hec">
+                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
+                    <color key="backgroundColor" red="0.75063733026424084" green="1" blue="0.21172469831993612" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="移除"/>
+                    <connections>
+                        <action selector="removeBtnClicked:" destination="-1" eventType="touchUpInside" id="jaJ-zW-MKw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gzJ-Ik-VMs" secondAttribute="bottom" id="0s4-wT-6Eq"/>
+                <constraint firstItem="gzJ-Ik-VMs" firstAttribute="top" secondItem="03r-jT-eIJ" secondAttribute="top" id="C8z-K8-8rx"/>
+                <constraint firstAttribute="bottom" secondItem="eYz-Hx-hec" secondAttribute="bottom" id="HL9-1P-1Ds"/>
+                <constraint firstItem="gzJ-Ik-VMs" firstAttribute="leading" secondItem="03r-jT-eIJ" secondAttribute="leading" id="JJq-Nc-a4e"/>
+                <constraint firstItem="eYz-Hx-hec" firstAttribute="leading" secondItem="03r-jT-eIJ" secondAttribute="leading" id="SCg-KM-VJa"/>
+                <constraint firstAttribute="trailing" secondItem="eYz-Hx-hec" secondAttribute="trailing" id="hJc-3Z-wKv"/>
+                <constraint firstAttribute="trailing" secondItem="gzJ-Ik-VMs" secondAttribute="trailing" id="jus-1t-LKj"/>
+                <constraint firstItem="eYz-Hx-hec" firstAttribute="top" secondItem="03r-jT-eIJ" secondAttribute="top" id="lDQ-Eu-o65"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="37.5" y="-359.5"/>
+        </view>
+    </objects>
+</document>
