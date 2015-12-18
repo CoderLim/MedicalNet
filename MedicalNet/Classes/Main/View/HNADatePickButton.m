@@ -40,7 +40,7 @@
     if (_mask == nil) {
         UIView *mask = [[UIView alloc] initWithFrame:MainScreen.bounds];
         mask.backgroundColor = [UIColor blackColor];
-        mask.alpha = 0.5f;
+        mask.alpha = 0.4f;
         [self.window addSubview:mask];
         _mask = mask;
     }
@@ -52,7 +52,7 @@
         // 0.创建container
         UIView *container = [[UIView alloc] init];
         container.backgroundColor = [UIColor whiteColor];
-        container.layer.cornerRadius = 20;
+        container.layer.cornerRadius = 10;
         
         // 1.设置frame
         CGSize keyWinSize = MainScreen.bounds.size;
@@ -119,18 +119,21 @@
     
     // 设置mask
     self.mask.hidden = NO;
+    self.pickerContainer.hidden = NO;
     
     // 动画
     WEAKSELF(weakSelf);
-    [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.2f initialSpringVelocity:0.2f options:UIViewAnimationOptionCurveLinear animations:^{
-        // 设置pickerContainer的frame
+    [UIView animateWithDuration:0.25f animations:^{
+        // 1.设置pickerContainer的frame
         CGRect frame = weakSelf.pickerContainer.frame;
         frame.origin.y = MainScreen.bounds.size.height - DatePickerHeight;
         weakSelf.pickerContainer.frame = frame;
         
-        // 重画datePicker
+        // 2.重画datePicker
         [weakSelf.datePicker layoutIfNeeded];
         
+        // 3.缩放原始window
+        _originalKeyWindow.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
     } completion:nil];
     
     // 通知代理
@@ -141,19 +144,22 @@
 
 - (void)tapWindow:(UITapGestureRecognizer *)recognizer{
     HNALog(@"%s",__FUNCTION__);
-    [_originalKeyWindow makeKeyAndVisible];
-    
-    self.mask.hidden = YES;
     
     WEAKSELF(weakSelf);
-    [UIView animateWithDuration:0.25f delay:0.0f usingSpringWithDamping:0.2f initialSpringVelocity:0.2f options:UIViewAnimationOptionCurveLinear animations:^{
-        
+    [UIView animateWithDuration:0.25f animations:^{
+        // 设置pickerContainer的frame
         CGSize keyWinSize = MainScreen.bounds.size;
         CGRect frame = weakSelf.pickerContainer.frame;
         frame.origin.y = keyWinSize.height;
         weakSelf.pickerContainer.frame = frame;
         
-    } completion:nil];
+        // 缩放原始window
+        _originalKeyWindow.transform = CGAffineTransformIdentity;
+        
+    } completion:^(BOOL finished) {
+        weakSelf.mask.hidden = YES;
+        [_originalKeyWindow makeKeyAndVisible];
+    }];
     
     // 通知代理
     if ([self.delegate respondsToSelector:@selector(datePickButton:didFinishSelectDate:)]) {
@@ -173,7 +179,4 @@
     }
 }
 
-- (void)dealloc{
-    self.window = nil;
-}
 @end

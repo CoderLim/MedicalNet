@@ -51,7 +51,7 @@
         /**
          *  加载本月数据
          */
-        [self loadDataWithDate:nil];
+//        [self loadDataWithDate:nil];
     }
     return _records;
 }
@@ -90,31 +90,17 @@
 }
 
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
-    [self loadDataWithDate:_selectedDate];
+//    [self loadDataWithDate:_selectedDate];
 }
 
 #pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
-    
-//    if (self.datePickerBtn.titleLabel.text.length < 1) {
-//        return self.records.count;
-//    } else {
-//        // 过滤数据
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"totalAmount contains %@",self.searchDisplayController.searchBar.text];
-//        [self.filterRecords removeAllObjects];
-//        [self.filterRecords addObjectsFromArray:[self.records filteredArrayUsingPredicate:predicate]];
-//        return self.filterRecords.count;
-//    }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HNAExpenseRecordModel *model;
     model = self.records[indexPath.row];
-//    if (self.datePickerBtn.titleLabel.text.length < 1) {
-//        model = self.records[indexPath.row];
-//    } else {
-//        model = self.filterRecords[indexPath.row];
-//    }
     HNAExpensesRecordCell *cell = [HNAExpensesRecordCell cellWithTableView:tableView];
     cell.model = model;
     return cell;

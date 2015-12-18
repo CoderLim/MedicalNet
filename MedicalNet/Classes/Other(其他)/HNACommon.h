@@ -34,3 +34,22 @@
 
 // 7. 数据请求地址的domain
 #define RequestUrlDomain @"http://wwww.XXXXXXXX.com"
+
+// 8.加载数据时的提示信息
+/**
+ *  正在加载
+ */
+#define MessageWhileLoadingData @"正在抓紧加载..."
+/**
+ *  加载成功
+ */
+#define MessageWhenSuccess @"加载成功"
+/**
+ *  没有数据
+ */
+#define MessageWhenNoData @"没有数据"
+/**
+ *  加载报错
+ */
+#define MessageWhenFaild @"加载出错"
+

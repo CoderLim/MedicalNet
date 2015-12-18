@@ -54,7 +54,7 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)getHCDetailWithParam:(HNAGetHCDetailParam *)param success:(void (^)(HNAGetHCDetailResult *))success failure:(void (^)(NSError *))failure{
++ (void)getHCDetailWithParam:(HNAGetHCDetailParam *)param success:(void (^)(HNAGetHCDetailResult *result))success failure:(void (^)(NSError *error))failure{
     // 请求地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/medicalDetails",RequestUrlDomain];
     // 发送请求
@@ -77,7 +77,7 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)getPackgetDetailWithParam:(HNAGetPackageDetailParam *)param success:(void (^)(HNAGetPackageDetailResult *))success failure:(void (^)(NSError *))failure{
++ (void)getPackgetDetailWithParam:(HNAGetPackageDetailParam *)param success:(void (^)(HNAGetPackageDetailResult *result))success failure:(void (^)(NSError *error))failure{
     
     // 请求地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/packageDetails",RequestUrlDomain];

@@ -6,9 +6,26 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-#import "HNAHCPackageDetailController.h"
+// 套餐详情
 
-@interface HNAHCPackageDetailController ()
+#import "HNAHCPackageDetailController.h"
+#import "HNAHealthCheckTool.h"
+#import "HNAUserTool.h"
+#import "HNAUser.h"
+#import "HNAGetPackageDetailParam.h"
+#import "HNAGetPackageDetailResult.h"
+#import "MBProgressHUD+MJ.h"
+
+@interface HNAHCPackageDetailController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
+
+@property (strong, nonatomic) NSMutableArray<HNAPackageDetailItem *> *records;
+/**
+ *  选择此套餐
+ */
+- (IBAction)selectThePackage:(UIButton *)sender;
 
 @end
 
@@ -16,6 +33,72 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self loadData];
 }
 
+- (NSMutableArray<HNAPackageDetailItem *> *)records{
+    if (_records == nil) {
+        _records = [NSMutableArray array];
+    }
+    return _records;
+}
+
+- (void)loadData{
+    // 提示
+    [MBProgressHUD showMessage: MessageWhileLoadingData];
+    
+    // 参数
+    HNAGetPackageDetailParam *param = [[HNAGetPackageDetailParam alloc] init];
+    
+    // 请求数据
+    WEAKSELF(weakSelf);
+    [HNAHealthCheckTool getPackgetDetailWithParam:param success:^(HNAGetPackageDetailResult *result) {
+        [MBProgressHUD hideHUD];
+        if (result != nil) {
+            weakSelf.packageNameLabel.text = result.packageName;
+            weakSelf.records = result.records;
+            // 刷新tableView
+            [weakSelf.tableView reloadData];
+        } else {
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError: MessageWhenNoData];
+        }
+        
+    } failure:^(NSError *error) {
+        for (NSInteger i = 0; i < 10; i++) {
+            HNAPackageDetailItem *item = [[HNAPackageDetailItem alloc] init];
+            item.item = @"项目";
+            item.desc = @"13114314314311";
+            [weakSelf.records addObject:item];
+        }
+        weakSelf.packageNameLabel.text = @"套餐A";
+        [weakSelf.tableView reloadData];
+        
+        [MBProgressHUD showError: MessageWhenFaild];
+    }];
+}
+
+#pragma mark - tableView delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.records.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HNALog(@"----");
+    static NSString *identifier = @"packageDetailCell";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    HNAPackageDetailItem *item = self.records[indexPath.row];
+    cell.textLabel.text = item.item;
+    cell.detailTextLabel.text = item.desc;
+    
+    return cell;
+}
+
+/**
+ *  选择此套餐
+ */
+- (IBAction)selectThePackage:(UIButton *)sender {
+}
 @end
