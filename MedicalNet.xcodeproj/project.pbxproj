@@ -79,6 +79,8 @@
 		9FB4899A1BFEB86D0031DE48 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489711BFEB86D0031DE48 /* UIImage+WebP.m */; };
 		9FB4899B1BFEB86D0031DE48 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489731BFEB86D0031DE48 /* UIImageView+WebCache.m */; };
 		9FB4899E1BFEB9710031DE48 /* HNAHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4899D1BFEB9710031DE48 /* HNAHttpTool.m */; };
+		9FB64CD71C23D0AD00C3F03C /* UILabel+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */; };
+		9FB64CDA1C23EEEC00C3F03C /* HNABadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */; };
 		9FB878E61C0E83BB00DAF53F /* HNAForgetCipherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878E51C0E83BB00DAF53F /* HNAForgetCipherController.m */; };
 		9FB878E91C0E941B00DAF53F /* HNAPackageButtonScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878E81C0E941B00DAF53F /* HNAPackageButtonScrollView.m */; };
 		9FB878ED1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878EB1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m */; };
@@ -305,6 +307,10 @@
 		9FB489731BFEB86D0031DE48 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		9FB4899C1BFEB9710031DE48 /* HNAHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHttpTool.h; sourceTree = "<group>"; };
 		9FB4899D1BFEB9710031DE48 /* HNAHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHttpTool.m; sourceTree = "<group>"; };
+		9FB64CD51C23D0AD00C3F03C /* UILabel+HNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HNA.h"; sourceTree = "<group>"; };
+		9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HNA.m"; sourceTree = "<group>"; };
+		9FB64CD81C23EEEC00C3F03C /* HNABadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNABadgeButton.h; sourceTree = "<group>"; };
+		9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNABadgeButton.m; sourceTree = "<group>"; };
 		9FB878E41C0E83BB00DAF53F /* HNAForgetCipherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAForgetCipherController.h; sourceTree = "<group>"; };
 		9FB878E51C0E83BB00DAF53F /* HNAForgetCipherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAForgetCipherController.m; sourceTree = "<group>"; };
 		9FB878E71C0E941B00DAF53F /* HNAPackageButtonScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAPackageButtonScrollView.h; sourceTree = "<group>"; };
@@ -990,6 +996,8 @@
 				9FB878F61C0EF4D500DAF53F /* UIView+HNA.m */,
 				9FD77D981C1AABB2006F6EC5 /* NSDate+HNA.h */,
 				9FD77D991C1AABB2006F6EC5 /* NSDate+HNA.m */,
+				9FB64CD51C23D0AD00C3F03C /* UILabel+HNA.h */,
+				9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1113,6 +1121,8 @@
 				9FFECF1D1C1FB35B00077A48 /* HNADatePickButton.m */,
 				9FFECF211C1FED5E00077A48 /* HNADatePicker.h */,
 				9FFECF221C1FED5E00077A48 /* HNADatePicker.m */,
+				9FB64CD81C23EEEC00C3F03C /* HNABadgeButton.h */,
+				9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1283,6 +1293,7 @@
 				9F38736C1BFEF405002AB971 /* HNASettingExecuteItem.m in Sources */,
 				9FB4898A1BFEB86D0031DE48 /* MJRefreshBaseView.m in Sources */,
 				9FC33EAF1C1E995D004D4139 /* HNAMapController.m in Sources */,
+				9FB64CD71C23D0AD00C3F03C /* UILabel+HNA.m in Sources */,
 				9FB489981BFEB86D0031DE48 /* UIImage+GIF.m in Sources */,
 				9FE222911C192803003678BB /* HNAChangePhoneParam.m in Sources */,
 				9F8723381C0C31C300DA68FE /* HNAChangeBaseController.m in Sources */,
@@ -1381,6 +1392,7 @@
 				9FB489861BFEB86D0031DE48 /* NSObject+MJCoding.m in Sources */,
 				9FC33E571C1E646F004D4139 /* HNAApplySuccessController.m in Sources */,
 				9F8C0A011C18005C0084EAD9 /* HNALoginTool.m in Sources */,
+				9FB64CDA1C23EEEC00C3F03C /* HNABadgeButton.m in Sources */,
 				9FFECF1E1C1FB35B00077A48 /* HNADatePickButton.m in Sources */,
 				9FB878ED1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m in Sources */,
 				9FB4898B1BFEB86D0031DE48 /* MJRefreshConst.m in Sources */,

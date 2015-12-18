@@ -15,60 +15,53 @@
 #import "HNAUser.h"
 #import "HNAUserTool.h"
 
-@interface HNAHealthCheckDetailController (){
-    NSArray<NSLayoutConstraint *> *_reminderViewConstraints;
-    NSArray<NSLayoutConstraint *> *_reservedViewConstraints;
+#import "UILabel+HNA.h"
+
+@interface HNAHealthCheckDetailController () {
+    CGFloat _reminderDetailLabel_correctH;// 实际高度
+    CGFloat _reservedDetailView_correctH; // 实际高度
 }
 
 // 提醒
-@property (weak, nonatomic) IBOutlet UIView *reminderDetailView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reminderLabel_B;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reminderDetailLabel_H;
+@property (weak, nonatomic) IBOutlet UILabel *reminderDetailLabel;
 - (IBAction)reminderBtnClicked:(id)sender;
 
 // 已预约
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reservedDetailView_H;
 @property (weak, nonatomic) IBOutlet UIView *reservedDetailView;
 - (IBAction)reservedBtnClicked:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reservedLabel_B;
 
+/**
+ *  查看套餐详情
+ */
 - (IBAction)checkPackageDetail:(UIButton *)sender;
 @end
 
 @implementation HNAHealthCheckDetailController
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.reminderDetailLabel.text = @"明天就要体检啦！\r\n 1、这是提醒第一条 \r\n 2、这是体检提醒第二条，体检提醒第二条";
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-
+    // 将reminderDetailLabel的实际高度存起来
+    _reminderDetailLabel_correctH = [self.reminderDetailLabel correctHeight];
+    _reservedDetailView_correctH = self.reservedDetailView_H.constant;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    _reminderViewConstraints = self.reminderDetailView.constraints;
-    [_reminderViewConstraints enumerateObjectsUsingBlock:^(__kindof NSLayoutConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setActive: NO];
-        HNALog(@"%@",obj);
-    }];
-    
-    _reservedViewConstraints = self.reservedDetailView.constraints;
-//    [self.test setActive:NO];
-    [_reservedViewConstraints enumerateObjectsUsingBlock:^(__kindof NSLayoutConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setActive: NO];
-    }];
-}
 
 // 加载数据
 - (void)loadData{
     HNAGetHCDetailParam *param = [[HNAGetHCDetailParam alloc] init];
+    WEAKSELF(weakSelf);
     [HNAHealthCheckTool getHCDetailWithParam:param success:^(HNAGetHCDetailResult *result) {
-        
     } failure:^(NSError *error) {
         
     }];
@@ -77,38 +70,20 @@
 #pragma mark -
 // 点击 "提醒"
 - (IBAction)reminderBtnClicked:(id)sender {
-    // reminderDetaiView显示与隐藏
-    self.reminderDetailView.hidden = !self.reminderDetailView.hidden;
-    
-    // 处理约束
-    [self.reminderLabel_B setActive:self.reminderDetailView.hidden];
-    
-    __weak UIView *weakReminderDetailView = self.reminderDetailView;
-    [_reminderViewConstraints enumerateObjectsUsingBlock:^(__kindof NSLayoutConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setActive: !weakReminderDetailView.hidden];
-    }];
-    
-    // 动画
-    [UIView animateWithDuration:0.25f animations:^{
-        [self.view layoutIfNeeded];
-    }];
+    self.reminderDetailLabel.hidden = !self.reminderDetailLabel.hidden;
+    if (self.reminderDetailLabel.hidden) {
+        self.reminderDetailLabel_H.constant = 0;
+    } else {
+        self.reminderDetailLabel_H.constant = _reminderDetailLabel_correctH;
+    }
+    [self.view layoutIfNeeded];
 }
 
 // 点击 "已预约"
 - (IBAction)reservedBtnClicked:(UIButton *)sender {
     self.reservedDetailView.hidden = !self.reservedDetailView.hidden;
-    
-    [self.reservedLabel_B setActive:self.reservedDetailView.hidden];
-    
-    __weak UIView *weakReservedDetailView = self.reservedDetailView;
-    [_reservedViewConstraints enumerateObjectsUsingBlock:^(__kindof NSLayoutConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setActive: !weakReservedDetailView.hidden];
-    }];
-    
-    // 动画
-    [UIView animateWithDuration:0.25f animations:^{
-        [self.view layoutIfNeeded];
-    }];
+    self.reservedDetailView_H.constant = self.reservedDetailView.hidden ? 0 : _reservedDetailView_correctH;
+    [self.view layoutIfNeeded];
 }
 
 #pragma mark - 

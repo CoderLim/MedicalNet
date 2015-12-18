@@ -7,7 +7,6 @@
 //
 
 #import "HNANavigationController.h"
-#define NavigationMainColor [UIColor orangeColor]
 
 @interface HNANavigationController ()
 
@@ -21,7 +20,6 @@
     // 1.设置导航栏主题
     [self setupNavigationBar];
     // 2.设置导航栏按钮主题
-    [self.navigationBar setTintColor: NavigationMainColor];
     
     [self setupBarButtonItem];
 }
@@ -30,12 +28,20 @@
  *  设置导航栏主题
  */
 - (void)setupNavigationBar{
+    // 字体颜色
     UINavigationBar *appearance = [UINavigationBar appearance];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = NavigationMainColor;
-    
+    attributes[NSForegroundColorAttributeName] = NavTextColor;
     [appearance setTitleTextAttributes:attributes];
+    
+    
+    [self.navigationBar setTintColor: NavTextColor];
+    // 背景色
+    [self.navigationBar setBarTintColor: NavBackgroundColor];
+    
+    //
+    self.navigationBar.translucent = YES;
 }
 
 /**
@@ -45,7 +51,7 @@
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = NavigationMainColor;
+    attributes[NSForegroundColorAttributeName] = NavTextColor;
     
     [appearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }

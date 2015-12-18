@@ -17,9 +17,12 @@
 #import "HNAUser.h"
 #import "MBProgressHUD+MJ.h"
 
+// KeyPath
 #define KPContentSize @"contentSize"
 
-@interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource>
+@interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource>{
+    BOOL _showMoreHospital;
+}
 
 /**
  *  保障方案
@@ -33,6 +36,7 @@
  *  可报销医院
  */
 @property (weak, nonatomic) IBOutlet UITableView *hospitalTableView;
+- (IBAction)moreHospitalBtnClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *projectTableViewConstraint_H;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *materialTableViewConstraint_H;
@@ -48,6 +52,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _showMoreHospital = NO;
     
     // 根据数据量动态调整tableView的高度约束
     [self.materialTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
@@ -67,6 +73,10 @@
 //                           };
     // 加载数据
     [self loadData];
+    
+    // 再重新布局一遍
+    // 因为通过addObserve设置三个tableView后，布局没调整过来
+    [self.view layoutIfNeeded];
 }
 
 - (NSMutableArray *)materialArray{
@@ -98,6 +108,17 @@
         _projectArray = [NSMutableArray arrayWithArray:[NSArray arrayWithObjects:model2, model3, model4, nil]];
     }
     return _projectArray;
+}
+
+- (NSMutableArray *)hospitalArray{
+    if (_hospitalArray == nil) {
+        _hospitalArray = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < 10; i++) {
+            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
+        }
+    }
+    return _hospitalArray;
 }
 
 /**
@@ -140,6 +161,9 @@
     } else if (tableView == self.projectTableView){
         return self.projectArray.count;
     } else if (tableView == self.hospitalTableView) {
+        if (_showMoreHospital == NO) {
+            return 3;
+        }
         return self.hospitalArray.count;
     }
     return 0;
@@ -182,9 +206,9 @@
     static NSString *hospitalIdentifier = @"hospitalCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle : UITableViewCellStyleDefault reuseIdentifier:hospitalIdentifier];
-    }
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle : UITableViewCellStyleDefault reuseIdentifier:hospitalIdentifier];
+//    }
     cell.textLabel.text = self.hospitalArray[indexPath.row];
     return cell;
 }
@@ -218,4 +242,10 @@
 }
 
 
+// 可报销医院－查看更多
+- (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
+    HNALog(@"----");
+    _showMoreHospital = !_showMoreHospital;
+    [self.hospitalTableView reloadData];
+}
 @end
