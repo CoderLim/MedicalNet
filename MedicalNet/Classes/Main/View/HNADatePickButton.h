@@ -16,6 +16,21 @@
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date;
 @end
 
+IB_DESIGNABLE
 @interface HNADatePickButton : UIButton
 @property(nonatomic,weak) id<HNADatePickButtonDelegate> delegate;
+/**
+ *  圆角
+ */
+@property (nonatomic,assign) IBInspectable CGFloat cornerRadius;
+
+/**
+ *  边框 宽度
+ */
+@property (nonatomic,assign) IBInspectable CGFloat borderWidth;
+
+/**
+ *  边框 颜色
+ */
+@property (nonatomic, strong) IBInspectable UIColor *borderColor;
 @end

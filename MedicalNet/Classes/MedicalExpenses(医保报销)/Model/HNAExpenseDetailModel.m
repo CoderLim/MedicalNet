@@ -11,3 +11,7 @@
 @implementation HNAExpenseDetailModel
 
 @end
+
+@implementation HNAExpenseDetailStatusRecord
+
+@end

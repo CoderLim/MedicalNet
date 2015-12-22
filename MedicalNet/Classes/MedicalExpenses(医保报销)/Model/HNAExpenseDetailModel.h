@@ -79,7 +79,7 @@
 @end
 
 #pragma mark - 对应节点－statusRecords
-@interface HNAExpenseDetailStatusRecord
+@interface HNAExpenseDetailStatusRecord : NSObject
 /**
  *  状态记录id
  */

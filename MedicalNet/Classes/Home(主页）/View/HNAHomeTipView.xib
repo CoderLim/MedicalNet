@@ -11,21 +11,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为保护您的帐号安全，请尽快修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5s-Fu-Z57">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="为保护您的帐号安全，请尽快修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5s-Fu-Z57">
                     <rect key="frame" x="5" y="0.0" width="197" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="197" id="fTj-VE-ROy"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="fTj-VE-ROy"/>
+                        </mask>
+                    </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngc-Y8-rF1">
-                    <rect key="frame" x="199" y="0.0" width="61" height="30"/>
+                    <rect key="frame" x="229" y="0.0" width="61" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="61" id="pby-m8-8fV"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="修改密码"/>
                     <connections>
                         <action selector="changeCipher:" destination="iN0-l3-epB" eventType="touchUpInside" id="QBn-q9-rCf"/>
@@ -48,12 +53,13 @@
                 <constraint firstAttribute="bottom" secondItem="o5s-Fu-Z57" secondAttribute="bottom" id="ZLm-OB-r2w"/>
                 <constraint firstAttribute="trailing" secondItem="bOc-iC-IEz" secondAttribute="trailing" constant="5" id="bfu-wT-54P"/>
                 <constraint firstItem="bOc-iC-IEz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dTj-bo-mMA"/>
-                <constraint firstItem="bOc-iC-IEz" firstAttribute="leading" secondItem="ngc-Y8-rF1" secondAttribute="trailing" constant="35" id="fz7-rG-4vo"/>
+                <constraint firstItem="bOc-iC-IEz" firstAttribute="leading" secondItem="ngc-Y8-rF1" secondAttribute="trailing" constant="5" id="fz7-rG-4vo"/>
                 <constraint firstAttribute="bottom" secondItem="ngc-Y8-rF1" secondAttribute="bottom" id="s12-cK-4gv"/>
                 <constraint firstItem="ngc-Y8-rF1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sHm-Di-C8b"/>
                 <constraint firstItem="o5s-Fu-Z57" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tZS-Qj-7Ik"/>
                 <constraint firstAttribute="bottom" secondItem="bOc-iC-IEz" secondAttribute="bottom" id="uRi-dp-7in"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="100" y="274"/>
         </view>

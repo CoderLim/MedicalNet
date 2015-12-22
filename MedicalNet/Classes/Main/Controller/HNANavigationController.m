@@ -55,4 +55,5 @@
     
     [appearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
+
 @end

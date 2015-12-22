@@ -20,17 +20,24 @@
 @interface HNAApplyExpensesController()<HNAImagePickerViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     HNAImagePickerView *_currentImagePickerView;
 }
-@property (strong, nonatomic) IBOutletCollection(HNAImagePickerView) NSArray *imagePickerViews;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
+
+/**
+ *  选取图片按钮
+ */
+@property (strong, nonatomic) IBOutletCollection(HNAImagePickerView) NSArray *imagePickerViews;
 
 /**
  *  花费总额
  */
 @property (weak, nonatomic) IBOutlet UITextField *amountField;
+
  /**
  *  银行卡号
  */
 @property (weak, nonatomic) IBOutlet UITextField *cardNumField;
+
 
 /**
  *  提交
@@ -62,6 +69,7 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
     [actionSheet showInView:self.view];
 }
+
 // 移除图片
 - (void)imagePickerViewDidClickRemoveBtn:(HNAImagePickerView *)imagePickerView{
     //  TODO:.....
@@ -184,6 +192,7 @@
         }
     }];
     HNALog(@"%@",param.companyId);
+    
     // 网络请求
     [HNAInsuranceTool applyExpenseWithParam:param success:^(HNAResult *result) {
         if (result.success == HNARequestResultSUCCESS) {
@@ -195,8 +204,6 @@
     } failure:^(NSError *error) {
         [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
     }];
-    
-    
 }
 
 - (void)dealloc{

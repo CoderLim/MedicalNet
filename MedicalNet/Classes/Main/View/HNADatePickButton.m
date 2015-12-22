@@ -22,6 +22,21 @@
 
 @implementation HNADatePickButton
 
+- (void)setCornerRadius:(CGFloat)cornerRadius{
+    _cornerRadius = cornerRadius;
+    self.layer.cornerRadius = cornerRadius;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth{
+    _borderWidth = borderWidth;
+    self.layer.borderWidth = borderWidth;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor {
+    _borderColor = borderColor;
+    self.layer.borderColor = borderColor.CGColor;
+}
+
 #pragma mark - 懒加载
 - (UIWindow *)window{
     if (_window == nil) {
@@ -143,7 +158,6 @@
 }
 
 - (void)tapWindow:(UITapGestureRecognizer *)recognizer{
-    HNALog(@"%s",__FUNCTION__);
     
     WEAKSELF(weakSelf);
     [UIView animateWithDuration:0.25f animations:^{

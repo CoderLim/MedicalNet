@@ -53,6 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     _showMoreHospital = NO;
     
     // 根据数据量动态调整tableView的高度约束
@@ -60,23 +62,12 @@
     [self.projectTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
     [self.hospitalTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
     
-//    NSDictionary *json = @{ @"companyId":@"公司id",
-//                            @"insuranceCompanyId":@"保险公司id",
-//                            @"packageId":@"套餐id",
-//                            @"securityPrograms":@{
-//                                        @"item1":@"amount",
-//                                        @"item2":@"amount",
-//                                        @"item3":@"amount"
-//                                    },
-//                            @"materials":@"材料",
-//                            @"":@[@"医院1",@"医院2"]
-//                           };
     // 加载数据
     [self loadData];
     
     // 再重新布局一遍
     // 因为通过addObserve设置三个tableView后，布局没调整过来
-    [self.view layoutIfNeeded];
+//    [self.view layoutIfNeeded];
 }
 
 - (NSMutableArray *)materialArray{
@@ -206,9 +197,6 @@
     static NSString *hospitalIdentifier = @"hospitalCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle : UITableViewCellStyleDefault reuseIdentifier:hospitalIdentifier];
-//    }
     cell.textLabel.text = self.hospitalArray[indexPath.row];
     return cell;
 }
@@ -244,7 +232,6 @@
 
 // 可报销医院－查看更多
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
-    HNALog(@"----");
     _showMoreHospital = !_showMoreHospital;
     [self.hospitalTableView reloadData];
 }

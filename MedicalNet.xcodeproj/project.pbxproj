@@ -137,6 +137,16 @@
 		9FD77D971C1A6C0C006F6EC5 /* HNAInsuranceCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD77D961C1A6C0C006F6EC5 /* HNAInsuranceCompanyModel.m */; };
 		9FD77D9A1C1AABB2006F6EC5 /* NSDate+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD77D991C1AABB2006F6EC5 /* NSDate+HNA.m */; };
 		9FD77D9B1C1ABBAA006F6EC5 /* HNAExpenseDirectionModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 9FD77D861C1A5E10006F6EC5 /* HNAExpenseDirectionModel.h */; };
+		9FD904581C27E20B00422219 /* HNAExpenseDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904561C27E20B00422219 /* HNAExpenseDetailCell.m */; };
+		9FD904591C27E20B00422219 /* HNAExpenseDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD904571C27E20B00422219 /* HNAExpenseDetailCell.xib */; };
+		9FD9046A1C27FC5D00422219 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9045C1C27FC5D00422219 /* MJPhoto.m */; };
+		9FD9046B1C27FC5D00422219 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9FD9045D1C27FC5D00422219 /* MJPhotoBrowser.bundle */; };
+		9FD9046C1C27FC5D00422219 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9045F1C27FC5D00422219 /* MJPhotoBrowser.m */; };
+		9FD9046D1C27FC5D00422219 /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904611C27FC5D00422219 /* MJPhotoLoadingView.m */; };
+		9FD9046E1C27FC5D00422219 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904631C27FC5D00422219 /* MJPhotoProgressView.m */; };
+		9FD9046F1C27FC5D00422219 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904651C27FC5D00422219 /* MJPhotoToolbar.m */; };
+		9FD904701C27FC5D00422219 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904671C27FC5D00422219 /* MJPhotoView.m */; };
+		9FD904711C27FC5D00422219 /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD904691C27FC5D00422219 /* SDWebImageManager+MJ.m */; };
 		9FE2228B1C19267D003678BB /* HNAChangePwdParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2228A1C19267D003678BB /* HNAChangePwdParam.m */; };
 		9FE2228E1C1926C3003678BB /* HNAResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2228D1C1926C3003678BB /* HNAResult.m */; };
 		9FE222911C192803003678BB /* HNAChangePhoneParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222901C192803003678BB /* HNAChangePhoneParam.m */; };
@@ -417,6 +427,24 @@
 		9FD77D961C1A6C0C006F6EC5 /* HNAInsuranceCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAInsuranceCompanyModel.m; sourceTree = "<group>"; };
 		9FD77D981C1AABB2006F6EC5 /* NSDate+HNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HNA.h"; sourceTree = "<group>"; };
 		9FD77D991C1AABB2006F6EC5 /* NSDate+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HNA.m"; sourceTree = "<group>"; };
+		9FD904551C27E20B00422219 /* HNAExpenseDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAExpenseDetailCell.h; sourceTree = "<group>"; };
+		9FD904561C27E20B00422219 /* HNAExpenseDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAExpenseDetailCell.m; sourceTree = "<group>"; };
+		9FD904571C27E20B00422219 /* HNAExpenseDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAExpenseDetailCell.xib; sourceTree = "<group>"; };
+		9FD9045B1C27FC5D00422219 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		9FD9045C1C27FC5D00422219 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		9FD9045D1C27FC5D00422219 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		9FD9045E1C27FC5D00422219 /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		9FD9045F1C27FC5D00422219 /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		9FD904601C27FC5D00422219 /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		9FD904611C27FC5D00422219 /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		9FD904621C27FC5D00422219 /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		9FD904631C27FC5D00422219 /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		9FD904641C27FC5D00422219 /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		9FD904651C27FC5D00422219 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		9FD904661C27FC5D00422219 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		9FD904671C27FC5D00422219 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		9FD904681C27FC5D00422219 /* SDWebImageManager+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDWebImageManager+MJ.h"; sourceTree = "<group>"; };
+		9FD904691C27FC5D00422219 /* SDWebImageManager+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDWebImageManager+MJ.m"; sourceTree = "<group>"; };
 		9FE222891C19267D003678BB /* HNAChangePwdParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAChangePwdParam.h; sourceTree = "<group>"; };
 		9FE2228A1C19267D003678BB /* HNAChangePwdParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAChangePwdParam.m; sourceTree = "<group>"; };
 		9FE2228C1C1926C3003678BB /* HNAResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAResult.h; sourceTree = "<group>"; };
@@ -968,6 +996,9 @@
 				9F9D5F221C03F6A500E647E2 /* HNAImagePickerView.h */,
 				9F9D5F231C03F6A500E647E2 /* HNAImagePickerView.m */,
 				9F9D5F251C03F6B600E647E2 /* HNAImagePickerView.xib */,
+				9FD904551C27E20B00422219 /* HNAExpenseDetailCell.h */,
+				9FD904561C27E20B00422219 /* HNAExpenseDetailCell.m */,
+				9FD904571C27E20B00422219 /* HNAExpenseDetailCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1005,6 +1036,7 @@
 		9FC7C7121BFD5D18007E2C49 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				9FD9045A1C27FC5D00422219 /* MJPhotoBrowser */,
 				9FC572A51C1133940077831B /* CKCalendarView */,
 				9FB4891D1BFEB86D0031DE48 /* AFNetworking */,
 				9FB489311BFEB86D0031DE48 /* MBProgressHUD */,
@@ -1136,6 +1168,28 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		9FD9045A1C27FC5D00422219 /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				9FD9045B1C27FC5D00422219 /* MJPhoto.h */,
+				9FD9045C1C27FC5D00422219 /* MJPhoto.m */,
+				9FD9045D1C27FC5D00422219 /* MJPhotoBrowser.bundle */,
+				9FD9045E1C27FC5D00422219 /* MJPhotoBrowser.h */,
+				9FD9045F1C27FC5D00422219 /* MJPhotoBrowser.m */,
+				9FD904601C27FC5D00422219 /* MJPhotoLoadingView.h */,
+				9FD904611C27FC5D00422219 /* MJPhotoLoadingView.m */,
+				9FD904621C27FC5D00422219 /* MJPhotoProgressView.h */,
+				9FD904631C27FC5D00422219 /* MJPhotoProgressView.m */,
+				9FD904641C27FC5D00422219 /* MJPhotoToolbar.h */,
+				9FD904651C27FC5D00422219 /* MJPhotoToolbar.m */,
+				9FD904661C27FC5D00422219 /* MJPhotoView.h */,
+				9FD904671C27FC5D00422219 /* MJPhotoView.m */,
+				9FD904681C27FC5D00422219 /* SDWebImageManager+MJ.h */,
+				9FD904691C27FC5D00422219 /* SDWebImageManager+MJ.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1244,8 +1298,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC7C6DA1BFD5A3B007E2C49 /* LaunchScreen.storyboard in Resources */,
+				9FD9046B1C27FC5D00422219 /* MJPhotoBrowser.bundle in Resources */,
 				9F9D5F261C03F6B600E647E2 /* HNAImagePickerView.xib in Resources */,
 				9F3873771BFF04F9002AB971 /* HNAExpensesRecordCell.xib in Resources */,
+				9FD904591C27E20B00422219 /* HNAExpenseDetailCell.xib in Resources */,
 				9FB878EE1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.xib in Resources */,
 				9FAAB0B61C06E8B3007D5E61 /* HNAHealthCheckRecordCell.xib in Resources */,
 				9FB489891BFEB86D0031DE48 /* MJRefresh.bundle in Resources */,
@@ -1322,12 +1378,14 @@
 				9FB4897B1BFEB86D0031DE48 /* AFURLResponseSerialization.m in Sources */,
 				9FB4898F1BFEB86D0031DE48 /* NSData+ImageContentType.m in Sources */,
 				9FB489881BFEB86D0031DE48 /* NSObject+MJMember.m in Sources */,
+				9FD9046C1C27FC5D00422219 /* MJPhotoBrowser.m in Sources */,
 				9FB4899B1BFEB86D0031DE48 /* UIImageView+WebCache.m in Sources */,
 				9FB489791BFEB86D0031DE48 /* AFURLConnectionOperation.m in Sources */,
 				9FC33EA21C1E97D2004D4139 /* HNAGetHCOrganListParam.m in Sources */,
 				9FB4898C1BFEB86D0031DE48 /* MJRefreshFooterView.m in Sources */,
 				9FB489851BFEB86D0031DE48 /* MJTypeEncoding.m in Sources */,
 				9F734C6B1BFEC7E700434B90 /* HNAIntroductionController.m in Sources */,
+				9FD904581C27E20B00422219 /* HNAExpenseDetailCell.m in Sources */,
 				9FD77D941C1A6931006F6EC5 /* HNAExpenseDetailModel.m in Sources */,
 				9FB489751BFEB86D0031DE48 /* AFHTTPRequestOperationManager.m in Sources */,
 				9FB489811BFEB86D0031DE48 /* MJIvar.m in Sources */,
@@ -1337,6 +1395,7 @@
 				9FB489801BFEB86D0031DE48 /* MJArgument.m in Sources */,
 				9F3873751BFF04E3002AB971 /* HNAExpensesRecordCell.m in Sources */,
 				9FC33EA81C1E97D2004D4139 /* HNAGetPackageListParam.m in Sources */,
+				9FD9046E1C27FC5D00422219 /* MJPhotoProgressView.m in Sources */,
 				9FE222971C192B64003678BB /* HNASetMsgNoticeParam.m in Sources */,
 				9FC33EAC1C1E97D2004D4139 /* HNAReserveHCResult.m in Sources */,
 				9F9D5F241C03F6A500E647E2 /* HNAImagePickerView.m in Sources */,
@@ -1351,17 +1410,21 @@
 				9FB489951BFEB86D0031DE48 /* SDWebImageManager.m in Sources */,
 				9FAAB0B11C06E680007D5E61 /* HNAHealthCheckRecordModel.m in Sources */,
 				9FB489901BFEB86D0031DE48 /* SDImageCache.m in Sources */,
+				9FD9046A1C27FC5D00422219 /* MJPhoto.m in Sources */,
 				9FAAB0B01C06E680007D5E61 /* HNAHealthCheckController.m in Sources */,
 				9FB489781BFEB86D0031DE48 /* AFSecurityPolicy.m in Sources */,
 				9FB489961BFEB86D0031DE48 /* SDWebImagePrefetcher.m in Sources */,
 				9FC7C71E1BFD6B93007E2C49 /* HNASettingController.m in Sources */,
 				9FD77D9A1C1AABB2006F6EC5 /* NSDate+HNA.m in Sources */,
+				9FD9046D1C27FC5D00422219 /* MJPhotoLoadingView.m in Sources */,
 				9FB4899E1BFEB9710031DE48 /* HNAHttpTool.m in Sources */,
 				9FB489841BFEB86D0031DE48 /* MJType.m in Sources */,
 				9F8723441C0C42C300DA68FE /* HNAHCReservationController.m in Sources */,
 				9FB4898E1BFEB86D0031DE48 /* MKAnnotationView+WebCache.m in Sources */,
+				9FD904711C27FC5D00422219 /* SDWebImageManager+MJ.m in Sources */,
 				9FD77D911C1A64F7006F6EC5 /* HNAApplyExpenseParam.m in Sources */,
 				9FB4897D1BFEB86D0031DE48 /* MBProgressHUD+MJ.m in Sources */,
+				9FD9046F1C27FC5D00422219 /* MJPhotoToolbar.m in Sources */,
 				9FC7C72A1BFD7587007E2C49 /* HNASettingSwitchItem.m in Sources */,
 				9F8C0A071C1806AB0084EAD9 /* HNAUser.m in Sources */,
 				9F8C09FE1C1800510084EAD9 /* HNALoginInfoParam.m in Sources */,
@@ -1376,6 +1439,7 @@
 				9FC33EA01C1E97D2004D4139 /* HNAGetHCDetailParam.m in Sources */,
 				9FC33E5B1C1E8785004D4139 /* HNAHealthCheckTool.m in Sources */,
 				9FB489971BFEB86D0031DE48 /* UIButton+WebCache.m in Sources */,
+				9FD904701C27FC5D00422219 /* MJPhotoView.m in Sources */,
 				9F3BDFA51C17C9C9001D8A6B /* HNAProjectCell.m in Sources */,
 				9FB878E91C0E941B00DAF53F /* HNAPackageButtonScrollView.m in Sources */,
 				9FC7C7271BFD755D007E2C49 /* HNASettingArrowItem.m in Sources */,
@@ -1541,6 +1605,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib",
@@ -1552,6 +1617,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.glm.MedicalNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1559,6 +1625,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib",
