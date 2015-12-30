@@ -39,7 +39,9 @@
  */
 - (IBAction)reserveHealthCheck:(UIButton *)sender;
 
-
+/**
+ *  跳转到 医保报销
+ */
 - (IBAction)MedicalExpensesBtnClick:(UIButton *)sender;
 @end
 @implementation HNAHealthCheckController

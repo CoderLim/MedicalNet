@@ -13,6 +13,8 @@
 		9F3873771BFF04F9002AB971 /* HNAExpensesRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3873761BFF04F9002AB971 /* HNAExpensesRecordCell.xib */; };
 		9F3BDFA51C17C9C9001D8A6B /* HNAProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BDFA41C17C9C9001D8A6B /* HNAProjectCell.m */; };
 		9F3E56F81C2106DA00AA47C3 /* HNAHCReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3E56F71C2106DA00AA47C3 /* HNAHCReportController.m */; };
+		9F61B2481C322F480068F417 /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489351BFEB86D0031DE48 /* MBProgressHUD.h */; };
+		9F61B2491C322F6E0068F417 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489361BFEB86D0031DE48 /* MBProgressHUD.m */; };
 		9F734C621BFEC71500434B90 /* HNAChangeCipherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F734C611BFEC71500434B90 /* HNAChangeCipherController.m */; };
 		9F734C651BFEC72E00434B90 /* HNAChangePortraitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F734C641BFEC72E00434B90 /* HNAChangePortraitController.m */; };
 		9F734C681BFEC74100434B90 /* HNAChangePhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F734C671BFEC74100434B90 /* HNAChangePhoneController.m */; };
@@ -49,7 +51,6 @@
 		9FB4897C1BFEB86D0031DE48 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489301BFEB86D0031DE48 /* AFURLSessionManager.m */; };
 		9FB4897D1BFEB86D0031DE48 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489331BFEB86D0031DE48 /* MBProgressHUD+MJ.m */; };
 		9FB4897E1BFEB86D0031DE48 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9FB489341BFEB86D0031DE48 /* MBProgressHUD.bundle */; };
-		9FB4897F1BFEB86D0031DE48 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489361BFEB86D0031DE48 /* MBProgressHUD.m */; };
 		9FB489801BFEB86D0031DE48 /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489391BFEB86D0031DE48 /* MJArgument.m */; };
 		9FB489811BFEB86D0031DE48 /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4893C1BFEB86D0031DE48 /* MJIvar.m */; };
 		9FB489821BFEB86D0031DE48 /* MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4893E1BFEB86D0031DE48 /* MJMember.m */; };
@@ -1338,6 +1339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F61B2491C322F6E0068F417 /* MBProgressHUD.m in Sources */,
+				9F61B2481C322F480068F417 /* MBProgressHUD.h in Sources */,
 				9FC33EA61C1E97D2004D4139 /* HNAGetPackageDetailParam.m in Sources */,
 				9FD77D9B1C1ABBAA006F6EC5 /* HNAExpenseDirectionModel.h in Sources */,
 				9FB4898D1BFEB86D0031DE48 /* MJRefreshHeaderView.m in Sources */,
@@ -1434,7 +1437,6 @@
 				9F3E56F81C2106DA00AA47C3 /* HNAHCReportController.m in Sources */,
 				9FB489771BFEB86D0031DE48 /* AFNetworkReachabilityManager.m in Sources */,
 				9FC7C7241BFD6C41007E2C49 /* HNASettingGroup.m in Sources */,
-				9FB4897F1BFEB86D0031DE48 /* MBProgressHUD.m in Sources */,
 				9FC33EA71C1E97D2004D4139 /* HNAGetPackageDetailResult.m in Sources */,
 				9FC33EA01C1E97D2004D4139 /* HNAGetHCDetailParam.m in Sources */,
 				9FC33E5B1C1E8785004D4139 /* HNAHealthCheckTool.m in Sources */,

@@ -69,6 +69,7 @@
 - (void)takeAPhoto{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     NSAssert([UIImagePickerController isSourceTypeAvailable:sourceType], @"不能使用相机");
+    
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
