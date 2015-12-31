@@ -19,7 +19,7 @@
     
     // 修改状态栏字体为白色
     [SharedApplication setStatusBarStyle: UIStatusBarStyleLightContent];
-    
+
     return YES;
 }
 

@@ -11,7 +11,7 @@
  *  导航栏
  */
 // 0.背景色
-#define NavBackgroundColor [UIColor blackColor]
+#define NavBackgroundColor UIColorWithRGB(232, 100, 60)
 
 // 1.导航栏按钮文字颜色
 #define NavNormalBtnTextColor [UIColor orangeColor]
