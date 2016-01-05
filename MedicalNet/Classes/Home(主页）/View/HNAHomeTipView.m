@@ -18,6 +18,7 @@
 #pragma mark - 初始化
 + (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher andClose:(TipViewElementClick)close{
     HNAHomeTipView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"HNAHomeTipView" owner:nil options:nil] lastObject];
+    
     tipView.changeCipher = changeCipher;
     tipView.close = close;
     return tipView;

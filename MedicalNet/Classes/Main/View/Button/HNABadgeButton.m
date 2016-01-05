@@ -10,6 +10,28 @@
 
 @implementation HNABadgeButton
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.cornerRadius = 10;
+//    self.clipsToBounds = YES;
+}
+
+
 - (void)drawRect:(CGRect)rect{
     CGFloat radius = 5;
     CGFloat x = rect.size.width - 2 * radius;

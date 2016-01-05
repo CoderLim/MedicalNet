@@ -32,6 +32,22 @@
 		9F8C0A0A1C180A290084EAD9 /* HNAUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A091C180A290084EAD9 /* HNAUserTool.m */; };
 		9F8C0A0D1C1816210084EAD9 /* HNAExpensesRecordsController_old.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */; };
 		9F93148A1C02A9290073E10E /* HNAApplyExpensesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */; };
+		9F9D46E71C3BA21800DCBE16 /* HNABadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */; };
+		9F9D46E81C3BA21800DCBE16 /* HNACountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46DA1C3BA21800DCBE16 /* HNACountDownButton.m */; };
+		9F9D46E91C3BA21800DCBE16 /* HNAMutiStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46DC1C3BA21800DCBE16 /* HNAMutiStateButton.m */; };
+		9F9D46EA1C3BA21800DCBE16 /* HNAPortraitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46DE1C3BA21800DCBE16 /* HNAPortraitButton.m */; };
+		9F9D46EB1C3BA21800DCBE16 /* HNADatePickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46E11C3BA21800DCBE16 /* HNADatePickButton.m */; };
+		9F9D46EC1C3BA21800DCBE16 /* HNADatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46E31C3BA21800DCBE16 /* HNADatePicker.m */; };
+		9F9D46ED1C3BA21800DCBE16 /* HNAProgressCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46E61C3BA21800DCBE16 /* HNAProgressCellBase.m */; };
+		9F9D46F01C3BA70900DCBE16 /* HNAHCDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46EF1C3BA70900DCBE16 /* HNAHCDetailController.m */; };
+		9F9D46F61C3BAACE00DCBE16 /* HNAHCDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46F51C3BAACE00DCBE16 /* HNAHCDetailCell.m */; };
+		9F9D46F91C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46F81C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m */; };
+		9F9D46FC1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */; };
+		9F9D46FE1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */; };
+		9F9D47001C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */; };
+		9F9D47041C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */; };
+		9F9D47051C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */; };
+		9F9D47081C3BBF9000DCBE16 /* HNAHCDetailCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */; };
 		9F9D5F241C03F6A500E647E2 /* HNAImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D5F231C03F6A500E647E2 /* HNAImagePickerView.m */; };
 		9F9D5F261C03F6B600E647E2 /* HNAImagePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D5F251C03F6B600E647E2 /* HNAImagePickerView.xib */; };
 		9FAAB0B01C06E680007D5E61 /* HNAHealthCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAAB0AB1C06E680007D5E61 /* HNAHealthCheckController.m */; };
@@ -81,13 +97,10 @@
 		9FB4899B1BFEB86D0031DE48 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489731BFEB86D0031DE48 /* UIImageView+WebCache.m */; };
 		9FB4899E1BFEB9710031DE48 /* HNAHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB4899D1BFEB9710031DE48 /* HNAHttpTool.m */; };
 		9FB64CD71C23D0AD00C3F03C /* UILabel+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */; };
-		9FB64CDA1C23EEEC00C3F03C /* HNABadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */; };
 		9FB878E61C0E83BB00DAF53F /* HNAForgetCipherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878E51C0E83BB00DAF53F /* HNAForgetCipherController.m */; };
 		9FB878E91C0E941B00DAF53F /* HNAPackageButtonScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878E81C0E941B00DAF53F /* HNAPackageButtonScrollView.m */; };
 		9FB878ED1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878EB1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m */; };
 		9FB878EE1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB878EC1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.xib */; };
-		9FB878F11C0EE01B00DAF53F /* HNACountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878F01C0EE01B00DAF53F /* HNACountDownButton.m */; };
-		9FB878F41C0EE05400DAF53F /* HNAPortraitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878F31C0EE05400DAF53F /* HNAPortraitButton.m */; };
 		9FB878F71C0EF4D500DAF53F /* UIView+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB878F61C0EF4D500DAF53F /* UIView+HNA.m */; };
 		9FC33E571C1E646F004D4139 /* HNAApplySuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC33E561C1E646F004D4139 /* HNAApplySuccessController.m */; };
 		9FC33E5B1C1E8785004D4139 /* HNAHealthCheckTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC33E5A1C1E8785004D4139 /* HNAHealthCheckTool.m */; };
@@ -153,9 +166,6 @@
 		9FE222911C192803003678BB /* HNAChangePhoneParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222901C192803003678BB /* HNAChangePhoneParam.m */; };
 		9FE222941C192B15003678BB /* HNAChangePortraitParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222931C192B15003678BB /* HNAChangePortraitParam.m */; };
 		9FE222971C192B64003678BB /* HNASetMsgNoticeParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222961C192B64003678BB /* HNASetMsgNoticeParam.m */; };
-		9FFECF181C1FB29F00077A48 /* HNAMutiStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFECF171C1FB29F00077A48 /* HNAMutiStateButton.m */; };
-		9FFECF1E1C1FB35B00077A48 /* HNADatePickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFECF1D1C1FB35B00077A48 /* HNADatePickButton.m */; };
-		9FFECF231C1FED5E00077A48 /* HNADatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFECF221C1FED5E00077A48 /* HNADatePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +231,35 @@
 		9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAExpensesRecordsController_old.m; sourceTree = "<group>"; };
 		9F9314881C02A9290073E10E /* HNAApplyExpensesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAApplyExpensesController.h; sourceTree = "<group>"; };
 		9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAApplyExpensesController.m; sourceTree = "<group>"; };
+		9F9D46D71C3BA21800DCBE16 /* HNABadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNABadgeButton.h; sourceTree = "<group>"; };
+		9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNABadgeButton.m; sourceTree = "<group>"; };
+		9F9D46D91C3BA21800DCBE16 /* HNACountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNACountDownButton.h; sourceTree = "<group>"; };
+		9F9D46DA1C3BA21800DCBE16 /* HNACountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNACountDownButton.m; sourceTree = "<group>"; };
+		9F9D46DB1C3BA21800DCBE16 /* HNAMutiStateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAMutiStateButton.h; sourceTree = "<group>"; };
+		9F9D46DC1C3BA21800DCBE16 /* HNAMutiStateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAMutiStateButton.m; sourceTree = "<group>"; };
+		9F9D46DD1C3BA21800DCBE16 /* HNAPortraitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAPortraitButton.h; sourceTree = "<group>"; };
+		9F9D46DE1C3BA21800DCBE16 /* HNAPortraitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAPortraitButton.m; sourceTree = "<group>"; };
+		9F9D46E01C3BA21800DCBE16 /* HNADatePickButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNADatePickButton.h; sourceTree = "<group>"; };
+		9F9D46E11C3BA21800DCBE16 /* HNADatePickButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNADatePickButton.m; sourceTree = "<group>"; };
+		9F9D46E21C3BA21800DCBE16 /* HNADatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNADatePicker.h; sourceTree = "<group>"; };
+		9F9D46E31C3BA21800DCBE16 /* HNADatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNADatePicker.m; sourceTree = "<group>"; };
+		9F9D46E51C3BA21800DCBE16 /* HNAProgressCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAProgressCellBase.h; sourceTree = "<group>"; };
+		9F9D46E61C3BA21800DCBE16 /* HNAProgressCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAProgressCellBase.m; sourceTree = "<group>"; };
+		9F9D46EE1C3BA70900DCBE16 /* HNAHCDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailController.h; sourceTree = "<group>"; };
+		9F9D46EF1C3BA70900DCBE16 /* HNAHCDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailController.m; sourceTree = "<group>"; };
+		9F9D46F41C3BAACE00DCBE16 /* HNAHCDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailCell.h; sourceTree = "<group>"; };
+		9F9D46F51C3BAACE00DCBE16 /* HNAHCDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailCell.m; sourceTree = "<group>"; };
+		9F9D46F71C3BAB9300DCBE16 /* HNAHCDetailReminderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailReminderCell.h; sourceTree = "<group>"; };
+		9F9D46F81C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailReminderCell.m; sourceTree = "<group>"; };
+		9F9D46FA1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailReservedCell.h; sourceTree = "<group>"; };
+		9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailReservedCell.m; sourceTree = "<group>"; };
+		9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailReminderCell.xib; sourceTree = "<group>"; };
+		9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailReservedCell.xib; sourceTree = "<group>"; };
+		9F9D47011C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailHealthCheckedCell.h; sourceTree = "<group>"; };
+		9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailHealthCheckedCell.m; sourceTree = "<group>"; };
+		9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailHealthCheckedCell.xib; sourceTree = "<group>"; };
+		9F9D47061C3BBF9000DCBE16 /* HNAHCDetailCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailCellBase.h; sourceTree = "<group>"; };
+		9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailCellBase.m; sourceTree = "<group>"; };
 		9F9D5F221C03F6A500E647E2 /* HNAImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImagePickerView.h; sourceTree = "<group>"; };
 		9F9D5F231C03F6A500E647E2 /* HNAImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAImagePickerView.m; sourceTree = "<group>"; };
 		9F9D5F251C03F6B600E647E2 /* HNAImagePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAImagePickerView.xib; sourceTree = "<group>"; };
@@ -320,8 +359,6 @@
 		9FB4899D1BFEB9710031DE48 /* HNAHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHttpTool.m; sourceTree = "<group>"; };
 		9FB64CD51C23D0AD00C3F03C /* UILabel+HNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HNA.h"; sourceTree = "<group>"; };
 		9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HNA.m"; sourceTree = "<group>"; };
-		9FB64CD81C23EEEC00C3F03C /* HNABadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNABadgeButton.h; sourceTree = "<group>"; };
-		9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNABadgeButton.m; sourceTree = "<group>"; };
 		9FB878E41C0E83BB00DAF53F /* HNAForgetCipherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAForgetCipherController.h; sourceTree = "<group>"; };
 		9FB878E51C0E83BB00DAF53F /* HNAForgetCipherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAForgetCipherController.m; sourceTree = "<group>"; };
 		9FB878E71C0E941B00DAF53F /* HNAPackageButtonScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAPackageButtonScrollView.h; sourceTree = "<group>"; };
@@ -329,10 +366,6 @@
 		9FB878EA1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAMedicalInstitutionCell.h; sourceTree = "<group>"; };
 		9FB878EB1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAMedicalInstitutionCell.m; sourceTree = "<group>"; };
 		9FB878EC1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAMedicalInstitutionCell.xib; sourceTree = "<group>"; };
-		9FB878EF1C0EE01B00DAF53F /* HNACountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNACountDownButton.h; sourceTree = "<group>"; };
-		9FB878F01C0EE01B00DAF53F /* HNACountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNACountDownButton.m; sourceTree = "<group>"; };
-		9FB878F21C0EE05400DAF53F /* HNAPortraitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAPortraitButton.h; sourceTree = "<group>"; };
-		9FB878F31C0EE05400DAF53F /* HNAPortraitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAPortraitButton.m; sourceTree = "<group>"; };
 		9FB878F51C0EF4D500DAF53F /* UIView+HNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HNA.h"; sourceTree = "<group>"; };
 		9FB878F61C0EF4D500DAF53F /* UIView+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HNA.m"; sourceTree = "<group>"; };
 		9FC33E551C1E646F004D4139 /* HNAApplySuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAApplySuccessController.h; sourceTree = "<group>"; };
@@ -457,12 +490,6 @@
 		9FE222951C192B64003678BB /* HNASetMsgNoticeParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASetMsgNoticeParam.h; sourceTree = "<group>"; };
 		9FE222961C192B64003678BB /* HNASetMsgNoticeParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNASetMsgNoticeParam.m; sourceTree = "<group>"; };
 		9FE222991C194E2D003678BB /* HNATheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNATheme.h; sourceTree = "<group>"; };
-		9FFECF161C1FB29F00077A48 /* HNAMutiStateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAMutiStateButton.h; sourceTree = "<group>"; };
-		9FFECF171C1FB29F00077A48 /* HNAMutiStateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAMutiStateButton.m; sourceTree = "<group>"; };
-		9FFECF1C1C1FB35B00077A48 /* HNADatePickButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNADatePickButton.h; sourceTree = "<group>"; };
-		9FFECF1D1C1FB35B00077A48 /* HNADatePickButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNADatePickButton.m; sourceTree = "<group>"; };
-		9FFECF211C1FED5E00077A48 /* HNADatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNADatePicker.h; sourceTree = "<group>"; };
-		9FFECF221C1FED5E00077A48 /* HNADatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNADatePicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +528,61 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		9F9D46D61C3BA21800DCBE16 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				9F9D46D71C3BA21800DCBE16 /* HNABadgeButton.h */,
+				9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */,
+				9F9D46D91C3BA21800DCBE16 /* HNACountDownButton.h */,
+				9F9D46DA1C3BA21800DCBE16 /* HNACountDownButton.m */,
+				9F9D46DB1C3BA21800DCBE16 /* HNAMutiStateButton.h */,
+				9F9D46DC1C3BA21800DCBE16 /* HNAMutiStateButton.m */,
+				9F9D46DD1C3BA21800DCBE16 /* HNAPortraitButton.h */,
+				9F9D46DE1C3BA21800DCBE16 /* HNAPortraitButton.m */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		9F9D46DF1C3BA21800DCBE16 /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				9F9D46E01C3BA21800DCBE16 /* HNADatePickButton.h */,
+				9F9D46E11C3BA21800DCBE16 /* HNADatePickButton.m */,
+				9F9D46E21C3BA21800DCBE16 /* HNADatePicker.h */,
+				9F9D46E31C3BA21800DCBE16 /* HNADatePicker.m */,
+			);
+			path = DatePicker;
+			sourceTree = "<group>";
+		};
+		9F9D46E41C3BA21800DCBE16 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F9D46E51C3BA21800DCBE16 /* HNAProgressCellBase.h */,
+				9F9D46E61C3BA21800DCBE16 /* HNAProgressCellBase.m */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		9F9D46F11C3BA95E00DCBE16 /* HNAHCDetailController(体检详情) */ = {
+			isa = PBXGroup;
+			children = (
+				9F9D47061C3BBF9000DCBE16 /* HNAHCDetailCellBase.h */,
+				9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */,
+				9F9D46F41C3BAACE00DCBE16 /* HNAHCDetailCell.h */,
+				9F9D46F51C3BAACE00DCBE16 /* HNAHCDetailCell.m */,
+				9F9D46F71C3BAB9300DCBE16 /* HNAHCDetailReminderCell.h */,
+				9F9D46F81C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m */,
+				9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */,
+				9F9D46FA1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.h */,
+				9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */,
+				9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */,
+				9F9D47011C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.h */,
+				9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */,
+				9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */,
+			);
+			path = "HNAHCDetailController(体检详情)";
+			sourceTree = "<group>";
+		};
 		9FAAB0A81C06E680007D5E61 /* HealthCheck(体检) */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +609,8 @@
 				9F3E56F71C2106DA00AA47C3 /* HNAHCReportController.m */,
 				9FC33EAD1C1E995D004D4139 /* HNAMapController.h */,
 				9FC33EAE1C1E995D004D4139 /* HNAMapController.m */,
+				9F9D46EE1C3BA70900DCBE16 /* HNAHCDetailController.h */,
+				9F9D46EF1C3BA70900DCBE16 /* HNAHCDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -549,6 +633,7 @@
 		9FAAB0AF1C06E680007D5E61 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9F9D46F11C3BA95E00DCBE16 /* HNAHCDetailController(体检详情) */,
 				9FAAB0B21C06E8B3007D5E61 /* HNAHealthCheckRecordCell.h */,
 				9FAAB0B31C06E8B3007D5E61 /* HNAHealthCheckRecordCell.m */,
 				9FAAB0B41C06E8B3007D5E61 /* HNAHealthCheckRecordCell.xib */,
@@ -1144,18 +1229,9 @@
 		9FC97BC01C05608000F5F730 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9FFECF161C1FB29F00077A48 /* HNAMutiStateButton.h */,
-				9FFECF171C1FB29F00077A48 /* HNAMutiStateButton.m */,
-				9FB878EF1C0EE01B00DAF53F /* HNACountDownButton.h */,
-				9FB878F01C0EE01B00DAF53F /* HNACountDownButton.m */,
-				9FB878F21C0EE05400DAF53F /* HNAPortraitButton.h */,
-				9FB878F31C0EE05400DAF53F /* HNAPortraitButton.m */,
-				9FFECF1C1C1FB35B00077A48 /* HNADatePickButton.h */,
-				9FFECF1D1C1FB35B00077A48 /* HNADatePickButton.m */,
-				9FFECF211C1FED5E00077A48 /* HNADatePicker.h */,
-				9FFECF221C1FED5E00077A48 /* HNADatePicker.m */,
-				9FB64CD81C23EEEC00C3F03C /* HNABadgeButton.h */,
-				9FB64CD91C23EEEC00C3F03C /* HNABadgeButton.m */,
+				9F9D46D61C3BA21800DCBE16 /* Button */,
+				9F9D46DF1C3BA21800DCBE16 /* DatePicker */,
+				9F9D46E41C3BA21800DCBE16 /* TableViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1299,6 +1375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC7C6DA1BFD5A3B007E2C49 /* LaunchScreen.storyboard in Resources */,
+				9F9D47001C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib in Resources */,
 				9FD9046B1C27FC5D00422219 /* MJPhotoBrowser.bundle in Resources */,
 				9F9D5F261C03F6B600E647E2 /* HNAImagePickerView.xib in Resources */,
 				9F3873771BFF04F9002AB971 /* HNAExpensesRecordCell.xib in Resources */,
@@ -1309,7 +1386,9 @@
 				9FC572B51C113BEC0077831B /* left_arrow.png in Resources */,
 				9FC7C7321BFD862B007E2C49 /* HNASettingHeaderView.xib in Resources */,
 				9FB0A92B1C07F47D00AFBECA /* Images.xcassets in Resources */,
+				9F9D46FE1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib in Resources */,
 				9FC7C7491BFDC4DD007E2C49 /* HNAHomeTipView.xib in Resources */,
+				9F9D47051C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib in Resources */,
 				9FC7C6D51BFD5A3B007E2C49 /* Main.storyboard in Resources */,
 				9FC572B81C113BEC0077831B /* right_arrow@2x.png in Resources */,
 				9FB4897E1BFEB86D0031DE48 /* MBProgressHUD.bundle in Resources */,
@@ -1361,7 +1440,6 @@
 				9F734C621BFEC71500434B90 /* HNAChangeCipherController.m in Sources */,
 				9F8723411C0C402100DA68FE /* HNAHCPackageDetailController.m in Sources */,
 				9FC7C7151BFD5D18007E2C49 /* AppDelegate.m in Sources */,
-				9FB878F41C0EE05400DAF53F /* HNAPortraitButton.m in Sources */,
 				9FC33EB21C1EB049004D4139 /* HNAAnnotation.m in Sources */,
 				9FC33EA41C1E97D2004D4139 /* HNAGetHCRecordsParam.m in Sources */,
 				9F38736F1BFEFFEE002AB971 /* HNAExpensesRecordsController.m in Sources */,
@@ -1369,11 +1447,13 @@
 				9FB489941BFEB86D0031DE48 /* SDWebImageDownloaderOperation.m in Sources */,
 				9FB489871BFEB86D0031DE48 /* NSObject+MJKeyValue.m in Sources */,
 				9FC33EA11C1E97D2004D4139 /* HNAGetHCDetailResult.m in Sources */,
+				9F9D46ED1C3BA21800DCBE16 /* HNAProgressCellBase.m in Sources */,
 				9FE2228B1C19267D003678BB /* HNAChangePwdParam.m in Sources */,
 				9FD77D8B1C1A61BC006F6EC5 /* HNAExpenseRecordModel.m in Sources */,
 				9F8C0A041C1800D80084EAD9 /* HNALoginInfoResult.m in Sources */,
 				9FB0A9291C07E97500AFBECA /* HNAMedicalExpensesDetailController.m in Sources */,
 				9FC33EA91C1E97D2004D4139 /* HNAGetPackageListResult.m in Sources */,
+				9F9D47081C3BBF9000DCBE16 /* HNAHCDetailCellBase.m in Sources */,
 				9F78FBE51C1687E7001F1F9E /* HNAExpensesDirectionsController.m in Sources */,
 				9FC7C7471BFDC4C8007E2C49 /* HNAHomeTipView.m in Sources */,
 				9FC33EAB1C1E97D2004D4139 /* HNAReserveHCParam.m in Sources */,
@@ -1384,16 +1464,20 @@
 				9FD9046C1C27FC5D00422219 /* MJPhotoBrowser.m in Sources */,
 				9FB4899B1BFEB86D0031DE48 /* UIImageView+WebCache.m in Sources */,
 				9FB489791BFEB86D0031DE48 /* AFURLConnectionOperation.m in Sources */,
+				9F9D46EB1C3BA21800DCBE16 /* HNADatePickButton.m in Sources */,
 				9FC33EA21C1E97D2004D4139 /* HNAGetHCOrganListParam.m in Sources */,
+				9F9D46F01C3BA70900DCBE16 /* HNAHCDetailController.m in Sources */,
 				9FB4898C1BFEB86D0031DE48 /* MJRefreshFooterView.m in Sources */,
 				9FB489851BFEB86D0031DE48 /* MJTypeEncoding.m in Sources */,
 				9F734C6B1BFEC7E700434B90 /* HNAIntroductionController.m in Sources */,
 				9FD904581C27E20B00422219 /* HNAExpenseDetailCell.m in Sources */,
+				9F9D46E81C3BA21800DCBE16 /* HNACountDownButton.m in Sources */,
 				9FD77D941C1A6931006F6EC5 /* HNAExpenseDetailModel.m in Sources */,
 				9FB489751BFEB86D0031DE48 /* AFHTTPRequestOperationManager.m in Sources */,
 				9FB489811BFEB86D0031DE48 /* MJIvar.m in Sources */,
 				9FB489911BFEB86D0031DE48 /* SDWebImageCompat.m in Sources */,
 				9FB489991BFEB86D0031DE48 /* UIImage+MultiFormat.m in Sources */,
+				9F9D46F61C3BAACE00DCBE16 /* HNAHCDetailCell.m in Sources */,
 				9FD77D881C1A5E10006F6EC5 /* HNAExpenseDirectionModel.m in Sources */,
 				9FB489801BFEB86D0031DE48 /* MJArgument.m in Sources */,
 				9F3873751BFF04E3002AB971 /* HNAExpensesRecordCell.m in Sources */,
@@ -1407,7 +1491,7 @@
 				9FC7C7371BFD8E9E007E2C49 /* HNALoginController.m in Sources */,
 				9FE2228E1C1926C3003678BB /* HNAResult.m in Sources */,
 				9FB878F71C0EF4D500DAF53F /* UIView+HNA.m in Sources */,
-				9FFECF181C1FB29F00077A48 /* HNAMutiStateButton.m in Sources */,
+				9F9D46EC1C3BA21800DCBE16 /* HNADatePicker.m in Sources */,
 				9FB4899A1BFEB86D0031DE48 /* UIImage+WebP.m in Sources */,
 				9F8C0A0D1C1816210084EAD9 /* HNAExpensesRecordsController_old.m in Sources */,
 				9FB489951BFEB86D0031DE48 /* SDWebImageManager.m in Sources */,
@@ -1416,6 +1500,7 @@
 				9FD9046A1C27FC5D00422219 /* MJPhoto.m in Sources */,
 				9FAAB0B01C06E680007D5E61 /* HNAHealthCheckController.m in Sources */,
 				9FB489781BFEB86D0031DE48 /* AFSecurityPolicy.m in Sources */,
+				9F9D46E71C3BA21800DCBE16 /* HNABadgeButton.m in Sources */,
 				9FB489961BFEB86D0031DE48 /* SDWebImagePrefetcher.m in Sources */,
 				9FC7C71E1BFD6B93007E2C49 /* HNASettingController.m in Sources */,
 				9FD77D9A1C1AABB2006F6EC5 /* NSDate+HNA.m in Sources */,
@@ -1425,6 +1510,7 @@
 				9F8723441C0C42C300DA68FE /* HNAHCReservationController.m in Sources */,
 				9FB4898E1BFEB86D0031DE48 /* MKAnnotationView+WebCache.m in Sources */,
 				9FD904711C27FC5D00422219 /* SDWebImageManager+MJ.m in Sources */,
+				9F9D46EA1C3BA21800DCBE16 /* HNAPortraitButton.m in Sources */,
 				9FD77D911C1A64F7006F6EC5 /* HNAApplyExpenseParam.m in Sources */,
 				9FB4897D1BFEB86D0031DE48 /* MBProgressHUD+MJ.m in Sources */,
 				9FD9046F1C27FC5D00422219 /* MJPhotoToolbar.m in Sources */,
@@ -1432,7 +1518,6 @@
 				9F8C0A071C1806AB0084EAD9 /* HNAUser.m in Sources */,
 				9F8C09FE1C1800510084EAD9 /* HNALoginInfoParam.m in Sources */,
 				9FB4897A1BFEB86D0031DE48 /* AFURLRequestSerialization.m in Sources */,
-				9FFECF231C1FED5E00077A48 /* HNADatePicker.m in Sources */,
 				9FB489921BFEB86D0031DE48 /* SDWebImageDecoder.m in Sources */,
 				9F3E56F81C2106DA00AA47C3 /* HNAHCReportController.m in Sources */,
 				9FB489771BFEB86D0031DE48 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1450,20 +1535,21 @@
 				9FC7C7161BFD5D18007E2C49 /* main.m in Sources */,
 				9FC33EA51C1E97D2004D4139 /* HNAGetHCRecordsResult.m in Sources */,
 				9FB489931BFEB86D0031DE48 /* SDWebImageDownloader.m in Sources */,
+				9F9D46FC1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m in Sources */,
 				9FB878E61C0E83BB00DAF53F /* HNAForgetCipherController.m in Sources */,
 				9F734C681BFEC74100434B90 /* HNAChangePhoneController.m in Sources */,
 				9FB489741BFEB86D0031DE48 /* AFHTTPRequestOperation.m in Sources */,
 				9FC7C73A1BFD91B2007E2C49 /* HNAHomeController.m in Sources */,
 				9FC572A81C1133940077831B /* CKCalendarView.m in Sources */,
 				9FB489861BFEB86D0031DE48 /* NSObject+MJCoding.m in Sources */,
+				9F9D47041C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m in Sources */,
 				9FC33E571C1E646F004D4139 /* HNAApplySuccessController.m in Sources */,
 				9F8C0A011C18005C0084EAD9 /* HNALoginTool.m in Sources */,
-				9FB64CDA1C23EEEC00C3F03C /* HNABadgeButton.m in Sources */,
-				9FFECF1E1C1FB35B00077A48 /* HNADatePickButton.m in Sources */,
 				9FB878ED1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m in Sources */,
+				9F9D46E91C3BA21800DCBE16 /* HNAMutiStateButton.m in Sources */,
 				9FB4898B1BFEB86D0031DE48 /* MJRefreshConst.m in Sources */,
-				9FB878F11C0EE01B00DAF53F /* HNACountDownButton.m in Sources */,
 				9FB489761BFEB86D0031DE48 /* AFHTTPSessionManager.m in Sources */,
+				9F9D46F91C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m in Sources */,
 				9FC7C7211BFD6BFA007E2C49 /* HNASettingItem.m in Sources */,
 				9F8C0A0A1C180A290084EAD9 /* HNAUserTool.m in Sources */,
 				9FC33EA31C1E97D2004D4139 /* HNAGetHCOrganListResult.m in Sources */,

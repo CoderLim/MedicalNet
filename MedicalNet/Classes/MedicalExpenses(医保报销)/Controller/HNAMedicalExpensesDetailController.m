@@ -163,6 +163,14 @@
     
     cell.model = self.statusRecords[indexPath.row];
     cell.showTip = indexPath.row == 2;
+    
+    if (indexPath.row == 0) {
+        cell.isSelected = YES;
+        cell.positionType = HNAProgressCellPositionTypeBegin;
+    } else if (indexPath.row == self.statusRecords.count-1) {
+        cell.positionType = HNAProgressCellPositionTypeEnd;
+    }
+    
     return cell;
     
 }

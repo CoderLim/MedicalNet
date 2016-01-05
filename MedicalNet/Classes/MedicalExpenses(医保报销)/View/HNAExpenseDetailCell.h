@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "HNAExpenseDetailModel.h"
+#import "HNAProgressCellBase.h"
 
-@interface HNAExpenseDetailCell : UITableViewCell
+@interface HNAExpenseDetailCell : HNAProgressCellBase
 
 @property(nonatomic,strong) HNAExpenseDetailStatusRecord *model;
 
+/*
+ *    是否显示下方的文字
+ */
 @property (nonatomic,assign) BOOL showTip;
 
 
