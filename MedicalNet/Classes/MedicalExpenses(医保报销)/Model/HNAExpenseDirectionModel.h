@@ -33,7 +33,7 @@
 /**
  *  理赔所需材料
  */
-@property(nonatomic,strong) NSMutableArray *materials;
+@property(nonatomic,copy) NSString *materials;
 /**
  *  可报销医院
  */
@@ -51,7 +51,7 @@
 /**
  *  项目
  */
-@property (nonatomic,copy) NSString *item;
+@property (nonatomic,copy) NSString *project;
 /**
  *  金额
  */

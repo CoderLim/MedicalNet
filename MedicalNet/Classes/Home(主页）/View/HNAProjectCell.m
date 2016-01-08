@@ -19,8 +19,8 @@
 - (void)setModel:(HNASecurityProgram *)model{
     _model = model;
     
-    self.nameLabel.text = _model.item;
-    self.moneyLabel.text = _model.amount;
+    self.nameLabel.text = model.project;
+    self.moneyLabel.text = model.amount;
 }
 
 - (void)awakeFromNib {

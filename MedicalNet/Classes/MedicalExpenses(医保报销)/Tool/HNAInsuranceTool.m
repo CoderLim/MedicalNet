@@ -31,7 +31,7 @@
     
     [HNAHttpTool getWithURL:urlStr params:@{@"companyId":companyId} success:^(id json) {
         if (success) {
-            success([HNAExpenseDirectionModel directionWithDict:json]);
+            success([HNAExpenseDirectionModel objectWithKeyValues:json]);
         }
     } failure:^(NSError *error) {
         if (failure) {

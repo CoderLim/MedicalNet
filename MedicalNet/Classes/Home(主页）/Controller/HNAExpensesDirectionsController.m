@@ -31,7 +31,8 @@
 /**
  *  理赔所需材料
  */
-@property (weak, nonatomic) IBOutlet UITableView *materialTableView;
+@property (weak, nonatomic) IBOutlet UILabel *materialLabel;
+
 /**
  *  可报销医院
  */
@@ -43,7 +44,6 @@
 - (IBAction)submitButtonClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *projectTableViewConstraint_H;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *materialTableViewConstraint_H;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hospitalTableViewConstraint_H;
 
 @property (strong, nonatomic) NSMutableArray *materialArray;
@@ -62,7 +62,6 @@
     _showMoreHospital = NO;
     
     // 根据数据量动态调整tableView的高度约束
-    [self.materialTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
     [self.projectTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
     [self.hospitalTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
     
@@ -80,33 +79,23 @@
     self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
-- (NSMutableArray *)materialArray{
-    if (_materialArray == nil) {
-        _materialArray = [NSMutableArray array];
-        for (NSInteger i = 0; i < 5; i++) {
-            [_materialArray addObject:[NSString stringWithFormat:@"%ld)1341431431431413431",(long)i]];
-        }
-    }
-    return _materialArray;
-}
-
 - (NSMutableArray<HNASecurityProgram *> *)projectArray{
     if (_projectArray == nil) {
         _projectArray = [NSMutableArray array];
         
-        HNASecurityProgram *model2 = [[HNASecurityProgram alloc] init];
-        model2.item = @"重大疾病";
-        model2.amount = @"10万元";
-        
-        HNASecurityProgram *model3 = [[HNASecurityProgram alloc] init];
-        model3.item = @"人身意外伤害责任";
-        model3.amount = @"20万元";
-        
-        HNASecurityProgram *model4 = [[HNASecurityProgram alloc] init];
-        model4.item = @"子女团体医疗";
-        model4.amount = @"医疗0元，住院400（0元免赔，50%赔付）";
-        
-        _projectArray = [NSMutableArray arrayWithArray:[NSArray arrayWithObjects:model2, model3, model4, nil]];
+//        HNASecurityProgram *model2 = [[HNASecurityProgram alloc] init];
+//        model2.project = @"重大疾病";
+//        model2.amount = @"10万元";
+//        
+//        HNASecurityProgram *model3 = [[HNASecurityProgram alloc] init];
+//        model3.project = @"人身意外伤害责任";
+//        model3.amount = @"20万元";
+//        
+//        HNASecurityProgram *model4 = [[HNASecurityProgram alloc] init];
+//        model4.project = @"子女团体医疗";
+//        model4.amount = @"医疗0元，住院400（0元免赔，50%赔付）";
+//        
+//        _projectArray = [NSMutableArray arrayWithArray:[NSArray arrayWithObjects:model2, model3, model4, nil]];
     }
     return _projectArray;
 }
@@ -115,9 +104,9 @@
     if (_hospitalArray == nil) {
         _hospitalArray = [NSMutableArray array];
         
-        for (NSInteger i = 0; i < 10; i++) {
-            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
-        }
+//        for (NSInteger i = 0; i < 10; i++) {
+//            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
+//        }
     }
     return _hospitalArray;
 }
@@ -138,13 +127,12 @@
     [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAExpenseDirectionModel *direction) {
         if (direction != nil) {
             weakSelf.projectArray = direction.securityPrograms;
-            weakSelf.materialArray = direction.materials;
             weakSelf.hospitalArray = direction.hospitals;
             [MBProgressHUD showSuccess:@"获取成功"];
             
             // 3.刷新数据
             [weakSelf.projectTableView reloadData];
-            [weakSelf.materialTableView reloadData];
+            weakSelf.materialLabel.text = direction.materials;
             [weakSelf.hospitalTableView reloadData];
         } else {
             [MBProgressHUD showError:@"没有数据"];
@@ -157,13 +145,14 @@
 
 #pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (tableView == self.materialTableView) {
-        return self.materialArray.count;
-    } else if (tableView == self.projectTableView){
+//    if (tableView == self.materialTableView) {
+//        return self.materialArray.count;
+//    } else
+    if (tableView == self.projectTableView){
         return self.projectArray.count;
     } else if (tableView == self.hospitalTableView) {
         if (_showMoreHospital == NO) {
-            return 3;
+            return MIN(3,self.hospitalArray.count);
         }
         return self.hospitalArray.count;
     }
@@ -171,9 +160,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == self.materialTableView) { // 报销所需材料
-        return [self materialCellForRowAtIndexPath:indexPath withTableView:tableView];
-    } else if (tableView == self.projectTableView) { // 保障方案
+//    if (tableView == self.materialTableView) { // 报销所需材料
+//        return [self materialCellForRowAtIndexPath:indexPath withTableView:tableView];
+//    } else
+    if (tableView == self.projectTableView) { // 保障方案
         return [self projectCellForRowAtIndexPath:indexPath withTableView:tableView];
     } else if (tableView == self.hospitalTableView){  // 可报销医院
         return [self hospitalCellForRowAtIndexPath:indexPath withTableView:tableView];
@@ -181,6 +171,7 @@
     return nil;
 }
 
+// Deprecated :
 // 材料 cell
 - (UITableViewCell *)materialCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
     static NSString *materialIdentifier = @"materialCell";
@@ -218,9 +209,7 @@
     
     CGSize contentSize;
     contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
-    if (object == self.materialTableView) {
-        self.materialTableViewConstraint_H.constant = contentSize.height;
-    } else if (object == self.projectTableView) {
+    if (object == self.projectTableView) {
         self.projectTableViewConstraint_H.constant = contentSize.height;
     } else if  (object == self.hospitalTableView) {
         self.hospitalTableViewConstraint_H.constant = contentSize.height;
@@ -230,7 +219,6 @@
 }
 
 - (void)dealloc{
-    [self.materialTableView removeObserver:self forKeyPath: KPContentSize];
     [self.projectTableView removeObserver:self forKeyPath: KPContentSize];
     [self.hospitalTableView removeObserver:self forKeyPath: KPContentSize];
 }
