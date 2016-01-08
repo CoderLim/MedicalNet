@@ -6,7 +6,11 @@
 //  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
+// 体检详情
+
 #import "HNAHCDetailController.h"
+#import "HNAHCReportController.h"
+#import "HNAHCPackageDetailController.h"
 
 #import "HNAHealthCheckTool.h"
 #import "HNAGetHCDetailParam.h"
@@ -38,14 +42,17 @@
  */
 @property (nonatomic,copy) NSString *alertMessage;
 
+- (IBAction)checkPackageDetail:(UIButton *)sender;
 @end
 @implementation HNAHCDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailHealthCheckedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailHealthCheckedCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReminderCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReminderCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
+    
 }
 
 - (NSMutableArray<HNAHCStatusRecord *> *)statusRecords {
@@ -75,6 +82,12 @@
     }];
 }
 
+#pragma mark - 按钮点击事件
+- (IBAction)checkPackageDetail:(UIButton *)sender {
+    HNAHCPackageDetailController *packageDetail = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHCPackageDetailController"];
+    [self.navigationController pushViewController:packageDetail animated:YES];
+}
+
 #pragma mark - tableView datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.statusRecords.count;
@@ -82,26 +95,50 @@
 
 #pragma mark - tableView delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier_default = @"HNAHCDetailCell";
-    static NSString *identifier_reminder = @"HNAHCDetailReminderCell";
-    static NSString *identifier_reserved = @"HNAHCDetailReservedCell";
-
+    // 1.数据模型
     HNAHCStatusRecord *record = self.statusRecords[indexPath.row];
     
-    HNAHCDetailCell *cell = nil;
-    
-    if (record.isSelected == NO || indexPath.row <=1) {
-        cell = [tableView dequeueReusableCellWithIdentifier:identifier_default];
+    // 2.所有cell默认显示HNAHCDetailCell，当点击对应button后（即record.isSelected == YES）切换到对应cell
+    HNAHCDetailCellBase *cell = nil;
+    if (record.isSelected == NO || indexPath.row <=1) { // 前两个cell不根据isSelected变化
+        cell = [HNAHCDetailCell cellForTableView:tableView withIndexPath:indexPath];
+        if (indexPath.row == 0) {
+            // 设置block
+            WEAKSELF(wself);
+            ((HNAHCDetailCell *)cell).descBlock = ^{
+                HNAHCReportController *reportController = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHCReportController"];
+                [wself.navigationController pushViewController:reportController animated:YES];
+            };
+        } else {
+            ((HNAHCDetailCell *)cell).descBlock = nil;
+        }
     } else {
         if (indexPath.row == 2) {
-            cell = [tableView dequeueReusableCellWithIdentifier:identifier_reminder];
-            HNALog(@"%@",record);
+            cell = [HNAHCDetailReminderCell cellForTableView:tableView withIndexPath:indexPath];
         } else if (indexPath.row == 3) {
-            cell = [tableView dequeueReusableCellWithIdentifier:identifier_reserved];
+            cell = [HNAHCDetailReservedCell cellForTableView:tableView withIndexPath:indexPath];
         }
     }
-    cell.tableView = tableView;
+    
+    // 3.设置位置属性
+    if (indexPath.row == 0) {
+        cell.positionType = HNAProgressCellPositionTypeBegin;
+    } else if (indexPath.row == 3) {
+        cell.positionType = HNAProgressCellPositionTypeEnd;
+    } else {
+        cell.positionType = HNAProgressCellPositionTypeDefault;
+    }
+    
+    // 4.数据模型赋值给cell
     cell.model = record;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 @end

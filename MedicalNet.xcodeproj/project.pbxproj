@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1AB2951C3F7028006D185D /* HNABankNoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1AB2941C3F7028006D185D /* HNABankNoField.swift */; };
 		9F38736C1BFEF405002AB971 /* HNASettingExecuteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38736B1BFEF405002AB971 /* HNASettingExecuteItem.m */; };
 		9F38736F1BFEFFEE002AB971 /* HNAExpensesRecordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38736E1BFEFFEE002AB971 /* HNAExpensesRecordsController.m */; };
 		9F3873751BFF04E3002AB971 /* HNAExpensesRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3873741BFF04E3002AB971 /* HNAExpensesRecordCell.m */; };
@@ -45,8 +46,6 @@
 		9F9D46FC1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */; };
 		9F9D46FE1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */; };
 		9F9D47001C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */; };
-		9F9D47041C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */; };
-		9F9D47051C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */; };
 		9F9D47081C3BBF9000DCBE16 /* HNAHCDetailCellBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */; };
 		9F9D5F241C03F6A500E647E2 /* HNAImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D5F231C03F6A500E647E2 /* HNAImagePickerView.m */; };
 		9F9D5F261C03F6B600E647E2 /* HNAImagePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D5F251C03F6B600E647E2 /* HNAImagePickerView.xib */; };
@@ -186,6 +185,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F1AB2931C3F7028006D185D /* MedicalNet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MedicalNet-Bridging-Header.h"; path = "Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h"; sourceTree = "<group>"; };
+		9F1AB2941C3F7028006D185D /* HNABankNoField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNABankNoField.swift; sourceTree = "<group>"; };
 		9F38736A1BFEF405002AB971 /* HNASettingExecuteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASettingExecuteItem.h; sourceTree = "<group>"; };
 		9F38736B1BFEF405002AB971 /* HNASettingExecuteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNASettingExecuteItem.m; sourceTree = "<group>"; };
 		9F38736D1BFEFFEE002AB971 /* HNAExpensesRecordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAExpensesRecordsController.h; sourceTree = "<group>"; };
@@ -255,9 +256,6 @@
 		9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailReservedCell.m; sourceTree = "<group>"; };
 		9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailReminderCell.xib; sourceTree = "<group>"; };
 		9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailReservedCell.xib; sourceTree = "<group>"; };
-		9F9D47011C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailHealthCheckedCell.h; sourceTree = "<group>"; };
-		9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailHealthCheckedCell.m; sourceTree = "<group>"; };
-		9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCDetailHealthCheckedCell.xib; sourceTree = "<group>"; };
 		9F9D47061C3BBF9000DCBE16 /* HNAHCDetailCellBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCDetailCellBase.h; sourceTree = "<group>"; };
 		9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCDetailCellBase.m; sourceTree = "<group>"; };
 		9F9D5F221C03F6A500E647E2 /* HNAImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImagePickerView.h; sourceTree = "<group>"; };
@@ -576,9 +574,6 @@
 				9F9D46FA1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.h */,
 				9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */,
 				9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */,
-				9F9D47011C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.h */,
-				9F9D47021C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m */,
-				9F9D47031C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib */,
 			);
 			path = "HNAHCDetailController(体检详情)";
 			sourceTree = "<group>";
@@ -599,8 +594,8 @@
 			children = (
 				9FAAB0AA1C06E680007D5E61 /* HNAHealthCheckController.h */,
 				9FAAB0AB1C06E680007D5E61 /* HNAHealthCheckController.m */,
-				9F8723391C0C3A4E00DA68FE /* HNAHealthCheckDetailController.h */,
-				9F87233A1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m */,
+				9F9D46EE1C3BA70900DCBE16 /* HNAHCDetailController.h */,
+				9F9D46EF1C3BA70900DCBE16 /* HNAHCDetailController.m */,
 				9F87233F1C0C402100DA68FE /* HNAHCPackageDetailController.h */,
 				9F8723401C0C402100DA68FE /* HNAHCPackageDetailController.m */,
 				9F8723421C0C42C300DA68FE /* HNAHCReservationController.h */,
@@ -609,8 +604,8 @@
 				9F3E56F71C2106DA00AA47C3 /* HNAHCReportController.m */,
 				9FC33EAD1C1E995D004D4139 /* HNAMapController.h */,
 				9FC33EAE1C1E995D004D4139 /* HNAMapController.m */,
-				9F9D46EE1C3BA70900DCBE16 /* HNAHCDetailController.h */,
-				9F9D46EF1C3BA70900DCBE16 /* HNAHCDetailController.m */,
+				9F8723391C0C3A4E00DA68FE /* HNAHealthCheckDetailController.h */,
+				9F87233A1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -893,6 +888,7 @@
 		9FC7C6CA1BFD5A3B007E2C49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F1AB2931C3F7028006D185D /* MedicalNet-Bridging-Header.h */,
 				9FC7C6D31BFD5A3B007E2C49 /* Main.storyboard */,
 				9FC7C6D81BFD5A3B007E2C49 /* LaunchScreen.storyboard */,
 				9FC7C6DB1BFD5A3B007E2C49 /* Info.plist */,
@@ -1085,6 +1081,7 @@
 				9FD904551C27E20B00422219 /* HNAExpenseDetailCell.h */,
 				9FD904561C27E20B00422219 /* HNAExpenseDetailCell.m */,
 				9FD904571C27E20B00422219 /* HNAExpenseDetailCell.xib */,
+				9F1AB2941C3F7028006D185D /* HNABankNoField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1330,6 +1327,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HNA;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = HaiHang;
 				TargetAttributes = {
@@ -1388,7 +1386,6 @@
 				9FB0A92B1C07F47D00AFBECA /* Images.xcassets in Resources */,
 				9F9D46FE1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib in Resources */,
 				9FC7C7491BFDC4DD007E2C49 /* HNAHomeTipView.xib in Resources */,
-				9F9D47051C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.xib in Resources */,
 				9FC7C6D51BFD5A3B007E2C49 /* Main.storyboard in Resources */,
 				9FC572B81C113BEC0077831B /* right_arrow@2x.png in Resources */,
 				9FB4897E1BFEB86D0031DE48 /* MBProgressHUD.bundle in Resources */,
@@ -1448,6 +1445,7 @@
 				9FB489871BFEB86D0031DE48 /* NSObject+MJKeyValue.m in Sources */,
 				9FC33EA11C1E97D2004D4139 /* HNAGetHCDetailResult.m in Sources */,
 				9F9D46ED1C3BA21800DCBE16 /* HNAProgressCellBase.m in Sources */,
+				9F1AB2951C3F7028006D185D /* HNABankNoField.swift in Sources */,
 				9FE2228B1C19267D003678BB /* HNAChangePwdParam.m in Sources */,
 				9FD77D8B1C1A61BC006F6EC5 /* HNAExpenseRecordModel.m in Sources */,
 				9F8C0A041C1800D80084EAD9 /* HNALoginInfoResult.m in Sources */,
@@ -1542,7 +1540,6 @@
 				9FC7C73A1BFD91B2007E2C49 /* HNAHomeController.m in Sources */,
 				9FC572A81C1133940077831B /* CKCalendarView.m in Sources */,
 				9FB489861BFEB86D0031DE48 /* NSObject+MJCoding.m in Sources */,
-				9F9D47041C3BBBDB00DCBE16 /* HNAHCDetailHealthCheckedCell.m in Sources */,
 				9FC33E571C1E646F004D4139 /* HNAApplySuccessController.m in Sources */,
 				9F8C0A011C18005C0084EAD9 /* HNALoginTool.m in Sources */,
 				9FB878ED1C0EAC6000DAF53F /* HNAMedicalInstitutionCell.m in Sources */,
@@ -1696,6 +1693,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib",
@@ -1708,6 +1706,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.glm.MedicalNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MedicalNet/Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1719,6 +1718,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib",
@@ -1731,6 +1731,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.glm.MedicalNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MedicalNet/Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -6,13 +6,14 @@
 //  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
+// 基类
+
 #import "HNAHCDetailCellBase.h"
 
 @interface HNAHCDetailCellBase()
-@property (nonatomic,strong) NSMutableArray *array;
-
 @end
 @implementation HNAHCDetailCellBase
+
 - (void)setModel:(HNAHCStatusRecord *)model {
     _model = model;
 }
@@ -21,13 +22,13 @@
     return nil;
 }
 
-+ (instancetype)cellForTableView:(UITableView*)tableView withIdentifier:(NSString *)idenfifier{
-    return [tableView dequeueReusableCellWithIdentifier:idenfifier];
-}
-
-- (void)descButtonClicked:(UIButton *)sender {
+- (void)descBtnClicked:(UIButton *)sender {
     self.model.isSelected = !self.model.isSelected;
-    [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (self.indexPath != nil) {
+        [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 @end

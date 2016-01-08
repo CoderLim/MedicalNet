@@ -16,15 +16,30 @@
 @end
 @implementation HNAExpensesRecordCell
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
 - (void)setModel:(HNAExpenseRecordModel *)model{
     _model = model;
     
     self.totalAmountLabel.text = model.amount;
     self.dateLabel.text = model.date;
     self.stateLabel.text = model.status;
-}
-
-- (void)awakeFromNib{
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{

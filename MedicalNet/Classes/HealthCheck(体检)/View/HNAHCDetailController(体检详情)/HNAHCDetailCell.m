@@ -7,13 +7,12 @@
 //
 
 #import "HNAHCDetailCell.h"
+#import "HNAHCReportController.h"
 
 @interface HNAHCDetailCell()
-
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *descButton;
 - (IBAction)descButtonClicked:(UIButton *)sender;
-
 @end
 @implementation HNAHCDetailCell
 
@@ -24,16 +23,20 @@
     [self.descButton setTitle:model.desc forState:UIControlStateNormal];
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier_default = @"HNAHCDetailCell";
     HNAHCDetailCell *cell = [tableView dequeueReusableCellWithIdentifier: identifier_default];
     cell.tableView = tableView;
     cell.indexPath = indexPath;
+    
     return cell;
 }
 
 - (IBAction)descButtonClicked:(UIButton *)sender {
-    self.model.isSelected = !self.model.isSelected;
-    [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [super descBtnClicked:sender];
+    
+    if (self.descBlock != nil) {
+        self.descBlock();
+    }
 }
 @end

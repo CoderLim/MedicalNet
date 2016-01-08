@@ -6,7 +6,7 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-// 体检详情
+// 体检详情 : NOT IN USE
 
 #import <UIKit/UIKit.h>
 

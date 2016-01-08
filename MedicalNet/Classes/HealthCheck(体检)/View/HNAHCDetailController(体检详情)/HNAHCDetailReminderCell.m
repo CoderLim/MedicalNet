@@ -6,6 +6,9 @@
 //  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
+/**
+ *  点击［提醒］后显示的cell，默认显示 HNAHCDetailCell
+ */
 #import "HNAHCDetailReminderCell.h"
 
 @interface HNAHCDetailReminderCell()
@@ -17,12 +20,18 @@
 
 - (void)setModel:(HNAHCStatusRecord *)model {
     [super setModel:model];
-    
     self.dateLabel.text = model.date;
 }
 
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"HNAHCDetailReminderCell";
+    HNAHCDetailReminderCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.tableView = tableView;
+    cell.indexPath = indexPath;
+    return cell;
+}
+
 - (IBAction)reminderBtnClicked:(UIButton *)sender {
-    self.model.isSelected = !self.model.isSelected;
-    [self.tableView reloadData];
+    [super descBtnClicked:sender];
 }
 @end

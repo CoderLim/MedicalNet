@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 +(instancetype) alloc __attribute__((unavailable("不可用，请使用cellFor开头的方法")));
-
 + (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath;
+- (void)descBtnClicked:(UIButton *)sender;
 @end

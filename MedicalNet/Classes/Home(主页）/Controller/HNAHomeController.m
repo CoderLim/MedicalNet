@@ -76,6 +76,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     // 显示tipView
     WEAKSELF(weakSelf);
     if (IOS7) {
@@ -180,8 +182,7 @@
     // 如果有记录view是隐藏的，就直接跳转，而不添加动画
     if (self.hasRecordsView.hidden == YES) {
         // 跳转到医保报销说明页
-        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
-        [self.navigationController showViewController:vc sender:nil];
+        [self performSegueWithIdentifier:@"Home2MedicalDirection" sender:nil];
         return;
     }
     
@@ -197,8 +198,9 @@
         [weakSelf.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         // 跳转到医保报销说明页
-        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
-        [weakSelf.navigationController showViewController:vc sender:nil];
+//        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
+//        [weakSelf.navigationController showViewController:vc sender:nil];
+        [self performSegueWithIdentifier:@"Home2MedicalDirection" sender:nil];
         
         // 恢复动画前的相关属性
         weakSelf.hasRecordsViewConstraint_Top.constant = hasRecordsViewConstraint_Top;
@@ -211,8 +213,9 @@
  *  商业医保报销纪录 按钮点击事件
  */
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender {
-    HNAExpensesRecordsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesRecordsController"];
-    [self.navigationController pushViewController:vc animated:YES];
+//    HNAExpensesRecordsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesRecordsController"];
+//    [self.navigationController pushViewController:vc animated:YES];
+    [self performSegueWithIdentifier:@"Home2MedicalRecords" sender:nil];
 }
 
 #pragma mark - tableView代理

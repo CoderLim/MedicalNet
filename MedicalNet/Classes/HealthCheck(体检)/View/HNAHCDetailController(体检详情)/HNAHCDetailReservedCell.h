@@ -13,5 +13,4 @@
 
 @interface HNAHCDetailReservedCell : HNAHCDetailCellBase
 
-
 @end
