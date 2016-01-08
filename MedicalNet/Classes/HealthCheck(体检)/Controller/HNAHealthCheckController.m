@@ -11,6 +11,7 @@
 #import "HNAHealthCheckController.h"
 #import "HNAHealthCheckRecordModel.h"
 #import "HNAHealthCheckDetailController.h"
+#import "HNAHCDetailController.h"
 #import "HNAHCReservationController.h"
 #import "HNAHealthCheckRecordCell.h"
 #import "HNADatePickButton.h"
@@ -39,7 +40,9 @@
  */
 - (IBAction)reserveHealthCheck:(UIButton *)sender;
 
-
+/**
+ *  跳转到 医保报销
+ */
 - (IBAction)MedicalExpensesBtnClick:(UIButton *)sender;
 @end
 @implementation HNAHealthCheckController
@@ -69,6 +72,8 @@
 }
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    
     self.title = @"体检";
     
     // 注册cell
@@ -114,8 +119,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HNAHealthCheckDetailController *detailVc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHealthCheckDetailController"];
-    [self.navigationController pushViewController:detailVc animated:YES];
+//    HNAHCDetailController *detailVc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHCDetailController"];
+//    [self.navigationController pushViewController:detailVc animated:YES];
+    [self performSegueWithIdentifier:@"HCHome2HCDetail" sender:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -129,8 +135,9 @@
 
 #pragma mark - 单击事件
 - (IBAction)reserveHealthCheck:(UIButton *)sender {
-    HNAHCReservationController *reservationVc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHCReservationController"];
-    [self.navigationController pushViewController:reservationVc animated:YES];
+//    HNAHCReservationController *reservationVc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAHCReservationController"];
+//    [self.navigationController pushViewController:reservationVc animated:YES];
+    [self performSegueWithIdentifier:@"HCHome2HCReserve" sender:nil];
 }
 
 #pragma mark - 导航按钮事件

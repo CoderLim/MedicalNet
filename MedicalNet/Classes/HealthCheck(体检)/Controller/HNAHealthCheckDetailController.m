@@ -45,7 +45,6 @@
     [super viewDidLoad];
     
     self.reminderDetailLabel.text = @"明天就要体检啦！\r\n 1、这是提醒第一条 \r\n 2、这是体检提醒第二条，体检提醒第二条";
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -55,7 +54,6 @@
     _reminderDetailLabel_correctH = [self.reminderDetailLabel correctHeight];
     _reservedDetailView_correctH = self.reservedDetailView_H.constant;
 }
-
 
 // 加载数据
 - (void)loadData{

@@ -66,6 +66,8 @@
         }
         
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
+        
         for (NSInteger i = 0; i < 10; i++) {
             HNAPackageDetailItem *item = [[HNAPackageDetailItem alloc] init];
             item.item = @"项目";
@@ -85,7 +87,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HNALog(@"----");
     static NSString *identifier = @"packageDetailCell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
     

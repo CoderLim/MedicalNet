@@ -17,6 +17,10 @@
 #import "HNAResult.h"
 #import "MJExtension.h"
 
+#import "MedicalNet-swift.h"
+
+
+
 @interface HNAApplyExpensesController()<HNAImagePickerViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     HNAImagePickerView *_currentImagePickerView;
 }
@@ -75,7 +79,6 @@
     //  TODO:.....
 }
 
-
 #pragma mark - UIActionSheet代理方法
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -93,7 +96,6 @@
         default:
             break;
     }
-    
 }
 
 - (void)takeAPhoto{
@@ -117,19 +119,6 @@
 
 #pragma mark - UIImagePickerController代理方法
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-//    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-//    if ([type isEqualToString:@"public.image"]) {
-//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//        [self.pickImageBtn setImage:[image circleImageWithDiameter:self.pickImageBtn.frame.size.width] forState:UIControlStateNormal];
-//        NSData *data;
-//        if (UIImagePNGRepresentation(image) == nil) {
-//            data = UIImageJPEGRepresentation(image, 1.0);
-//        } else {
-//            data = UIImagePNGRepresentation(image);
-//        }
-//        [picker dismissViewControllerAnimated:YES completion:nil];
-//    }
-    
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -141,7 +130,6 @@
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentOffset"]) {
-        CGPoint oldContentOffset = [change[NSKeyValueChangeOldKey] CGPointValue];
         CGPoint newContentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
         CGFloat alpha = 1.0;
         
@@ -210,5 +198,9 @@
     [self.mainScrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
+#pragma mark - 触摸事件
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 
 @end

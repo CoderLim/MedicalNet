@@ -36,7 +36,11 @@
  *  可报销医院
  */
 @property (weak, nonatomic) IBOutlet UITableView *hospitalTableView;
+
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+- (IBAction)submitButtonClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *projectTableViewConstraint_H;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *materialTableViewConstraint_H;
@@ -68,6 +72,12 @@
     // 再重新布局一遍
     // 因为通过addObserve设置三个tableView后，布局没调整过来
 //    [self.view layoutIfNeeded];
+    
+    // 初始化［提交］按钮
+    self.submitButton.layer.cornerRadius = self.submitButton.frame.size.height*0.5;
+    self.submitButton.layer.shadowOffset = CGSizeMake(5, 5);
+    self.submitButton.layer.shadowOpacity = 0.5;
+    self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
 }
 
 - (NSMutableArray *)materialArray{
@@ -234,5 +244,7 @@
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
     _showMoreHospital = !_showMoreHospital;
     [self.hospitalTableView reloadData];
+}
+- (IBAction)submitButtonClicked:(UIButton *)sender {
 }
 @end

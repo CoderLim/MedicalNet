@@ -34,6 +34,8 @@
 @implementation HNAExpensesRecordsController
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    
     // 设置navigationItem
     self.navigationItem.title = @"医保报销记录";
     
