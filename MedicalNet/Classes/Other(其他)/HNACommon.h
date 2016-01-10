@@ -33,7 +33,7 @@
 #define IOS7 [[UIDevice currentDevice].systemVersion doubleValue] >= 7.0
 
 // 7. 数据请求地址的domain
-#define RequestUrlDomain @"http://wwww.XXXXXXXX.com"
+#define RequestUrlDomain @"http://mdm.bestchain.net"
 
 // 8.加载数据时的提示信息
 /**

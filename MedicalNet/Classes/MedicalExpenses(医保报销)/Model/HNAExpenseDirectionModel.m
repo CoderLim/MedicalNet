@@ -23,6 +23,11 @@
     return [[self alloc] initWithDict:dict];
 }
 
+- (NSDictionary *)objectClassInArray {
+    return @{ @"securityPrograms": [HNASecurityProgram class]};
+}
+
+
 @end
 
 

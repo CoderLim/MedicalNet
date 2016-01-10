@@ -24,11 +24,11 @@
         if (success) {
             HNALoginInfoResult *result = [HNALoginInfoResult objectWithKeyValues:json];
             // glm:测试数据
-            result.name = param.username;
-            result.companyId = @"1234";
-            result.companyName = @"1234";
-            result.id = @"111111";
-            result.insuranceCompanyId = @"21321";
+//            result.name = param.username;
+//            result.companyId = @"1234";
+//            result.companyName = @"1234";
+//            result.id = @"111111";
+//            result.insuranceCompanyId = @"21321";
             
             HNAUser *user = [HNAUser userWithLoginInfoResult:result];
             [HNAUserTool saveUser:user];
@@ -37,22 +37,21 @@
         }
     } failure:^(NSError *error) {
         if (failure) {
-//            failure(error);
-            HNALoginInfoResult *result = [[HNALoginInfoResult alloc] init];
-            // glm:测试数据
-            result.success = HNARequestResultSUCCESS;
-            result.name = param.username;
-            result.companyId = @"1234";
-            result.companyName = @"1234";
-            result.id = @"111111";
-            result.phoneNum = @"15201590388";
-            result.insuranceCompanyId = @"21321";
-            
-            HNAUser *user = [HNAUser userWithLoginInfoResult:result];
-            [HNAUserTool saveUser:user];
-            
-            success(result);
-
+            failure(error);
+//            HNALoginInfoResult *result = [[HNALoginInfoResult alloc] init];
+//            // glm:测试数据
+//            result.success = HNARequestResultSUCCESS;
+//            result.name = param.username;
+//            result.companyId = @"1234";
+//            result.companyName = @"1234";
+//            result.id = @"111111";
+//            result.phoneNum = @"15201590388";
+//            result.insuranceCompanyId = @"21321";
+//            
+//            HNAUser *user = [HNAUser userWithLoginInfoResult:result];
+//            [HNAUserTool saveUser:user];
+//            
+//            success(result);
         }
     }];
 }

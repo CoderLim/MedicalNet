@@ -70,7 +70,7 @@
     [self setupTipView];
     
     // 3.
-    [self setupPortraitAnimation];
+//    [self setupPortraitAnimation];
     
 //    self.hasRecordsView.hidden = YES;
 }
@@ -131,6 +131,7 @@
     [self.view layoutIfNeeded];
 }
 
+// 不可用
 - (void)setupPortraitAnimation{
     // 旋转
     CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
