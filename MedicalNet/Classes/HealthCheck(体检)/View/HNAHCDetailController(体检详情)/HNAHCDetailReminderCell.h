@@ -13,4 +13,7 @@
 
 @interface HNAHCDetailReminderCell : HNAHCDetailCellBase
 
+@property (nonatomic, copy) NSString *alertMessage;
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath alertMessage:(NSString *)alertMessage;
 @end

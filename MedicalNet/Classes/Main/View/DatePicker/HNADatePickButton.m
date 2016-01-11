@@ -159,27 +159,24 @@
 }
 
 - (void)tapWindow:(UITapGestureRecognizer *)recognizer{
-    
-    WEAKSELF(weakSelf);
     [UIView animateWithDuration:0.25f animations:^{
         // 设置pickerContainer的frame
         CGSize keyWinSize = MainScreen.bounds.size;
-        CGRect frame = weakSelf.pickerContainer.frame;
+        CGRect frame = self.pickerContainer.frame;
         frame.origin.y = keyWinSize.height;
-        weakSelf.pickerContainer.frame = frame;
+        self.pickerContainer.frame = frame;
         
         // 缩放原始window
         _originalKeyWindow.transform = CGAffineTransformIdentity;
-        
     } completion:^(BOOL finished) {
-        weakSelf.mask.hidden = YES;
+        self.mask.hidden = YES;
         [_originalKeyWindow makeKeyAndVisible];
+        
+        // 通知代理
+        if ([self.delegate respondsToSelector:@selector(datePickButton:didFinishSelectDate:)]) {
+            [self.delegate datePickButton:self didFinishSelectDate:self.datePicker.date];
+        }
     }];
-    
-    // 通知代理
-    if ([self.delegate respondsToSelector:@selector(datePickButton:didFinishSelectDate:)]) {
-        [self.delegate datePickButton:self didFinishSelectDate:self.datePicker.date];
-    }
 }
 
 #pragma mark - 事件

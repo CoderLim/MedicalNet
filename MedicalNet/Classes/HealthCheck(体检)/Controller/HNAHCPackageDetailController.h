@@ -10,6 +10,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, HNAHCPackageDetailControllerType) {
+    /**
+     *  仅显示套餐详情
+     */
+    HNAHCPackageDetailControllerDisplay,
+    /**
+     *  除了显示还有“选择此套餐”功能
+     */
+    HNAHCPackageDetailControllerChoose
+};
+
 @interface HNAHCPackageDetailController : UIViewController
+
+@property (nonatomic, assign) HNAHCPackageDetailControllerType type;
+@property (nonatomic, copy) NSString *packageId;
 
 @end

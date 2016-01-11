@@ -38,6 +38,12 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+- (void)setPositionType:(HNAProgressCellPositionType)positionType {
+    _positionType = positionType;
+    // 强制刷新一次
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     

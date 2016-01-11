@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,6 +16,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtR-py-Ncj">
                         <rect key="frame" x="5" y="5" width="30" height="30"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="EsZ-69-mba"/>
                             <constraint firstAttribute="width" constant="30" id="yvO-Nl-8io"/>
@@ -28,19 +29,15 @@
                             <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dvq-8e-7qZ"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医联体检中心（海渔广场）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sb-BY-jp0">
-                        <rect key="frame" x="35" y="11" width="180" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-ra-cSC">
                         <rect key="frame" x="35" y="31" width="183" height="12.5"/>
+                        <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="北京市朝阳区安立路马克波罗28号"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-qM-RaL">
                         <rect key="frame" x="302" y="18" width="46" height="30"/>
+                        <animations/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="dialButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yup-pU-fvv"/>
@@ -48,13 +45,22 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyO-sS-PTo">
                         <rect key="frame" x="35" y="45.5" width="133" height="19"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="jEs-Nm-Lqu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="周一至周六 9:00—17:00"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医联体检中心（海渔广场）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sb-BY-jp0">
+                        <rect key="frame" x="35" y="11" width="180" height="18"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="wtR-py-Ncj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="0dU-87-8tp"/>
                     <constraint firstAttribute="bottom" secondItem="YyO-sS-PTo" secondAttribute="bottom" id="Bit-Ri-HZ3"/>
@@ -79,8 +85,13 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <animations/>
             <connections>
+                <outlet property="addrButton" destination="QGa-ra-cSC" id="QUr-bR-eD6"/>
                 <outlet property="checkButton" destination="wtR-py-Ncj" id="BvN-GP-xbY"/>
+                <outlet property="dialButton" destination="yZb-qM-RaL" id="5jW-Pf-C6q"/>
+                <outlet property="institutionNameLabel" destination="9Sb-BY-jp0" id="QJh-TH-30e"/>
+                <outlet property="openHourButton" destination="YyO-sS-PTo" id="qxM-zN-mgN"/>
             </connections>
             <point key="canvasLocation" x="314" y="183.5"/>
         </tableViewCell>

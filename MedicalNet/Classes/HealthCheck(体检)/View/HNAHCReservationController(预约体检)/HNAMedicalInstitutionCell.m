@@ -9,17 +9,34 @@
 #import "HNAMedicalInstitutionCell.h"
 
 @interface HNAMedicalInstitutionCell()
+@property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addrButton;
+@property (weak, nonatomic) IBOutlet UIButton *dialButton;
+@property (weak, nonatomic) IBOutlet UIButton *openHourButton;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 - (IBAction)dialButtonClicked:(UIButton *)sender;
 - (IBAction)checkButton:(UIButton *)sender;
-
 @end
+
 @implementation HNAMedicalInstitutionCell
 
-- (void)awakeFromNib {
++ (instancetype)cellForTableView:(UITableView *)tableView {
+    static NSString *identifier = @"HNAMedicalInstitutionCell";
+    HNAMedicalInstitutionCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
 
+- (void)setModel:(HNAHCOrgan *)model {
+    _model = model;
+    
+    self.institutionNameLabel.text = model.name;
+    [self.addrButton setTitle:model.addr forState:UIControlStateNormal];
+    [self.dialButton setTitle:model.phone forState:UIControlStateNormal];
+    [self.openHourButton setTitle:model.openHour forState:UIControlStateNormal];
+}
 
 - (void)setChecked:(BOOL)checked{
     _checked = checked;
@@ -37,7 +54,6 @@
 - (IBAction)checkButton:(UIButton *)sender {
     sender.selected = !sender.isSelected;
 }
-
 /**
  *  打电话
  */

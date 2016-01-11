@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "__60+[HNAHealthCheckTool getHCRecordsWithParam:success:failure:]_block_invoke:HNAHealthCheckTool.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[HNAHealthCheckController tableView:cellForRowAtIndexPath:]:HNAHealthCheckController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__35-[HNAHealthCheckController records]_block_invoke:HNAHealthCheckController.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[HNAHealthCheckTool getHCRecordsWithParam:success:failure:]:HNAHealthCheckTool.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

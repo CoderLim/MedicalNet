@@ -14,7 +14,7 @@
     
     CGPoint currentPoint = self.center;
     CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    keyFrameAnimation.duration = 0.1;
+    keyFrameAnimation.duration = 0.25;
     keyFrameAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     keyFrameAnimation.fillMode = kCAFillModeBoth;
     keyFrameAnimation.values = @[[NSValue valueWithCGPoint:CGPointMake(currentPoint.x - amplitudu, currentPoint.y)],

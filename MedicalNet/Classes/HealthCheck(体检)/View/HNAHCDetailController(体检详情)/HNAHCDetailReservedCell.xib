@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
     </dependencies>
     <objects>
@@ -13,15 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="328" height="205.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xev-bf-DfX">
-                        <rect key="frame" x="20" y="10" width="42" height="20.5"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="min-s7-LMm">
-                        <rect key="frame" x="20" y="35" width="288" height="157"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="min-s7-LMm">
+                        <rect key="frame" x="20" y="45" width="288" height="140"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体检时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOG-hw-eFY">
                                 <rect key="frame" x="10" y="10" width="68" height="20.5"/>
@@ -52,18 +46,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuS-3P-y2C">
-                                <rect key="frame" x="10" y="77" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuS-3P-y2C">
+                                <rect key="frame" x="10" y="77" width="46" height="13"/>
                                 <animations/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUn-ap-f0F">
-                                <rect key="frame" x="232" y="77" width="46" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUn-ap-f0F">
+                                <rect key="frame" x="232" y="77" width="46" height="53"/>
                                 <animations/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sdu-An-0ri">
-                                <rect key="frame" x="10" y="117" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sdu-An-0ri">
+                                <rect key="frame" x="10" y="100" width="46" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Button"/>
                             </button>
@@ -87,7 +81,7 @@
                             <constraint firstItem="Sdu-An-0ri" firstAttribute="top" secondItem="kuS-3P-y2C" secondAttribute="bottom" constant="10" id="gel-wi-L8T"/>
                             <constraint firstItem="Sdu-An-0ri" firstAttribute="leading" secondItem="gwT-G9-zOO" secondAttribute="leading" id="k7c-P2-4CX"/>
                             <constraint firstItem="eOG-hw-eFY" firstAttribute="top" secondItem="min-s7-LMm" secondAttribute="top" constant="10" id="kfA-Ot-IyD"/>
-                            <constraint firstItem="kuS-3P-y2C" firstAttribute="top" secondItem="gwT-G9-zOO" secondAttribute="bottom" constant="10" id="v11-2A-sST"/>
+                            <constraint firstItem="kuS-3P-y2C" firstAttribute="top" secondItem="gwT-G9-zOO" secondAttribute="bottom" priority="999" constant="10" id="v11-2A-sST"/>
                             <constraint firstItem="QyH-bU-8bj" firstAttribute="top" secondItem="eOG-hw-eFY" secondAttribute="bottom" constant="5" id="w9h-GR-jbH"/>
                         </constraints>
                         <variation key="default">
@@ -97,13 +91,20 @@
                         </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYl-VQ-Hdw">
-                        <rect key="frame" x="262" y="5.5" width="46" height="30"/>
+                        <rect key="frame" x="262" y="5" width="46" height="30"/>
                         <animations/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="descButtonClicked:" destination="gWJ-c7-tbk" eventType="touchUpInside" id="SJU-YX-ZOK"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xev-bf-DfX">
+                        <rect key="frame" x="20" y="10" width="42" height="20.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -129,8 +130,13 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="addrButton" destination="kuS-3P-y2C" id="YC8-FK-Rhf"/>
                 <outlet property="dateLabel" destination="Xev-bf-DfX" id="SN0-oz-Pwq"/>
                 <outlet property="descButton" destination="EYl-VQ-Hdw" id="T1U-IR-Bn0"/>
+                <outlet property="institutionNameLabel" destination="gwT-G9-zOO" id="qxA-bV-CtD"/>
+                <outlet property="medicalTimeLabel" destination="K4r-EJ-mR6" id="ty5-FU-bf6"/>
+                <outlet property="openHourButton" destination="Sdu-An-0ri" id="m4L-Gb-50t"/>
+                <outlet property="phoneButton" destination="DUn-ap-f0F" id="upO-fZ-yBU"/>
             </connections>
             <point key="canvasLocation" x="301" y="249"/>
         </tableViewCell>

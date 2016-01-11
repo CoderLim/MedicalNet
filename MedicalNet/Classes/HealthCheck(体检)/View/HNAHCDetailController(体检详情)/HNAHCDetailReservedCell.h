@@ -11,6 +11,14 @@
 
 #import "HNAHCDetailCellBase.h"
 
+@class HNAHCAppointment;
+
 @interface HNAHCDetailReservedCell : HNAHCDetailCellBase
 
+/**
+ *  预约
+ */
+@property (nonatomic, strong) HNAHCAppointment *appointment;
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment;
 @end

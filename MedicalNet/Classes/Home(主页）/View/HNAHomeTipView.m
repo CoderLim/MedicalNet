@@ -9,6 +9,10 @@
 #import "HNAHomeTipView.h"
 
 @interface HNAHomeTipView()
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UIButton *changeCipherBtn;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+
 - (IBAction)close:(id)sender;
 - (IBAction)changeCipher:(UIButton *)sender;
 
@@ -23,6 +27,7 @@
     tipView.close = close;
     return tipView;
 }
+
 -(void)awakeFromNib{
     self.translatesAutoresizingMaskIntoConstraints = NO;
 }

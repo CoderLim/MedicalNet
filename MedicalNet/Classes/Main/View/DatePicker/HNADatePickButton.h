@@ -18,7 +18,7 @@
 
 IB_DESIGNABLE
 @interface HNADatePickButton : UIButton
-@property(nonatomic,weak) id<HNADatePickButtonDelegate> delegate;
+@property(nonatomic,weak) IBOutlet id<HNADatePickButtonDelegate> delegate;
 /**
  *  圆角
  */

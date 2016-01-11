@@ -19,7 +19,14 @@
 @interface HNAHCPackageDetailController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/**
+ *  套餐名称
+ */
 @property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
+/**
+ *  “选择此套餐按钮” 的父视图
+ */
+@property (weak, nonatomic) IBOutlet UIView *selectBtnContainer;
 
 @property (strong, nonatomic) NSMutableArray<HNAPackageDetailItem *> *records;
 /**
@@ -35,6 +42,11 @@
     [super viewDidLoad];
     
     [self loadData];
+    
+    // 如果只是展示，则隐藏“选择此套餐”按钮
+    if (self.type == HNAHCPackageDetailControllerDisplay) {
+        self.selectBtnContainer.hidden = YES;
+    }
 }
 
 - (NSMutableArray<HNAPackageDetailItem *> *)records{
@@ -46,10 +58,11 @@
 
 - (void)loadData{
     // 提示
-    [MBProgressHUD showMessage: MessageWhileLoadingData];
+    [MBProgressHUD showMessage: MessageWhenLoadingData];
     
     // 参数
     HNAGetPackageDetailParam *param = [[HNAGetPackageDetailParam alloc] init];
+    param.id = self.packageId;
     
     // 请求数据
     WEAKSELF(weakSelf);

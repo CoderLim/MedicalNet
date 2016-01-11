@@ -10,6 +10,10 @@
 
 @implementation HNAGetPackageDetailResult
 
+- (NSDictionary *)objectClassInArray {
+    return @{@"records":[HNAPackageDetailItem class]};
+}
+
 @end
 
 

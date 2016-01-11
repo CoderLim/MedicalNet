@@ -6,15 +6,17 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-#import "HNAPackageButtonScrollView.h"
+#import "HNAHCReservePackageScrollView.h"
+#import "HNAHCReservePackageButton.h"
+
 #define Padding 10
 #define Height 80
 #define Width 80
 
-@interface HNAPackageButtonScrollView()
+@interface HNAHCReservePackageScrollView()
 
 @end
-@implementation HNAPackageButtonScrollView
+@implementation HNAHCReservePackageScrollView
 #pragma mark - 初始化
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
@@ -47,14 +49,16 @@
     
     // 添加items到scrollView
     for (NSInteger i = 0; i < count; i++) {
-        UIButton *button = items[i];
+        HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel: items[i]];
         [self addItem:button withIndex:i];
     }
     
     [self layoutIfNeeded];
 }
 
-- (void)addItem:(UIButton *)button{
+- (void)addButtonWithModel:(HNAPackageListItem *)model {
+    HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel:model];
+    
     [self.items addObject:button];
     
     // 计算contentSize
@@ -67,7 +71,7 @@
     [self addItem:button withIndex:index];
 }
 
-- (void)addItem:(UIButton *)button withIndex:(NSInteger)index{
+- (void)addItem:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
     // 计算frame
     CGFloat x = index * (Width + Padding);
     CGFloat w = Width;
@@ -85,9 +89,8 @@
 
 #pragma mark - 单击事件
 - (void)itemClicked:(UIButton *)sender{
-    HNALog(@"%s tag=%ld", __FUNCTION__, sender.tag);
-    if ([self.delegate respondsToSelector:@selector(packageButtonScrollView:didClickedAtIndex:)]) {
-        [self.delegate packageButtonScrollView:self didClickedAtIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(packageScrollView:didClickedAtIndex:)]) {
+        [self.delegate packageScrollView:self didClickedAtIndex:sender.tag];
     }
 }
 @end

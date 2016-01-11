@@ -39,7 +39,7 @@
 /**
  *  正在加载
  */
-#define MessageWhileLoadingData @"正在抓紧加载..."
+#define MessageWhenLoadingData @"正在抓紧加载..."
 /**
  *  加载成功
  */

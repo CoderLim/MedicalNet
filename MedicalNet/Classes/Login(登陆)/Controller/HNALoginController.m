@@ -85,6 +85,7 @@
             ca.startProgress = 0.5;
             [KeyWindow.layer addAnimation:ca forKey:nil];
         } else {
+            [MBProgressHUD showError:@"账号或密码不正确"];
             [weakSelf.loginView shakeWithAmplitude:20];
         }
     } failure:^(NSError *error) {
