@@ -30,7 +30,6 @@
  *  预约
  */
 @property(nonatomic,strong) HNAHCAppointment *appointment;
-
 /**
  *  提醒信息
  */
@@ -80,7 +79,7 @@
 /**
  *  营业时间
  */
-@property (nonatomic,copy) NSString *openHour;
+@property (nonatomic,copy) NSString *openHours;
 /**
  *  体检机构电话
  */

@@ -37,7 +37,7 @@
     // 发送请求
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            HNAGetHCRecordsResult *result = [HNAGetHCRecordsResult hcRecordsWithDict:json];
+            HNAGetHCRecordsResult *result = [HNAGetHCRecordsResult objectWithKeyValues:json];
             success(result);
         }
     } failure:^(NSError *error) {
@@ -56,11 +56,11 @@
  */
 + (void)getHCDetailWithParam:(HNAGetHCDetailParam *)param success:(void (^)(HNAGetHCDetailResult *result))success failure:(void (^)(NSError *error))failure{
     // 请求地址
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/medicalDetails",RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/medicalDetails", RequestUrlDomain];
     // 发送请求
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            HNAGetHCDetailResult *result = [HNAGetHCDetailResult hcDetailWithDict:json];
+            HNAGetHCDetailResult *result = [HNAGetHCDetailResult objectWithKeyValues:json];
             success(result);
         }
     } failure:^(NSError *error) {
@@ -80,11 +80,11 @@
 + (void)getPackgetDetailWithParam:(HNAGetPackageDetailParam *)param success:(void (^)(HNAGetPackageDetailResult *result))success failure:(void (^)(NSError *error))failure{
     
     // 请求地址
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/packageDetails",RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/packageDetails", RequestUrlDomain];
     // 发送请求
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            HNAGetPackageDetailResult *result = [HNAGetPackageDetailResult packageDetailWithDict:json];
+            HNAGetPackageDetailResult *result = [HNAGetPackageDetailResult objectWithKeyValues:json];
             success(result);
         }
     } failure:^(NSError *error) {
@@ -103,7 +103,7 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)getPackageListWithParam:(HNAGetPackageListParam *)param success:(void (^)(HNAGetPackageListResult *))success failure:(void (^)(NSError *))failure{
++ (void)getPackageListWithParam:(HNAGetPackageListParam *)param success:(void (^)(HNAGetPackageListResult *result))success failure:(void (^)(NSError *error))failure{
     
     // 请求地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/getPackageLists",RequestUrlDomain];
@@ -111,7 +111,7 @@
     // 发送请求
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            HNAGetPackageListResult *result = [HNAGetPackageListResult packageListWithDict:json];
+            HNAGetPackageListResult *result = [HNAGetPackageListResult objectWithKeyValues:json];
             success(result);
         }
     } failure:^(NSError *error) {
@@ -129,15 +129,14 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)getHCOrganListWithParam:(HNAGetHCOrganListParam *)param success:(void (^)(HNAGetHCOrganListResult *))success failure:(void (^)(NSError *))failure{
-    
++ (void)getHCOrganListWithParam:(HNAGetHCOrganListParam *)param success:(void (^)(HNAGetHCOrganListResult *result))success failure:(void (^)(NSError *error))failure{
     // 请求地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/getMedicalOrganList",RequestUrlDomain];
     
     // 发送请求
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            HNAGetHCOrganListResult *result = [HNAGetHCOrganListResult organListWithDict:json];
+            HNAGetHCOrganListResult *result = [HNAGetHCOrganListResult objectWithKeyValues:json];
             success(result);
         }
     } failure:^(NSError *error) {

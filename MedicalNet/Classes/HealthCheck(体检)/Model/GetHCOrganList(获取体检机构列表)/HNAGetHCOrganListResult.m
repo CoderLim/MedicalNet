@@ -10,4 +10,12 @@
 
 @implementation HNAGetHCOrganListResult
 
+- (NSDictionary *)objectClassInArray {
+    return @{@"organs":[HNAHCOrgan class]};
+}
+
+@end
+
+@implementation HNAHCOrgan
+
 @end

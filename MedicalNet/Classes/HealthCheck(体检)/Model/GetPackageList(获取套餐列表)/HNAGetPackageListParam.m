@@ -10,4 +10,10 @@
 
 @implementation HNAGetPackageListParam
 
++ (instancetype)param {
+    HNAGetPackageListParam *param = [[HNAGetPackageListParam alloc] init];
+    param.companyId = [HNAUserTool user].companyId;
+    return param;
+}
+
 @end

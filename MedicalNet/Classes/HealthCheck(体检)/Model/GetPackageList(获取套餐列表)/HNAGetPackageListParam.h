@@ -13,4 +13,6 @@
  *  公司id，来自“登录接口”
  */
 @property (nonatomic,copy) NSString *companyId;
+
++ (instancetype)param;
 @end

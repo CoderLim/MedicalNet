@@ -23,12 +23,20 @@
     [self.descButton setTitle:model.desc forState:UIControlStateNormal];
 }
 
++ (NSString *)getIdentifier {
+    static NSString *identifier = @"HNAHCDetailCell";
+    return identifier;
+}
+
 + (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier_default = @"HNAHCDetailCell";
-    HNAHCDetailCell *cell = [tableView dequeueReusableCellWithIdentifier: identifier_default];
-    cell.tableView = tableView;
-    cell.indexPath = indexPath;
-    
+    HNAHCDetailCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.descBlock = nil;
+    return cell;
+}
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath descBlock:(HNAHCDetailCellBtnClicked)descBlock {
+    HNAHCDetailCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.descBlock = descBlock;
     return cell;
 }
 

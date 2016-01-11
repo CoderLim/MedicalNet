@@ -13,7 +13,6 @@
 @class HNAHCOrgan;
 
 @interface HNAGetHCOrganListResult : NSObject
-
 @property (nonatomic,copy) NSString *packageId;
 @property(nonatomic,strong) NSMutableArray<HNAHCOrgan *> *organs;
 

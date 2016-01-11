@@ -13,8 +13,8 @@
 
 @interface HNAHCDetailReminderCell()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
 - (IBAction)reminderBtnClicked:(UIButton *)sender;
-
 @end
 @implementation HNAHCDetailReminderCell
 
@@ -23,11 +23,19 @@
     self.dateLabel.text = model.date;
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
+- (void)setAlertMessage:(NSString *)alertMessage {
+    _alertMessage = alertMessage;
+    self.alertMessageLabel.text = alertMessage;
+}
+
++ (NSString *)getIdentifier {
     static NSString *identifier = @"HNAHCDetailReminderCell";
-    HNAHCDetailReminderCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    cell.tableView = tableView;
-    cell.indexPath = indexPath;
+    return identifier;
+}
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath alertMessage:(NSString *)alertMessage{
+    HNAHCDetailReminderCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.alertMessage = alertMessage;
     return cell;
 }
 

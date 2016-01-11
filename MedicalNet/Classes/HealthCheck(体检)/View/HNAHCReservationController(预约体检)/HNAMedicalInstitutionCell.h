@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HNAGetHCOrganListResult.h"
 
 @interface HNAMedicalInstitutionCell : UITableViewCell
+@property (nonatomic, strong) HNAHCOrgan *model;
 @property (nonatomic, assign, getter=isChecked) BOOL checked;
 
++ (instancetype)cellForTableView:(UITableView *)tableView;
 @end

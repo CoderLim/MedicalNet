@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="75a-PY-LtY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -85,6 +85,9 @@
                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="tvA-BS-Oa9" id="iZA-3k-YDT"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <animations/>
@@ -518,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wyb-9n-1uU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1793" y="1806"/>
+            <point key="canvasLocation" x="1373" y="2290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TUu-iD-8EU">
@@ -2136,11 +2139,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="EM0-zW-srC" id="HqG-gP-e3h"/>
+                        <segue destination="yy4-hJ-Vo7" kind="show" identifier="hcDetail2packageDetail" id="eVm-bT-buS"/>
+                        <segue destination="aqQ-ga-qZE" kind="show" identifier="hcDetail2hcReport" id="jlX-Pt-scU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxv-Wu-rp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419" y="1737"/>
+            <point key="canvasLocation" x="1393" y="1737"/>
         </scene>
         <!--体检－套餐-->
         <scene sceneID="BuL-oc-Vwn">
@@ -2159,7 +2164,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="u0w-1c-BK2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                                    <rect key="frame" x="0.0" y="64" width="320" height="72"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="白领套餐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85m-WZ-5kU">
@@ -2180,7 +2185,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="packageDetailCell" textLabel="HLA-Ak-1KT" detailTextLabel="SWX-W7-kWt" style="IBUITableViewCellStyleSubtitle" id="QOC-6D-LoJ">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="164" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QOC-6D-LoJ" id="a97-wO-b5N">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -2250,12 +2255,13 @@
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="packageNameLabel" destination="85m-WZ-5kU" id="6g5-AT-LOU"/>
+                        <outlet property="selectBtnContainer" destination="xth-Lh-tTD" id="cov-yg-0nj"/>
                         <outlet property="tableView" destination="LS9-C3-9TF" id="Uen-Dw-cgP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKd-wm-s2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2505" y="1790"/>
+            <point key="canvasLocation" x="1941" y="1737"/>
         </scene>
         <!--体检－预约-->
         <scene sceneID="KGG-3n-BLL">
@@ -2289,7 +2295,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-5l-dZN" customClass="HNAPackageButtonScrollView">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZ6-5l-dZN" customClass="HNAHCReservePackageScrollView">
                                         <rect key="frame" x="5" y="45" width="310" height="80"/>
                                         <animations/>
                                         <constraints>
@@ -2427,13 +2433,13 @@
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="calendarView" destination="L2h-Gs-ndd" id="9Bk-eP-ht1"/>
-                        <outlet property="packageBtnScrollView" destination="IZ6-5l-dZN" id="v7k-qi-jzh"/>
+                        <outlet property="packageScrollView" destination="IZ6-5l-dZN" id="EzA-Gx-j3H"/>
                         <outlet property="tableView" destination="fOx-TE-f91" id="uof-2h-Mcu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2G-J3-qkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1873" y="1042"/>
+            <point key="canvasLocation" x="1865" y="1014"/>
         </scene>
         <!--首页－报销记录-->
         <scene sceneID="ZW2-ll-7Yw">
@@ -3672,6 +3678,6 @@
         <image name="home_plus" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UvS-vk-Gem"/>
+        <segue reference="SdO-s7-AfQ"/>
     </inferredMetricsTieBreakers>
 </document>

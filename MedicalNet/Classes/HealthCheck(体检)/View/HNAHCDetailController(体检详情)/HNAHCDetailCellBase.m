@@ -14,14 +14,22 @@
 @end
 @implementation HNAHCDetailCellBase
 
+
 - (void)setModel:(HNAHCStatusRecord *)model {
     _model = model;
 }
 
 + (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    HNAHCDetailCellBase *cell = [tableView dequeueReusableCellWithIdentifier: [self getIdentifier]];
+    cell.tableView = tableView;
+    cell.indexPath = indexPath;
+    return cell;
 }
 
++ (NSString *)getIdentifier {
+    static NSString *identifier = @"HNAHCDetailCellBase";
+    return identifier;
+}
 - (void)descBtnClicked:(UIButton *)sender {
     self.model.isSelected = !self.model.isSelected;
     if (self.indexPath != nil) {

@@ -15,4 +15,6 @@ typedef void(^HNAHCDetailCellBtnClicked)();
 
 @interface HNAHCDetailCell : HNAHCDetailCellBase
 @property (nonatomic, copy) HNAHCDetailCellBtnClicked descBlock;
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath descBlock:(HNAHCDetailCellBtnClicked)descBlock;
 @end

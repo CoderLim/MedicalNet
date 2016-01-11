@@ -11,10 +11,18 @@
  */
 
 #import "HNAHCDetailReservedCell.h"
+#import "HNAGetHCDetailResult.h"
 
 @interface HNAHCDetailReservedCell()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *descButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *medicalTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *openHourButton;
+@property (weak, nonatomic) IBOutlet UIButton *addrButton;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+
 - (IBAction)descButtonClicked:(UIButton *)sender;
 
 @end
@@ -26,11 +34,23 @@
     [self.descButton setTitle:model.desc forState:UIControlStateNormal];
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
+- (void)setAppointment:(HNAHCAppointment *)appointment {
+    _appointment = appointment;
+    
+    self.medicalTimeLabel.text = appointment.medicalTime;
+    self.institutionNameLabel.text = appointment.name;
+    [self.openHourButton setTitle:appointment.openHours forState:UIControlStateNormal];
+    [self.addrButton setTitle:appointment.addr forState:UIControlStateNormal];
+}
+
++ (NSString *)getIdentifier {
     static NSString *identifier = @"HNAHCDetailReservedCell";
-    HNAHCDetailReservedCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    cell.tableView = tableView;
-    cell.indexPath = indexPath;
+    return identifier;
+}
+
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment{
+    HNAHCDetailReservedCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.appointment = appointment;
     return cell;
 }
 

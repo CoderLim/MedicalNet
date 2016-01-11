@@ -7,7 +7,21 @@
 //
 
 #import "HNAGetHCRecordsResult.h"
+#import "HNAHealthCheckRecordModel.h"
 
 @implementation HNAGetHCRecordsResult
+
+- (NSDictionary *)objectClassInArray {
+    return @{ @"records" : [HNAHealthCheckRecordModel class]};
+}
+
+
++ (instancetype)objectWithKeyValues:(NSDictionary *)keyValues {
+    HNAGetHCRecordsResult *result = nil;
+    if ((result = [super objectWithKeyValues:keyValues])) {
+        result.hasNewProject = [keyValues objectForKey:@"newProject"];
+    }
+    return result;
+}
 
 @end
