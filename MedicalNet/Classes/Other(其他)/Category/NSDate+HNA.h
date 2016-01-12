@@ -44,4 +44,9 @@
  */
 + (NSInteger)daysOfMonth:(NSInteger)month inYear:(NSInteger)year;
 
+/**
+ *  年月日是否相同
+ */
+- (BOOL)isEqualYMDTo:(NSDate *)date;
+
 @end

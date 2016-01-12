@@ -54,7 +54,7 @@
 #define MessageWhenFaild @"加载出错"
 
 // 9.定义颜色
-#define UIColorWithRGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:0.0f]
+#define UIColorWithRGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 
 // 10.机型
 /**

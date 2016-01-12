@@ -42,6 +42,15 @@
     return [formatter stringFromDate:self];
 }
 
+- (BOOL)isEqualYMDTo:(NSDate *)date {
+    NSDateComponents *c1 = [self components];
+    NSDateComponents *c2 = [date components];
+    return c1.era == c2.era &&
+           c1.year == c2.year &&
+           c1.month == c2.month &&
+           c1.day == c2.day;
+}
+
 + (instancetype)fromString:(NSString *)dateString withFormat:(NSString *)format{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];
@@ -68,4 +77,5 @@
             break;
     }
 }
+
 @end

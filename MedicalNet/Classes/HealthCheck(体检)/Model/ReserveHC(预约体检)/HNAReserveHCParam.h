@@ -40,4 +40,5 @@
  */
 @property (nonatomic,copy) NSString *reserveDate;
 
++ (instancetype)param;
 @end

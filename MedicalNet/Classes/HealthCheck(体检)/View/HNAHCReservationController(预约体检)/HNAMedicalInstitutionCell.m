@@ -40,6 +40,7 @@
 
 - (void)setChecked:(BOOL)checked{
     _checked = checked;
+    // 设置 checkBox
     self.checkButton.selected = checked;
 }
 
@@ -52,7 +53,11 @@
  *  选中
  */
 - (IBAction)checkButton:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
+    self.checked = !sender.isSelected;
+    
+    if (self.selectedBlock != nil) {
+        self.selectedBlock();
+    }
 }
 /**
  *  打电话

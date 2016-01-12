@@ -10,6 +10,9 @@
 #import "HNAGetPackageListResult.h"
 
 @interface HNAHCReservePackageButton : UIButton
+/**
+ *  数据模型
+ */
 @property (nonatomic, strong) HNAPackageListItem *model;
 
 + (instancetype)packageButtonWithModel:(HNAPackageListItem *)model;

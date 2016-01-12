@@ -154,7 +154,7 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)reserveHCWithParam:(HNAReserveHCParam *)param success:(void (^)(HNAReserveHCResult *))success failure:(void (^)(NSError *))failure{
++ (void)reserveHCWithParam:(HNAReserveHCParam *)param success:(void (^)(HNAReserveHCResult *result))success failure:(void (^)(NSError *))failure{
     // 请求地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/reserveMedical",RequestUrlDomain];
     

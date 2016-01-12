@@ -27,6 +27,10 @@
 #define DEFAULT_CELL_WIDTH 43
 #define CELL_BORDER_WIDTH 1
 
+// glm:
+#define GetMaxX(element) CGRectGetMaxX(element.frame)
+#define GetMinX(element) CGRectGetMinX(element.frame)
+
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 
@@ -108,6 +112,11 @@
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UIButton *prevButton;
 @property(nonatomic, strong) UIButton *nextButton;
+// glm: 增加图示
+@property(nonatomic, strong) UILabel *disableLegend;
+@property(nonatomic, strong) UILabel *enableLegend;
+@property(nonatomic, strong) UILabel *selectedLegend;
+
 @property(nonatomic, strong) UIView *calendarContainer;
 @property(nonatomic, strong) GradientView *daysHeader;
 @property(nonatomic, strong) NSArray *dayOfWeekLabels;
@@ -115,7 +124,6 @@
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @property (nonatomic, strong) NSDate *monthShowing;
-@property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic, strong) NSCalendar *calendar;
 @property(nonatomic, assign) CGFloat cellWidth;
 
@@ -144,7 +152,7 @@
 
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    self.dateFormatter.dateFormat = @"LLLL yyyy";
+    self.dateFormatter.dateFormat = @"yyyy年M月";
 
     self.calendarStartDay = firstDay;
     self.onlyShowCurrentMonth = YES;
@@ -184,18 +192,34 @@
     //End
     
     UIButton *prevButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [prevButton setImage:[UIImage imageNamed:@"left_arrow.png"] forState:UIControlStateNormal];
+//    [prevButton setImage:[UIImage imageNamed:@"left_arrow.png"] forState:UIControlStateNormal];
+    [prevButton setTitle:@"<" forState:UIControlStateNormal];
     prevButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
     [prevButton addTarget:self action:@selector(_moveCalendarToPreviousMonth) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:prevButton];
     self.prevButton = prevButton;
 
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [nextButton setImage:[UIImage imageNamed:@"right_arrow.png"] forState:UIControlStateNormal];
+//    [nextButton setImage:[UIImage imageNamed:@"right_arrow.png"] forState:UIControlStateNormal];
+    [nextButton setTitle:@">" forState:UIControlStateNormal];
     nextButton.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
     [nextButton addTarget:self action:@selector(_moveCalendarToNextMonth) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:nextButton];
     self.nextButton = nextButton;
+    
+    
+    // glm: 图示
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+    UILabel *disableLegend = [self genLegendWithText:@"不可约" bgColor:self.disableLegendColor?:[UIColor yellowColor]];
+    self.disableLegend = disableLegend;
+
+    UILabel *enableLegend = [self genLegendWithText:@"可约" bgColor:self.enableLegendColor?:[UIColor greenColor]];
+    self.enableLegend = enableLegend;
+    
+    UILabel *selectedLegend = [self genLegendWithText:@"已约" bgColor:self.selectedLegendColor?:[UIColor redColor]];
+    self.selectedLegend = selectedLegend;
+#pragma clang diagnostic pop
 
     // THE CALENDAR ITSELF
     UIView *calendarContainer = [[UIView alloc] initWithFrame:CGRectZero];
@@ -243,6 +267,36 @@
     [self layoutSubviews]; // TODO: this is a hack to get the first month to show properly
 }
 
+// 生成一个图示
+- (UILabel *)genLegendWithText:(NSString *)text bgColor:(UIColor *)bgColor {
+    UILabel *legend = [[UILabel alloc] init];
+    legend.textAlignment = NSTextAlignmentCenter;
+    [legend setFont:[UIFont systemFontOfSize:11]];
+    
+    legend.layer.borderColor = [UIColor grayColor].CGColor;
+    legend.layer.borderWidth = 1;
+    
+    legend.backgroundColor = bgColor;
+    legend.text = text;
+    [self addSubview:legend];
+    return legend;
+}
+
+- (void)setDisableLegendColor:(UIColor *)disableLegendColor {
+    _disableLegendColor = disableLegendColor;
+    self.disableLegend.backgroundColor = disableLegendColor;
+}
+
+- (void)setEnableLegendColor:(UIColor *)enableLegendColor {
+    _enableLegendColor = enableLegendColor;
+    self.enableLegend.backgroundColor = enableLegendColor;
+}
+
+- (void)setSelectedLegendColor:(UIColor *)selectedLegendColor {
+    _selectedLegendColor = selectedLegendColor;
+    self.selectedLegend.backgroundColor = selectedLegendColor;
+}
+
 - (id)initWithStartDay:(CKCalendarStartDay)firstDay frame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -282,16 +336,29 @@
     self.highlight.frame = CGRectMake(1, 1, self.bounds.size.width - 2, 1);
 
     self.titleLabel.text = [self.dateFormatter stringFromDate:_monthShowing];
-    self.titleLabel.frame = CGRectMake(0, 0, self.bounds.size.width, TOP_HEIGHT);
+    self.titleLabel.frame = CGRectMake(GetMaxX(self.prevButton), 0, 90, TOP_HEIGHT);
     //Edit by jason
-    self.prevButton.frame = CGRectMake(BUTTON_MARGIN*2 + 38, BUTTON_MARGIN, 38, 38);
-    self.nextButton.frame = CGRectMake(self.bounds.size.width - 38*2 - BUTTON_MARGIN*2, BUTTON_MARGIN, 38, 38);
+    self.prevButton.frame = CGRectMake(BUTTON_MARGIN, 0, 38, TOP_HEIGHT);
+    self.nextButton.frame = CGRectMake(GetMaxX(self.titleLabel), 0, 38, TOP_HEIGHT);
     
     self.prevYearButton.frame = CGRectMake(BUTTON_MARGIN, BUTTON_MARGIN, 38, 38);
     self.nextYearButton.frame = CGRectMake(self.bounds.size.width - 38 - BUTTON_MARGIN, BUTTON_MARGIN, 38, 38);
     //End
     
     self.calendarContainer.frame = CGRectMake(CALENDAR_MARGIN, CGRectGetMaxY(self.titleLabel.frame), containerWidth, containerHeight);
+    
+    //Edit by glm
+    CGFloat legendW = 35;
+    CGFloat legendH = legendW;
+    CGFloat lengendM = 5;
+    //    self.disableLegend.frame = CGRectMake(GetMaxX(self.nextButton) + 20, 0, legendW, legendH);
+    //    self.enableLegend.frame = CGRectMake(GetMaxX(self.disableLegend) + lengendM, 0, legendW, legendH);
+    //    self.selectedLegend.frame = CGRectMake(GetMaxX(self.enableLegend) + lengendM, 0, legendW, legendH);
+    self.selectedLegend.frame = CGRectMake(GetMaxX(self.calendarContainer)-legendW, 0, legendW, legendH);
+    self.enableLegend.frame = CGRectMake(GetMinX(self.selectedLegend)-legendW-lengendM, 0, legendW, legendH);
+    self.disableLegend.frame = CGRectMake(GetMinX(self.enableLegend)-legendW-lengendM, 0, legendW, legendH);
+    //End
+
     self.daysHeader.frame = CGRectMake(0, 0, self.calendarContainer.frame.size.width, DAYS_HEADER_HEIGHT);
 
     CGRect lastDayFrame = CGRectZero;
@@ -324,10 +391,11 @@
         DateButton *dateButton = [self.dateButtons objectAtIndex:dateButtonPosition];
 
         dateButton.date = date;
+
         CKDateItem *item = [[CKDateItem alloc] init];
         if ([self _dateIsToday:dateButton.date]) {
             item.textColor = UIColorFromRGB(0xF2F2F2);
-            item.backgroundColor = [UIColor lightGrayColor];
+            item.backgroundColor = [UIColor redColor];
         } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor grayColor];
         }

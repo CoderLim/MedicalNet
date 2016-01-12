@@ -38,10 +38,17 @@
 }
 
 #pragma mark - 添加数据
-- (void)setItems:(NSMutableArray *)items{
-    _items = items;
+- (NSMutableArray *)buttons {
+    if (_buttons == nil) {
+        _buttons = [NSMutableArray array];
+    }
+    return _buttons;
+}
+
+- (void)setModelItems:(NSMutableArray *)modelItems{
+    _modelItems = modelItems;
     
-    NSInteger count = items.count;
+    NSInteger count = modelItems.count;
     // 计算conentSize
     CGFloat contentWidth = (Width + Padding) * count;
     CGSize contentSize = CGSizeMake(contentWidth, Height);
@@ -49,8 +56,8 @@
     
     // 添加items到scrollView
     for (NSInteger i = 0; i < count; i++) {
-        HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel: items[i]];
-        [self addItem:button withIndex:i];
+        HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel: modelItems[i]];
+        [self addButton:button withIndex:i];
     }
     
     [self layoutIfNeeded];
@@ -59,7 +66,7 @@
 - (void)addButtonWithModel:(HNAPackageListItem *)model {
     HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel:model];
     
-    [self.items addObject:button];
+    [self.modelItems addObject:model];
     
     // 计算contentSize
     CGSize contentSize = self.contentSize;
@@ -67,11 +74,13 @@
     self.contentSize = contentSize;
     
     // 添加button
-    NSInteger index = self.items.count - 1;
-    [self addItem:button withIndex:index];
+    NSInteger index = self.modelItems.count - 1;
+    [self addButton:button withIndex:index];
 }
 
-- (void)addItem:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
+- (void)addButton:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
+    [self.buttons addObject:button];
+    
     // 计算frame
     CGFloat x = index * (Width + Padding);
     CGFloat w = Width;
@@ -87,10 +96,24 @@
     [button addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+#pragma mark - 属性
+- (NSString *)selectedPackageId {
+    return self.selectedButton.model.packageId;
+}
 #pragma mark - 单击事件
-- (void)itemClicked:(UIButton *)sender{
-    if ([self.delegate respondsToSelector:@selector(packageScrollView:didClickedAtIndex:)]) {
-        [self.delegate packageScrollView:self didClickedAtIndex:sender.tag];
+- (void)itemClicked:(HNAHCReservePackageButton *)sender{
+    if (sender == nil) {
+        sender = [self.buttons firstObject];
+    }
+    
+    // 修改button的选中状态
+    self.selectedButton.selected = NO;
+    self.selectedButton = sender;
+    self.selectedButton.selected = YES;
+    
+    // 通知代理
+    if ([self.hcDelegate respondsToSelector:@selector(packageScrollView:didClickedAtIndex:)]) {
+        [self.hcDelegate packageScrollView:self didClickedAtIndex:sender.tag];
     }
 }
 @end

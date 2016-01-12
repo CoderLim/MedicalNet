@@ -46,12 +46,19 @@ typedef enum {
 
 @property (nonatomic, weak) id<CKCalendarDelegate> delegate;
 
+
+@property (nonatomic, strong) NSDate *selectedDate;
 // Theming
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, strong) UIFont *dateOfWeekFont;
 @property (nonatomic, strong) UIColor *dayOfWeekTextColor;
 @property (nonatomic, strong) UIFont *dateFont;
+//glm:图示颜色
+@property (nonatomic, strong) UIColor *disableLegendColor;
+@property (nonatomic, strong) UIColor *enableLegendColor;
+@property (nonatomic, strong) UIColor *selectedLegendColor;
+
 
 - (void)setMonthButtonColor:(UIColor *)color;
 - (void)setInnerBorderColor:(UIColor *)color;
