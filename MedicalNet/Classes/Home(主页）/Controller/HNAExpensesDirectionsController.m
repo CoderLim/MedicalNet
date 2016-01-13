@@ -7,11 +7,11 @@
 //
 
 #import "HNAExpensesDirectionsController.h"
-#import "HNAExpenseDirectionModel.h"
+#import "HNAGetExpenseDirectionResult.h"
 #import "HNAProjectCell.h"
 #import "MJExtension.h"
 #import "HNAInsuranceTool.h"
-#import "HNAExpenseDirectionModel.h"
+#import "HNAGetExpenseDirectionResult.h"
 #import "HNAInsuranceTool.h"
 #import "HNAUserTool.h"
 #import "HNAUser.h"
@@ -20,7 +20,7 @@
 // KeyPath
 #define KPContentSize @"contentSize"
 
-@interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource>{
+@interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     BOOL _showMoreHospital;
 }
 
@@ -77,6 +77,12 @@
     self.submitButton.layer.shadowOffset = CGSizeMake(5, 5);
     self.submitButton.layer.shadowOpacity = 0.5;
     self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    HNALog(@"%s", __FUNCTION__);
 }
 
 - (NSMutableArray<HNASecurityProgram *> *)projectArray{
@@ -121,11 +127,11 @@
         [MBProgressHUD showError:@"companyId为nil"];
         return;
     }
-    
     // 2.请求
     WEAKSELF(weakSelf);
-    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAExpenseDirectionModel *direction) {
-        if (direction != nil) {
+    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAGetExpenseDirectionResult *result) {
+        if (result.expenseDirection != nil) {
+            HNAExpenseDirectionModel *direction = result.expenseDirection;
             weakSelf.projectArray = direction.securityPrograms;
             weakSelf.hospitalArray = direction.hospitals;
             [MBProgressHUD showSuccess:@"获取成功"];
@@ -145,9 +151,6 @@
 
 #pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    if (tableView == self.materialTableView) {
-//        return self.materialArray.count;
-//    } else
     if (tableView == self.projectTableView){
         return self.projectArray.count;
     } else if (tableView == self.hospitalTableView) {
@@ -160,9 +163,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (tableView == self.materialTableView) { // 报销所需材料
-//        return [self materialCellForRowAtIndexPath:indexPath withTableView:tableView];
-//    } else
     if (tableView == self.projectTableView) { // 保障方案
         return [self projectCellForRowAtIndexPath:indexPath withTableView:tableView];
     } else if (tableView == self.hospitalTableView){  // 可报销医院
@@ -170,7 +170,6 @@
     }
     return nil;
 }
-
 // Deprecated :
 // 材料 cell
 - (UITableViewCell *)materialCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
@@ -183,7 +182,6 @@
     cell.textLabel.text = self.materialArray[indexPath.row];
     return cell;
 }
-
 // 保障方案 cell
 - (HNAProjectCell *)projectCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
     static NSString *projectIdentifier = @"projectCell";
@@ -192,7 +190,6 @@
     cell.model = self.projectArray[indexPath.row];
     return cell;
 }
-
 // 可报销医院 cell
 - (UITableViewCell *)hospitalCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
     static NSString *hospitalIdentifier = @"hospitalCell";
@@ -200,6 +197,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
     cell.textLabel.text = self.hospitalArray[indexPath.row];
     return cell;
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
 }
 
 #pragma mark - KVO
@@ -217,6 +219,13 @@
 
     [self.view layoutIfNeeded];
 }
+// 可报销医院－查看更多
+- (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
+    _showMoreHospital = !_showMoreHospital;
+    [self.hospitalTableView reloadData];
+}
+- (IBAction)submitButtonClicked:(UIButton *)sender {
+}
 
 - (void)dealloc{
     [self.projectTableView removeObserver:self forKeyPath: KPContentSize];
@@ -225,14 +234,5 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-
-// 可报销医院－查看更多
-- (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
-    _showMoreHospital = !_showMoreHospital;
-    [self.hospitalTableView reloadData];
-}
-- (IBAction)submitButtonClicked:(UIButton *)sender {
 }
 @end

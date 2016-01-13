@@ -98,7 +98,7 @@
 
 #pragma mark - 请求数据
 - (void)loadData {
-    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:@"" success:^(HNAExpenseDirectionModel *direction) {
+    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:@"" success:^(HNAGetExpenseDirectionResult *result) {
         
     } failure:^(NSError *error) {
         

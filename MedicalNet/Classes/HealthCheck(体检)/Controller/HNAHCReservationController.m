@@ -207,7 +207,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HNAMedicalInstitutionCell *cell = [HNAMedicalInstitutionCell cellForTableView:tableView];
+    // 设置数据
     cell.model = self.medicalInstitutions[indexPath.row];
+    // 设置block（更新当前选中的cell）
     WEAKSELF(weakSelf);
     __weak __typeof(HNAMedicalInstitutionCell*) weakCell = cell;
     cell.selectedBlock = ^{
@@ -228,7 +230,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }
-
 /**
  *  tableView：医疗机构 查看更多
  */
@@ -241,6 +242,7 @@
 #pragma mark - HNAHCReservePackageScrollViewDelegate
 - (void)packageScrollView:(HNAHCReservePackageScrollView *)scrollView didClickedAtIndex:(NSInteger)index {
     self.selectedPackageId = scrollView.selectedPackageId;
+    // 加载套餐对应的体检机构
     [self loadInstitutionsWithPackageId:[NSString stringWithFormat:@"%ld",(long)index]];
 }
 
@@ -289,6 +291,7 @@
 
 #pragma mark - 
 - (IBAction)submit:(id)sender {
+    [MBProgressHUD showMessage:@""];
     // 参数
     HNAReserveHCParam *param = [HNAReserveHCParam param];
     param.packageId = self.selectedPackageId;

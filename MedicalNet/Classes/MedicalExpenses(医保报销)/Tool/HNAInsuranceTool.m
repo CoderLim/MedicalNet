@@ -9,9 +9,11 @@
 #import "HNAInsuranceTool.h"
 #import "MJExtension.h"
 #import "HNAHttpTool.h"
-#import "HNAExpenseDirectionModel.h"
-#import "HNAExpenseRecordsParam.h"
-#import "HNAExpenseRecordModel.h"
+#import "HNAGetExpenseDirectionResult.h"
+
+#import "HNAGetExpenseRecordsParam.h"
+#import "HNAGetExpenseRecordsResult.h"
+
 #import "HNAResult.h"
 #import "HNAApplyExpenseParam.h"
 #import "HNAExpenseDetailModel.h"
@@ -26,12 +28,14 @@
  *  @param success   success
  *  @param failure   failure
  */
-+ (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAExpenseDirectionModel *direction))success failure:(void(^)(NSError *error))failure{
++ (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAGetExpenseDirectionResult *result))success failure:(void(^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDesc", RequestUrlDomain];
     
     [HNAHttpTool getWithURL:urlStr params:@{@"companyId":companyId} success:^(id json) {
         if (success) {
-            success([HNAExpenseDirectionModel objectWithKeyValues:json]);
+            HNAGetExpenseDirectionResult *result = [[HNAGetExpenseDirectionResult alloc] init];
+            result.expenseDirection = [HNAExpenseDirectionModel objectWithKeyValues:json];
+            success(result);
         }
     } failure:^(NSError *error) {
         if (failure) {
@@ -44,20 +48,13 @@
 /**
  *  获取报销纪录
  */
-+ (void)getExpenseRecordsWithParam:(HNAExpenseRecordsParam *)param success:(void (^)(NSMutableArray<HNAExpenseRecordModel *> * records))success failure:(void (^)(NSError *error))failure{
++ (void)getExpenseRecordsWithParam:(HNAGetExpenseRecordsParam *)param success:(void (^)(HNAGetExpenseRecordsResult *result))success failure:(void (^)(NSError *error))failure{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseRecords", RequestUrlDomain];
-    
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
-            NSDictionary *dict = json[@"records"];
-            NSMutableArray<HNAExpenseRecordModel *> *records = [NSMutableArray array];
-            [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-                if (![key isEqualToString:@"total"]) {
-                    [records addObject:[HNAExpenseRecordModel objectWithKeyValues:obj]];
-                }
-            }];
-            success(records);
+            HNAGetExpenseRecordsResult *result = [HNAGetExpenseRecordsResult objectWithKeyValues:json];
+            success(result);
         }
     } failure:^(NSError *error) {
         if (failure) {

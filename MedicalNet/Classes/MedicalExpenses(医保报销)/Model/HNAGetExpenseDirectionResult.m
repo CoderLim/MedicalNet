@@ -1,14 +1,16 @@
 //
-//  HNAExpensesDirectionModel.m
+//  HNAGetExpenseDirectionResult.m
 //  MedicalNet
 //
-//  Created by gengliming on 15/12/11.
-//  Copyright © 2015年 HaiHang. All rights reserved.
+//  Created by gengliming on 16/1/13.
+//  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
-// 医保报销说明
+#import "HNAGetExpenseDirectionResult.h"
 
-#import "HNAExpenseDirectionModel.h"
+@implementation HNAGetExpenseDirectionResult
+
+@end
 
 @implementation HNAExpenseDirectionModel
 
@@ -33,4 +35,3 @@
 
 @implementation HNASecurityProgram
 @end
-

@@ -1,15 +1,27 @@
 //
-//  HNAExpenseRecordModel.h
+//  HNAGetExpenseRecordsResult.h
 //  MedicalNet
 //
-//  Created by gengliming on 15/12/11.
-//  Copyright © 2015年 HaiHang. All rights reserved.
+//  Created by gengliming on 16/1/13.
+//  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
+// 获取报销记录
+
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
+
+@class HNAExpenseRecordModel;
+
+@interface HNAGetExpenseRecordsResult : HNAResult
+@property (nonatomic, copy) NSString *phoneNum;
+@property (nonatomic, copy) NSString *year;
+@property (nonatomic, copy) NSString *month;
+@property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
+@end
+
 
 @interface HNAExpenseRecordModel : NSObject
-
 /**
  *  记录id
  */

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HNAExpenseRecordModel.h"
+#import "HNAGetExpenseRecordsResult.h"
 
 #define RecordCellIdentifier @"RecordCell"
 

@@ -70,4 +70,17 @@
  */
 #define IS_IPHONE_6X_PLUS (IS_IPHONE && [[UIScreen mainScreen] nativeScale] == 3.0f)
 
+// 11.自定义通知名称
+/**
+ *  报销记录页面停止拖动
+ */
+#define ExpenseRecordsControllerDidEndDraggingNotification @"ERControllerDidEndDraggingNotification"
+/**
+ *  医保报销说明页面停止拖动
+ */
+#define ExpenseDirectionControllerDidEndDraggingNotification @"EDControllerDidEndDraggingNotification"
+
+// 12.判断vc的view是否嵌入到其他控制器的view中
+#define IsEmbededInController(vc) (vc.navigationController!=nil && [[vc.navigationController.childViewControllers lastObject] isKindOfClass:[vc class]])
+
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HNAExpenseDirectionModel.h"
+#import "HNAGetExpenseDirectionResult.h"
 
 @interface HNAProjectCell : UITableViewCell
 @property(nonatomic,strong) HNASecurityProgram *model;

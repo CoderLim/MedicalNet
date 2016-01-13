@@ -1,12 +1,20 @@
 //
-//  HNAExpenseRecordModel.m
+//  HNAGetExpenseRecordsResult.m
 //  MedicalNet
 //
-//  Created by gengliming on 15/12/11.
-//  Copyright © 2015年 HaiHang. All rights reserved.
+//  Created by gengliming on 16/1/13.
+//  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
-#import "HNAExpenseRecordModel.h"
+#import "HNAGetExpenseRecordsResult.h"
+
+@implementation HNAGetExpenseRecordsResult
+
+- (NSDictionary *)objectClassInArray {
+    return @{@"records":[HNAExpenseRecordModel class]};
+}
+
+@end
 
 @implementation HNAExpenseRecordModel
 

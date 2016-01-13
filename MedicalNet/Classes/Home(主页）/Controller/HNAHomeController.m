@@ -13,6 +13,20 @@
 #import "HNAExpensesDirectionsController.h"
 #import "HNAPortraitButton.h"
 #import "HNAHealthCheckController.h"
+#import "HNAExpensesRecordCell.h"
+
+#import "HNAInsuranceTool.h"
+#import "HNAGetExpenseDirectionResult.h"
+
+#import "HNAGetExpenseRecordsParam.h"
+#import "HNAGetExpenseRecordsResult.h"
+
+// 主页跳转到报销记录页面
+#define Home2MedicalRecordsSegue @"Home2MedicalRecords"
+// 主页跳转到报销说明页面
+#define Home2MedicalDirectionSegue @"Home2MedicalDirection"
+// 主页跳转到修改密码页面
+#define Home2ChangeCipherSegue @"home2changeCipher"
 
 @interface HNAHomeController() <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate> {
 }
@@ -30,19 +44,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hasRecordsViewConstraint_Top;
 
 /**
- *  商业医保报销说明按钮点击
- */
-- (IBAction)expensesDirectionsBtnClicked:(UIButton *)sender;
-/**
- *  商业医保报销纪录按钮点击
- */
-- (IBAction)expensesRecordsBtnClicked:(UIButton *)sender;
-
-/**
  *  导航栏按钮点击
  */
 - (IBAction)healthCheckupBtnClick:(UIButton *)sender;
-
 /**
  *  修改密码提示 view
  */
@@ -55,7 +59,24 @@
  *  有记录 view
  */
 @property (weak, nonatomic) IBOutlet UIView *hasRecordsView;
+/**
+ *  报销记录 数据
+ */
+@property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
+@property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
+/**
+ *  头像
+ */
 @property (weak, nonatomic) IBOutlet HNAPortraitButton *portraitBtn;
+
+/**
+ *  商业医保报销说明按钮点击
+ */
+- (IBAction)expensesDirectionsBtnClicked:(UIButton *)sender;
+/**
+ *  商业医保报销纪录按钮点击
+ */
+- (IBAction)expensesRecordsBtnClicked:(UIButton *)sender;
 @end
 
 @implementation HNAHomeController
@@ -69,86 +90,106 @@
     // 2.设置tipView
     [self setupTipView];
     
-    // 3.
-//    [self setupPortraitAnimation];
+    // 3.设置报销记录tableView
+    [self setupRecordsTableView];
     
-//    self.hasRecordsView.hidden = YES;
+    // 4.设置通知
+    [self setupNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     // 显示tipView
-    WEAKSELF(weakSelf);
-    if (IOS7) {
-        self.tipViewConstraint_Top.constant = 64;
-    } else {
-        self.tipViewConstraint_Top.constant = 0;
-    }
-    
-    [UIView animateWithDuration:1.5f animations:^{
-        [weakSelf.view layoutIfNeeded];
-    }];
-
+    [self.tipView show];
 }
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    
-}
-
+/**
+ *  设置“修改密码提示”view
+ */
 - (void)setupTipView{
-    WEAKSELF(weakSelf);
     // 1.创建tipView
     HNAHomeTipView *tipView = [HNAHomeTipView tipViewWithChangeCipher:^{
-        // 创建修改密码控制器
-        HNAChangeCipherController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAChangeCipherController"];
-        // 跳转到修改密码控制器
-        [weakSelf.navigationController pushViewController:vc animated:YES];
-    } andClose:^{
-        // 关闭tipView
-        weakSelf.tipViewConstraint_Top.constant = 0;
-        [UIView animateWithDuration:1.5f animations:^{
-            weakSelf.tipView.alpha = 0;
-            [weakSelf.view layoutIfNeeded];
-        }];
+        [self performSegueWithIdentifier:Home2ChangeCipherSegue sender:nil];
     }];
-    tipView.layer.zPosition = 20;
+    tipView.superViewDuplicate = self.view;
     self.tipView = tipView;
-    [self.view addSubview: tipView];
-    
-    // 2.给tipView添加约束
-    NSDictionary *viewsDictionary = @{@"tipView": self.tipView};
-    NSArray *constraint_H = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[tipView(25)]" options:0 metrics:nil views:viewsDictionary];
-    NSArray *constraint_Pos_V = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-39-[tipView]" options:0 metrics:nil views:viewsDictionary];
-    NSArray *constraint_Pos_H = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tipView]-0-|" options:0 metrics:nil views:viewsDictionary];
-    
-    self.tipViewConstraint_Top = (NSLayoutConstraint*)[constraint_Pos_V lastObject];
-    [self.tipView addConstraints:constraint_H];
-    [self.view addConstraints:constraint_Pos_H];
-    [self.view addConstraints:constraint_Pos_V];
-    [self.view layoutIfNeeded];
+}
+/**
+ *  设置 报销记录tableView
+ */
+- (void)setupRecordsTableView {
+    // 注册cell
+    [self.recordsTableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:@"HNAExpensesRecordCell"];
+    // 加载数据
+    [self loadExpenseRecords];
+}
+/**
+ *  设置通知
+ */
+- (void)setupNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseRecordsControllerDidEndDragging) name:ExpenseRecordsControllerDidEndDraggingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerDidEndDragging) name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
 }
 
-// 不可用
-- (void)setupPortraitAnimation{
-    // 旋转
-    CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotateAnimation.repeatCount = 13;
-    rotateAnimation.values = @[@0,@(0.5*M_PI),@M_PI,@(1.5*M_PI),@(2*M_PI)];
-    // 缩放
-    CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    scaleAnimation.values = @[@3.0,@1.0,@0.5,@1.0];
-    // 动画组
-    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    animationGroup.duration = 1.0;
-    animationGroup.animations = @[rotateAnimation, scaleAnimation];
-    
-    [self.portraitBtn.layer addAnimation:animationGroup forKey:@"portraitRotate"];
+#pragma mark - 响应通知
+/**
+ *  报销记录控制器 停止拖动
+ */
+- (void)expenseRecordsControllerDidEndDragging {
+    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
+    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesRecordsController class]]) {
+        [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
+    }
+}
+/**
+ *  报销说明控制器 停止拖动
+ */
+- (void)expenseDirectionControllerDidEndDragging {
+    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
+        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
+    }
+}
+#pragma mark - 数据
+- (NSMutableArray<HNAExpenseRecordModel *> *)records {
+    if (_records == nil) {
+        _records = [NSMutableArray array];
+    }
+    return _records;
 }
 
+/**
+ *  加载医保说明
+ */
+- (void)loadMedicalDirection {
+    NSString *companyId = [HNAUserTool user].companyId;
+    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAGetExpenseDirectionResult *result) {
+        if (result != nil) {
+            HNALog(@"有报销说明");
+            self.noRecordsView.hidden = NO;
+        } else {
+            self.noRecordsView.hidden = YES;
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showError: MessageWhenFaild];
+    }];
+}
+/**
+ *  加载报销记录
+ */
+- (void)loadExpenseRecords {
+    HNAGetExpenseRecordsParam *param = [HNAGetExpenseRecordsParam param];
+    [HNAInsuranceTool getExpenseRecordsWithParam:param success:^(HNAGetExpenseRecordsResult *result) {
+        if (result == nil || result.records.count < 1) {
+            self.hasRecordsView.hidden = YES;
+        } else {
+            [self.records addObjectsFromArray: result.records];
+            [self.recordsTableView reloadData];
+            self.hasRecordsView.hidden = NO;
+        }
+    } failure:^(NSError *error) {
+        self.hasRecordsView.hidden = YES;
+        [MBProgressHUD showError:@"加载医保报销记录失败"];
+    }];
+}
 #pragma mark - 导航栏按钮事件
 - (IBAction)healthCheckupBtnClick:(UIButton *)sender {
     UINavigationController *healthCheckupNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"HealthCheckup"];
@@ -164,16 +205,27 @@
     [KeyWindow.layer addAnimation:ca forKey:nil];
 }
 
-
 #pragma mark - scrollView事件
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (scrollView.superview == self.hasRecordsView) {
-        [self expensesRecordsBtnClicked:nil];
-    } else if (scrollView.superview == self.noRecordsView){
-        [self expensesDirectionsBtnClicked:nil];
-    }
+    [self expensesRecordsBtnClicked:nil];
 }
 
+#pragma mark - tableView代理
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.records.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *idenfitifer = @"HNAExpensesRecordCell";
+    HNAExpensesRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:idenfitifer];
+    cell.model = self.records[indexPath.row];
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
 
 #pragma mark - 按钮点击事件
 /**
@@ -183,10 +235,9 @@
     // 如果有记录view是隐藏的，就直接跳转，而不添加动画
     if (self.hasRecordsView.hidden == YES) {
         // 跳转到医保报销说明页
-        [self performSegueWithIdentifier:@"Home2MedicalDirection" sender:nil];
+        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
         return;
     }
-    
     CGFloat hasRecordsViewConstraint_Top = self.hasRecordsViewConstraint_Top.constant;
     CGFloat noRecordsViewConstraint_Top = self.noRecordsViewConstraint_Top.constant;
     self.hasRecordsViewConstraint_Top.constant = self.view.frame.size.height;
@@ -199,31 +250,22 @@
         [weakSelf.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         // 跳转到医保报销说明页
-//        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
-//        [weakSelf.navigationController showViewController:vc sender:nil];
-        [self performSegueWithIdentifier:@"Home2MedicalDirection" sender:nil];
-        
+        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
         // 恢复动画前的相关属性
         weakSelf.hasRecordsViewConstraint_Top.constant = hasRecordsViewConstraint_Top;
         weakSelf.noRecordsViewConstraint_Top.constant = noRecordsViewConstraint_Top;
         weakSelf.view.userInteractionEnabled = YES;
     }];
 }
-
 /**
  *  商业医保报销纪录 按钮点击事件
  */
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender {
-//    HNAExpensesRecordsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesRecordsController"];
-//    [self.navigationController pushViewController:vc animated:YES];
-    [self performSegueWithIdentifier:@"Home2MedicalRecords" sender:nil];
+    [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
 }
 
-#pragma mark - tableView代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseRecordsControllerDidEndDraggingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
 }
 @end

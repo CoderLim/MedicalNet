@@ -10,8 +10,21 @@
 typedef void(^TipViewElementClick)();
 
 @interface HNAHomeTipView : UIView
+/**
+ *  父控件
+ */
+@property (nonatomic, weak) UIView *superViewDuplicate;
+/**
+ *   点击 修改密码
+ */
 @property (nonatomic,copy) TipViewElementClick changeCipher;
-@property (nonatomic,copy) TipViewElementClick close;
 
-+ (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher andClose:(TipViewElementClick)close;
+/**
+ *  初始化
+ */
++ (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher;
+/**
+ *  显示tipView
+ */
+- (void)show;
 @end

@@ -8,7 +8,7 @@
 
 #import "HNAExpensesRecordsController_old.h"
 #import "HNAExpensesRecordCell.h"
-#import "HNAExpenseRecordModel.h"
+#import "HNAGetExpenseRecordsResult.h"
 
 @interface HNAExpensesRecordsController_old() <UISearchDisplayDelegate>
 @property (nonatomic,strong) NSMutableArray *records;

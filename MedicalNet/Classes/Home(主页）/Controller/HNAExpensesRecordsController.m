@@ -8,19 +8,18 @@
 
 #import "HNAExpensesRecordsController.h"
 #import "HNAExpensesRecordCell.h"
-#import "HNAExpenseRecordModel.h"
+#import "HNAGetExpenseRecordsResult.h"
 #import "HNADatePickButton.h"
 
 #import "HNAInsuranceTool.h"
-#import "HNAExpenseRecordsParam.h"
+#import "HNAGetExpenseRecordsParam.h"
 #import "MBProgressHUD+MJ.h"
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 
-@interface HNAExpensesRecordsController() <HNADatePickButtonDelegate>{
+@interface HNAExpensesRecordsController() <HNADatePickButtonDelegate,UIScrollViewDelegate>{
     NSDate *_selectedDate;
 }
-
 /**
  *  报销记录
  */
@@ -64,7 +63,7 @@
 - (void)loadDataWithDate:(NSDate *)date{
     [MBProgressHUD showMessage:@"正在加载..."];
     // 1.参数
-    HNAExpenseRecordsParam *param = [[HNAExpenseRecordsParam alloc] init];
+    HNAGetExpenseRecordsParam *param = [[HNAGetExpenseRecordsParam alloc] init];
     param.id = [HNAUserTool user].id;
     if (date != nil) {
         NSDateComponents *components = [date components];
@@ -74,8 +73,8 @@
     
     // 2.请求数据
     WEAKSELF(weakSelf);
-    [HNAInsuranceTool getExpenseRecordsWithParam:param success:^(NSMutableArray<HNAExpenseRecordModel *> *records) {
-        [weakSelf.records addObjectsFromArray:records];
+    [HNAInsuranceTool getExpenseRecordsWithParam:param success:^(HNAGetExpenseRecordsResult *result) {
+        [weakSelf.records addObjectsFromArray:result.records];
         [MBProgressHUD hideHUD];
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
@@ -118,5 +117,9 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
+}
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Test" object:nil];
 }
 @end

@@ -1,19 +1,22 @@
 //
-//  HNAExpensesDirectionModel.h
+//  HNAGetExpenseDirectionResult.h
 //  MedicalNet
 //
-//  Created by gengliming on 15/12/11.
-//  Copyright © 2015年 HaiHang. All rights reserved.
+//  Created by gengliming on 16/1/13.
+//  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
-// 医保报销说明
-
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
 
-@class HNASecurityProgram;
+@class HNASecurityProgram, HNAExpenseDirectionModel;
+
+@interface HNAGetExpenseDirectionResult : HNAResult
+@property (nonatomic, strong) HNAExpenseDirectionModel *expenseDirection;
+@end
+
 
 @interface HNAExpenseDirectionModel : NSObject
-
 /**
  *  公司id
  */

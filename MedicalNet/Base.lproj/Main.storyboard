@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OdT-h5-4Va">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
@@ -1013,7 +1013,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWz-s6-Zcw">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWz-s6-Zcw">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSU-mS-V9v" userLabel="contentView">
@@ -1418,6 +1418,9 @@
                                     <constraint firstItem="CSU-mS-V9v" firstAttribute="top" secondItem="dWz-s6-Zcw" secondAttribute="top" id="t7d-qc-EGO"/>
                                     <constraint firstItem="CSU-mS-V9v" firstAttribute="leading" secondItem="dWz-s6-Zcw" secondAttribute="leading" id="ucw-xq-Dcn"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="SSc-Vo-mCa" id="TDg-xH-xeF"/>
+                                </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMg-ya-Wdm">
                                 <rect key="frame" x="234" y="410" width="50" height="50"/>
@@ -2404,8 +2407,8 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="w80-4Y-00N"/>
                                                 <exclude reference="8CB-On-d8c"/>
+                                                <exclude reference="w80-4Y-00N"/>
                                                 <exclude reference="Ww2-a7-QV0"/>
                                             </mask>
                                         </variation>
@@ -2475,7 +2478,6 @@
         <!--体检－预约-old-->
         <scene sceneID="KGG-3n-BLL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z2G-J3-qkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="HNAHCReservationController" title="预约体检" id="75a-PY-LtY" userLabel="体检－预约-old" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Obl-xH-vLF"/>
@@ -2669,6 +2671,7 @@
                         <outlet property="tableView" destination="fOx-TE-f91" id="uof-2h-Mcu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2G-J3-qkf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1889" y="1053"/>
         </scene>
@@ -3442,6 +3445,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnN-X1-Tgp" userLabel="有记录">
+                                <rect key="frame" x="0.0" y="214" width="320" height="545"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5n-ZH-qPk">
+                                        <rect key="frame" x="0.0" y="7" width="320" height="30"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.90980392156862744" green="0.91764705882352937" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="zcn-J9-ACp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="商业医保报销记录">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="expensesRecordsBtnClicked:" destination="UYe-tI-2hG" eventType="touchUpInside" id="UVt-6g-YaW"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rSd-C8-H3Y">
+                                        <rect key="frame" x="0.0" y="45" width="320" height="500"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="500" id="nlP-ha-1DS"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HNAExpensesRecordCell" id="b2v-3d-5uH" customClass="HNAExpensesRecordCell">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b2v-3d-5uH" id="8cb-4q-bIA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <animations/>
+                                                </tableViewCellContentView>
+                                                <animations/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="UYe-tI-2hG" id="070-cQ-iRQ"/>
+                                            <outlet property="delegate" destination="UYe-tI-2hG" id="aWC-Vo-7Et"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rSd-C8-H3Y" secondAttribute="bottom" id="5UF-ak-4HX"/>
+                                    <constraint firstAttribute="trailing" secondItem="rSd-C8-H3Y" secondAttribute="trailing" id="F53-jw-PCL"/>
+                                    <constraint firstItem="rSd-C8-H3Y" firstAttribute="top" secondItem="l5n-ZH-qPk" secondAttribute="bottom" constant="10" id="GUk-Cj-g1W"/>
+                                    <constraint firstItem="l5n-ZH-qPk" firstAttribute="top" secondItem="cnN-X1-Tgp" secondAttribute="top" constant="5" id="HL4-Ra-zhL"/>
+                                    <constraint firstAttribute="trailing" secondItem="l5n-ZH-qPk" secondAttribute="trailing" id="VmD-kS-lo6"/>
+                                    <constraint firstItem="rSd-C8-H3Y" firstAttribute="leading" secondItem="cnN-X1-Tgp" secondAttribute="leading" id="gwC-A2-5u6"/>
+                                    <constraint firstItem="l5n-ZH-qPk" firstAttribute="leading" secondItem="cnN-X1-Tgp" secondAttribute="leading" id="tMa-Gx-8Hg"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oj2-SU-cEj" userLabel="没纪录">
                                 <rect key="frame" x="0.0" y="184" width="320" height="296"/>
                                 <subviews>
@@ -3711,16 +3769,27 @@
                                             <outlet property="delegate" destination="UYe-tI-2hG" id="rsf-by-7Cp"/>
                                         </connections>
                                     </scrollView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haA-1w-rhh">
+                                        <rect key="frame" x="0.0" y="30" width="320" height="266"/>
+                                        <animations/>
+                                        <connections>
+                                            <segue destination="SSc-Vo-mCa" kind="embed" id="pKF-3Z-Vt3"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Md0-Gs-7Gy" secondAttribute="trailing" id="8od-Zj-ftx"/>
                                     <constraint firstItem="19T-aq-X54" firstAttribute="top" secondItem="Oj2-SU-cEj" secondAttribute="top" constant="30" id="EAw-Zg-qtV"/>
+                                    <constraint firstAttribute="trailing" secondItem="haA-1w-rhh" secondAttribute="trailing" id="JJk-Km-oLV"/>
                                     <constraint firstAttribute="trailing" secondItem="19T-aq-X54" secondAttribute="trailing" id="JoT-BS-1e7"/>
                                     <constraint firstItem="19T-aq-X54" firstAttribute="leading" secondItem="Oj2-SU-cEj" secondAttribute="leading" id="Jps-GF-M6f"/>
+                                    <constraint firstAttribute="bottom" secondItem="haA-1w-rhh" secondAttribute="bottom" id="PnW-Cd-6U3"/>
                                     <constraint firstAttribute="bottom" secondItem="19T-aq-X54" secondAttribute="bottom" id="PzO-hI-yFr"/>
+                                    <constraint firstItem="haA-1w-rhh" firstAttribute="leading" secondItem="Oj2-SU-cEj" secondAttribute="leading" id="QLw-QD-d1L"/>
                                     <constraint firstItem="Md0-Gs-7Gy" firstAttribute="leading" secondItem="Oj2-SU-cEj" secondAttribute="leading" id="S6A-B1-a8g"/>
+                                    <constraint firstItem="haA-1w-rhh" firstAttribute="top" secondItem="Md0-Gs-7Gy" secondAttribute="bottom" id="SBR-Hp-zIZ"/>
                                     <constraint firstItem="19T-aq-X54" firstAttribute="top" secondItem="Md0-Gs-7Gy" secondAttribute="bottom" id="edC-I2-h58"/>
                                     <constraint firstItem="Md0-Gs-7Gy" firstAttribute="top" secondItem="Oj2-SU-cEj" secondAttribute="top" id="f00-Ij-Z0z"/>
                                 </constraints>
@@ -3729,49 +3798,6 @@
                                         <exclude reference="EAw-Zg-qtV"/>
                                     </mask>
                                 </variation>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnN-X1-Tgp" userLabel="有记录">
-                                <rect key="frame" x="0.0" y="214" width="320" height="545"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l5n-ZH-qPk">
-                                        <rect key="frame" x="0.0" y="5" width="320" height="30"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.90980392156862744" green="0.91764705882352937" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="zcn-J9-ACp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="商业医保报销记录">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="expensesRecordsBtnClicked:" destination="UYe-tI-2hG" eventType="touchUpInside" id="UVt-6g-YaW"/>
-                                        </connections>
-                                    </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rSd-C8-H3Y">
-                                        <rect key="frame" x="0.0" y="45" width="320" height="500"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="500" id="nlP-ha-1DS"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="dataSource" destination="UYe-tI-2hG" id="070-cQ-iRQ"/>
-                                            <outlet property="delegate" destination="UYe-tI-2hG" id="aWC-Vo-7Et"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="rSd-C8-H3Y" secondAttribute="bottom" id="5UF-ak-4HX"/>
-                                    <constraint firstAttribute="trailing" secondItem="rSd-C8-H3Y" secondAttribute="trailing" id="F53-jw-PCL"/>
-                                    <constraint firstItem="rSd-C8-H3Y" firstAttribute="top" secondItem="l5n-ZH-qPk" secondAttribute="bottom" constant="10" id="GUk-Cj-g1W"/>
-                                    <constraint firstItem="l5n-ZH-qPk" firstAttribute="top" secondItem="cnN-X1-Tgp" secondAttribute="top" constant="5" id="HL4-Ra-zhL"/>
-                                    <constraint firstAttribute="trailing" secondItem="l5n-ZH-qPk" secondAttribute="trailing" id="VmD-kS-lo6"/>
-                                    <constraint firstItem="rSd-C8-H3Y" firstAttribute="leading" secondItem="cnN-X1-Tgp" secondAttribute="leading" id="gwC-A2-5u6"/>
-                                    <constraint firstItem="l5n-ZH-qPk" firstAttribute="leading" secondItem="cnN-X1-Tgp" secondAttribute="leading" id="tMa-Gx-8Hg"/>
-                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZu-4S-42g">
                                 <rect key="frame" x="0.0" y="64" width="320" height="120"/>
@@ -3782,7 +3808,7 @@
                                 </constraints>
                                 <state key="normal" title="申请医疗报销" image="home_plus" backgroundImage="home_banner_2_320"/>
                                 <connections>
-                                    <segue destination="fzv-4B-d5z" kind="show" id="93U-rV-YHb"/>
+                                    <segue destination="fzv-4B-d5z" kind="show" id="2Qu-OP-hKm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -3842,8 +3868,10 @@
                         <outlet property="hasRecordsView" destination="cnN-X1-Tgp" id="ulj-R2-fh5"/>
                         <outlet property="noRecordsView" destination="Oj2-SU-cEj" id="zKt-uQ-dF1"/>
                         <outlet property="portraitBtn" destination="OZ7-6w-i52" id="wux-Lc-4po"/>
+                        <outlet property="recordsTableView" destination="rSd-C8-H3Y" id="TYQ-bY-yfK"/>
                         <segue destination="Bql-YV-Ovr" kind="push" identifier="Home2MedicalRecords" id="wtE-6V-tfr"/>
                         <segue destination="SSc-Vo-mCa" kind="push" identifier="Home2MedicalDirection" id="dRc-jn-pio"/>
+                        <segue destination="icG-k7-Zwe" kind="show" identifier="home2changeCipher" id="6EA-U9-CX0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMz-PQ-Zgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3909,6 +3937,8 @@
         <image name="home_plus" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SdO-s7-AfQ"/>
+        <segue reference="UvS-vk-Gem"/>
+        <segue reference="pKF-3Z-Vt3"/>
+        <segue reference="6EA-U9-CX0"/>
     </inferredMetricsTieBreakers>
 </document>

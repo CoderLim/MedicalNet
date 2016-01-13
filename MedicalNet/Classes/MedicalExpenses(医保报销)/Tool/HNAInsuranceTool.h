@@ -10,8 +10,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class HNAExpenseDirectionModel;
-@class HNAExpenseRecordsParam,HNAExpenseRecordModel,HNAResult;
+@class HNAGetExpenseDirectionResult;
+@class HNAGetExpenseRecordsParam,HNAGetExpenseRecordsResult,HNAResult;
 @class HNAApplyExpenseParam;
 @class HNAExpenseDetailModel;
 @class HNAInsuranceCompanyModel;
@@ -25,12 +25,12 @@
  *  @param success   success
  *  @param failure   failure
  */
-+ (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAExpenseDirectionModel *direction))success failure:(void(^)(NSError *error))failure;
++ (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAGetExpenseDirectionResult *result))success failure:(void(^)(NSError *error))failure;
 
 /**
  *  获取报销纪录
  */
-+ (void)getExpenseRecordsWithParam:(HNAExpenseRecordsParam *)param success:(void (^)(NSMutableArray<HNAExpenseRecordModel *> * records))success failure:(void (^)(NSError *))failure;
++ (void)getExpenseRecordsWithParam:(HNAGetExpenseRecordsParam *)param success:(void (^)(HNAGetExpenseRecordsResult *result))success failure:(void (^)(NSError *))failure;
 
 /**
  *  申请报销
