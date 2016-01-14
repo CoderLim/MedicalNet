@@ -7,15 +7,16 @@
 //
 
 #import "HNADatePickButton.h"
+#import "HNADatePicker.h"
 #import "NSDate+HNA.h"
 
 #define DatePickerHeight 162
 
-@interface HNADatePickButton() {
+@interface HNADatePickButton() <HNADatePickerDelegate> {
     UIWindow *_originalKeyWindow;
 }
 @property (weak, nonatomic) UIView *mask;
-@property (weak, nonatomic) UIDatePicker *datePicker;
+@property (weak, nonatomic) HNADatePicker *datePicker;
 @property (weak, nonatomic) UIView *pickerContainer;
 @property (strong, nonatomic) UIWindow *window;
 @end
@@ -81,12 +82,10 @@
     return _pickerContainer;
 }
 
-- (UIDatePicker *)datePicker{
+- (HNADatePicker *)datePicker{
     if (_datePicker == nil) {
         // 0.datePicker属性
-        UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-        
-        datePicker.datePickerMode = UIDatePickerModeDate;
+        HNADatePicker *datePicker = [[HNADatePicker alloc] init];
         
         // 1.设置frame
         datePicker.frame = self.pickerContainer.bounds;
@@ -96,8 +95,7 @@
         [self.pickerContainer bringSubviewToFront:datePicker];
         _datePicker = datePicker;
         
-        // 3.添加事件
-        [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+        datePicker.dpDelegate = self;
     }
     return _datePicker;
 }
@@ -122,9 +120,17 @@
     [self setTitle:@"" forState:UIControlStateNormal];
     [self setTitle:@"" forState:UIControlStateDisabled];
     
+    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderWidth = 1.0f;
+    
     // 添加手势
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMySelf:)];
     [self addGestureRecognizer:tapRecognizer];
+}
+#pragma mark - 重写
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    self.layer.cornerRadius = 0.5*frame.size.height;
 }
 
 #pragma mark - 手势
@@ -179,16 +185,15 @@
     }];
 }
 
-#pragma mark - 事件
-- (void)datePickerValueChanged:(UIDatePicker *)picker{
+#pragma mrak - HNADatePickerDelegate
+- (void)datePicker:(HNADatePicker *)datePicker didValueChanged:(NSDate *)date {
     // 设置title
-    NSString *title = [picker.date stringWithFormat:@"yyyy-MM-dd"];
+    NSString *title = [date stringWithFormat:@"yyyy-MM"];
     [self setTitle:title forState:UIControlStateNormal];
     
     // 通知代理
     if ([self.delegate respondsToSelector:@selector(datePickButton:dateChanged:)]) {
-        [self.delegate datePickButton:self dateChanged:picker.date];
+        [self.delegate datePickButton:self dateChanged:date];
     }
 }
-
 @end

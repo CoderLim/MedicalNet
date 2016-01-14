@@ -16,6 +16,8 @@
 #import "HNALoginInfoResult.h"
 #import "HNALoginTool.h"
 
+#import "HNAImagePickersScrollView.h"
+
 #define CurrentTextField2KeyboardPadding 40
 
 @interface HNALoginController() <UITextFieldDelegate>{
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginViewTrailingConstraint;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cipherTextField;
+@property (weak, nonatomic) UIView *test;
 - (IBAction)loginBtnClick:(UIButton *)sender;
 @end
 
@@ -54,6 +57,10 @@
     // 监听TextField的TextChange
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self textFieldTextChanged:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (IBAction)loginBtnClick:(UIButton *)sender {

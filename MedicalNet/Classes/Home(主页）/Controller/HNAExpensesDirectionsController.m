@@ -80,11 +80,6 @@
     self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    HNALog(@"%s", __FUNCTION__);
-}
-
 - (NSMutableArray<HNASecurityProgram *> *)projectArray{
     if (_projectArray == nil) {
         _projectArray = [NSMutableArray array];

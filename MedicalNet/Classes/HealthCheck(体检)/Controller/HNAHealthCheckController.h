@@ -10,6 +10,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HNAHealthCheckController : UITableViewController
+@interface HNAHealthCheckController : UIViewController
 
 @end

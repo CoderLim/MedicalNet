@@ -91,8 +91,6 @@
     [self loadYears];
 }
 
-
-
 - (NSDate *)minimumDate{
     if (_minimumDate == nil) {
         _minimumDate = [NSDate minimumDate];
@@ -117,7 +115,6 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    HNALog(@"--%ld",component);
     if (component == 0) {
         return self.years.count;
     } else if (component == 1){
@@ -137,12 +134,13 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
-    HNALog(@"%@",[self.date stringWithFormat:@"yyyy-MM-dd"]);
-    
     if (component == 0) {
         [self loadMonthsWithYear:[self.years[[pickerView selectedRowInComponent:0]] integerValue]];
         [pickerView reloadComponent:1];
+    }
+    // 通知代理
+    if ([self.dpDelegate respondsToSelector:@selector(datePicker:didValueChanged:)]) {
+        [self.dpDelegate datePicker:self didValueChanged:self.date];
     }
 }
 

@@ -17,4 +17,9 @@
  */
 - (void)shakeWithAmplitude:(CGFloat)amplitudu;
 
+/**
+ *  获取view所属控制器
+ */
+- (UIViewController *)viewController;
+
 @end

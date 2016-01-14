@@ -102,6 +102,7 @@
     // 显示tipView
     [self.tipView show];
 }
+
 /**
  *  设置“修改密码提示”view
  */
@@ -126,6 +127,9 @@
  *  设置通知
  */
 - (void)setupNotification {
+    // 先移除再添加
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseRecordsControllerDidEndDragging) name:ExpenseRecordsControllerDidEndDraggingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerDidEndDragging) name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
 }
@@ -135,7 +139,6 @@
  *  报销记录控制器 停止拖动
  */
 - (void)expenseRecordsControllerDidEndDragging {
-    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesRecordsController class]]) {
         [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
     }
@@ -144,8 +147,9 @@
  *  报销说明控制器 停止拖动
  */
 - (void)expenseDirectionControllerDidEndDragging {
+    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
-        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
+        [self performSegueWithIdentifier: Home2MedicalDirectionSegue sender:nil];
     }
 }
 #pragma mark - 数据
@@ -261,6 +265,7 @@
  *  商业医保报销纪录 按钮点击事件
  */
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender {
+    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
 }
 

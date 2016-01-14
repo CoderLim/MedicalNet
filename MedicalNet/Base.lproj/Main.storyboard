@@ -24,157 +24,130 @@
             </objects>
             <point key="canvasLocation" x="-1114" y="417"/>
         </scene>
-        <!--体检-->
-        <scene sceneID="SdB-NE-DUp">
+        <!--体检首页-->
+        <scene sceneID="oEE-z8-47J">
             <objects>
-                <tableViewController id="tvA-BS-Oa9" userLabel="体检" customClass="HNAHealthCheckController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="J6x-rO-fBn">
+                <viewController id="uBU-dm-nfX" userLabel="体检首页" customClass="HNAHealthCheckController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rKA-XT-m4c"/>
+                        <viewControllerLayoutGuide type="bottom" id="5kN-e7-dAV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MKi-eQ-3y1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GCV-Wh-bNb">
+                                <rect key="frame" x="10" y="74" width="300" height="50"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="a20-Fd-8y6"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="New">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="您所在公司为您办理了体检项目，请查看">
+                                            <attributes>
+                                                <font key="NSFont" size="12" name="STHeitiSC-Light"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="reserveHealthCheck:" destination="uBU-dm-nfX" eventType="touchUpInside" id="imh-By-74P"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esq-P9-j5K">
+                                <rect key="frame" x="0.0" y="174" width="320" height="306"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="uBU-dm-nfX" id="Awz-c8-e11"/>
+                                    <outlet property="delegate" destination="uBU-dm-nfX" id="zqx-dM-Kmz"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BoO-wZ-xSa" customClass="HNADatePickButton">
+                                <rect key="frame" x="10" y="134" width="120" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="wSJ-Yi-XMG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Vby-bH-grD">
-                            <rect key="frame" x="0.0" y="64" width="320" height="104"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GCV-Wh-bNb">
-                                    <rect key="frame" x="10" y="45" width="300" height="33"/>
-                                    <animations/>
-                                    <state key="normal">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="New">
-                                                <attributes>
-                                                    <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content=" ">
-                                                <attributes>
-                                                    <font key="NSFont" size="18" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="您所在公司为您办理了体检项目，请查看">
-                                                <attributes>
-                                                    <font key="NSFont" size="12" name="STHeitiSC-Light"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                    </state>
-                                    <connections>
-                                        <action selector="reserveHealthCheck:" destination="tvA-BS-Oa9" eventType="touchUpInside" id="9J5-7m-s9y"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BoO-wZ-xSa" customClass="HNADatePickButton">
-                                    <rect key="frame" x="20" y="10" width="100" height="30"/>
-                                    <animations/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="wSJ-Yi-XMG"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="10"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="1"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <outlet property="delegate" destination="tvA-BS-Oa9" id="iZA-3k-YDT"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="GCV-Wh-bNb" secondAttribute="trailing" constant="10" id="OhX-bn-9wq"/>
-                                <constraint firstItem="BoO-wZ-xSa" firstAttribute="leading" secondItem="Vby-bH-grD" secondAttribute="leading" constant="20" id="V7D-S3-AdJ"/>
-                                <constraint firstItem="BoO-wZ-xSa" firstAttribute="top" secondItem="Vby-bH-grD" secondAttribute="top" constant="10" id="exc-ek-O3q"/>
-                                <constraint firstItem="GCV-Wh-bNb" firstAttribute="top" secondItem="BoO-wZ-xSa" secondAttribute="bottom" constant="5" id="vFz-ta-sOa"/>
-                                <constraint firstItem="GCV-Wh-bNb" firstAttribute="leading" secondItem="Vby-bH-grD" secondAttribute="leading" constant="10" id="z5a-Xp-pyX"/>
-                            </constraints>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HealthCheckCell" id="2z5-QZ-yxG" customClass="HNAHealthCheckRecordCell">
-                                <rect key="frame" x="0.0" y="196" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2z5-QZ-yxG" id="DEy-6H-dWg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="tvA-BS-Oa9" id="KCj-hj-8oM"/>
-                            <outlet property="delegate" destination="tvA-BS-Oa9" id="VrK-tJ-G6U"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="LIq-8K-L7b">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="g4a-Nt-HVT">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gtQ-tA-E6O" customClass="HNAPortraitButton">
-                                <rect key="frame" x="16" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstItem="BoO-wZ-xSa" firstAttribute="leading" secondItem="MKi-eQ-3y1" secondAttribute="leading" constant="10" id="5NQ-AG-Drh"/>
+                            <constraint firstAttribute="trailing" secondItem="esq-P9-j5K" secondAttribute="trailing" id="Lri-1k-5Rm"/>
+                            <constraint firstItem="esq-P9-j5K" firstAttribute="top" secondItem="BoO-wZ-xSa" secondAttribute="bottom" constant="10" id="Pbv-2F-1f6"/>
+                            <constraint firstItem="GCV-Wh-bNb" firstAttribute="leading" secondItem="MKi-eQ-3y1" secondAttribute="leading" constant="10" id="X3w-23-dc9"/>
+                            <constraint firstAttribute="trailing" secondItem="GCV-Wh-bNb" secondAttribute="trailing" constant="10" id="XEm-wI-V1v"/>
+                            <constraint firstItem="esq-P9-j5K" firstAttribute="leading" secondItem="MKi-eQ-3y1" secondAttribute="leading" id="Xnx-Eq-apU"/>
+                            <constraint firstItem="GCV-Wh-bNb" firstAttribute="top" secondItem="rKA-XT-m4c" secondAttribute="bottom" constant="10" id="dFe-Cj-4Rr"/>
+                            <constraint firstItem="5kN-e7-dAV" firstAttribute="top" secondItem="esq-P9-j5K" secondAttribute="bottom" id="v2C-gr-40b"/>
+                            <constraint firstItem="BoO-wZ-xSa" firstAttribute="top" secondItem="GCV-Wh-bNb" secondAttribute="bottom" constant="10" id="vo7-92-LTh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Y07-Gl-dc2">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="KKf-5C-yAi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KEW-IH-8wU" customClass="HNAPortraitButton">
+                                <rect key="frame" x="16" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="头像"/>
-                                <connections>
-                                    <segue destination="eIX-mw-bfM" kind="show" id="SdO-s7-AfQ"/>
-                                </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="gaC-Aj-RTe">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eSS-kf-FVl" customClass="HNABadgeButton">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="5t5-2h-2OE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Svg-RW-W9W" customClass="HNABadgeButton">
                                 <rect key="frame" x="233" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" title="医保报销"/>
+                                <state key="normal" title="报销"/>
                                 <connections>
-                                    <action selector="MedicalExpensesBtnClick:" destination="tvA-BS-Oa9" eventType="touchUpInside" id="645-Cg-yHA"/>
+                                    <action selector="MedicalExpensesBtnClick:" destination="uBU-dm-nfX" eventType="touchUpInside" id="ii4-un-lG7"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="datePickButton" destination="BoO-wZ-xSa" id="sF9-wU-lcN"/>
-                        <outlet property="searchDisplayController" destination="uyb-IT-26z" id="UsM-Gi-AeM"/>
-                        <segue destination="2oo-FC-c0h" kind="push" identifier="HCHome2HCDetail" id="aML-k6-v2I"/>
-                        <segue destination="aRS-kp-Fai" kind="show" identifier="HCHome2HCReserve" id="F7i-PZ-1PP"/>
+                        <outlet property="datePickButton" destination="BoO-wZ-xSa" id="14T-iU-rUw"/>
+                        <outlet property="reserveButton" destination="GCV-Wh-bNb" id="vwU-ml-4sH"/>
+                        <outlet property="reserveButton_H" destination="a20-Fd-8y6" id="rNY-N5-m55"/>
+                        <outlet property="tableView" destination="esq-P9-j5K" id="ewt-6J-Tit"/>
+                        <segue destination="aRS-kp-Fai" kind="show" identifier="HCHome2HCReserve" id="LGb-eB-UHW"/>
+                        <segue destination="2oo-FC-c0h" kind="show" identifier="HCHome2HCDetail" id="eQ4-qO-sIj"/>
+                        <segue destination="eIX-mw-bfM" kind="show" id="9oV-qW-Xa2"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VSn-cB-NMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="PNf-RX-6b5">
-                    <connections>
-                        <outlet property="delegate" destination="tvA-BS-Oa9" id="ubt-TJ-M39"/>
-                        <outlet property="searchContentsController" destination="tvA-BS-Oa9" id="WKJ-Gq-nK1"/>
-                        <outlet property="searchResultsDataSource" destination="tvA-BS-Oa9" id="nZU-dd-7wI"/>
-                        <outlet property="searchResultsDelegate" destination="tvA-BS-Oa9" id="AVT-Xm-E4L"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="sib-0F-5TE">
-                    <connections>
-                        <outlet property="delegate" destination="tvA-BS-Oa9" id="74B-xD-zxS"/>
-                        <outlet property="searchContentsController" destination="tvA-BS-Oa9" id="wc3-Yb-Qf6"/>
-                        <outlet property="searchResultsDataSource" destination="tvA-BS-Oa9" id="d2w-Ps-jg9"/>
-                        <outlet property="searchResultsDelegate" destination="tvA-BS-Oa9" id="J8d-N5-STY"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="uyb-IT-26z">
-                    <connections>
-                        <outlet property="delegate" destination="tvA-BS-Oa9" id="FGe-NL-No9"/>
-                        <outlet property="searchContentsController" destination="tvA-BS-Oa9" id="fdk-CU-qq5"/>
-                        <outlet property="searchResultsDataSource" destination="tvA-BS-Oa9" id="Iaz-YG-fPL"/>
-                        <outlet property="searchResultsDelegate" destination="tvA-BS-Oa9" id="mPi-u2-xzC"/>
-                    </connections>
-                </searchDisplayController>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6WU-Qv-8VY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1393" y="1094"/>
+            <point key="canvasLocation" x="1398" y="1069"/>
         </scene>
         <!--体检－记录详情－已弃用-->
         <scene sceneID="wXR-wZ-8aq">
@@ -534,7 +507,7 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="tvA-BS-Oa9" kind="relationship" relationship="rootViewController" id="BzS-YT-97c"/>
+                        <segue destination="uBU-dm-nfX" kind="relationship" relationship="rootViewController" id="Gw4-SH-cka"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzK-km-DVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2034,22 +2007,23 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nM3-Q5-WkP" userLabel="topView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="白领套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zub-SQ-01z">
-                                                <rect key="frame" x="10" y="19" width="68" height="20.5"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCd-eg-6dT">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCd-eg-6dT">
                                                 <rect key="frame" x="220" y="15" width="90" height="30"/>
                                                 <animations/>
-                                                <state key="normal" title="查看套餐详情"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="查看套餐详情&gt;"/>
                                                 <connections>
                                                     <action selector="checkPackageDetail:" destination="2oo-FC-c0h" eventType="touchUpInside" id="XZQ-gO-6NM"/>
                                                     <action selector="checkPackageDetail:" destination="uIh-WI-m8q" eventType="touchUpInside" id="zv3-by-cWD"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="白领套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zub-SQ-01z">
+                                                <rect key="frame" x="8" y="19" width="68" height="20.5"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -2304,7 +2278,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择体检机构" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmE-Z7-jdK">
                                                 <rect key="frame" x="5" y="140" width="310" height="25"/>
                                                 <animations/>
-                                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="Zsn-xZ-YoQ"/>
                                                 </constraints>
@@ -2345,7 +2319,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择体检时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92S-ky-XtJ">
                                                 <rect key="frame" x="5" y="365" width="310" height="25"/>
                                                 <animations/>
-                                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -2423,13 +2397,22 @@
                                     <constraint firstAttribute="bottom" secondItem="7lw-JW-vDX" secondAttribute="bottom" id="y85-ey-UlT"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-cj-0uc" userLabel="bottomView">
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-cj-0uc" userLabel="bottomView">
                                 <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLn-qe-ObC">
-                                        <rect key="frame" x="260" y="10" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLn-qe-ObC">
+                                        <rect key="frame" x="240" y="8" width="60" height="34"/>
                                         <animations/>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="SOF-9h-FXO"/>
+                                        </constraints>
                                         <state key="normal" title="提交"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="submit:" destination="aRS-kp-Fai" eventType="touchUpInside" id="z4i-YY-yca"/>
                                         </connections>
@@ -2438,7 +2421,7 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dLn-qe-ObC" secondAttribute="trailing" constant="30" id="9lu-CO-37J"/>
+                                    <constraint firstAttribute="trailing" secondItem="dLn-qe-ObC" secondAttribute="trailing" constant="20" id="9lu-CO-37J"/>
                                     <constraint firstAttribute="height" constant="50" id="fHJ-Av-zK7"/>
                                     <constraint firstItem="dLn-qe-ObC" firstAttribute="centerY" secondItem="bIW-cj-0uc" secondAttribute="centerY" id="nun-ec-jcK"/>
                                 </constraints>
@@ -3937,8 +3920,8 @@
         <image name="home_plus" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UvS-vk-Gem"/>
-        <segue reference="pKF-3Z-Vt3"/>
+        <segue reference="9oV-qW-Xa2"/>
         <segue reference="6EA-U9-CX0"/>
+        <segue reference="pKF-3Z-Vt3"/>
     </inferredMetricsTieBreakers>
 </document>

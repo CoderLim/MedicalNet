@@ -15,7 +15,7 @@
  * 
  *  对应节点 newProject
  */
-@property (nonatomic,copy) NSString *hasNewProject;
+@property (nonatomic,assign) NSInteger hasNewProject;
 @property (nonatomic,copy) NSString *year;
 @property (nonatomic,copy) NSString *month;
 @property(nonatomic,strong) NSMutableArray<HNAHealthCheckRecordModel *> *records;

@@ -187,7 +187,7 @@
         }
         
         [self.medicalInstitutions removeAllObjects];
-        for (NSInteger i=0; i<10; i++) {
+        for (NSInteger i=0; i<5; i++) {
             HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
             organ.name = @"雍和宫医院";
             organ.addr = @"雍和航行园";
@@ -216,7 +216,6 @@
         weakSelf.selectedInstitutionCell.checked = NO;
         weakSelf.selectedInstitutionCell = weakCell;
     };
-    
     if (indexPath.row == 0) {
         self.selectedInstitutionCell = cell;
     }
@@ -234,8 +233,10 @@
  *  tableView：医疗机构 查看更多
  */
 - (IBAction)tableViewFooterClicked:(UIButton *)sender {
-    _tableViewExpanded = YES;
-    sender.enabled = NO;
+    _tableViewExpanded = !_tableViewExpanded;
+    
+    NSString *title = _tableViewExpanded?@"收回":@"展开更多";
+    [sender setTitle:title forState:UIControlStateNormal];
     [self.tableView reloadData];
 }
 
@@ -297,7 +298,6 @@
     param.packageId = self.selectedPackageId;
     param.organId = self.selectedInstitutionCell.model.id;
     param.reserveDate = self.selectedDate;
-    
     // 网络请求
     [HNAHealthCheckTool reserveHCWithParam:param success:^(HNAReserveHCResult *result) {
         if (result != nil) {
@@ -310,11 +310,11 @@
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    
+    HNALog(@"%s", __FUNCTION__);
     if ([keyPath isEqualToString: @"contentSize"]) {
         CGSize contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
         self.tableView_H.constant = contentSize.height;
-        [UIView animateWithDuration:0.25f animations:^{
+        [UIView animateWithDuration:1.25f animations:^{
             [self.view layoutIfNeeded];
         }];
         

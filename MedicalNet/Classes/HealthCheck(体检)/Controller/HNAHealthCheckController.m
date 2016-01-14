@@ -25,7 +25,8 @@
 
 #define HCHome2HCDetailSegue @"HCHome2HCDetail"
 
-@interface HNAHealthCheckController() <HNADatePickButtonDelegate>
+@interface HNAHealthCheckController() <UITableViewDataSource,UITableViewDelegate,HNADatePickButtonDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
  *  体检记录
  */
@@ -38,12 +39,15 @@
  *  日期选择
  */
 @property (weak, nonatomic) IBOutlet HNADatePickButton *datePickButton;
-
+/**
+ *  预约体检 按钮
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reserveButton_H;
+@property (weak, nonatomic) IBOutlet UIButton *reserveButton;
 /**
  *  查看(预约)体检项目
  */
 - (IBAction)reserveHealthCheck:(UIButton *)sender;
-
 /**
  *  跳转到 医保报销
  */
@@ -63,7 +67,6 @@
 - (NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
-        
         // 添加记录
         for (NSInteger i = 0; i < 3; i++) {
             HNAHealthCheckRecordModel *model = [HNAHealthCheckRecordModel healthCheckRecordWithName:@"白领套餐" state:@"已完成" date:@"2015-11－1"];
@@ -85,6 +88,11 @@
     [HNAHealthCheckTool getHCRecordsWithParam:param success:^(HNAGetHCRecordsResult *result) {
         [weakSelf.records addObjectsFromArray:result.records];
         [weakSelf.tableView reloadData];
+        // 没有体检项目则隐藏入口
+//        if (result.hasNewProject == 0) {
+//            weakSelf.reserveButton.hidden = (result.hasNewProject == 0);
+//            weakSelf.reserveButton_H.constant = 0;
+//        }
         
         [MBProgressHUD hideHUD];
     } failure:^(NSError *error) {
@@ -92,9 +100,6 @@
         [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
     }];
 }
-
-
-
 #pragma mark - datePickButton代理
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
     if (date != nil) {
@@ -102,7 +107,6 @@
         [self loadDataWithYear:components.year month:components.month];
     }
 }
-
 #pragma mark - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
@@ -128,7 +132,6 @@
     return UITableViewAutomaticDimension;
     
 }
-
 #pragma mark - 单击事件
 - (IBAction)reserveHealthCheck:(UIButton *)sender {
     // 体检首页 跳转到 预约体检

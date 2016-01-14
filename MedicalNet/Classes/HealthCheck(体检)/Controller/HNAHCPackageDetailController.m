@@ -68,7 +68,7 @@
     WEAKSELF(weakSelf);
     [HNAHealthCheckTool getPackgetDetailWithParam:param success:^(HNAGetPackageDetailResult *result) {
         [MBProgressHUD hideHUD];
-        if (result != nil) {
+        if (result != nil && result.packageId!=nil && [result.packageId isEqual:@""]) {
             weakSelf.packageNameLabel.text = result.packageName;
             weakSelf.records = result.records;
             // 刷新tableView

@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet UIView *superContainer;
 
 @end
 @implementation HNAHealthCheckRecordCell
@@ -25,12 +26,13 @@
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     static NSString *identifier = @"HealthCheckRecordCell";
     HNAHealthCheckRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.superContainer.layer.borderWidth = 1.f;
+    cell.superContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
     return cell;
 }
-
-- (void)awakeFromNib {
-}
-
 @end

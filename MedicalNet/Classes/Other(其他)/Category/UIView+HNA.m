@@ -29,4 +29,14 @@
 
 }
 
+- (UIViewController *)viewController {
+    for (UIView *next = [self superview]; next;next = next.superview) {
+        UIResponder *responder = next.nextResponder;
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    }
+    return nil;
+}
+
 @end

@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *openHourButton;
 @property (weak, nonatomic) IBOutlet UIButton *addrButton;
 @property (weak, nonatomic) IBOutlet UIButton *phoneButton;
+- (IBAction)dial:(UIButton *)sender;
 
 - (IBAction)descButtonClicked:(UIButton *)sender;
 
@@ -54,6 +55,15 @@
     return cell;
 }
 
+/**
+ *  打电话
+ */
+- (IBAction)dial:(UIButton *)sender {
+    // url
+    NSString *urlStr = [NSString stringWithFormat:@"telprompt://%@", self.appointment.phone];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [[UIApplication sharedApplication] openURL:url];
+}
 
 - (IBAction)descButtonClicked:(UIButton *)sender {
     [super descBtnClicked:sender];

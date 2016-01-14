@@ -15,11 +15,10 @@
     return @{ @"records" : [HNAHealthCheckRecordModel class]};
 }
 
-
 + (instancetype)objectWithKeyValues:(NSDictionary *)keyValues {
     HNAGetHCRecordsResult *result = nil;
     if ((result = [super objectWithKeyValues:keyValues])) {
-        result.hasNewProject = [keyValues objectForKey:@"newProject"];
+        result.hasNewProject = [[keyValues objectForKey:@"newProject"] integerValue];
     }
     return result;
 }

@@ -10,6 +10,7 @@
 		9F05FEE91C43B24700626544 /* HNAHCReservePackageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29C3FE1C43A7000073387F /* HNAHCReservePackageScrollView.m */; };
 		9F05FEEE1C43BA7000626544 /* HNAMedicalInstitutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05FEEC1C43BA7000626544 /* HNAMedicalInstitutionCell.m */; };
 		9F05FEEF1C43BA7000626544 /* HNAMedicalInstitutionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F05FEED1C43BA7000626544 /* HNAMedicalInstitutionCell.xib */; };
+		9F062F9D1C473A7B00D7973A /* HNAImagePickersScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F062F9C1C473A7B00D7973A /* HNAImagePickersScrollView.m */; };
 		9F199E371C460BD70040D227 /* HNAGetExpenseRecordsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F199E361C460BD70040D227 /* HNAGetExpenseRecordsResult.m */; };
 		9F199E3A1C46232A0040D227 /* HNAGetExpenseDirectionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F199E391C46232A0040D227 /* HNAGetExpenseDirectionResult.m */; };
 		9F1AB2951C3F7028006D185D /* HNABankNoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1AB2941C3F7028006D185D /* HNABankNoField.swift */; };
@@ -190,6 +191,8 @@
 		9F05FEEB1C43BA7000626544 /* HNAMedicalInstitutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAMedicalInstitutionCell.h; sourceTree = "<group>"; };
 		9F05FEEC1C43BA7000626544 /* HNAMedicalInstitutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAMedicalInstitutionCell.m; sourceTree = "<group>"; };
 		9F05FEED1C43BA7000626544 /* HNAMedicalInstitutionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAMedicalInstitutionCell.xib; sourceTree = "<group>"; };
+		9F062F9B1C473A7B00D7973A /* HNAImagePickersScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImagePickersScrollView.h; sourceTree = "<group>"; };
+		9F062F9C1C473A7B00D7973A /* HNAImagePickersScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAImagePickersScrollView.m; sourceTree = "<group>"; };
 		9F199E351C460BD70040D227 /* HNAGetExpenseRecordsResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAGetExpenseRecordsResult.h; sourceTree = "<group>"; };
 		9F199E361C460BD70040D227 /* HNAGetExpenseRecordsResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAGetExpenseRecordsResult.m; sourceTree = "<group>"; };
 		9F199E381C46232A0040D227 /* HNAGetExpenseDirectionResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAGetExpenseDirectionResult.h; sourceTree = "<group>"; };
@@ -589,15 +592,15 @@
 				9F9D47071C3BBF9000DCBE16 /* HNAHCDetailCellBase.m */,
 				9F9D46F41C3BAACE00DCBE16 /* HNAHCDetailCell.h */,
 				9F9D46F51C3BAACE00DCBE16 /* HNAHCDetailCell.m */,
+				9F29C3B61C437DA20073387F /* HNAHCCheckedCell.h */,
+				9F29C3B71C437DA20073387F /* HNAHCCheckedCell.m */,
+				9F29C3BB1C43865F0073387F /* HNAHCCheckedCell.xib */,
 				9F9D46F71C3BAB9300DCBE16 /* HNAHCDetailReminderCell.h */,
 				9F9D46F81C3BAB9300DCBE16 /* HNAHCDetailReminderCell.m */,
 				9F9D46FD1C3BBAAD00DCBE16 /* HNAHCDetailReminderCell.xib */,
 				9F9D46FA1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.h */,
 				9F9D46FB1C3BABCD00DCBE16 /* HNAHCDetailReservedCell.m */,
 				9F9D46FF1C3BBAC500DCBE16 /* HNAHCDetailReservedCell.xib */,
-				9F29C3B61C437DA20073387F /* HNAHCCheckedCell.h */,
-				9F29C3B71C437DA20073387F /* HNAHCCheckedCell.m */,
-				9F29C3BB1C43865F0073387F /* HNAHCCheckedCell.xib */,
 			);
 			path = "HNAHCDetailController(体检详情)";
 			sourceTree = "<group>";
@@ -1098,6 +1101,8 @@
 				9F9D5F221C03F6A500E647E2 /* HNAImagePickerView.h */,
 				9F9D5F231C03F6A500E647E2 /* HNAImagePickerView.m */,
 				9F9D5F251C03F6B600E647E2 /* HNAImagePickerView.xib */,
+				9F062F9B1C473A7B00D7973A /* HNAImagePickersScrollView.h */,
+				9F062F9C1C473A7B00D7973A /* HNAImagePickersScrollView.m */,
 				9FD904551C27E20B00422219 /* HNAExpenseDetailCell.h */,
 				9FD904561C27E20B00422219 /* HNAExpenseDetailCell.m */,
 				9FD904571C27E20B00422219 /* HNAExpenseDetailCell.xib */,
@@ -1531,6 +1536,7 @@
 				9FD904711C27FC5D00422219 /* SDWebImageManager+MJ.m in Sources */,
 				9F9D46EA1C3BA21800DCBE16 /* HNAPortraitButton.m in Sources */,
 				9FD77D911C1A64F7006F6EC5 /* HNAApplyExpenseParam.m in Sources */,
+				9F062F9D1C473A7B00D7973A /* HNAImagePickersScrollView.m in Sources */,
 				9FB4897D1BFEB86D0031DE48 /* MBProgressHUD+MJ.m in Sources */,
 				9F05FEEE1C43BA7000626544 /* HNAMedicalInstitutionCell.m in Sources */,
 				9FD9046F1C27FC5D00422219 /* MJPhotoToolbar.m in Sources */,
