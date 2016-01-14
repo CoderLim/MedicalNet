@@ -149,7 +149,9 @@
 - (void)expenseDirectionControllerDidEndDragging {
     HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
-        [self performSegueWithIdentifier: Home2MedicalDirectionSegue sender:nil];
+        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
+        [self.navigationController pushViewController:vc animated:YES];
+//        [self performSegueWithIdentifier: Home2MedicalDirectionSegue sender:nil];
     }
 }
 #pragma mark - 数据

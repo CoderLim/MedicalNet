@@ -33,7 +33,7 @@
 - (void)descBtnClicked:(UIButton *)sender {
     self.model.isSelected = !self.model.isSelected;
     if (self.indexPath != nil) {
-        [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
     } else {
         [self.tableView reloadData];
     }

@@ -74,6 +74,7 @@
             // 刷新tableView
             [weakSelf.tableView reloadData];
         } else {
+            weakSelf.packageNameLabel.text = @"";
             [MBProgressHUD hideHUD];
             [MBProgressHUD showError: MessageWhenNoData];
         }

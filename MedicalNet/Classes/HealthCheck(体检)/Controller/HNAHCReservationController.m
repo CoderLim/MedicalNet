@@ -61,10 +61,10 @@
  *  选择的体检日期
  */
 @property (nonatomic, copy) NSString *selectedDate;
-
 /**
  *  体检机构（tableView）展开更多
  */
+@property (weak, nonatomic) IBOutlet UIButton *expandButton;
 - (IBAction)tableViewFooterClicked:(UIButton *)sender;
 
 /**
@@ -98,7 +98,8 @@
  */
 - (void)setupCalendarView {
     self.calendarView.delegate = self;
-    self.calendarView.backgroundColor = [UIColor lightGrayColor];
+    self.calendarView.backgroundColor = UIColorWithRGB(211.f, 211.f, 211.f);
+    
     self.calendarView.locale = [NSLocale currentLocale];
     
     self.calendarView.disableLegendColor = CKCalendarDisableLegendColor;
@@ -179,13 +180,16 @@
  *  加载医疗机构数据
  */
 - (void)loadInstitutionsWithPackageId:(NSString *)packageId {
+    _tableViewExpanded = NO;
+    [self.expandButton setTitle:@"展开更多" forState:UIControlStateNormal];
+    
+    // 重新加载
     HNAGetHCOrganListParam *param = [[HNAGetHCOrganListParam alloc] init];
     param.packageId = packageId;
     [HNAHealthCheckTool getHCOrganListWithParam:param success:^(HNAGetHCOrganListResult *result) {
         if (result.organs != nil) {
             self.medicalInstitutions = result.organs;
         }
-        
         [self.medicalInstitutions removeAllObjects];
         for (NSInteger i=0; i<5; i++) {
             HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
@@ -216,8 +220,11 @@
         weakSelf.selectedInstitutionCell.checked = NO;
         weakSelf.selectedInstitutionCell = weakCell;
     };
+    
     if (indexPath.row == 0) {
         self.selectedInstitutionCell = cell;
+    } else  {
+        cell.checked = NO;
     }
     return cell;
 }
@@ -239,7 +246,6 @@
     [sender setTitle:title forState:UIControlStateNormal];
     [self.tableView reloadData];
 }
-
 #pragma mark - HNAHCReservePackageScrollViewDelegate
 - (void)packageScrollView:(HNAHCReservePackageScrollView *)scrollView didClickedAtIndex:(NSInteger)index {
     self.selectedPackageId = scrollView.selectedPackageId;
@@ -292,7 +298,7 @@
 
 #pragma mark - 
 - (IBAction)submit:(id)sender {
-    [MBProgressHUD showMessage:@""];
+    [MBProgressHUD showMessage:@"正在提交..."];
     // 参数
     HNAReserveHCParam *param = [HNAReserveHCParam param];
     param.packageId = self.selectedPackageId;
@@ -300,27 +306,27 @@
     param.reserveDate = self.selectedDate;
     // 网络请求
     [HNAHealthCheckTool reserveHCWithParam:param success:^(HNAReserveHCResult *result) {
+        [MBProgressHUD hideHUD];
         if (result != nil) {
             [MBProgressHUD showSuccess: MessageWhenSuccess];
         }
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError: MessageWhenFaild];
     }];
 }
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    HNALog(@"%s", __FUNCTION__);
     if ([keyPath isEqualToString: @"contentSize"]) {
         CGSize contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
         self.tableView_H.constant = contentSize.height;
-        [UIView animateWithDuration:1.25f animations:^{
-            [self.view layoutIfNeeded];
-        }];
-        
+        [self.view layoutIfNeeded];
+//        [UIView animateWithDuration:0.25f animations:^{
+//            [self.view layoutIfNeeded];
+//        }];
     }
 }
-
 - (void)dealloc {
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
 }

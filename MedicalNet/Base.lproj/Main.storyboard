@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1989,10 +1989,10 @@
             </objects>
             <point key="canvasLocation" x="2529" y="1224"/>
         </scene>
-        <!--体检记录详情-->
+        <!--体检-详情-->
         <scene sceneID="NMg-5e-agH">
             <objects>
-                <viewController storyboardIdentifier="HNAHCDetailController" title="体检记录详情" id="2oo-FC-c0h" userLabel="体检记录详情" customClass="HNAHCDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HNAHCDetailController" title="体检记录详情" id="2oo-FC-c0h" userLabel="体检-详情" customClass="HNAHCDetailController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SGd-rs-dSE"/>
                         <viewControllerLayoutGuide type="bottom" id="0rJ-Ib-7Qq"/>
@@ -2018,7 +2018,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="白领套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zub-SQ-01z">
-                                                <rect key="frame" x="8" y="19" width="68" height="20.5"/>
+                                                <rect key="frame" x="8" y="18" width="68" height="20.5"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2115,6 +2115,7 @@
                     <navigationItem key="navigationItem" id="H0Y-fm-kzk"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="packageNameLabel" destination="Zub-SQ-01z" id="lLQ-9R-ahc"/>
                         <outlet property="tableView" destination="EM0-zW-srC" id="HqG-gP-e3h"/>
                         <segue destination="yy4-hJ-Vo7" kind="show" identifier="hcDetail2packageDetail" id="eVm-bT-buS"/>
                         <segue destination="aqQ-ga-qZE" kind="show" identifier="hcDetail2hcReport" id="jlX-Pt-scU"/>
@@ -2261,7 +2262,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择套餐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZJ-Wn-k8f">
                                                 <rect key="frame" x="5" y="15" width="310" height="25"/>
                                                 <animations/>
-                                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="A3v-qZ-yX5"/>
                                                     <constraint firstAttribute="height" constant="25" id="Vb8-33-lEe"/>
@@ -2448,6 +2449,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="calendarView" destination="QY5-2v-k1g" id="FYS-zI-bhz"/>
+                        <outlet property="expandButton" destination="xlQ-49-zYH" id="rj3-XI-nY9"/>
                         <outlet property="packageScrollView" destination="E0b-dl-ONg" id="aEe-04-pac"/>
                         <outlet property="submitButton" destination="dLn-qe-ObC" id="Vzn-9U-2C0"/>
                         <outlet property="tableView" destination="jf6-Vn-aqN" id="dpn-sg-nlQ"/>
@@ -3428,6 +3430,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZu-4S-42g">
+                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.87058830261230469" green="0.93725496530532837" blue="0.9647059440612793" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="tzr-I8-jkA"/>
+                                </constraints>
+                                <state key="normal" title="申请医疗报销" image="home_plus" backgroundImage="home_banner_2_320"/>
+                                <connections>
+                                    <segue destination="fzv-4B-d5z" kind="show" id="2Qu-OP-hKm"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnN-X1-Tgp" userLabel="有记录">
                                 <rect key="frame" x="0.0" y="214" width="320" height="545"/>
                                 <subviews>
@@ -3782,18 +3796,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZu-4S-42g">
-                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.87058830261230469" green="0.93725496530532837" blue="0.9647059440612793" alpha="1" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="tzr-I8-jkA"/>
-                                </constraints>
-                                <state key="normal" title="申请医疗报销" image="home_plus" backgroundImage="home_banner_2_320"/>
-                                <connections>
-                                    <segue destination="fzv-4B-d5z" kind="show" id="2Qu-OP-hKm"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3920,8 +3922,8 @@
         <image name="home_plus" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9oV-qW-Xa2"/>
-        <segue reference="6EA-U9-CX0"/>
         <segue reference="pKF-3Z-Vt3"/>
+        <segue reference="UvS-vk-Gem"/>
+        <segue reference="6EA-U9-CX0"/>
     </inferredMetricsTieBreakers>
 </document>

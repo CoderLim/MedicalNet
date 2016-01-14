@@ -38,6 +38,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
+ *  套餐名称
+ */
+@property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
+/**
  *  几种状态
  */
 @property (nonatomic, strong) NSMutableArray<HNAHCStatusRecord *> *statusRecords;
@@ -69,7 +73,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
     
     [self loadData];
-    
 }
 
 - (NSMutableArray<HNAHCStatusRecord *> *)statusRecords {
@@ -102,6 +105,7 @@
             weakSelf.appointment = result.appointment;
             weakSelf.alertMessage = result.alertMessage;
             weakSelf.packageId = result.packageId;
+            weakSelf.packageNameLabel.text = result.name;
             [self.tableView reloadData];
             [MBProgressHUD showSuccess:MessageWhenSuccess];
         }

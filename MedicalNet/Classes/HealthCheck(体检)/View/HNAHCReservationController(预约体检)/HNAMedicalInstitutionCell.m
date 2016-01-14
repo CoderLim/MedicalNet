@@ -34,7 +34,6 @@
     
     self.institutionNameLabel.text = model.name;
     [self.addrButton setTitle:model.addr forState:UIControlStateNormal];
-    [self.dialButton setTitle:model.phone forState:UIControlStateNormal];
     [self.openHourButton setTitle:model.openHour forState:UIControlStateNormal];
 }
 
