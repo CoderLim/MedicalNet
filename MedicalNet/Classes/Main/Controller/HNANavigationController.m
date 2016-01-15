@@ -19,11 +19,11 @@
     
     // 1.设置导航栏主题
     [self setupNavigationBar];
+    
     // 2.设置导航栏按钮主题
     
     [self setupBarButtonItem];
 }
-
 /**
  *  设置导航栏主题
  */
@@ -35,7 +35,6 @@
     attributes[NSForegroundColorAttributeName] = NavTextColor;
     [appearance setTitleTextAttributes:attributes];
     
-    
     [self.navigationBar setTintColor: NavTextColor];
     // 背景色
     [self.navigationBar setBarTintColor: NavBackgroundColor];
@@ -43,7 +42,6 @@
     //
     self.navigationBar.translucent = YES;
 }
-
 /**
  *  设置导航栏按钮主题
  */
@@ -56,4 +54,10 @@
     [appearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // 隐藏底部tabar
+    [viewController setHidesBottomBarWhenPushed:YES];
+    
+    [super pushViewController:viewController animated:YES];
+}
 @end

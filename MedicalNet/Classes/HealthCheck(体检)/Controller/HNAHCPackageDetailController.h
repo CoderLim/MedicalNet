@@ -21,9 +21,15 @@ typedef NS_ENUM(NSInteger, HNAHCPackageDetailControllerType) {
     HNAHCPackageDetailControllerChoose
 };
 
+typedef void(^selectThePackageBlock)(NSInteger packageId);
+
 @interface HNAHCPackageDetailController : UIViewController
 
 @property (nonatomic, assign) HNAHCPackageDetailControllerType type;
-@property (nonatomic, copy) NSString *packageId;
+/**
+ *  点击选择此套餐时执行
+ */
+@property (nonatomic, copy) selectThePackageBlock selectBlock;
+@property (nonatomic, assign) NSInteger packageId;
 
 @end

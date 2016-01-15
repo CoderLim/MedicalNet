@@ -17,7 +17,11 @@
 @protocol HNAHCReservePackageScrollViewDelegate <NSObject>
 @optional
 /**
- *  当点击其中某个button时调该通知函数
+ *  将要点击button
+ */
+- (BOOL)packageScrollView:(HNAHCReservePackageScrollView *)scrollView willClickAtIndex:(NSInteger)index;
+/**
+ *  当点击button
  */
 - (void)packageScrollView:(HNAHCReservePackageScrollView *)scrollView didClickedAtIndex:(NSInteger)index;
 @end
@@ -27,7 +31,7 @@ IB_DESIGNABLE
 /**
  *  当前选择的套餐id
  */
-@property (nonatomic, copy, readonly) NSString *selectedPackageId;
+@property (nonatomic, assign, readonly) NSInteger selectedPackageId;
 /**
  *  代理
  */
@@ -40,12 +44,27 @@ IB_DESIGNABLE
  *  一组数据
  */
 @property(nonatomic,strong) NSMutableArray *modelItems;
-@property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, strong) NSMutableArray<HNAHCReservePackageButton *> *buttons;
 
 /**
  *  根据数据模型添加button
  */
 - (void)addButtonWithModel:(HNAPackageListItem *)model;
+
+/**
+ *  根据packageId选中对应套餐
+ */
+- (void)selectWithPackageId:(NSInteger)packageId;
+
+/**
+ *  返回指定index的套餐id
+ */
+- (NSInteger)packageIdAtIndex:(NSInteger)index;
+
+/**
+ *  根据索引选中套餐
+ */
+- (void)selectAtIndex:(NSInteger)index;
 
 /**
  *  点击button

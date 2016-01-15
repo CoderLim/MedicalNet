@@ -115,5 +115,9 @@
  *  选择此套餐
  */
 - (IBAction)selectThePackage:(UIButton *)sender {
+    if (self.selectBlock) {
+        self.selectBlock(self.packageId);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

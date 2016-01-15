@@ -96,20 +96,52 @@
     [button addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)selectWithPackageId:(NSInteger)packageId {
+    for (NSInteger i=0; i<self.buttons.count; i++) {
+        if (self.buttons[i].model.packageId == packageId) {
+            self.selectedButton = self.buttons[i];
+            return;
+        }
+    }
+}
+
+- (void)selectAtIndex:(NSInteger)index {
+    if (self.buttons!=nil && self.buttons.count > index) {
+        self.selectedButton = self.buttons[index];
+    }
+}
+
+- (NSInteger)packageIdAtIndex:(NSInteger)index {
+    if (self.buttons!=nil && self.buttons.count > index) {
+        return self.buttons[index].model.packageId;
+    }
+    return -1;
+}
+
 #pragma mark - 属性
-- (NSString *)selectedPackageId {
+- (NSInteger)selectedPackageId {
     return self.selectedButton.model.packageId;
 }
+
+- (void)setSelectedButton:(HNAHCReservePackageButton *)selectedButton {
+    _selectedButton.selected = NO;
+    _selectedButton = selectedButton;
+    _selectedButton.selected = YES;
+}
+
 #pragma mark - 单击事件
 - (void)itemClicked:(HNAHCReservePackageButton *)sender{
+    // 问代理能不能点击
+    if ([self.hcDelegate respondsToSelector:@selector(packageScrollView:willClickAtIndex:)] && ![self.hcDelegate packageScrollView:self willClickAtIndex:sender.tag]) {
+        return;
+    }
+    
     if (sender == nil) {
         sender = [self.buttons firstObject];
     }
     
     // 修改button的选中状态
-    self.selectedButton.selected = NO;
     self.selectedButton = sender;
-    self.selectedButton.selected = YES;
     
     // 通知代理
     if ([self.hcDelegate respondsToSelector:@selector(packageScrollView:didClickedAtIndex:)]) {

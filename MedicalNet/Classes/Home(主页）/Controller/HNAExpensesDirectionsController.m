@@ -57,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"报销说明";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     _showMoreHospital = NO;

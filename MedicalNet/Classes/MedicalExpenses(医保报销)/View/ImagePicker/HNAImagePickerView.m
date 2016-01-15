@@ -57,7 +57,6 @@
     UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pickerBtnLongPressed:)];
     longPressRecognizer.minimumPressDuration = 1.f;
     [self.pickerBtn addGestureRecognizer:longPressRecognizer];
-   
 }
 
 + (instancetype)imagePicker {
@@ -100,7 +99,7 @@
     // 隐藏“移除”按钮
     sender.hidden = YES;
     // 删除pickerBtn的Image
-    [self.pickerBtn setImage:nil forState:UIControlStateNormal];
+    [self.pickerBtn setImage:nil forState: UIControlStateNormal];
     // 通知代理
     if ([self.delegate respondsToSelector:@selector(imagePickerViewDidRemoveImage:)]) {
         [self.delegate imagePickerViewDidRemoveImage:self];

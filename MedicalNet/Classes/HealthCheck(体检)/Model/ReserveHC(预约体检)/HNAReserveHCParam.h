@@ -30,7 +30,7 @@
 /**
  *  所选套餐id
  */
-@property (nonatomic,copy) NSString *packageId;
+@property (nonatomic,assign) NSInteger packageId;
 /**
  *  体检机构id
  */

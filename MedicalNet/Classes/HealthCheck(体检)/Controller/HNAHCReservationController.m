@@ -9,6 +9,7 @@
 // 预约体检
 
 #import "HNAHCReservationController.h"
+#import "HNAHCPackageDetailController.h"
 #import "HNAHCReservePackageScrollView.h"
 #import "HNAMedicalInstitutionCell.h"
 #import "CKCalendarView.h"
@@ -26,6 +27,9 @@
 #define CKCalendarDisableLegendColor UIColorWithRGB(228.0f, 228.0f, 228.0f)
 #define CKCalendarEnableLegendColor [UIColor whiteColor]
 #define CKCalendarSelectedLegendColor UIColorWithRGB(255.0f, 153.0f, 153.0f)
+
+// 跳转到 套餐详情
+#define HCReserve2HCPackageSegue @"hcReserve2hcPackage"
 
 @interface HNAHCReservationController () <UITableViewDataSource,UITableViewDelegate,HNAHCReservePackageScrollViewDelegate, CKCalendarDelegate>{
     // 标记tableView是否已经展开
@@ -49,10 +53,6 @@
  */
 @property (strong, nonatomic) NSMutableArray<HNAHCOrgan *> *medicalInstitutions;
 
-/**
- *  选择的套餐id
- */
-@property (nonatomic, copy) NSString *selectedPackageId;
 /**
  *  选择的体检机构cell
  */
@@ -162,12 +162,13 @@
             self.packageScrollView.modelItems = result.packageList;
             for (NSInteger i=0; i<5; i++) {
                 HNAPackageListItem *item = [[HNAPackageListItem alloc] init];
-                item.packageId = [NSString stringWithFormat:@"%ld",(long)i];
-                item.packageName = item.packageId;
+                item.packageId = i + 1000;
+                item.packageName = [NSString stringWithFormat:@"TC%ld",(long)i];
                 [self.packageScrollView addButtonWithModel:item];
             }
             // 选中第一条
-            [self.packageScrollView itemClicked:nil];
+            [self.packageScrollView selectAtIndex:0];
+            [self loadInstitutionsWithPackageId:self.packageScrollView.selectedPackageId];
             [MBProgressHUD showSuccess: MessageWhenSuccess];
         }
     } failure:^(NSError *error) {
@@ -179,7 +180,7 @@
 /**
  *  加载医疗机构数据
  */
-- (void)loadInstitutionsWithPackageId:(NSString *)packageId {
+- (void)loadInstitutionsWithPackageId:(NSInteger)packageId {
     _tableViewExpanded = NO;
     [self.expandButton setTitle:@"展开更多" forState:UIControlStateNormal];
     
@@ -221,10 +222,12 @@
         weakSelf.selectedInstitutionCell = weakCell;
     };
     
-    if (indexPath.row == 0) {
-        self.selectedInstitutionCell = cell;
-    } else  {
-        cell.checked = NO;
+    if (!_tableViewExpanded) {
+        if (indexPath.row == 0) {
+            self.selectedInstitutionCell = cell;
+        } else  {
+            cell.checked = NO;
+        }
     }
     return cell;
 }
@@ -247,10 +250,11 @@
     [self.tableView reloadData];
 }
 #pragma mark - HNAHCReservePackageScrollViewDelegate
-- (void)packageScrollView:(HNAHCReservePackageScrollView *)scrollView didClickedAtIndex:(NSInteger)index {
-    self.selectedPackageId = scrollView.selectedPackageId;
-    // 加载套餐对应的体检机构
-    [self loadInstitutionsWithPackageId:[NSString stringWithFormat:@"%ld",(long)index]];
+
+- (BOOL)packageScrollView:(HNAHCReservePackageScrollView *)scrollView willClickAtIndex:(NSInteger)index {
+    NSString *packageIdStr = [NSString stringWithFormat:@"%ld",[scrollView packageIdAtIndex:index]];
+    [self performSegueWithIdentifier:HCReserve2HCPackageSegue sender: packageIdStr];
+    return NO;
 }
 
 #pragma mark - CKCalendarViewDelegate 
@@ -296,12 +300,12 @@
             || [date isEqualYMDTo:[NSDate date]];
 }
 
-#pragma mark - 
+#pragma mark - 按钮事件
 - (IBAction)submit:(id)sender {
     [MBProgressHUD showMessage:@"正在提交..."];
     // 参数
     HNAReserveHCParam *param = [HNAReserveHCParam param];
-    param.packageId = self.selectedPackageId;
+    param.packageId = self.packageScrollView.selectedPackageId;
     param.organId = self.selectedInstitutionCell.model.id;
     param.reserveDate = self.selectedDate;
     // 网络请求
@@ -314,6 +318,20 @@
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError: MessageWhenFaild];
     }];
+}
+
+#pragma mark -
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString: HCReserve2HCPackageSegue]) {
+        HNAHCPackageDetailController *packageVc = segue.destinationViewController;
+        packageVc.type = HNAHCPackageDetailControllerChoose;
+        packageVc.packageId = [sender integerValue];
+        packageVc.selectBlock = ^(NSInteger packageId){
+            [self.packageScrollView selectWithPackageId:packageId];
+            // 加载套餐对应的体检机构
+            [self loadInstitutionsWithPackageId:packageId];
+        };
+    }
 }
 
 #pragma mark - KVO

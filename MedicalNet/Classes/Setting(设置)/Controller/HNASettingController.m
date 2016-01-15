@@ -22,21 +22,21 @@
 #import "MBProgressHUD+MJ.h"
 #import "objc/message.h"
 
+#define Setting2ChangePortraitSegue @"setting2changePortrait"
+#define Setting2ChangePwdSegue @"setting2changePwd"
+#define Setting2ChangePhoneSegue @"setting2changePhone"
+#define Setting2IntroduceSegue @"setting2introduce"
+
 @interface HNASettingController()
 @property (nonatomic,strong) NSMutableArray *data;
 @end
 
 @implementation HNASettingController
 
-- (NSMutableArray *)data{
-    if (_data == nil) {
-        _data = [NSMutableArray array];
-    }
-    return _data;
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.title = @"设置";
     
     // 1.设置tableView属性
     HNASettingHeaderView *headerView =
@@ -49,17 +49,27 @@
     [self setupGroup3];
 }
 
+- (NSMutableArray *)data{
+    if (_data == nil) {
+        _data = [NSMutableArray array];
+    }
+    return _data;
+}
+
 #pragma mark - 设置cell数据
 - (void)setupGroup1{
     // 修改头像
     HNASettingArrowItem *changePortrait = [HNASettingArrowItem itemWithTitle:@"修改头像"];
     changePortrait.targetController = [HNAChangePortraitController class];
+    changePortrait.segueIdentifier = Setting2ChangePortraitSegue;
     // 修改手机号
     HNASettingArrowItem *changePhone = [HNASettingArrowItem itemWithTitle:@"修改手机号"];
     changePhone.targetController = [HNAChangePhoneController class];
+    changePhone.segueIdentifier = Setting2ChangePhoneSegue;
     // 修改密码
     HNASettingArrowItem *changeCipher = [HNASettingArrowItem itemWithTitle:@"修改密码"];
     changeCipher.targetController = [HNAChangeCipherController class];
+    changeCipher.segueIdentifier = Setting2ChangePwdSegue;
     
     HNASettingGroup *group = [[HNASettingGroup alloc] init];
     group.items = @[changePortrait, changePhone, changeCipher];
@@ -88,6 +98,7 @@
     // 我们的其他APP
     HNASettingArrowItem *otherAPP = [HNASettingArrowItem itemWithTitle:@"我们的其他APP"];
     otherAPP.targetController = [HNAIntroductionController class];
+    otherAPP.segueIdentifier = Setting2IntroduceSegue;
     
     // 退出登录
     HNASettingExecuteItem *logout = [HNASettingExecuteItem itemWithTitle:@"退出登录" option:^{
@@ -144,14 +155,15 @@
     HNASettingItem *item = group.items[indexPath.row];
 
     if ([item isKindOfClass:[HNASettingArrowItem class]]) {
-        // 2.获得目标控制器
-        HNASettingArrowItem *arrowItem = (HNASettingArrowItem *)item;
-        Class targetVC = arrowItem.targetController;
-        NSString *className = [NSString stringWithUTF8String:class_getName(targetVC)];
-        UIViewController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:className];
-        HNALog(@"%@",className);
-        // 3.跳转
-        [self.navigationController pushViewController:vc animated:YES];
+//        // 2.获得目标控制器
+//        HNASettingArrowItem *arrowItem = (HNASettingArrowItem *)item;
+//        Class targetVC = arrowItem.targetController;
+//        NSString *className = [NSString stringWithUTF8String:class_getName(targetVC)];
+//        UIViewController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:className];
+//        HNALog(@"%@",className);
+//        // 3.跳转
+//        [self.navigationController pushViewController:vc animated:YES];
+        [self performSegueWithIdentifier:((HNASettingArrowItem *)item).segueIdentifier sender:nil];
     } else if ([item isKindOfClass:[HNASettingExecuteItem class]]){
         HNASettingExecuteItem *execItem = (HNASettingExecuteItem *)item;
         execItem.option();

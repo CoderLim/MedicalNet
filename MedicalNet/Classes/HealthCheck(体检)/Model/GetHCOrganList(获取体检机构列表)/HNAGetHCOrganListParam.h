@@ -14,5 +14,5 @@
 /**
  *  套餐id
  */
-@property (nonatomic,copy) NSString *packageId;
+@property (nonatomic,assign) NSInteger packageId;
 @end

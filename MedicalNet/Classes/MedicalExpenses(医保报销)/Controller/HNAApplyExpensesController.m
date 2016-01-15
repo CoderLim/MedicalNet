@@ -129,16 +129,16 @@
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"contentOffset"]) {
-        CGPoint newContentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
-        CGFloat alpha = 1.0;
-        
-        alpha = - newContentOffset.y / 64;
-
-        self.navigationController.navigationBar.alpha = alpha;
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
+//    if ([keyPath isEqualToString:@"contentOffset"]) {
+//        CGPoint newContentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+//        CGFloat alpha = 1.0;
+//        
+//        alpha = - newContentOffset.y / 64;
+//
+//        self.navigationController.navigationBar.alpha = alpha;
+//    } else {
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//    }
 }
 
 /**

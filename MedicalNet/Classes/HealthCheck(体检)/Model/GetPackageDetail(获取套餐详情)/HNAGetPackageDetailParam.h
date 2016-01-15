@@ -14,5 +14,5 @@
 /**
  *  套餐id，通过“体检记录详情”接口获取
  */
-@property (nonatomic,copy) NSString *id;
+@property (nonatomic,assign) NSInteger id;
 @end

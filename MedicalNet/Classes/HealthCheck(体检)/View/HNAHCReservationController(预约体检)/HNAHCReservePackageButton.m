@@ -13,7 +13,8 @@
 - (void)setModel:(HNAPackageListItem *)model {
     _model = model;
     
-    [self setTitle:model.packageName forState:UIControlStateNormal];
+    NSString *title = (model.packageName!=nil&&![model.packageName isEqualToString:@""])?model.packageName:@"无";
+    [self setTitle:title forState:UIControlStateNormal];
 }
 
 + (instancetype)packageButtonWithModel:(HNAPackageListItem *)model {
