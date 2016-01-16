@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Jj-eW-Dim">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -3842,7 +3842,6 @@
         <!--设置-->
         <scene sceneID="DDS-bP-WYv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-Ep-F8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="设置" id="eIX-mw-bfM" userLabel="设置" customClass="HNASettingController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eLb-zN-NNw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -3876,8 +3875,27 @@
                         <segue destination="icG-k7-Zwe" kind="show" identifier="setting2changePwd" id="Lwj-RF-nod"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-Ep-F8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="980" y="1053"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="poX-dl-q9t">
+            <objects>
+                <viewController id="6Jj-eW-Dim" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KD8-io-CLW"/>
+                        <viewControllerLayoutGuide type="bottom" id="G6l-T2-3bu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8OA-gC-EDV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ipm-Ei-NvL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-824" y="465"/>
         </scene>
         <!--医保报销-->
         <scene sceneID="r1b-Dc-xtS">

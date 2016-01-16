@@ -41,6 +41,7 @@
 		9F8C0A0A1C180A290084EAD9 /* HNAUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A091C180A290084EAD9 /* HNAUserTool.m */; };
 		9F8C0A0D1C1816210084EAD9 /* HNAExpensesRecordsController_old.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */; };
 		9F93148A1C02A9290073E10E /* HNAApplyExpensesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */; };
+		9F9CA7BA1C49EAAC00201E89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CA7B91C49EAAC00201E89 /* ViewController.m */; };
 		9F9D46E71C3BA21800DCBE16 /* HNABadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */; };
 		9F9D46E81C3BA21800DCBE16 /* HNACountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46DA1C3BA21800DCBE16 /* HNACountDownButton.m */; };
 		9F9D46E91C3BA21800DCBE16 /* HNAMutiStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46DC1C3BA21800DCBE16 /* HNAMutiStateButton.m */; };
@@ -251,6 +252,8 @@
 		9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAExpensesRecordsController_old.m; sourceTree = "<group>"; };
 		9F9314881C02A9290073E10E /* HNAApplyExpensesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAApplyExpensesController.h; sourceTree = "<group>"; };
 		9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAApplyExpensesController.m; sourceTree = "<group>"; };
+		9F9CA7B81C49EAAC00201E89 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F9CA7B91C49EAAC00201E89 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9F9D46D71C3BA21800DCBE16 /* HNABadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNABadgeButton.h; sourceTree = "<group>"; };
 		9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNABadgeButton.m; sourceTree = "<group>"; };
 		9F9D46D91C3BA21800DCBE16 /* HNACountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNACountDownButton.h; sourceTree = "<group>"; };
@@ -955,6 +958,8 @@
 				9FC7C7061BFD5D18007E2C49 /* Login(登陆) */,
 				9FC7C70A1BFD5D18007E2C49 /* MedicalExpenses(医保报销) */,
 				9FC7C70E1BFD5D18007E2C49 /* Other(其他) */,
+				9F9CA7B81C49EAAC00201E89 /* ViewController.h */,
+				9F9CA7B91C49EAAC00201E89 /* ViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1531,6 +1536,7 @@
 				9FE222941C192B15003678BB /* HNAChangePortraitParam.m in Sources */,
 				9FC7C7371BFD8E9E007E2C49 /* HNALoginController.m in Sources */,
 				9FE2228E1C1926C3003678BB /* HNAResult.m in Sources */,
+				9F9CA7BA1C49EAAC00201E89 /* ViewController.m in Sources */,
 				9FB878F71C0EF4D500DAF53F /* UIView+HNA.m in Sources */,
 				9F9D46EC1C3BA21800DCBE16 /* HNADatePicker.m in Sources */,
 				9FB4899A1BFEB86D0031DE48 /* UIImage+WebP.m in Sources */,

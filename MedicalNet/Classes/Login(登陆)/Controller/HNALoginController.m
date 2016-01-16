@@ -17,11 +17,9 @@
 #import "HNALoginTool.h"
 #import "HNAImagePickersScrollView.h"
 
-#import "AFNetworking.h"
-
 #define CurrentTextField2KeyboardPadding 40
 
-@interface HNALoginController() <UITextFieldDelegate>{
+@interface HNALoginController() <UITextFieldDelegate,NSURLSessionDelegate>{
     __weak UITextField *_currentEditTextField;
 }
 @property (weak, nonatomic) IBOutlet UIView *loginView;
@@ -58,55 +56,6 @@
     // 监听TextField的TextChange
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self textFieldTextChanged:nil];
-    
-    //
-    //
-    //
-//    NSString *urlStr = @"http://localhost/upload_file.php";
-//    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        NSError *error = nil;
-//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://www.baidu.com/img/bd_logo1.png"]];
-//        [formData appendPartWithFileData:data name:@"name1" fileName:@"filename1" mimeType:@"image/png"];
-//        if (error) {
-//            NSLog(@"error: %@",error);
-//        }
-//    } error:nil];
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *mgr = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    NSProgress *progress = nil;
-//    NSURLSessionUploadTask *uploadTask = [mgr uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            NSLog(@"error: %@", error);
-//        } else {
-//            NSLog(@"%@ %@",response, responseObject);
-//        }
-//    }];
-//    [uploadTask resume];
-    
-    NSString *urlStr = @"http://localhost/upload_file.php";
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
-    request.HTTPMethod = @"POST";
-    [request addValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
-    [request addValue:@"text/html" forHTTPHeaderField:@"Accept"];
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *mgr = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    AFJSONResponseSerializer *respondsSerializer = [AFJSONResponseSerializer serializer];
-    respondsSerializer.readingOptions = NSJSONReadingAllowFragments;
-    NSProgress *progress = nil;
-    
-    mgr.responseSerializer = respondsSerializer;
-    UIImage *image = [UIImage imageNamed:@"tab_hc.png"];
-    NSData *data = UIImagePNGRepresentation(image);
-    NSURLSessionUploadTask *uploadTask = [mgr uploadTaskWithRequest:request fromData:data progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"error: %@", error);
-        } else {
-            NSLog(@"%@,,,,,,%@", response, responseObject);
-        }
-    }];
-    [uploadTask resume];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
