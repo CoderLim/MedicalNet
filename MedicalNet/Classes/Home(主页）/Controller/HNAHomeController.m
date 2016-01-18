@@ -8,10 +8,10 @@
 
 #import "HNAHomeController.h"
 #import "HNAHomeTipView.h"
+#import "UIImage+HNA.h"
 #import "HNAChangeCipherController.h"
 #import "HNAExpensesRecordsController.h"
 #import "HNAExpensesDirectionsController.h"
-#import "HNAPortraitButton.h"
 #import "HNAHealthCheckController.h"
 #import "HNAExpensesRecordCell.h"
 
@@ -27,13 +27,10 @@
 #define Home2MedicalDirectionSegue @"Home2MedicalDirection"
 // 主页跳转到修改密码页面
 #define Home2ChangeCipherSegue @"home2changeCipher"
+// 主页跳转到申请报销页面
+#define Home2ApplyExpenseSegue @"home2applyExpense"
 
-@interface HNAHomeController() <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate> {
-}
-/**
- *  tipview的top约束
- */
-@property (nonatomic,weak) NSLayoutConstraint *tipViewConstraint_Top;
+@interface HNAHomeController() <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 /**
  *  没记录view的top约束
  */
@@ -43,10 +40,6 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hasRecordsViewConstraint_Top;
 
-/**
- *  导航栏按钮点击
- */
-- (IBAction)healthCheckupBtnClick:(UIButton *)sender;
 /**
  *  修改密码提示 view
  */
@@ -64,18 +57,21 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
 @property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
-/**
- *  头像
- */
-@property (weak, nonatomic) IBOutlet HNAPortraitButton *portraitBtn;
 
 /**
- *  商业医保报销说明按钮点击
+ *  申请报销 按钮
  */
+@property (weak, nonatomic) IBOutlet UIButton *applyExpenseButton;
+- (IBAction)applyExpenseButtonClicked:(UIButton *)sender;
+/**
+ *  商业医保报销说明按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *directionButton;
 - (IBAction)expensesDirectionsBtnClicked:(UIButton *)sender;
 /**
- *  商业医保报销纪录按钮点击
+ *  商业医保报销纪录按钮
  */
+@property (weak, nonatomic) IBOutlet UIButton *expenseRecordsButton;
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender;
 @end
 
@@ -95,6 +91,9 @@
     
     // 4.设置通知
     [self setupNotification];
+    
+    // 5.设置banner
+    [self setupBanner];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -102,7 +101,6 @@
     // 显示tipView
     [self.tipView show];
 }
-
 /**
  *  设置“修改密码提示”view
  */
@@ -130,28 +128,38 @@
     // 先移除再添加
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseRecordsControllerDidEndDragging) name:ExpenseRecordsControllerDidEndDraggingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerDidEndDragging) name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
-}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerHasNoData) name:ExpenseDierectionControllerHasNoData object:nil];
 
-#pragma mark - 响应通知
+}
 /**
- *  报销记录控制器 停止拖动
+ *  设置申请报销按钮（大图banner）
  */
-- (void)expenseRecordsControllerDidEndDragging {
-    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesRecordsController class]]) {
-        [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
+- (void)setupBanner {
+    if ([HNAUserTool user].insuranceCompanyId && [HNAUserTool user].insuranceCompanyId >= 0) {
+        [self.applyExpenseButton setBackgroundImage:[UIImage imageWithName:@"home_banner_1"] forState:UIControlStateNormal];
+    } else {
+        [self.applyExpenseButton setBackgroundImage:[UIImage imageWithName:@"home_banner_2"] forState:UIControlStateNormal];
     }
 }
+#pragma mark - 响应通知
 /**
  *  报销说明控制器 停止拖动
  */
 - (void)expenseDirectionControllerDidEndDragging {
-    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
         HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
         [self.navigationController pushViewController:vc animated:YES];
 //        [self performSegueWithIdentifier: Home2MedicalDirectionSegue sender:nil];
+    }
+}
+/**
+ *  报销说明没有数据
+ */
+- (void)expenseDirectionControllerHasNoData {
+    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
+        self.noRecordsView.hidden = YES;
+        self.hasRecordsViewConstraint_Top.constant = self.noRecordsViewConstraint_Top.constant;
     }
 }
 #pragma mark - 数据
@@ -162,22 +170,6 @@
     return _records;
 }
 
-/**
- *  加载医保说明
- */
-- (void)loadMedicalDirection {
-    NSString *companyId = [HNAUserTool user].companyId;
-    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAGetExpenseDirectionResult *result) {
-        if (result != nil) {
-            HNALog(@"有报销说明");
-            self.noRecordsView.hidden = NO;
-        } else {
-            self.noRecordsView.hidden = YES;
-        }
-    } failure:^(NSError *error) {
-        [MBProgressHUD showError: MessageWhenFaild];
-    }];
-}
 /**
  *  加载报销记录
  */
@@ -191,24 +183,11 @@
             [self.recordsTableView reloadData];
             self.hasRecordsView.hidden = NO;
         }
-    } failure:^(NSError *error) {
         self.hasRecordsView.hidden = YES;
+    } failure:^(NSError *error) {
+        self.hasRecordsView.hidden = NO;
         [MBProgressHUD showError:@"加载医保报销记录失败"];
     }];
-}
-#pragma mark - 导航栏按钮事件
-- (IBAction)healthCheckupBtnClick:(UIButton *)sender {
-    UINavigationController *healthCheckupNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"HealthCheckup"];
-    KeyWindow.rootViewController = healthCheckupNav;
-    
-    CATransition *ca = [CATransition animation];
-    // 设置过度效果
-    ca.type = @"oglFlip";
-    // 设置动画的过度方向（向右）
-    ca.subtype=kCATransitionFromRight;
-    // 设置动画的时间
-    ca.duration=.45;
-    [KeyWindow.layer addAnimation:ca forKey:nil];
 }
 
 #pragma mark - scrollView事件
@@ -234,6 +213,13 @@
 }
 
 #pragma mark - 按钮点击事件
+/**
+ *  申请医保报销按钮
+ */
+- (IBAction)applyExpenseButtonClicked:(UIButton *)sender {
+    [self performSegueWithIdentifier:Home2ApplyExpenseSegue sender:nil];
+}
+
 /**
  *  医保报销说明按钮点击事件
  */
@@ -272,7 +258,7 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseRecordsControllerDidEndDraggingNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDierectionControllerHasNoData object:nil];
 }
 @end

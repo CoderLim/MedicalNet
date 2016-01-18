@@ -6,8 +6,6 @@
 //  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
-#import "HNAImagePickerView.h"
-
-@interface HNAAutoUploadImagePicker : HNAImagePickerView
+@interface HNAAutoUploadImagePicker : UIView
 
 @end

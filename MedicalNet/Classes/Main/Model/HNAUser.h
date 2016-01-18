@@ -45,7 +45,7 @@
 /**
  *  保险公司id
  */
-@property (nonatomic,copy) NSString *insuranceCompanyId;
+@property (nonatomic,assign) NSInteger insuranceCompanyId;
 
 /**
  *  体检机构

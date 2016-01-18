@@ -55,5 +55,5 @@
  *  @param success   成功回调
  *  @param failure   失败回调
  */
-+ (void)getInsuranceCompayWithId:(NSString *)companyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *))failure;
++ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *error))failure;
 @end

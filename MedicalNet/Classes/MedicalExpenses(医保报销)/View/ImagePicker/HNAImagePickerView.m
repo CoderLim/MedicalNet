@@ -27,6 +27,7 @@
 - (IBAction)removeBtnClicked:(UIButton *)sender;
 @end
 @implementation HNAImagePickerView
+@synthesize image = _image;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

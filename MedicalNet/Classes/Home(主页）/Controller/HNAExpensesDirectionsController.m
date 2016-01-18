@@ -15,15 +15,30 @@
 #import "HNAInsuranceTool.h"
 #import "HNAUserTool.h"
 #import "HNAUser.h"
+#import "HNAInsuranceCompanyModel.h"
 #import "MBProgressHUD+MJ.h"
 
 // KeyPath
-#define KPContentSize @"contentSize"
+#define ContentSizeKeyPath @"contentSize"
+// 默认显示医院个数
+#define DefaultHospitalCount 3
 
 @interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     BOOL _showMoreHospital;
 }
+/**
+ *  保险公司信息
+ */
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComAddrLabel;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComContactLabel;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComCodeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComPhoneLabel;
 
+/**
+ *  主ScrollView
+ */
+@property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 /**
  *  保障方案
  */
@@ -32,12 +47,14 @@
  *  理赔所需材料
  */
 @property (weak, nonatomic) IBOutlet UILabel *materialLabel;
-
 /**
  *  可报销医院
  */
 @property (weak, nonatomic) IBOutlet UITableView *hospitalTableView;
 
+/**
+ *  更多医院
+ */
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -54,6 +71,7 @@
 
 @implementation HNAExpensesDirectionsController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -63,15 +81,12 @@
     _showMoreHospital = NO;
     
     // 根据数据量动态调整tableView的高度约束
-    [self.projectTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
-    [self.hospitalTableView addObserver:self forKeyPath:KPContentSize options:NSKeyValueObservingOptionNew context:nil];
+    [self.projectTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    [self.hospitalTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
     
     // 加载数据
-    [self loadData];
-    
-    // 再重新布局一遍
-    // 因为通过addObserve设置三个tableView后，布局没调整过来
-//    [self.view layoutIfNeeded];
+    [self loadDirectionData];
+    [self loadInsuranceCompanyData];
     
     // 初始化［提交］按钮
     self.submitButton.layer.cornerRadius = self.submitButton.frame.size.height*0.5;
@@ -81,23 +96,18 @@
     self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (IsEmbededInController(self)) {
+        [self.mainScrollView setContentOffset:CGPointZero];
+    }
+}
+
+#pragma mark - 数据
 - (NSMutableArray<HNASecurityProgram *> *)projectArray{
     if (_projectArray == nil) {
         _projectArray = [NSMutableArray array];
-        
-//        HNASecurityProgram *model2 = [[HNASecurityProgram alloc] init];
-//        model2.project = @"重大疾病";
-//        model2.amount = @"10万元";
-//        
-//        HNASecurityProgram *model3 = [[HNASecurityProgram alloc] init];
-//        model3.project = @"人身意外伤害责任";
-//        model3.amount = @"20万元";
-//        
-//        HNASecurityProgram *model4 = [[HNASecurityProgram alloc] init];
-//        model4.project = @"子女团体医疗";
-//        model4.amount = @"医疗0元，住院400（0元免赔，50%赔付）";
-//        
-//        _projectArray = [NSMutableArray arrayWithArray:[NSArray arrayWithObjects:model2, model3, model4, nil]];
     }
     return _projectArray;
 }
@@ -106,9 +116,9 @@
     if (_hospitalArray == nil) {
         _hospitalArray = [NSMutableArray array];
         
-//        for (NSInteger i = 0; i < 10; i++) {
-//            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
-//        }
+        for (NSInteger i = 0; i < 10; i++) {
+            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
+        }
     }
     return _hospitalArray;
 }
@@ -116,7 +126,7 @@
 /**
  *  加载数据
  */
-- (void)loadData{
+- (void)loadDirectionData{
     // 1.参数
     NSString *companyId = [HNAUserTool user].companyId;
     if (companyId == nil) {
@@ -138,12 +148,32 @@
             [weakSelf.hospitalTableView reloadData];
         } else {
             [MBProgressHUD showError:@"没有数据"];
+            [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD showError:@"请求异常"];
+        [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
     }];
-    
-    }
+}
+/**
+ *  加载保险公司数据
+ */
+- (void)loadInsuranceCompanyData {
+    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAInsuranceCompanyModel *insuranceCompany) {
+        if (insuranceCompany != nil) {
+            [MBProgressHUD showSuccess: MessageWhenSuccess];
+            self.insuranceComNameLabel.text = insuranceCompany.name;
+            self.insuranceComAddrLabel.text = insuranceCompany.addr;
+            self.insuranceComCodeLabel.text = insuranceCompany.code;
+            self.insuranceComContactLabel.text = @"没有这个字段";
+            self.insuranceComPhoneLabel.text = insuranceCompany.phone;
+        } else {
+            [MBProgressHUD showError:@"没有数据"];
+        }
+    } failure:^(NSError *error) {
+        [MBProgressHUD showError: MessageWhenFaild];
+    }];
+}
 
 #pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -166,19 +196,10 @@
     }
     return nil;
 }
-// Deprecated :
-// 材料 cell
-- (UITableViewCell *)materialCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
-    static NSString *materialIdentifier = @"materialCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:materialIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle : UITableViewCellStyleDefault reuseIdentifier:materialIdentifier];
-    }
-    cell.textLabel.text = self.materialArray[indexPath.row];
-    return cell;
-}
-// 保障方案 cell
+
+/**
+ *   保障方案 cell
+ */
 - (HNAProjectCell *)projectCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
     static NSString *projectIdentifier = @"projectCell";
     
@@ -186,7 +207,9 @@
     cell.model = self.projectArray[indexPath.row];
     return cell;
 }
-// 可报销医院 cell
+/**
+ *   可报销医院 cell
+ */
 - (UITableViewCell *)hospitalCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
     static NSString *hospitalIdentifier = @"hospitalCell";
     
@@ -197,13 +220,14 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object: nil];
 }
 
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
-    if (![keyPath isEqualToString: KPContentSize])  return;
+    if (![keyPath isEqualToString: ContentSizeKeyPath])  return;
     
     CGSize contentSize;
     contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
@@ -224,8 +248,8 @@
 }
 
 - (void)dealloc{
-    [self.projectTableView removeObserver:self forKeyPath: KPContentSize];
-    [self.hospitalTableView removeObserver:self forKeyPath: KPContentSize];
+    [self.projectTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
+    [self.hospitalTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
 }
 
 - (void)didReceiveMemoryWarning {

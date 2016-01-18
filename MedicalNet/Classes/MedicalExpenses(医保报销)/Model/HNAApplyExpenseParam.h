@@ -12,7 +12,7 @@
 /**
  *   保险公司id
  */
-@property (nonatomic,copy) NSString *insuranceCompanyId;
+@property (nonatomic,assign) NSInteger insuranceCompanyId;
 /**
  *  申请人id
  */

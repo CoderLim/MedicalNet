@@ -13,8 +13,10 @@
 @optional
 - (void)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView;
+
 - (BOOL)imagePickerViewWillRemoveImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidRemoveImage:(HNAImagePickerView *)imagePickerView ;
+
 - (void)imagePickerViewDidCancel:(HNAImagePickerView *)imagePickerView;
 @end
 

@@ -6,9 +6,10 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-// 0.application screen
+// 0.默认系统对象
 #define SharedApplication [UIApplication sharedApplication]
 #define MainScreen [UIScreen mainScreen]
+#define DefaultCenter [NSNotificationCenter defaultCenter]
 
 // 1.自定义Log
 #ifdef DEBUG
@@ -55,6 +56,7 @@
 
 // 9.定义颜色
 #define UIColorWithRGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
+#define UIColorWithRGBA(r, g, b, a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
 // 10.机型
 /**
@@ -79,8 +81,15 @@
  *  医保报销说明页面停止拖动
  */
 #define ExpenseDirectionControllerDidEndDraggingNotification @"EDControllerDidEndDraggingNotification"
+/**
+ *  医保报销说明页没有网络数据
+ */
+#define ExpenseDierectionControllerHasNoData @"ExpenseDierectionControllerHasNoData"
 
 // 12.判断vc的view是否嵌入到其他控制器的view中
-#define IsEmbededInController(vc) (vc.navigationController!=nil && [[vc.navigationController.childViewControllers lastObject] isKindOfClass:[vc class]])
+#define IsEmbededInController(vc) \
+        (vc.navigationController!=nil && \
+        ![[vc.navigationController.childViewControllers lastObject] isKindOfClass:[vc class]] && \
+        [self.navigationController.childViewControllers containsObject:vc])
 
 

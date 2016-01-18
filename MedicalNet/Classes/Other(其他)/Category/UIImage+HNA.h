@@ -12,4 +12,8 @@
 
 - (instancetype)circleImageWithDiameter:(CGFloat)diameter;
 
+/**
+ *  根据机型适配
+ */
++ (instancetype)imageWithName:(NSString *)name;
 @end

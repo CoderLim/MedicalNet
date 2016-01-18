@@ -73,7 +73,7 @@
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/applyExpense", RequestUrlDomain];
     
-    NSDictionary *paramDict = @{@"insuranceCompanyId":param.insuranceCompanyId,
+    NSDictionary *paramDict = @{@"insuranceCompanyId":@(param.insuranceCompanyId),
                                 @"name":param.name,
                                 @"companyId":param.companyId,
                                 @"companyName":param.companyName,
@@ -175,7 +175,7 @@
     
     [HNAHttpTool getWithURL:urlStr params:@{@"id" : recordId} success:^(id json) {
         if (success) {
-            HNAExpenseDetailModel *expenseDetail = [HNAExpenseDetailModel expenseDetailWithDict:json];
+            HNAExpenseDetailModel *expenseDetail = [HNAExpenseDetailModel objectWithKeyValues:json];
             success(expenseDetail);
         }
     } failure:^(NSError *error) {
@@ -192,13 +192,11 @@
  *  @param success   成功回调
  *  @param failure   失败回调
  */
-+ (void)getInsuranceCompayWithId:(NSString *)companyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *error))failure{
-    
++ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseInfo", RequestUrlDomain];
-    
-    [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":companyId} success:^(id json) {
+    [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":@(insurancecompanyId)} success:^(id json) {
         if (success) {
-            HNAInsuranceCompanyModel *insuranceComp = [HNAInsuranceCompanyModel insuranceCompnyWithDict:json];
+            HNAInsuranceCompanyModel *insuranceComp = [HNAInsuranceCompanyModel objectWithKeyValues:json];
             success(insuranceComp);
         }
     } failure:^(NSError *error) {

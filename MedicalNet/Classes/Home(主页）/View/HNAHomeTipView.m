@@ -26,7 +26,8 @@
 + (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher{
     HNAHomeTipView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"HNAHomeTipView" owner:nil options:nil] lastObject];
     tipView.changeCipher = changeCipher;
-    tipView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    tipView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    tipView.translatesAutoresizingMaskIntoConstraints = YES;
     [tipView setupFontSize];
     return tipView;
 }

@@ -29,4 +29,15 @@
     return newimg;
 }
 
++ (instancetype)imageWithName:(NSString *)name {
+    if (IS_IPHONE_6X) {
+        name = [NSString stringWithFormat:@"%@_375",name];
+    } else if (IS_IPHONE_6X_PLUS) {
+        name = [NSString stringWithFormat:@"%@_414",name];
+    } else {
+        name = [NSString stringWithFormat:@"%@_320",name];
+    }
+    return [UIImage imageNamed:name];
+}
+
 @end

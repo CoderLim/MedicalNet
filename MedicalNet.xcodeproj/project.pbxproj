@@ -39,7 +39,6 @@
 		9F8C0A041C1800D80084EAD9 /* HNALoginInfoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A031C1800D80084EAD9 /* HNALoginInfoResult.m */; };
 		9F8C0A071C1806AB0084EAD9 /* HNAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A061C1806AB0084EAD9 /* HNAUser.m */; };
 		9F8C0A0A1C180A290084EAD9 /* HNAUserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A091C180A290084EAD9 /* HNAUserTool.m */; };
-		9F8C0A0D1C1816210084EAD9 /* HNAExpensesRecordsController_old.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */; };
 		9F93148A1C02A9290073E10E /* HNAApplyExpensesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */; };
 		9F9CA7BA1C49EAAC00201E89 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CA7B91C49EAAC00201E89 /* ViewController.m */; };
 		9F9D46E71C3BA21800DCBE16 /* HNABadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D46D81C3BA21800DCBE16 /* HNABadgeButton.m */; };
@@ -166,6 +165,7 @@
 		9FE222911C192803003678BB /* HNAChangePhoneParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222901C192803003678BB /* HNAChangePhoneParam.m */; };
 		9FE222941C192B15003678BB /* HNAChangePortraitParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222931C192B15003678BB /* HNAChangePortraitParam.m */; };
 		9FE222971C192B64003678BB /* HNASetMsgNoticeParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE222961C192B64003678BB /* HNASetMsgNoticeParam.m */; };
+		9FF74A1A1C4C88B800F1914A /* HNAImagePickerProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF74A191C4C88B800F1914A /* HNAImagePickerProgressView.m */; };
 		9FFDF5081C48B192009F87BE /* HNATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFDF5071C48B192009F87BE /* HNATabBarController.m */; };
 		9FFDF50F1C48CCCB009F87BE /* HNAImagePickersScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFDF50B1C48CCCB009F87BE /* HNAImagePickersScrollView.m */; };
 		9FFDF5101C48CCCB009F87BE /* HNAImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFDF50D1C48CCCB009F87BE /* HNAImagePickerView.m */; };
@@ -248,8 +248,6 @@
 		9F8C0A061C1806AB0084EAD9 /* HNAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNAUser.m; path = ../../Main/Model/HNAUser.m; sourceTree = "<group>"; };
 		9F8C0A081C180A290084EAD9 /* HNAUserTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAUserTool.h; sourceTree = "<group>"; };
 		9F8C0A091C180A290084EAD9 /* HNAUserTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAUserTool.m; sourceTree = "<group>"; };
-		9F8C0A0B1C1816210084EAD9 /* HNAExpensesRecordsController_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAExpensesRecordsController_old.h; sourceTree = "<group>"; };
-		9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAExpensesRecordsController_old.m; sourceTree = "<group>"; };
 		9F9314881C02A9290073E10E /* HNAApplyExpensesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAApplyExpensesController.h; sourceTree = "<group>"; };
 		9F9314891C02A9290073E10E /* HNAApplyExpensesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAApplyExpensesController.m; sourceTree = "<group>"; };
 		9F9CA7B81C49EAAC00201E89 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -498,6 +496,8 @@
 		9FE222951C192B64003678BB /* HNASetMsgNoticeParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASetMsgNoticeParam.h; sourceTree = "<group>"; };
 		9FE222961C192B64003678BB /* HNASetMsgNoticeParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNASetMsgNoticeParam.m; sourceTree = "<group>"; };
 		9FE222991C194E2D003678BB /* HNATheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNATheme.h; sourceTree = "<group>"; };
+		9FF74A181C4C88B800F1914A /* HNAImagePickerProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImagePickerProgressView.h; sourceTree = "<group>"; };
+		9FF74A191C4C88B800F1914A /* HNAImagePickerProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAImagePickerProgressView.m; sourceTree = "<group>"; };
 		9FFDF5061C48B192009F87BE /* HNATabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNATabBarController.h; sourceTree = "<group>"; };
 		9FFDF5071C48B192009F87BE /* HNATabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNATabBarController.m; sourceTree = "<group>"; };
 		9FFDF50A1C48CCCB009F87BE /* HNAImagePickersScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImagePickersScrollView.h; sourceTree = "<group>"; };
@@ -981,8 +981,6 @@
 				9FC7C7391BFD91B2007E2C49 /* HNAHomeController.m */,
 				9F38736D1BFEFFEE002AB971 /* HNAExpensesRecordsController.h */,
 				9F38736E1BFEFFEE002AB971 /* HNAExpensesRecordsController.m */,
-				9F8C0A0B1C1816210084EAD9 /* HNAExpensesRecordsController_old.h */,
-				9F8C0A0C1C1816210084EAD9 /* HNAExpensesRecordsController_old.m */,
 				9F78FBE31C1687E7001F1F9E /* HNAExpensesDirectionsController.h */,
 				9F78FBE41C1687E7001F1F9E /* HNAExpensesDirectionsController.m */,
 			);
@@ -1308,6 +1306,8 @@
 				9FFDF50E1C48CCCB009F87BE /* HNAImagePickerView.xib */,
 				9FFDF5121C48CD0E009F87BE /* HNAAutoUploadImagePicker.h */,
 				9FFDF5131C48CD0E009F87BE /* HNAAutoUploadImagePicker.m */,
+				9FF74A181C4C88B800F1914A /* HNAImagePickerProgressView.h */,
+				9FF74A191C4C88B800F1914A /* HNAImagePickerProgressView.m */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -1540,7 +1540,6 @@
 				9FB878F71C0EF4D500DAF53F /* UIView+HNA.m in Sources */,
 				9F9D46EC1C3BA21800DCBE16 /* HNADatePicker.m in Sources */,
 				9FB4899A1BFEB86D0031DE48 /* UIImage+WebP.m in Sources */,
-				9F8C0A0D1C1816210084EAD9 /* HNAExpensesRecordsController_old.m in Sources */,
 				9FB489951BFEB86D0031DE48 /* SDWebImageManager.m in Sources */,
 				9FAAB0B11C06E680007D5E61 /* HNAHealthCheckRecordModel.m in Sources */,
 				9FB489901BFEB86D0031DE48 /* SDImageCache.m in Sources */,
@@ -1595,6 +1594,7 @@
 				9FB489861BFEB86D0031DE48 /* NSObject+MJCoding.m in Sources */,
 				9FFDF5081C48B192009F87BE /* HNATabBarController.m in Sources */,
 				9FC33E571C1E646F004D4139 /* HNAApplySuccessController.m in Sources */,
+				9FF74A1A1C4C88B800F1914A /* HNAImagePickerProgressView.m in Sources */,
 				9F8C0A011C18005C0084EAD9 /* HNALoginTool.m in Sources */,
 				9F9D46E91C3BA21800DCBE16 /* HNAMutiStateButton.m in Sources */,
 				9FB4898B1BFEB86D0031DE48 /* MJRefreshConst.m in Sources */,

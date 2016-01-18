@@ -49,7 +49,7 @@
         self.icon = [aDecoder decodeObjectForKey:@"icon"];
         self.companyId = [aDecoder decodeObjectForKey:@"companyId"];
         self.companyName = [aDecoder decodeObjectForKey:@"companyName"];
-        self.insuranceCompanyId = [aDecoder decodeObjectForKey:@"insuranceCompanyId"];
+        self.insuranceCompanyId = [aDecoder decodeIntegerForKey:@"insuranceCompanyId"];
         self.medicalId = [aDecoder decodeObjectForKey:@"medicalId"];
     }
     return self;
@@ -62,7 +62,7 @@
     [aCoder encodeObject:self.icon forKey:@"icon"];
     [aCoder encodeObject:self.companyId forKey:@"companyId"];
     [aCoder encodeObject:self.companyName forKey:@"companyName"];
-    [aCoder encodeObject:self.insuranceCompanyId forKey:@"insuranceCompanyId"];
+    [aCoder encodeInteger:self.insuranceCompanyId forKey:@"insuranceCompanyId"];
     [aCoder encodeObject:self.medicalId forKey:@"medicalId"];
 }
 

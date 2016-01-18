@@ -17,6 +17,8 @@
 #import "HNALoginTool.h"
 #import "HNAImagePickersScrollView.h"
 
+#import "HNAHttpTool.h"
+
 #define CurrentTextField2KeyboardPadding 40
 
 @interface HNALoginController() <UITextFieldDelegate,NSURLSessionDelegate>{
