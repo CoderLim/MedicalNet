@@ -78,6 +78,11 @@
     if (self.pickerBtn) {
         [self.pickerBtn setImage:image forState:UIControlStateNormal];
     }
+    
+    // 通知代理
+    if (image == nil && [self.delegate respondsToSelector:@selector(imagePickerViewDidRemoveImage:)]) {
+        [self.delegate imagePickerViewDidRemoveImage:self];
+    }
 }
 
 #pragma mark - 按钮事件

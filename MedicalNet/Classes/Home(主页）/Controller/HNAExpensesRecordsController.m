@@ -42,8 +42,8 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-
-    self.title = @"医保报销记录";
+    
+    self.title = @"报销记录";
     
     self.datePickButton.delegate = self;
     
@@ -64,7 +64,6 @@
     }
     return _records;
 }
-
 /**
  *  加载指定日期的数据
  */

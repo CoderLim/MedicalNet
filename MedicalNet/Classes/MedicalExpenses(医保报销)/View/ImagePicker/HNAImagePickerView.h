@@ -11,7 +11,7 @@
 
 @protocol HNAImagePickerViewDelegate <NSObject>
 @optional
-- (void)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView;
+- (BOOL)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView;
 
 - (BOOL)imagePickerViewWillRemoveImage:(HNAImagePickerView *)imagePickerView;

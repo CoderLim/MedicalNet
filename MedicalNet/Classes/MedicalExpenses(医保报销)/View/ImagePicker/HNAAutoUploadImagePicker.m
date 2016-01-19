@@ -47,13 +47,18 @@
 }
 
 - (void)commonInit {
+    self.uploadState = HNAAutoUploadImagePickerUploadStateDefault;
+    // 添加一个imagePickerView
     HNAImagePickerView *ipv = [HNAImagePickerView imagePicker];
-    ipv.frame = self.bounds;
     ipv.delegate = self;
     [self addSubview:ipv];
     self.imagePickerView = ipv;
 }
 
+- (void)layoutSubviews {
+    self.imagePickerView.frame = self.bounds;
+}
+#pragma mark - 公开属性方法
 - (HNAImagePickerProgressView *)progressView {
     if (_progressView == nil) {
         HNAImagePickerProgressView *progressview = [HNAImagePickerProgressView progressView];
@@ -71,11 +76,36 @@
     return _progressView;
 }
 
++ (instancetype)autoUploadImagePicker {
+    return [[HNAAutoUploadImagePicker alloc] init];
+}
+
+- (UIImage *)image {
+    return self.imagePickerView.image;
+}
+
 #pragma mark - HNAImagePickerViewDelegate
+- (BOOL)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView {
+    if ([self.delegate respondsToSelector:@selector(autoUploadImagePickerWillSelectImage:)]) {
+        return [self.delegate autoUploadImagePickerWillSelectImage:self];
+    }
+    return YES;
+}
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView {
     [self.progressView show];
-    
     [self automaticUpload:imagePickerView.image];
+    
+    // 通知代理
+    if ([self.delegate respondsToSelector:@selector(autoUploadImagePickerDidSelectImage:)]) {
+        [self.delegate autoUploadImagePickerDidSelectImage:self];
+    }
+}
+
+- (void)imagePickerViewDidRemoveImage:(HNAImagePickerView *)imagePickerView {
+    // 通知代理
+    if ([self.delegate respondsToSelector:@selector(autoUploadImagePickerDidRemoveImage:)]) {
+        [self.delegate autoUploadImagePickerDidRemoveImage:self];
+    }
 }
 /**
  *  自动上传
@@ -105,14 +135,10 @@
     NSParameterAssert(data);
     // 文件名
     NSString *filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString: extensionName];
-    NSError *requestErr = nil;
     // request
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"file" fileName:filename mimeType:mimeType];
-    } error:&requestErr];
-    if (requestErr) {
-        NSLog(@"%@",requestErr);
-    }
+    } error:nil];
     // 会话配置
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     // sessionManager
@@ -120,16 +146,19 @@
     NSProgress *progress = nil;
     // 上传task
     NSURLSessionUploadTask *uploadTask = [mgr uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
+        if (!error) {
+            // 修改uploadState
+            self.uploadState = HNAAutoUploadImagePickerUploadStateCompleted;
+            // 更新UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressView hide];
+            });
+        } else {
+            self.uploadState = HNAAutoUploadImagePickerUploadStateFailed;
+            // 更新UI
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.progressView hide];
                 [MBProgressHUD showError: [NSString stringWithFormat:@"error: %@", error]];
-            });
-        } else {
-            NSLog(@"%@", responseObject);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.progressView hide];
             });
         }
     }];

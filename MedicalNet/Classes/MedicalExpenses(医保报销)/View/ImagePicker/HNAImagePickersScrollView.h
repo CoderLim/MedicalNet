@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HNAImagePickersScrollView;
+
+@protocol HNAImagePickersScrollViewDelegate <NSObject>
+@optional
+- (BOOL)imagePickersScrollViewWillSelectImage:(HNAImagePickersScrollView *)imagePickerScrollView;
+@end
 
 @interface HNAImagePickersScrollView : UIScrollView
+@property (nonatomic, weak) IBOutlet id<HNAImagePickersScrollViewDelegate> ipsvDelegate;
 /**
  *  父控件
  */

@@ -154,7 +154,7 @@
     }
 }
 /**
- *  报销说明没有数据
+ *  报销说明控制器 没有数据
  */
 - (void)expenseDirectionControllerHasNoData {
     if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
@@ -183,7 +183,7 @@
             [self.recordsTableView reloadData];
             self.hasRecordsView.hidden = NO;
         }
-        self.hasRecordsView.hidden = YES;
+        self.hasRecordsView.hidden = NO;
     } failure:^(NSError *error) {
         self.hasRecordsView.hidden = NO;
         [MBProgressHUD showError:@"加载医保报销记录失败"];

@@ -57,4 +57,7 @@
  */
 @property (nonatomic,copy) UIImage *charges_1;
 @property (nonatomic,copy) UIImage *charges_2;
+
+
++ (instancetype)param;
 @end

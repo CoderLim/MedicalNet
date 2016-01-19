@@ -7,13 +7,15 @@
 //
 
 #import "HNAImagePickersScrollView.h"
+#import "HNAAutoUploadImagePicker.h"
 #import "HNAImagePickerView.h"
 
-#define Margin 10
+#define Margin 5
 #define ImagePickerWidth (self.frame.size.height-2*Margin)
+#define DefaultBackgroundColor [UIColor orangeColor]
 
-@interface HNAImagePickersScrollView() <HNAImagePickerViewDelegate>
-@property (nonatomic, strong) NSMutableArray<HNAImagePickerView *> *imagePickers;
+@interface HNAImagePickersScrollView() <HNAAutoUploadImagePickerDelegate>
+@property (nonatomic, strong) NSMutableArray<HNAAutoUploadImagePicker *> *imagePickers;
 @end
 @implementation HNAImagePickersScrollView
 
@@ -37,7 +39,7 @@
     self.showsVerticalScrollIndicator = NO;
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.clipsToBounds = YES;
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = UIColorWithRGBA(0, 0, 255, 0.1f);
     
     // 添加第一个imagePicker
     [self addImagePicker];
@@ -55,11 +57,12 @@
     for (NSInteger i=0; i<self.imagePickers.count; i++) {
         CGRect frame = CGRectMake(i*(ImagePickerWidth+Margin)+Margin, Margin, ImagePickerWidth, ImagePickerWidth);
         self.imagePickers[i].frame = frame;
+        self.imagePickers[i].backgroundColor = [UIColor redColor];
     }
 }
 
 #pragma mark - 属性
-- (NSMutableArray<HNAImagePickerView *> *)imagePickers {
+- (NSMutableArray<HNAAutoUploadImagePicker *> *)imagePickers {
     if (_imagePickers == nil) {
         _imagePickers = [NSMutableArray array];
     }
@@ -86,7 +89,7 @@
  *  是否需要添加新的imagePicker
  */
 - (BOOL)needAddNewImagePicker {
-    for (HNAImagePickerView *imagePicker in self.imagePickers) {
+    for (HNAAutoUploadImagePicker *imagePicker in self.imagePickers) {
         if (imagePicker.image == nil) {
             return NO;
         }
@@ -97,7 +100,7 @@
  *  添加新的imagePicker
  */
 - (void)addImagePicker {
-    HNAImagePickerView *imagePicker = [HNAImagePickerView imagePicker];
+    HNAAutoUploadImagePicker *imagePicker = [HNAAutoUploadImagePicker autoUploadImagePicker];
     imagePicker.delegate = self;
     [self.imagePickers addObject: imagePicker];
     [self addSubview: imagePicker];
@@ -106,7 +109,7 @@
 /**
  *  移除imagePicker
  */
-- (void)removeImagePicker:(HNAImagePickerView *)imagePicker {
+- (void)removeImagePicker:(HNAAutoUploadImagePicker *)imagePicker {
     // 直有一个imagePicker时不操作
     if (self.imagePickers.count <= 1) {
         return;
@@ -120,14 +123,21 @@
     }];
 }
 
-#pragma mark - HNAImagePickerViewDelegate
-- (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView {
+#pragma mark - HNAAutoUploadImagePickerDelegate
+- (BOOL)autoUploadImagePickerWillSelectImage:(HNAAutoUploadImagePicker *)autoUploadImagePicker {
+    if ([self.ipsvDelegate respondsToSelector:@selector(imagePickersScrollViewWillSelectImage:)]) {
+        return [self.ipsvDelegate imagePickersScrollViewWillSelectImage:self];
+    }
+    return YES;
+}
+
+- (void)autoUploadImagePickerDidSelectImage:(HNAAutoUploadImagePicker *)autoUploadImagePicker {
     if ([self needAddNewImagePicker]) {
         [self addImagePicker];
     }
 }
 
-- (void)imagePickerViewDidRemoveImage:(HNAImagePickerView *)imagePickerView {
-    [self removeImagePicker: imagePickerView];
+- (void)autoUploadImagePickerDidRemoveImage:(HNAAutoUploadImagePicker *)autoUploadImagePicker {
+    [self removeImagePicker: autoUploadImagePicker];
 }
 @end

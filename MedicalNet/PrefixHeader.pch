@@ -14,6 +14,8 @@
 #import "NSDate+HNA.h"
 #import "MJExtension.h"
 
+#import "CALayer+HNA.h"
+
 #import "MBProgressHUD+MJ.h"
 
 #import "HNAUser.h"

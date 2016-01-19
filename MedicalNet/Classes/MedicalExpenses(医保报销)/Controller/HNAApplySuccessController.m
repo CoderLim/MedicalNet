@@ -7,7 +7,27 @@
 //
 
 #import "HNAApplySuccessController.h"
+#import "HNAInsuranceTool.h"
+#import "HNAInsuranceCompanyModel.h"
 
+@interface HNAApplySuccessController()
+
+@end
 @implementation HNAApplySuccessController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+}
 
+/**
+ *  加载保险公司数据
+ */
+- (void)loadInsuranceCompnayData {
+    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAInsuranceCompanyModel *insuranceCompany) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

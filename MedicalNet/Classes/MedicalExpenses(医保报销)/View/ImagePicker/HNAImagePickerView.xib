@@ -17,22 +17,25 @@
             <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Ik-VMs">
-                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.88636363636363635" green="0.88636363636363635" blue="0.88636363636363635" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="添加"/>
-                    <connections>
-                        <action selector="pickerBtnClicked:" destination="-1" eventType="touchUpInside" id="BJ4-eE-YUA"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYz-Hx-hec">
                     <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.75063733026424084" green="1" blue="0.21172469831993612" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="移除"/>
                     <connections>
                         <action selector="removeBtnClicked:" destination="-1" eventType="touchUpInside" id="jaJ-zW-MKw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Ik-VMs">
+                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
+                    <animations/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                    <state key="normal" title="＋">
+                        <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="pickerBtnClicked:" destination="-1" eventType="touchUpInside" id="BJ4-eE-YUA"/>
                     </connections>
                 </button>
             </subviews>
@@ -50,6 +53,14 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                    <integer key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                    <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="37.5" y="-359.5"/>
         </view>
     </objects>

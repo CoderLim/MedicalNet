@@ -8,184 +8,94 @@
 
 #import "HNAApplyExpensesController.h"
 #import "HNAImagePickerView.h"
-#import "HNAUser.h"
-#import "HNAUserTool.h"
 #import "HNAApplyExpenseParam.h"
 #import "HNAInsuranceTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "HNAApplySuccessController.h"
 #import "HNAResult.h"
 #import "MJExtension.h"
-
+#import "HNAImagePickersScrollView.h"
 #import "MedicalNet-swift.h"
 
+#define TextField2KeyboardMargin 20
+
+#define ApplyExpense2ApplySuccessSegue @"applyExpense2applySuccess"
 
 
-@interface HNAApplyExpensesController()<HNAImagePickerViewDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
-    HNAImagePickerView *_currentImagePickerView;
+@interface HNAApplyExpensesController() <UITextFieldDelegate,HNAImagePickersScrollViewDelegate>{
+    UITextField *_currentEditTextField;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 /**
- *  选取图片按钮
+ *   保险公司名称
  */
-@property (strong, nonatomic) IBOutletCollection(HNAImagePickerView) NSArray *imagePickerViews;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComNameLabel;
+/**
+ *  申请人姓名
+ */
+@property (weak, nonatomic) IBOutlet UILabel *applicantNameLabel;
+/**
+ *  联系方式
+ */
+@property (weak, nonatomic) IBOutlet UILabel *contactLabel;
+
+/**
+ *  所有选择图片控件
+ */
+@property (strong, nonatomic) IBOutletCollection(HNAImagePickersScrollView) NSArray *imagePickersScrollViews;
 
 /**
  *  花费总额
  */
 @property (weak, nonatomic) IBOutlet UITextField *amountField;
-
  /**
  *  银行卡号
  */
 @property (weak, nonatomic) IBOutlet UITextField *cardNumField;
 
-
 /**
  *  提交
  */
 - (IBAction)submit:(UIButton *)sender;
-
 @end
 
 @implementation HNAApplyExpensesController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    // 设置imagePickerView代理
-    for (HNAImagePickerView *ipv in self.imagePickerViews) {
-        ipv.delegate = self;
-    }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapContentView:)];
+    [self.contentView addGestureRecognizer: tap];
     
-    // 监听scrollView的contentOffset
-    [self.mainScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    // 监听键盘的弹出与收回
+    [DefaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [DefaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-
-#pragma mark HNAImagePickerView代理方法
-// 选择图片
-- (void)imagePickerViewDidClickPickerBtn:(HNAImagePickerView *)imagePickerView{
-    // 记录点击的imagePickerView
-    _currentImagePickerView = imagePickerView;
-    // 弹出actionSheet
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
-    [actionSheet showInView:self.view];
-}
-
-// 移除图片
-- (void)imagePickerViewDidClickRemoveBtn:(HNAImagePickerView *)imagePickerView{
-    //  TODO:.....
-}
-
-#pragma mark - UIActionSheet代理方法
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == actionSheet.cancelButtonIndex) {
-        return;
-    }
-    switch (buttonIndex) {
-        case 0:
-            // 打开相机
-            [self takeAPhoto];
-            break;
-        case 1:
-            // 打开相册
-            [self pickALocalPicture];
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)takeAPhoto{
-    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
-    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
-        UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-        ipc.sourceType = sourceType;
-        ipc.allowsEditing = YES;
-        ipc.delegate = self;
-        [self presentViewController:ipc animated:YES completion:nil];
-    }
-}
-
-- (void)pickALocalPicture{
-    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
-    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    ipc.delegate = self;
-    ipc.allowsEditing = YES;
-    [self presentViewController:ipc animated:YES completion:nil];
-}
-
-#pragma mark - UIImagePickerController代理方法
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    if ([type isEqualToString:@"public.image"]) {
-        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        _currentImagePickerView.image = image;
-    }
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-//    if ([keyPath isEqualToString:@"contentOffset"]) {
-//        CGPoint newContentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
-//        CGFloat alpha = 1.0;
-//        
-//        alpha = - newContentOffset.y / 64;
-//
-//        self.navigationController.navigationBar.alpha = alpha;
-//    } else {
-//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-//    }
-}
-
+#pragma mark - 按钮事件
 /**
  *  提交
  */
 - (IBAction)submit:(UIButton *)sender {
+    [self performSegueWithIdentifier:ApplyExpense2ApplySuccessSegue sender:nil];
+    return;
     // 得到当前user信息
     HNAUser *currentUser = [HNAUserTool user];
     
     // 构造网络请求参数
-    HNAApplyExpenseParam *param = [[HNAApplyExpenseParam alloc] init];
-    param.insuranceCompanyId = currentUser.insuranceCompanyId;
-    param.id = currentUser.id;
-    param.name = currentUser.name;
-    param.companyId = currentUser.companyId;
-    param.companyName = currentUser.companyName;
-    param.phoneNum = currentUser.phoneNum;
-//    param.cardNum = self.cardNumField.text;
+    HNAApplyExpenseParam *param = [HNAApplyExpenseParam param];
+    param.cardNum = self.cardNumField.text;
     param.cardNum = @"00000000";
     
-    [self.imagePickerViews enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        HNAImagePickerView *pickerView = obj;
-        if (pickerView.tag == 11) {
-            param.IDcard_1 = pickerView.image;
-        } else if (pickerView.tag == 12){
-            param.IDcard_2 = pickerView.image;
-        } else if (pickerView.tag == 21) {
-            param.medicalCard_1 = pickerView.image;
-        } else if (pickerView.tag == 22) {
-            param.medicalCard_2 = pickerView.image;
-        } else if (pickerView.tag == 31) {
-            param.cases_1 = pickerView.image;
-        } else if (pickerView.tag == 32) {
-            param.cases_2 = pickerView.image;
-        } else if (pickerView.tag == 41) {
-            param.charges_1 = pickerView.image;
-        } else if (pickerView.tag == 42) {
-            param.charges_2 = pickerView.image;
-        }
-    }];
     HNALog(@"%@",param.companyId);
-    
     // 网络请求
     [HNAInsuranceTool applyExpenseWithParam:param success:^(HNAResult *result) {
         if (result.success == HNARequestResultSUCCESS) {
-            HNAApplySuccessController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAApplySuccessController"];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self performSegueWithIdentifier:ApplyExpense2ApplySuccessSegue sender:nil];
         } else {
             [MBProgressHUD showError:[NSString stringWithFormat:@"%@",result.errorInfo]];
         }
@@ -194,13 +104,42 @@
     }];
 }
 
-- (void)dealloc{
-    [self.mainScrollView removeObserver:self forKeyPath:@"contentOffset"];
+#pragma mark - 手势
+- (void)tapContentView:(UITapGestureRecognizer *)tap {
+    [self.contentView endEditing:YES];
 }
 
-#pragma mark - 触摸事件
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
+#pragma mark - UITextFieldDelegate 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    _currentEditTextField = textField;
 }
 
+#pragma mark - HNAImagePickersScrollViewDelegate
+- (BOOL)imagePickersScrollViewWillSelectImage:(HNAImagePickersScrollView *)imagePickerScrollView {
+    [self.contentView endEditing:YES];
+    return YES;
+}
+
+#pragma mark - 通知
+- (void)keyboardWillShow:(NSNotification *)aNotification{
+    HNALog(@"%@",NSStringFromCGPoint(self.mainScrollView.contentOffset));
+    NSDictionary *userInfo = [aNotification userInfo];
+    // 键盘frame
+    CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    // 当前编辑的输入框frame(self.view坐标系）
+    CGRect currentTextFieldFrame = [_currentEditTextField.superview convertRect:_currentEditTextField.frame toView: KeyWindow];
+    // 计算self.view需要移动的距离
+    CGFloat deltaY = keyboardFrame.origin.y - (currentTextFieldFrame.size.height+currentTextFieldFrame.origin.y) - TextField2KeyboardMargin;
+    
+    self.contentView.transform = CGAffineTransformMakeTranslation(0, deltaY);
+}
+
+- (void)keyboardWillHide:(NSNotification *)aNotification{
+    self.contentView.transform = CGAffineTransformIdentity;
+}
+
+- (void)dealloc {
+    [DefaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [DefaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 @end

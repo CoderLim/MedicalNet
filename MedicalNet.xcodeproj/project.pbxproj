@@ -13,6 +13,7 @@
 		9F199E371C460BD70040D227 /* HNAGetExpenseRecordsResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F199E361C460BD70040D227 /* HNAGetExpenseRecordsResult.m */; };
 		9F199E3A1C46232A0040D227 /* HNAGetExpenseDirectionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F199E391C46232A0040D227 /* HNAGetExpenseDirectionResult.m */; };
 		9F1AB2951C3F7028006D185D /* HNABankNoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1AB2941C3F7028006D185D /* HNABankNoField.swift */; };
+		9F2452FB1C4DD539004A2DFD /* CALayer+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2452FA1C4DD539004A2DFD /* CALayer+HNA.m */; };
 		9F29C3BA1C4384DF0073387F /* HNAHCCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29C3B71C437DA20073387F /* HNAHCCheckedCell.m */; };
 		9F29C3BC1C43865F0073387F /* HNAHCCheckedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F29C3BB1C43865F0073387F /* HNAHCCheckedCell.xib */; };
 		9F29C4021C43A72E0073387F /* HNAHCReservePackageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29C4011C43A72E0073387F /* HNAHCReservePackageButton.m */; };
@@ -200,6 +201,8 @@
 		9F199E391C46232A0040D227 /* HNAGetExpenseDirectionResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAGetExpenseDirectionResult.m; sourceTree = "<group>"; };
 		9F1AB2931C3F7028006D185D /* MedicalNet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MedicalNet-Bridging-Header.h"; path = "Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h"; sourceTree = "<group>"; };
 		9F1AB2941C3F7028006D185D /* HNABankNoField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNABankNoField.swift; sourceTree = "<group>"; };
+		9F2452F91C4DD539004A2DFD /* CALayer+HNA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+HNA.h"; sourceTree = "<group>"; };
+		9F2452FA1C4DD539004A2DFD /* CALayer+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+HNA.m"; sourceTree = "<group>"; };
 		9F29C3B61C437DA20073387F /* HNAHCCheckedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCCheckedCell.h; sourceTree = "<group>"; };
 		9F29C3B71C437DA20073387F /* HNAHCCheckedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCCheckedCell.m; sourceTree = "<group>"; };
 		9F29C3BB1C43865F0073387F /* HNAHCCheckedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNAHCCheckedCell.xib; sourceTree = "<group>"; };
@@ -1142,6 +1145,8 @@
 				9FD77D991C1AABB2006F6EC5 /* NSDate+HNA.m */,
 				9FB64CD51C23D0AD00C3F03C /* UILabel+HNA.h */,
 				9FB64CD61C23D0AD00C3F03C /* UILabel+HNA.m */,
+				9F2452F91C4DD539004A2DFD /* CALayer+HNA.h */,
+				9F2452FA1C4DD539004A2DFD /* CALayer+HNA.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1568,6 +1573,7 @@
 				9F8C09FE1C1800510084EAD9 /* HNALoginInfoParam.m in Sources */,
 				9FB4897A1BFEB86D0031DE48 /* AFURLRequestSerialization.m in Sources */,
 				9FB489921BFEB86D0031DE48 /* SDWebImageDecoder.m in Sources */,
+				9F2452FB1C4DD539004A2DFD /* CALayer+HNA.m in Sources */,
 				9F3E56F81C2106DA00AA47C3 /* HNAHCReportController.m in Sources */,
 				9FB489771BFEB86D0031DE48 /* AFNetworkReachabilityManager.m in Sources */,
 				9FC7C7241BFD6C41007E2C49 /* HNASettingGroup.m in Sources */,
