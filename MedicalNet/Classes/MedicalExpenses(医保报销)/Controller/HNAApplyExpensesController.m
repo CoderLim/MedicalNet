@@ -17,7 +17,7 @@
 #import "HNAImagePickersScrollView.h"
 #import "MedicalNet-swift.h"
 
-#define TextField2KeyboardMargin 20
+#define TextField2KeyboardMargin 40
 
 #define ApplyExpense2ApplySuccessSegue @"applyExpense2applySuccess"
 
@@ -122,6 +122,8 @@
 
 #pragma mark - 通知
 - (void)keyboardWillShow:(NSNotification *)aNotification{
+    self.contentView.transform = CGAffineTransformIdentity;
+    
     HNALog(@"%@",NSStringFromCGPoint(self.mainScrollView.contentOffset));
     NSDictionary *userInfo = [aNotification userInfo];
     // 键盘frame
@@ -131,6 +133,7 @@
     // 计算self.view需要移动的距离
     CGFloat deltaY = keyboardFrame.origin.y - (currentTextFieldFrame.size.height+currentTextFieldFrame.origin.y) - TextField2KeyboardMargin;
     
+    HNALog(@"%f",deltaY);
     self.contentView.transform = CGAffineTransformMakeTranslation(0, deltaY);
 }
 

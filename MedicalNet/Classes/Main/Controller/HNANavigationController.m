@@ -51,7 +51,7 @@
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
     attributes[NSForegroundColorAttributeName] = NavTextColor;
     
-    [appearance setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [appearance setTitleTextAttributes:attributes forState: UIControlStateNormal];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
