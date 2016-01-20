@@ -10,4 +10,9 @@
 
 @implementation HNAChangePortraitParam
 
++ (instancetype)param {
+    HNAChangePortraitParam *param = [[HNAChangePortraitParam alloc] init];
+    param.id = [HNAUserTool user].id;
+    return param;
+}
 @end

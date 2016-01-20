@@ -83,11 +83,11 @@
     // 1.设置控制器
     self.title = @"医保报销";
     
-    // 2.设置tipView
-    [self setupTipView];
-    
-    // 3.设置报销记录tableView
+    // 2.设置报销记录tableView
     [self setupRecordsTableView];
+    
+    // 3.设置tipView
+    [self setupTipView];
     
     // 4.设置通知
     [self setupNotification];

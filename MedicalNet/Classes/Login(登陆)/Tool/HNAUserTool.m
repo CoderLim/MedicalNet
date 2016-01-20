@@ -65,7 +65,9 @@
     // 将参数转化成字典
     NSDictionary *paramDict = @{@"id" : param.id};
     // 图片
-    NSArray *formDataArray = @[param.theNewIcon];
+    HNAFormData *data = [HNAFormData formDataWithImage:param.theNewIcon];
+    
+    NSArray *formDataArray = @[data];
     // post
     [HNAHttpTool postWithURL:urlStr params:paramDict formDataArray:formDataArray  success:^(id json) {
         if (success) {
@@ -107,6 +109,7 @@
     // 地址
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/MsgNotice", RequestUrlDomain];
     // 请求
+    NSLog(@"%@",param.keyValues);
     [HNAHttpTool postWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
             HNAResult *result = [HNAResult objectWithKeyValues:json];

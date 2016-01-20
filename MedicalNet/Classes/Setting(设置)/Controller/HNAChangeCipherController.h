@@ -11,6 +11,11 @@
 #import <UIKit/UIKit.h>
 #import "HNAChangeBaseController.h"
 
-@interface HNAChangeCipherController : HNAChangeBaseController
+typedef NS_ENUM(NSInteger,HNAChangeCipherControllerType) {
+    HNAChangeCipherControllerTypeDefault,
+    HNAChangeCipherControllerTypeViaPhoneValidation
+};
 
+@interface HNAChangeCipherController : HNAChangeBaseController
+@property (nonatomic, assign) HNAChangeCipherControllerType type;
 @end

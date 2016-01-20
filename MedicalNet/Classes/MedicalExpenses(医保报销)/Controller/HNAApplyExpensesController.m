@@ -69,12 +69,33 @@
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    // contentView添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapContentView:)];
     [self.contentView addGestureRecognizer: tap];
     
+    // 设置通知
+    [self setupNotification];
+    
+    // 设置基本信息
+    [self setupBasicInfo];
+}
+/**
+ *  设置通知
+ */
+- (void)setupNotification {
     // 监听键盘的弹出与收回
     [DefaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [DefaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [DefaultCenter addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+}
+/**
+ *  设置基本信息
+ */
+- (void)setupBasicInfo {
+    HNAUser *user = [HNAUserTool user];
+    self.applicantNameLabel.text = user.name;
+    self.contactLabel.text = user.phoneNum;
+    self.insuranceComNameLabel.text = [NSString stringWithFormat:@"%ld", (long)user.insuranceCompanyId];
 }
 #pragma mark - 按钮事件
 /**
@@ -109,11 +130,6 @@
     [self.contentView endEditing:YES];
 }
 
-#pragma mark - UITextFieldDelegate 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    _currentEditTextField = textField;
-}
-
 #pragma mark - HNAImagePickersScrollViewDelegate
 - (BOOL)imagePickersScrollViewWillSelectImage:(HNAImagePickersScrollView *)imagePickerScrollView {
     [self.contentView endEditing:YES];
@@ -121,10 +137,13 @@
 }
 
 #pragma mark - 通知
+- (void)textFieldDidBeginEditing:(NSNotification *)aNotification {
+    _currentEditTextField = aNotification.object;
+}
+
 - (void)keyboardWillShow:(NSNotification *)aNotification{
     self.contentView.transform = CGAffineTransformIdentity;
     
-    HNALog(@"%@",NSStringFromCGPoint(self.mainScrollView.contentOffset));
     NSDictionary *userInfo = [aNotification userInfo];
     // 键盘frame
     CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
@@ -133,7 +152,6 @@
     // 计算self.view需要移动的距离
     CGFloat deltaY = keyboardFrame.origin.y - (currentTextFieldFrame.size.height+currentTextFieldFrame.origin.y) - TextField2KeyboardMargin;
     
-    HNALog(@"%f",deltaY);
     self.contentView.transform = CGAffineTransformMakeTranslation(0, deltaY);
 }
 

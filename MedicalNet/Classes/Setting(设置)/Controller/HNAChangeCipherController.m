@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *confirmCipherField;
 
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UITextField *oldCipher;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *oldCipher_Top;
 
 @end
 
@@ -31,6 +33,11 @@
     self.keyboardNextBtnClicked = ^{
         [weakSelf.confirmCipherField becomeFirstResponder];
     };
+    
+    if (self.type == HNAChangeCipherControllerTypeViaPhoneValidation) {
+        self.oldCipher.hidden = YES;
+        self.oldCipher_Top.constant = 0;
+    }
 }
 
 - (void)textFieldTextChanged:(NSNotification *)notification{
@@ -38,16 +45,8 @@
 }
 
 - (void)saveOperation{
-    // 1.获取登录用户信息
-    HNAUser *user = [HNAUserTool user];
-    if (user == nil) {
-        [MBProgressHUD showError:@"账号没有正常登录"];
-        return;
-    }
-
-    // 2.拼修改密码的参数
-    HNAChangePwdParam *param = [[HNAChangePwdParam alloc] init];
-    param.id = user.id;
+    // 1.拼修改密码的参数
+    HNAChangePwdParam *param = [HNAChangePwdParam param];
     param.theOldPwd = @"";
     param.theNewPwd = self.cipherField.text;
     

@@ -70,5 +70,20 @@
  *  用来封装文件数据的模型
  */
 @implementation HNAFormData
-
++ (instancetype)formDataWithImage:(UIImage *)image {
+    HNAFormData *formData = [[HNAFormData alloc] init];
+    formData.name = @"file";
+    
+    NSData *data = UIImageJPEGRepresentation(image, 0.7);
+    if (data) {
+        formData.data = data;
+        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".jpg"];
+        formData.mimeType = @"image/jpeg";
+    } else {
+        formData.data = UIImagePNGRepresentation(image);
+        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".png"];
+        formData.mimeType = @"image/png";
+    }
+    return formData;
+}
 @end

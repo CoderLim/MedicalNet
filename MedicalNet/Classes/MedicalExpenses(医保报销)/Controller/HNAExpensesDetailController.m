@@ -6,33 +6,45 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-#import "HNAMedicalExpensesDetailController.h"
+#import "HNAExpensesDetailController.h"
 #import "HNAExpenseDetailCell.h"
 #import "HNAInsuranceTool.h"
 #import "HNAExpenseDetailModel.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 
-#define DetailViewHeight 320
+#import "HNAImageScrollBrowser.h"
 
-@interface HNAMedicalExpensesDetailController () <UITableViewDelegate, UITableViewDataSource>
+#import "HNAGetExpenseDirectionResult.h"
+
+@interface HNAExpensesDetailController () <UITableViewDelegate, UITableViewDataSource> {
+    CGFloat _detailViewHeight;
+}
+
+@property (weak, nonatomic) IBOutlet UILabel *amoutLabel;
+@property (weak, nonatomic) IBOutlet UILabel *applicantNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankNoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailView_H;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_H;
 
 @property (weak, nonatomic) IBOutlet UIView *detailView;
-@property (weak, nonatomic) IBOutlet UIButton *checkDetailBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViews;
+@property (weak, nonatomic) IBOutlet HNAImageScrollBrowser *IDCardBrowser;
+@property (weak, nonatomic) IBOutlet HNAImageScrollBrowser *casesBrowser;
+@property (weak, nonatomic) IBOutlet HNAImageScrollBrowser *chargeBrowser;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_H;
 
 @property (strong, nonatomic) NSMutableArray<HNAExpenseDetailStatusRecord *> *statusRecords;
 
+@property (weak, nonatomic) IBOutlet UIButton *checkDetailBtn;
 - (IBAction)checkDetailBtnClick:(UIButton *)sender;
 
 @end
 
-@implementation HNAMedicalExpensesDetailController
+@implementation HNAExpensesDetailController
 
 - (NSMutableArray *)statusRecords{
     if (_statusRecords == nil) {
@@ -65,43 +77,46 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpenseDetailCell" bundle:nil] forCellReuseIdentifier:@"HNAExpenseDetailCell"];
-    
-    for (UIImageView *imageView in self.imageViews) {
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageView:)];
-        [imageView addGestureRecognizer:tapGesture];
-        imageView.userInteractionEnabled = YES;
-    }
-
 }
 
-- (void)tapImageView:(UITapGestureRecognizer *)tap{
-    NSMutableArray *photoArray = [NSMutableArray array];
-    for (UIImageView *imageView in self.imageViews) {
-        MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.url =[NSURL URLWithString: @"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/music.png?v=md5"];
-        photo.srcImageView = imageView;
-        [photoArray addObject:photo];
-    }
-    MJPhotoBrowser *photoBrowser = [[MJPhotoBrowser alloc] init];
-    photoBrowser.photos = photoArray;
-    photoBrowser.currentPhotoIndex = tap.view.tag;
-    [photoBrowser show];
-}
+//- (void)tapImageView:(UITapGestureRecognizer *)tap{
+//    NSMutableArray *photoArray = [NSMutableArray array];
+//    for (UIImageView *imageView in self.imageViews) {
+//        MJPhoto *photo = [[MJPhoto alloc] init];
+//        photo.url =[NSURL URLWithString: @"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/music.png?v=md5"];
+//        photo.srcImageView = imageView;
+//        [photoArray addObject:photo];
+//    }
+//    MJPhotoBrowser *photoBrowser = [[MJPhotoBrowser alloc] init];
+//    photoBrowser.photos = photoArray;
+//    photoBrowser.currentPhotoIndex = tap.view.tag;
+//    [photoBrowser show];
+//}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
+    _detailViewHeight = self.detailView_H.constant;
     
     self.tableView_H.constant = self.tableView.contentSize.height;
     [self.view layoutIfNeeded];
 }
 
-
 #pragma mark - 请求数据
 - (void)loadData {
-    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:@"" success:^(HNAGetExpenseDirectionResult *result) {
-        
+    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    
+    [HNAInsuranceTool getExpenseDetailsWithRecordId:self.recordId success:^(HNAExpenseDetailModel *expenseDetail) {
+        [MBProgressHUD hideHUD];
+        if (expenseDetail != nil) {
+            self.amoutLabel.text = expenseDetail.amount;
+            self.insuranceComLabel.text = expenseDetail.insuranceCompanyName;
+            self.applicantNameLabel.text = expenseDetail.name;
+            self.bankNoLabel.text = expenseDetail.cardNum;
+        }
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError: MessageWhenFaild];
     }];
 }
 
@@ -113,46 +128,38 @@
         [self closeDetailView];
     }
 }
-
 /**
  *  detailView展开
  */
 - (void)spreadDetailView{
-    CGFloat height = DetailViewHeight;
-    
+    CGFloat height = _detailViewHeight;
     // 隐藏detailView
     self.detailView.hidden = NO;
-    
     // 设置“查看明细”文字
     [self.checkDetailBtn setTitle:@"收起" forState:UIControlStateNormal];
-    
     // 展开动画
     WEAKSELF(weakSelf);
-    self.detailViewHeightConstraint.constant = height;
+    self.detailView_H.constant = height;
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         [weakSelf.view layoutIfNeeded];
     } completion:nil];
 }
-
 /**
  *  detailView收起
  */
 - (void)closeDetailView{
-    CGFloat height = 0;
-    
     // 设置“查看明细”按钮文字
     [self.checkDetailBtn setTitle:@"查看报销明细" forState:UIControlStateNormal];
     
     // 收起动画
     WEAKSELF(weakSelf);
-    self.detailViewHeightConstraint.constant = height;
+    self.detailView_H.constant = 0;
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         [weakSelf.view layoutIfNeeded];
     } completion:^(BOOL finished) {
         self.detailView.hidden = YES;
     }];
 }
-
 #pragma mark - tableView 代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.statusRecords.count;

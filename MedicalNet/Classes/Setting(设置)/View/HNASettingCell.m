@@ -52,8 +52,6 @@
     } else if ([item isKindOfClass:[HNASettingSwitchItem class]]){
         self.accessoryView = self.switchView;
         self.switchView.on = [[NSUserDefaults standardUserDefaults] boolForKey:self.item.title];
-        // 修改消息通知
-        [self setMsgNoticeWithItem:item isOn:self.switchView.on];
     }
 }
 

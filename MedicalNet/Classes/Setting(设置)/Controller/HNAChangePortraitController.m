@@ -30,27 +30,19 @@
 }
 
 - (void)saveOperation{
-    // 1.获取登录用户信息
-    HNAUser *user = [HNAUserTool user];
-    if (user == nil) {
-        [MBProgressHUD showError:@"账号没有正常登录"];
-        return;
-    }
-    
-    // 2.拼修改头像的参数
-    HNAChangePortraitParam *param = [[HNAChangePortraitParam alloc] init];
-    param.id = user.id;
+    [MBProgressHUD showMessage:@"正在保存头像"];
+    // 1.拼修改头像的参数
+    HNAChangePortraitParam *param = [HNAChangePortraitParam param];
     param.theNewIcon = self.pickImageBtn.currentImage;
-    
-    // 3.请求地址
+    // 2.请求地址
     [HNAUserTool changePortraitWithParam:param success:^(HNAResult *result) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showSuccess:@"修改成功"];
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
-
-
 #pragma mark - actionSheet代理方法
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.cancelButtonIndex) return;
@@ -101,7 +93,6 @@
         } else {
             data = UIImagePNGRepresentation(image);
         }
-        
         // 图片保存路径
         
         // 返回控制器

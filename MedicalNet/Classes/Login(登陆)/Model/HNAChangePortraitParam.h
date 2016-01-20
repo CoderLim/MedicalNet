@@ -11,4 +11,6 @@
 @interface HNAChangePortraitParam : NSObject
 @property (nonatomic,copy) NSString *id;
 @property (nonatomic,copy) UIImage *theNewIcon;
+
++ (instancetype)param;
 @end

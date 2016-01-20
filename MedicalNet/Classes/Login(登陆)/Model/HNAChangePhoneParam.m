@@ -10,4 +10,10 @@
 
 @implementation HNAChangePhoneParam
 
++ (instancetype)param {
+    HNAChangePhoneParam *param = [[HNAChangePhoneParam alloc] init];
+    param.id = [HNAUserTool user].id;
+    return param;
+}
+
 @end

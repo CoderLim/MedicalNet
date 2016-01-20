@@ -22,6 +22,8 @@
 #import "MBProgressHUD+MJ.h"
 #import "objc/message.h"
 
+#import "SDImageCache.h"
+
 #define Setting2ChangePortraitSegue @"setting2changePortrait"
 #define Setting2ChangePwdSegue @"setting2changePwd"
 #define Setting2ChangePhoneSegue @"setting2changePhone"
@@ -42,7 +44,6 @@
     HNASettingHeaderView *headerView =
     [[[NSBundle mainBundle] loadNibNamed:@"HNASettingHeaderView" owner:nil options:nil] lastObject];
     self.tableView.tableHeaderView = headerView;
-    
     // 2.设置cell数据
     [self setupGroup1];
     [self setupGroup2];
@@ -60,15 +61,12 @@
 - (void)setupGroup1{
     // 修改头像
     HNASettingArrowItem *changePortrait = [HNASettingArrowItem itemWithTitle:@"修改头像"];
-    changePortrait.targetController = [HNAChangePortraitController class];
     changePortrait.segueIdentifier = Setting2ChangePortraitSegue;
     // 修改手机号
     HNASettingArrowItem *changePhone = [HNASettingArrowItem itemWithTitle:@"修改手机号"];
-    changePhone.targetController = [HNAChangePhoneController class];
     changePhone.segueIdentifier = Setting2ChangePhoneSegue;
     // 修改密码
     HNASettingArrowItem *changeCipher = [HNASettingArrowItem itemWithTitle:@"修改密码"];
-    changeCipher.targetController = [HNAChangeCipherController class];
     changeCipher.segueIdentifier = Setting2ChangePwdSegue;
     
     HNASettingGroup *group = [[HNASettingGroup alloc] init];
@@ -92,12 +90,12 @@
 - (void)setupGroup3{
     // 清理软件存储缓存
     HNASettingExecuteItem *clearCache = [HNASettingExecuteItem itemWithTitle:@"清理软件存储缓存" option:^{
+        [[SDImageCache sharedImageCache] clearDisk];
         [MBProgressHUD showSuccess:@"清理成功"];
     }];
     
     // 我们的其他APP
     HNASettingArrowItem *otherAPP = [HNASettingArrowItem itemWithTitle:@"我们的其他APP"];
-    otherAPP.targetController = [HNAIntroductionController class];
     otherAPP.segueIdentifier = Setting2IntroduceSegue;
     
     // 退出登录
@@ -139,6 +137,7 @@
     HNASettingItem *item = group.items[indexPath.row];
     
     HNASettingCell *cell = [HNASettingCell cellWithTableView:tableView];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.item = item;
     cell.detailTextLabel.text = @"detail";
     return cell;
@@ -155,22 +154,10 @@
     HNASettingItem *item = group.items[indexPath.row];
 
     if ([item isKindOfClass:[HNASettingArrowItem class]]) {
-//        // 2.获得目标控制器
-//        HNASettingArrowItem *arrowItem = (HNASettingArrowItem *)item;
-//        Class targetVC = arrowItem.targetController;
-//        NSString *className = [NSString stringWithUTF8String:class_getName(targetVC)];
-//        UIViewController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:className];
-//        HNALog(@"%@",className);
-//        // 3.跳转
-//        [self.navigationController pushViewController:vc animated:YES];
         [self performSegueWithIdentifier:((HNASettingArrowItem *)item).segueIdentifier sender:nil];
     } else if ([item isKindOfClass:[HNASettingExecuteItem class]]){
         HNASettingExecuteItem *execItem = (HNASettingExecuteItem *)item;
         execItem.option();
     }
-    
-    // 4.取消选中
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 @end

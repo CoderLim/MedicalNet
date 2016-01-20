@@ -42,25 +42,18 @@
 }
 
 - (void)saveOperation{
-    // 1.获取登录用户信息
-    HNAUser *user = [HNAUserTool user];
-    if (user == nil) {
-        [MBProgressHUD showError:@"账号没有正常登录"];
-        return;
-    }
-    
-    // 2.拼修改手机号的参数
-    HNAChangePhoneParam *param = [[HNAChangePhoneParam alloc] init];
-    param.id = user.id;
+    [MBProgressHUD showMessage:@"正在修改手机号"];
+    // 1.拼修改手机号的参数
+    HNAChangePhoneParam *param = [HNAChangePhoneParam param];
     param.theNewPhoneNum = self.phoneField.text;
     
-    // 3.请求地址
+    // 2.请求地址
     [HNAUserTool changePhoneWithParam:param success:^(HNAResult *result) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showSuccess:@"修改手机号成功"];
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
-
-
 @end

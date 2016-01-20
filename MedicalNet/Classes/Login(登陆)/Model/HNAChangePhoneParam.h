@@ -11,4 +11,6 @@
 @interface HNAChangePhoneParam : NSObject
 @property (nonatomic,copy) NSString *id;
 @property (nonatomic,copy) NSString *theNewPhoneNum;
+
++ (instancetype)param;
 @end

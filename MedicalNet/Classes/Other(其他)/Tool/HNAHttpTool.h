@@ -66,4 +66,6 @@
  *  文件类型
  */
 @property (nonatomic, copy) NSString *mimeType;
+
++ (instancetype)formDataWithImage:(UIImage *)image;
 @end

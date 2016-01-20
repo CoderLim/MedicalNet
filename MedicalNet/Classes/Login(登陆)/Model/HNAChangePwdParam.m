@@ -10,4 +10,9 @@
 
 @implementation HNAChangePwdParam
 
++ (instancetype)param {
+    HNAChangePwdParam *param = [[HNAChangePwdParam alloc] init];
+    param.id = [HNAUserTool user].id;
+    return param;
+}
 @end

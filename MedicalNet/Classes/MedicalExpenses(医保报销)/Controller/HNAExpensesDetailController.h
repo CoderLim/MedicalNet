@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HNAMedicalExpensesDetailController : UIViewController
-
+@interface HNAExpensesDetailController : UIViewController
+@property (nonatomic, strong) NSString *recordId;
 @end

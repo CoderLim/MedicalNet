@@ -39,7 +39,7 @@
     self.showsVerticalScrollIndicator = NO;
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.clipsToBounds = YES;
-    self.backgroundColor = UIColorWithRGBA(0, 0, 255, 0.1f);
+    self.backgroundColor = UIColorWithRGBA(0, 255, 0, 0.05f);
     
     // 添加第一个imagePicker
     [self addImagePicker];
