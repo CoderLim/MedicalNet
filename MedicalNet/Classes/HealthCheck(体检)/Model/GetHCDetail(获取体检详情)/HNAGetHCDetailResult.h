@@ -35,8 +35,6 @@
  */
 @property (nonatomic,copy) NSString *alertMessage;
 
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)hcDetailWithDict:(NSDictionary *)dict;
 @end
 
 

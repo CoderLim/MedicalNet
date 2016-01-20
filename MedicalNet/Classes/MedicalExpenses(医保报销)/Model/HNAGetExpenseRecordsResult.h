@@ -38,11 +38,4 @@
  *  状态
  */
 @property (nonatomic,copy) NSString *status;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)recordeWithDict:(NSDictionary *)dict;
-
-- (instancetype)initWithAmount:(NSString *)amount date:(NSString *)date state:(NSString*)state;
-+ (instancetype)recordeWithAmount:(NSString *)amount date:(NSString *)date state:(NSString*)state;
-
 @end

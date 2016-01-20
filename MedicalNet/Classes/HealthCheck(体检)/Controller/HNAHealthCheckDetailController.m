@@ -58,7 +58,6 @@
 // 加载数据
 - (void)loadData{
     HNAGetHCDetailParam *param = [[HNAGetHCDetailParam alloc] init];
-    WEAKSELF(weakSelf);
     [HNAHealthCheckTool getHCDetailWithParam:param success:^(HNAGetHCDetailResult *result) {
     } failure:^(NSError *error) {
         

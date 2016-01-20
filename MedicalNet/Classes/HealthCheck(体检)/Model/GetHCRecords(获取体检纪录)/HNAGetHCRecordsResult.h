@@ -19,9 +19,6 @@
 @property (nonatomic,copy) NSString *year;
 @property (nonatomic,copy) NSString *month;
 @property(nonatomic,strong) NSMutableArray<HNAHealthCheckRecordModel *> *records;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)hcRecordsWithDict:(NSDictionary *)dict;
 @end
 
 

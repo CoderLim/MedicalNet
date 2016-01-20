@@ -21,9 +21,6 @@
  *  套餐列表
  */
 @property(nonatomic,strong) NSMutableArray<HNAPackageListItem *> *packageList;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)packageListWithDict:(NSDictionary *)dict;
 @end
 
 

@@ -3071,8 +3071,8 @@
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="Vvv-HF-ILA"/>
-                                                        <exclude reference="NhC-dz-pKF"/>
                                                         <exclude reference="bvB-v2-94B"/>
+                                                        <exclude reference="NhC-dz-pKF"/>
                                                     </mask>
                                                 </variation>
                                             </view>

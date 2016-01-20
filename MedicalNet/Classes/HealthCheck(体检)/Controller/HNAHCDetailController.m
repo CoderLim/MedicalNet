@@ -56,7 +56,7 @@
 /**
  *  体检套餐id
  */
-@property (nonatomic, copy) NSString *packageId;
+@property (nonatomic, assign) NSInteger packageId;
 
 - (IBAction)checkPackageDetail:(UIButton *)sender;
 @end

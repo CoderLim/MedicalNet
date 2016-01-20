@@ -25,9 +25,6 @@
  *  体检项目
  */
 @property(nonatomic,strong) NSMutableArray<HNAPackageDetailItem *> *records;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)packageDetailWithDict:(NSDictionary *)dict;
 @end
 
 //体检套餐项目

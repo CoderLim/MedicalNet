@@ -104,8 +104,6 @@
 - (IBAction)submit:(UIButton *)sender {
     [self performSegueWithIdentifier:ApplyExpense2ApplySuccessSegue sender:nil];
     return;
-    // 得到当前user信息
-    HNAUser *currentUser = [HNAUserTool user];
     
     // 构造网络请求参数
     HNAApplyExpenseParam *param = [HNAApplyExpenseParam param];

@@ -31,7 +31,4 @@
  *  电话
  */
 @property (nonatomic,copy) NSString *phone;
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)insuranceCompnyWithDict:(NSDictionary *)dict;
 @end
