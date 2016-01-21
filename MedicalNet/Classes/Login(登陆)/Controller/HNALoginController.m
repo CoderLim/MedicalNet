@@ -18,6 +18,8 @@
 #import "HNAForgetCipherController.h"
 #import "HNAImagePickersScrollView.h"
 
+#import "HNATabBarController.h"
+
 #import "HNAHttpTool.h"
 
 #define CurrentTextField2KeyboardPadding 40
@@ -78,8 +80,10 @@
     [HNALoginTool loginWithParam:param success:^(HNALoginInfoResult *result) {
         [MBProgressHUD hideHUD];
         if (result.success == HNARequestResultSUCCESS) {
-            UITabBarController *tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            HNATabBarController *tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
             KeyWindow.rootViewController = tabBarController;
+
+//            KeyWindow.rootViewController = [[HNATabBarController alloc] init];
             
             CATransition *ca = [CATransition animation];
             // 设置过度效果
