@@ -31,6 +31,8 @@
 }
 
 - (void)commonInit{
+    self.clipsToBounds = YES;
+    
     CGSize size = self.bounds.size;
     _radius = MIN(size.width, size.height);
     

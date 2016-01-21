@@ -31,6 +31,14 @@
 		9F734C6B1BFEC7E700434B90 /* HNAIntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F734C6A1BFEC7E700434B90 /* HNAIntroductionController.m */; };
 		9F734C6E1BFEE16800434B90 /* UIImage+HNA.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F734C6D1BFEE16800434B90 /* UIImage+HNA.m */; };
 		9F78FBE51C1687E7001F1F9E /* HNAExpensesDirectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F78FBE41C1687E7001F1F9E /* HNAExpensesDirectionsController.m */; };
+		9F79A76E1C50BB5100487F48 /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A76A1C50BB5100487F48 /* libXG-SDK.a */; };
+		9F79A76F1C50BB5200487F48 /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F79A76B1C50BB5100487F48 /* ReleaseNotes.txt */; };
+		9F79A7711C50BBC500487F48 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A7701C50BBC500487F48 /* CFNetwork.framework */; };
+		9F79A7731C50BBCA00487F48 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A7721C50BBCA00487F48 /* SystemConfiguration.framework */; };
+		9F79A7751C50BBD100487F48 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A7741C50BBD100487F48 /* CoreTelephony.framework */; };
+		9F79A7771C50BBDA00487F48 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A7761C50BBDA00487F48 /* libz.tbd */; };
+		9F79A7791C50BBE500487F48 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A7781C50BBE500487F48 /* Security.framework */; };
+		9F79A77B1C50D39700487F48 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A77A1C50D39700487F48 /* libsqlite3.tbd */; };
 		9F7AC4CE1C4F1F52000BCCE4 /* HNAMoneyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AC4CD1C4F1F52000BCCE4 /* HNAMoneyField.swift */; };
 		9F7AC4D31C4F2EB2000BCCE4 /* HNAImageScrollBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7AC4D21C4F2EB2000BCCE4 /* HNAImageScrollBrowser.m */; };
 		9F8723381C0C31C300DA68FE /* HNAChangeBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8723371C0C31C300DA68FE /* HNAChangeBaseController.m */; };
@@ -235,6 +243,16 @@
 		9F734C6D1BFEE16800434B90 /* UIImage+HNA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HNA.m"; sourceTree = "<group>"; };
 		9F78FBE31C1687E7001F1F9E /* HNAExpensesDirectionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAExpensesDirectionsController.h; sourceTree = "<group>"; };
 		9F78FBE41C1687E7001F1F9E /* HNAExpensesDirectionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAExpensesDirectionsController.m; sourceTree = "<group>"; };
+		9F79A76A1C50BB5100487F48 /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libXG-SDK.a"; sourceTree = "<group>"; };
+		9F79A76B1C50BB5100487F48 /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
+		9F79A76C1C50BB5100487F48 /* XGPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGPush.h; sourceTree = "<group>"; };
+		9F79A76D1C50BB5100487F48 /* XGSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSetting.h; sourceTree = "<group>"; };
+		9F79A7701C50BBC500487F48 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9F79A7721C50BBCA00487F48 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9F79A7741C50BBD100487F48 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		9F79A7761C50BBDA00487F48 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9F79A7781C50BBE500487F48 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9F79A77A1C50D39700487F48 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9F7AC4CD1C4F1F52000BCCE4 /* HNAMoneyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HNAMoneyField.swift; sourceTree = "<group>"; };
 		9F7AC4D11C4F2EB2000BCCE4 /* HNAImageScrollBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAImageScrollBrowser.h; sourceTree = "<group>"; };
 		9F7AC4D21C4F2EB2000BCCE4 /* HNAImageScrollBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAImageScrollBrowser.m; sourceTree = "<group>"; };
@@ -522,6 +540,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F79A77B1C50D39700487F48 /* libsqlite3.tbd in Frameworks */,
+				9F79A7791C50BBE500487F48 /* Security.framework in Frameworks */,
+				9F79A7771C50BBDA00487F48 /* libz.tbd in Frameworks */,
+				9F79A7751C50BBD100487F48 /* CoreTelephony.framework in Frameworks */,
+				9F79A7731C50BBCA00487F48 /* SystemConfiguration.framework in Frameworks */,
+				9F79A7711C50BBC500487F48 /* CFNetwork.framework in Frameworks */,
+				9F79A76E1C50BB5100487F48 /* libXG-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +579,17 @@
 				9F05FEED1C43BA7000626544 /* HNAMedicalInstitutionCell.xib */,
 			);
 			path = "HNAHCReservationController(预约体检)";
+			sourceTree = "<group>";
+		};
+		9F79A7691C50BB5100487F48 /* Xg-Push */ = {
+			isa = PBXGroup;
+			children = (
+				9F79A76A1C50BB5100487F48 /* libXG-SDK.a */,
+				9F79A76B1C50BB5100487F48 /* ReleaseNotes.txt */,
+				9F79A76C1C50BB5100487F48 /* XGPush.h */,
+				9F79A76D1C50BB5100487F48 /* XGSetting.h */,
+			);
+			path = "Xg-Push";
 			sourceTree = "<group>";
 		};
 		9F8C09F51C17FEC00084EAD9 /* Tool */ = {
@@ -1162,6 +1198,13 @@
 		9FC7C7121BFD5D18007E2C49 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				9F79A77A1C50D39700487F48 /* libsqlite3.tbd */,
+				9F79A7781C50BBE500487F48 /* Security.framework */,
+				9F79A7761C50BBDA00487F48 /* libz.tbd */,
+				9F79A7741C50BBD100487F48 /* CoreTelephony.framework */,
+				9F79A7721C50BBCA00487F48 /* SystemConfiguration.framework */,
+				9F79A7701C50BBC500487F48 /* CFNetwork.framework */,
+				9F79A7691C50BB5100487F48 /* Xg-Push */,
 				9FD9045A1C27FC5D00422219 /* MJPhotoBrowser */,
 				9FC572A51C1133940077831B /* CKCalendarView */,
 				9FB4891D1BFEB86D0031DE48 /* AFNetworking */,
@@ -1442,6 +1485,7 @@
 				9FFDF5111C48CCCB009F87BE /* HNAImagePickerView.xib in Resources */,
 				9FB489891BFEB86D0031DE48 /* MJRefresh.bundle in Resources */,
 				9FC572B51C113BEC0077831B /* left_arrow.png in Resources */,
+				9F79A76F1C50BB5200487F48 /* ReleaseNotes.txt in Resources */,
 				9FC7C7321BFD862B007E2C49 /* HNASettingHeaderView.xib in Resources */,
 				9F29C3BC1C43865F0073387F /* HNAHCCheckedCell.xib in Resources */,
 				9FB0A92B1C07F47D00AFBECA /* Images.xcassets in Resources */,
@@ -1770,10 +1814,14 @@
 				);
 				GCC_PREFIX_HEADER = MedicalNet/PrefixHeader.pch;
 				INFOPLIST_FILE = MedicalNet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib/Xg-Push",
+				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hna.medicalnet;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eking-tech.medicalnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MedicalNet/Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h";
@@ -1795,10 +1843,14 @@
 				);
 				GCC_PREFIX_HEADER = MedicalNet/PrefixHeader.pch;
 				INFOPLIST_FILE = MedicalNet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MedicalNet/Classes/Other(其他)/Lib/Xg-Push",
+				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hna.medicalnet;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.eking-tech.medicalnet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MedicalNet/Classes/MedicalExpenses(医保报销)/View/MedicalNet-Bridging-Header.h";

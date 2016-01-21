@@ -29,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"修改密码";
+    
     WEAKSELF(weakSelf);
     self.keyboardNextBtnClicked = ^{
         [weakSelf.confirmCipherField becomeFirstResponder];

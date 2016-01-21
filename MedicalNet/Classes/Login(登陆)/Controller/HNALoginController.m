@@ -15,11 +15,14 @@
 #import "HNALoginInfoParam.h"
 #import "HNALoginInfoResult.h"
 #import "HNALoginTool.h"
+#import "HNAForgetCipherController.h"
 #import "HNAImagePickersScrollView.h"
 
 #import "HNAHttpTool.h"
 
 #define CurrentTextField2KeyboardPadding 40
+
+#define Login2ForgetCipherSegue @"login2forgetCipher"
 
 @interface HNALoginController() <UITextFieldDelegate,NSURLSessionDelegate>{
     __weak UITextField *_currentEditTextField;
@@ -58,10 +61,6 @@
     // 监听TextField的TextChange
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self textFieldTextChanged:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
 }
 
 - (IBAction)loginBtnClick:(UIButton *)sender {

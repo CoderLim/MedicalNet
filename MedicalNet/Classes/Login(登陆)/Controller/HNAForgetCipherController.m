@@ -8,6 +8,9 @@
 
 #import "HNAForgetCipherController.h"
 #import "HNACountDownButton.h"
+#import "HNAChangeCipherController.h"
+
+#define ForgetCipher2ChangeCipherSegue @"forgetCipher2changeCipher"
 
 @interface HNAForgetCipherController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
@@ -31,6 +34,14 @@
 }
 
 - (IBAction)submit:(UIButton *)sender {
+    [self performSegueWithIdentifier:ForgetCipher2ChangeCipherSegue sender:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:ForgetCipher2ChangeCipherSegue]) {
+        HNAChangeCipherController *changeCipherVc = segue.destinationViewController;
+        changeCipherVc.type = HNAChangeCipherControllerTypeViaPhoneValidation;
+    }
 }
 
 #pragma mark - TextField 代理事件

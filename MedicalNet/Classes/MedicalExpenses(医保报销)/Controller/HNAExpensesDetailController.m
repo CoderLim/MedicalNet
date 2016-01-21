@@ -177,9 +177,7 @@
     } else if (indexPath.row == self.statusRecords.count-1) {
         cell.positionType = HNAProgressCellPositionTypeEnd;
     }
-    
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -189,5 +187,4 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
-
 @end

@@ -539,7 +539,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="忘记密码"/>
                                         <connections>
-                                            <segue destination="FkO-uJ-2qY" kind="push" id="bE9-72-kpC"/>
+                                            <segue destination="FkO-uJ-2qY" kind="push" identifier="login2forgetCipher" id="bE9-72-kpC"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用，请登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0B-mz-ckk">
@@ -717,7 +717,6 @@
                                 <state key="normal" title="提交"/>
                                 <connections>
                                     <action selector="submit:" destination="FkO-uJ-2qY" eventType="touchUpInside" id="mOJ-fd-Sqo"/>
-                                    <segue destination="icG-k7-Zwe" kind="push" id="N7U-mX-ACX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -750,6 +749,7 @@
                     <connections>
                         <outlet property="phoneField" destination="poE-JM-ctJ" id="A3q-RF-4MQ"/>
                         <outlet property="validationCodeField" destination="uxT-Fo-UxY" id="39j-FZ-bw8"/>
+                        <segue destination="icG-k7-Zwe" kind="show" identifier="forgetCipher2changeCipher" id="cc8-ne-zC3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6B-Ri-h5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2421,14 +2421,14 @@
                                                 <rect key="frame" x="5" y="65.5" width="73" height="20.5"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保险公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuQ-MX-XOT">
                                                 <rect key="frame" x="83" y="65.5" width="68" height="20.5"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVe-q4-1B0">
@@ -3906,8 +3906,8 @@
         <image name="tab_setting" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wzd-N8-71k"/>
-        <segue reference="6EA-U9-CX0"/>
         <segue reference="pKF-3Z-Vt3"/>
+        <segue reference="Lwj-RF-nod"/>
+        <segue reference="wzd-N8-71k"/>
     </inferredMetricsTieBreakers>
 </document>
