@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -549,7 +549,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="99668877" borderStyle="roundedRect" placeholder="请输入邮箱账号或手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AUn-96-ciV">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="121336" borderStyle="roundedRect" placeholder="请输入邮箱账号或手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AUn-96-ciV">
                                         <rect key="frame" x="10" y="50.5" width="248" height="30"/>
                                         <animations/>
                                         <constraints>
@@ -578,7 +578,7 @@
                                             <action selector="loginBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c46-RV-JrA"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12312313" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FKA-rS-vKw">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="q12312313" borderStyle="roundedRect" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FKA-rS-vKw">
                                         <rect key="frame" x="10" y="90.5" width="248" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2910,8 +2910,8 @@
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-80-OQk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="966"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="927.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDi-7y-8sV" userLabel="基本信息">
                                                 <rect key="frame" x="10" y="10" width="300" height="132"/>
@@ -3076,8 +3076,8 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
-                                                <rect key="frame" x="10" y="238" width="300" height="48"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
+                                                <rect key="frame" x="10" y="238" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="请上传身份证扫描件">
@@ -3095,8 +3095,8 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
-                                                <rect key="frame" x="10" y="386" width="300" height="48"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
+                                                <rect key="frame" x="10" y="379" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="请上传医保卡扫描件">
@@ -3114,8 +3114,8 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
-                                                <rect key="frame" x="10" y="529" width="300" height="71.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
+                                                <rect key="frame" x="10" y="515" width="300" height="61"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="42" id="bVs-XH-9YF"/>
@@ -3141,8 +3141,8 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
-                                                <rect key="frame" x="10" y="695" width="300" height="95.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
+                                                <rect key="frame" x="10" y="670.5" width="300" height="81.5"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="请上传收费证明">
@@ -3166,8 +3166,8 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
-                                                <rect key="frame" x="30" y="896" width="260" height="40"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
+                                                <rect key="frame" x="30" y="857.5" width="260" height="40"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -3176,11 +3176,6 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="提交"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="4bF-NS-vpu"/>
@@ -3190,8 +3185,8 @@
                                                     <action selector="submit:" destination="yrz-Bp-wGj" eventType="touchUpInside" id="BMm-8f-4Gg"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
-                                                <rect key="frame" x="10" y="296" width="300" height="80"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
+                                                <rect key="frame" x="10" y="289" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -3201,8 +3196,8 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="ofT-xb-zfc"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
-                                                <rect key="frame" x="10" y="439" width="300" height="80"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
+                                                <rect key="frame" x="10" y="425" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -3217,8 +3212,8 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="qwd-fM-ghz"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
-                                                <rect key="frame" x="10" y="605" width="300" height="80"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
+                                                <rect key="frame" x="10" y="580.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -3234,8 +3229,8 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="23h-1t-BZn"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
-                                                <rect key="frame" x="10" y="796" width="300" height="80"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
+                                                <rect key="frame" x="10" y="757.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>

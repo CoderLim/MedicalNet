@@ -18,7 +18,7 @@
  *  @param success 请求成功回调
  *  @param failure 请求失败回调
  */
-+ (void)postWithURL:(NSString *)url params:(NSDictionary *)params success:(void(^)(id json))success failure:(void(^)(NSError *error))failure;
++ (void)postWithURL:(NSString *)url params:(NSDictionary *)params toDisk:(BOOL)toDisk success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 
 /**
  *  发送一个GET请求

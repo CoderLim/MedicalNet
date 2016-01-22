@@ -14,13 +14,15 @@
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 
+#import "LMLocalCache.h"
+
 @implementation HNALoginTool
 
 + (void)loginWithParam:(HNALoginInfoParam *)param success:(void (^)(HNALoginInfoResult *))success failure:(void (^)(NSError *))failure{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/login", RequestUrlDomain];
     
-    [HNAHttpTool postWithURL:urlStr params:param.keyValues success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:YES success:^(id json) {
         if (success) {
             HNALoginInfoResult *result = [HNALoginInfoResult objectWithKeyValues:json];
             // glm:测试数据
@@ -29,10 +31,10 @@
 //            result.companyName = @"1234";
 //            result.id = @"111111";
 //            result.insuranceCompanyId = @"21321";
-            
             HNAUser *user = [HNAUser userWithLoginInfoResult:result];
             [HNAUserTool saveUser:user];
             
+            // 回调
             success(result);
         }
     } failure:^(NSError *error) {

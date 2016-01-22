@@ -21,13 +21,13 @@
     [super viewDidLoad];
     
     // 设置导航控制器
-    HNAMutiStateButton *rightBtn = [HNAMutiStateButton buttonWithType:UIButtonTypeSystem];
-    [rightBtn setTitleColor:NavNormalBtnTextColor forState:UIControlStateNormal];
+    HNAMutiStateButton *rightBtn = [HNAMutiStateButton buttonWithType: UIButtonTypeCustom];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [rightBtn setTitleColor:NavDisabledBtnTextColor forState:UIControlStateDisabled];
     [rightBtn setBackgroundColor:NavNormalBtnBgColor forState:UIControlStateNormal];
     [rightBtn setBackgroundColor:NavNormalBtnBgColor forState:UIControlStateDisabled];
     [rightBtn setTitle:@"保存" forState:UIControlStateNormal];
-    rightBtn.frame = CGRectMake(0, 0, 30, 30);
+    rightBtn.frame = CGRectMake(0, 0, 50, 30);
     [rightBtn addTarget:self action:@selector(saveOperation) forControlEvents : UIControlEventTouchUpInside];
     _navRightBtn = rightBtn;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];

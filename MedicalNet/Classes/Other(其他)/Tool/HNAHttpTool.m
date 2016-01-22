@@ -8,16 +8,35 @@
 
 #import "HNAHttpTool.h"
 #import "AFNetworking.h"
+#import "AFNetworkReachabilityManager.h"
+#import "LMLocalCache.h"
 
 @implementation HNAHttpTool
 
-+ (void)postWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure{
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
++ (void)postWithURL:(NSString *)url params:(NSDictionary *)params toDisk:(BOOL)toDisk success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
-    // 2.发送请求
+    // 1、先看是否本地有缓存
+    NSDictionary *diskCache = [[LMLocalCache sharedLocalCache] dictFromDiskCacheForUrl:url andParams:params];
+    if (diskCache && success) {
+        success(diskCache);
+        return;
+    }
+    
+    // 2、没有本地缓存，请求网络数据
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    // 发送请求
     [mgr POST:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
+            if (responseObject && [[responseObject objectForKey:@"success"] isEqualToString:@"1"] && toDisk) {
+                // 保存到本地
+                [[LMLocalCache sharedLocalCache] storeDict:responseObject
+                                                 forUrl:url
+                                                 andParams:params];
+            } else {
+                [[LMLocalCache sharedLocalCache] clearDisk];
+            }
+            
+            // 回调
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

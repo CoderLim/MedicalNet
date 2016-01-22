@@ -43,7 +43,6 @@
     self.nameLabel.text = user.name;
     self.companyNameLabel.text = user.companyName;
     
-    user.icon = @"http://img.firefoxchina.cn/2016/01/4/201601121216300.jpg";
     [self.portraitButton setImageWithURL:[NSURL URLWithString:user.icon] forState:UIControlStateNormal];
 }
 @end

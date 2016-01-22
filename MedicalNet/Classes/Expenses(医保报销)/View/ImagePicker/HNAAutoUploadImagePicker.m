@@ -123,15 +123,14 @@
         mimeType = @"image/png";
         extensionName = @".png";
     }
-    NSLog(@"%ld",(long)data.length);
     if (data.length > MaxFileSize) {
         [MBProgressHUD showError:@"文件太大"];
         [self.progressView hide];
         return;
     }
     
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"big.png"];
-    data = [NSData dataWithContentsOfFile:path];
+//    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"big.png"];
+//    data = [NSData dataWithContentsOfFile:path];
     NSParameterAssert(data);
     // 文件名
     NSString *filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString: extensionName];
@@ -173,6 +172,7 @@
     if ([keyPath isEqualToString:ProgressKeyPath]) {
         double fractionCompleted = [change[NSKeyValueChangeNewKey] doubleValue];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [NSThread sleepForTimeInterval:0.02];
             self.progressView.progress = fractionCompleted;
         });
     }

@@ -39,12 +39,9 @@
     [super viewDidLoad];
     
     self.title = @"设置";
+    self.tableView.showsVerticalScrollIndicator = NO;
     
-    // 1.设置tableView属性
-    HNASettingHeaderView *headerView =
-    [[[NSBundle mainBundle] loadNibNamed:@"HNASettingHeaderView" owner:nil options:nil] lastObject];
-    self.tableView.tableHeaderView = headerView;
-    // 2.设置cell数据
+    // 设置cell数据
     [self setupGroup1];
     [self setupGroup2];
     [self setupGroup3];
@@ -149,7 +146,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // 1.item数据
+    // item数据
     HNASettingGroup *group = self.data[indexPath.section];
     HNASettingItem *item = group.items[indexPath.row];
 
@@ -160,4 +157,29 @@
         execItem.option();
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section {
+    return  UITableViewAutomaticDimension;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return UITableViewAutomaticDimension;
+}
+
 @end

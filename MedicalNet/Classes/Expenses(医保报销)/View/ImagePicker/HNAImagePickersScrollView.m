@@ -12,7 +12,7 @@
 
 #define Margin 5
 #define ImagePickerWidth (self.frame.size.height-2*Margin)
-#define DefaultBackgroundColor [UIColor orangeColor]
+#define DefaultBackgroundColor [UIColor clearColor]
 
 @interface HNAImagePickersScrollView() <HNAAutoUploadImagePickerDelegate>
 @property (nonatomic, strong) NSMutableArray<HNAAutoUploadImagePicker *> *imagePickers;
@@ -39,7 +39,7 @@
     self.showsVerticalScrollIndicator = NO;
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.clipsToBounds = YES;
-    self.backgroundColor = UIColorWithRGBA(0, 255, 0, 0.05f);
+    self.backgroundColor = DefaultBackgroundColor;
     
     // 添加第一个imagePicker
     [self addImagePicker];

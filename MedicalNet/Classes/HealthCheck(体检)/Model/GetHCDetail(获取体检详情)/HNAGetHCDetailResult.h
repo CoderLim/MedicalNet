@@ -17,7 +17,7 @@
 /**
  *  所选套餐id
  */
-@property (nonatomic,copy) NSString *packageId;
+@property (nonatomic,assign) NSInteger packageId;
 /**
  *  套餐名称
  */

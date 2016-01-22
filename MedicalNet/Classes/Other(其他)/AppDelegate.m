@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AFNetworkReachabilityManager.h"
 #import "XGPush.h"
 #import "XGSetting.h"
 
@@ -21,9 +22,79 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // 修改状态栏字体为白色
+    [SharedApplication setStatusBarStyle: UIStatusBarStyleLightContent];
+    
+    // 设置推送
+    [self setupPush:launchOptions];
+    
+    // 网络状态监听
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable:{
+                HNALog(@"没有网络");
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWiFi:{
+                HNALog(@"WiFi网络");
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN:{
+                HNALog(@"无线网络");
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    
+    return YES;
+}
+
+- (void)setupPush:(NSDictionary *)launchOptions {
+    [XGPush startApp:AppId appKey:AppKey];
+    
+    void (^successCallback)(void) = ^(void){
+        if (![XGPush isUnRegisterStatus]) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+            
+            float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
+            if(sysVer < 8){
+                [self registerPush];
+            }
+            else{
+                [self registerPushForIOS8];
+            }
+#else
+            //iOS8之前注册push方法
+            //注册Push服务，注册后才能收到推送
+            [self registerPush];
+#endif
+        }
+    };
+    [XGPush initForReregister:successCallback];
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
+    //推送反馈回调版本示例
+    void (^successBlock)(void) = ^(void){
+        //成功之后的处理
+        NSLog(@"[XGPush]handleLaunching's successBlock");
+    };
+    
+    void (^errorBlock)(void) = ^(void){
+        //失败之后的处理
+        NSLog(@"[XGPush]handleLaunching's errorBlock");
+    };
+    [XGPush handleLaunching:launchOptions successCallback:successBlock errorCallback:errorBlock];
+
+}
+
 - (void)registerPushForIOS8{
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-    
     //Types
     UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
     
@@ -61,58 +132,12 @@
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // 修改状态栏字体为白色
-    [SharedApplication setStatusBarStyle: UIStatusBarStyleLightContent];
-    
-    [XGPush startApp:AppId appKey:AppKey];
-    
-    void (^successCallback)(void) = ^(void){
-        if (![XGPush isUnRegisterStatus]) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-            
-            float sysVer = [[[UIDevice currentDevice] systemVersion] floatValue];
-            if(sysVer < 8){
-                [self registerPush];
-            }
-            else{
-                [self registerPushForIOS8];
-            }
-#else
-            //iOS8之前注册push方法
-            //注册Push服务，注册后才能收到推送
-            [self registerPush];
-#endif
-        }
-    };
-    [XGPush initForReregister:successCallback];
-    
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    
-    //推送反馈回调版本示例
-    void (^successBlock)(void) = ^(void){
-        //成功之后的处理
-        NSLog(@"[XGPush]handleLaunching's successBlock");
-    };
-    
-    void (^errorBlock)(void) = ^(void){
-        //失败之后的处理
-        NSLog(@"[XGPush]handleLaunching's errorBlock");
-    };
-    [XGPush handleLaunching:launchOptions successCallback:successBlock errorCallback:errorBlock];
-
-    return YES;
-}
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-
 //注册UserNotification成功的回调
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     //用户已经允许接收以下类型的推送
     //UIUserNotificationType allowedTypes = [notificationSettings types];
-    
 }
 
 //按钮点击事件回调
@@ -172,6 +197,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
 @end

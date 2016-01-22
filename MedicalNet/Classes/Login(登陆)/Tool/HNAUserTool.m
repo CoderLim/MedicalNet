@@ -46,7 +46,7 @@
     NSDictionary *paramDict = @{@"id" : param.id,
                                 @"newPhoneNum" : param.theNewPhoneNum};
     
-    [HNAHttpTool postWithURL:urlStr params:paramDict success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:paramDict toDisk:NO success:^(id json) {
         if (success) {
             HNAResult *result = [HNAResult objectWithKeyValues:json];
             success(result);
@@ -91,7 +91,7 @@
                                 @"newPwd" : param.theNewPwd,
                                 @"oldPwd" : param.theOldPwd};
     
-    [HNAHttpTool postWithURL:urlStr params:paramDict success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:paramDict toDisk:NO success:^(id json) {
         if (success) {
             HNAResult *result = [HNAResult objectWithKeyValues:json];
             success(result);
@@ -110,7 +110,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/MsgNotice", RequestUrlDomain];
     // 请求
     NSLog(@"%@",param.keyValues);
-    [HNAHttpTool postWithURL:urlStr params:param.keyValues success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:NO success:^(id json) {
         if (success) {
             HNAResult *result = [HNAResult objectWithKeyValues:json];
             success(result);

@@ -37,7 +37,6 @@
     _radius = MIN(size.width, size.height);
     
     self.layer.cornerRadius = _radius/2;
-    
     self.layer.borderWidth = 1;
     self.layer.borderColor = [UIColor redColor].CGColor;
 }

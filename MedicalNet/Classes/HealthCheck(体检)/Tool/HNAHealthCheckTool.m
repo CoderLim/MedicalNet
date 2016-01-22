@@ -159,7 +159,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/reserveMedical",RequestUrlDomain];
     
     // 发送请求
-    [HNAHttpTool postWithURL:urlStr params:param.keyValues success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:NO success:^(id json) {
         if (success) {
             HNAReserveHCResult *result = [HNAReserveHCResult objectWithKeyValues:json];
             success(result);
