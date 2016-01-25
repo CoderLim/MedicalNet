@@ -9,6 +9,8 @@
 #import "HNADatePicker.h"
 #import "NSDate+HNA.h"
 
+#define All @"全部"
+
 @interface HNADatePicker() <UIPickerViewDataSource,UIPickerViewDelegate>
 @property (strong,nonatomic) NSMutableArray *years;
 @property (strong,nonatomic) NSMutableArray *months;
@@ -51,7 +53,7 @@
         _months = [NSMutableArray array];
         
         // 加载最小日期月份
-        [self loadMonthsWithYear:self.minimumDate.components.year];
+        [self loadMonthsWithYear:self.years[0]];
     }
     return _months;
 }
@@ -59,11 +61,17 @@
 - (void)loadYears{
     [_years removeAllObjects];
     for (NSInteger i = self.minimumDate.components.year; i <= self.maximumDate.components.year; i++) {
-        [_years addObject: @(i)];
+        [_years addObject: [NSString stringWithFormat:@"%ld", i]];
     }
+    [_years insertObject:All atIndex:0];
 }
 
-- (void)loadMonthsWithYear:(NSInteger)year{
+- (void)loadMonthsWithYear:(NSString *)yearStr{
+    if ([yearStr isEqualToString:All]) {
+        [_months removeAllObjects];
+        return;
+    }
+    NSInteger year = [yearStr integerValue];
     NSInteger start = 1;
     NSInteger end = 12;
     if (year == self.minimumDate.components.year) {
@@ -104,6 +112,9 @@
 }
 
 - (NSDate *)date{
+    if ([self.years[[self selectedRowInComponent:0]] isEqualToString:All]) {
+        return nil;
+    }
     NSInteger currentYear = [self.years[[self selectedRowInComponent:0]] integerValue];
     NSInteger currentMonth = [self.months[[self selectedRowInComponent:1]] integerValue];
     return [NSDate dateWithYear:currentYear month:currentMonth day:1 hour:0 minute:1 second:1];
@@ -126,6 +137,9 @@
 #pragma mark - UIPickerViewDelegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     if (component == 0) {
+        if (row == 0) {
+            return [NSString stringWithFormat:@"%@", self.years[row]];
+        }
         return [NSString stringWithFormat:@"%@年", self.years[row]];
     } else if (component == 1){
         return [NSString stringWithFormat:@"%@月", self.months[row]];
@@ -135,7 +149,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component == 0) {
-        [self loadMonthsWithYear:[self.years[[pickerView selectedRowInComponent:0]] integerValue]];
+        [self loadMonthsWithYear:self.years[[pickerView selectedRowInComponent:0]]];
         [pickerView reloadComponent:1];
     }
     // 通知代理

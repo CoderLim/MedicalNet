@@ -2976,6 +2976,7 @@
                                                     <constraint firstItem="Dq7-hM-L17" firstAttribute="leading" secondItem="01w-Wt-zjm" secondAttribute="trailing" constant="5" id="BN6-MT-2N5"/>
                                                     <constraint firstItem="5ex-I3-Y2h" firstAttribute="leading" secondItem="01w-Wt-zjm" secondAttribute="leading" id="G84-ZB-jOQ"/>
                                                     <constraint firstAttribute="height" constant="212" id="HJc-eY-OVE"/>
+                                                    <constraint firstItem="5ex-I3-Y2h" firstAttribute="top" secondItem="01w-Wt-zjm" secondAttribute="bottom" constant="14.5" id="RGt-xk-w11"/>
                                                     <constraint firstAttribute="trailing" secondItem="XTu-hF-Ws1" secondAttribute="trailing" constant="5" id="RQ1-xE-Vfy"/>
                                                     <constraint firstAttribute="trailing" secondItem="qpI-pg-d5F" secondAttribute="trailing" constant="5" id="RiP-nP-h5Z"/>
                                                     <constraint firstItem="Gbi-1T-cHn" firstAttribute="leading" secondItem="5ex-I3-Y2h" secondAttribute="trailing" constant="5" id="ZnE-s9-gVi"/>
@@ -3000,6 +3001,7 @@
                                                     <mask key="constraints">
                                                         <exclude reference="HJc-eY-OVE"/>
                                                         <exclude reference="RQ1-xE-Vfy"/>
+                                                        <exclude reference="z7S-DX-JaF"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -3791,19 +3793,19 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJa-XW-gaU">
                                     <rect key="frame" x="10" y="100" width="300" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9K-F9-die">
                                     <rect key="frame" x="10" y="130.5" width="300" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJc-2z-jkj">
                                     <rect key="frame" x="10" y="161" width="300" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5n-ov-fIe" customClass="HNAPortraitButton">

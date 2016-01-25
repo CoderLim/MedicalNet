@@ -11,46 +11,42 @@
 @class HNALoginInfoResult;
 
 @interface HNAUser : NSObject <NSCoding>
-
 /**
  *  用户id
  */
 @property (nonatomic,copy) NSString *id;
-
 /**
  *  员工姓名
  */
 @property (nonatomic,copy) NSString *name;
-
 /**
  *  手机号
  */
 @property (nonatomic,copy) NSString *phoneNum;
-
 /**
  *  头像
  */
 @property (nonatomic,copy) NSString *icon;
-
 /**
  *  公司id
  */
 @property (nonatomic,copy) NSString *companyId;
-
 /**
  *  公司名称
  */
 @property (nonatomic,copy) NSString *companyName;
-
 /**
  *  保险公司id
  */
 @property (nonatomic,assign) NSInteger insuranceCompanyId;
-
 /**
  *  体检机构
  */
 @property (nonatomic,copy) NSString *medicalId;
+/**
+ *  账号过期时间
+ */
+@property (nonatomic,strong) NSDate *expiresTime;
 
 + (instancetype)user;
 - (instancetype)initWithDict:(NSDictionary *)dict;

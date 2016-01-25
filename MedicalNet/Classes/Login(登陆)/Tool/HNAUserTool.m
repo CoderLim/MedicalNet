@@ -15,7 +15,10 @@
 #import "HNASetMsgNoticeParam.h"
 #import "MJExtension.h"
 
+// 账号信息保存路径
 #define HNAUserFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user.data"]
+//账号过期时间：10天
+#define AccountExpiresIn 60*60*24*10
 
 @implementation HNAUserTool
 
@@ -24,11 +27,16 @@
  */
 
 + (HNAUser *)user{
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:HNAUserFile];
+    HNAUser *u = [NSKeyedUnarchiver unarchiveObjectWithFile:HNAUserFile];
+    if ([u.expiresTime compare:[NSDate date]] == NSOrderedDescending) {
+        return u;
+    }
+    return nil;
 }
 
 + (void)saveUser:(HNAUser *)user{
     if (user != nil) {
+        user.expiresTime = [[NSDate date] dateByAddingTimeInterval:AccountExpiresIn];
         [NSKeyedArchiver archiveRootObject:user toFile:HNAUserFile];
     }
 }
