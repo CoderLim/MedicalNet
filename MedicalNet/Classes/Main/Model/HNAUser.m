@@ -51,6 +51,7 @@
         self.companyName = [aDecoder decodeObjectForKey:@"companyName"];
         self.insuranceCompanyId = [aDecoder decodeIntegerForKey:@"insuranceCompanyId"];
         self.medicalId = [aDecoder decodeObjectForKey:@"medicalId"];
+        self.expiresTime = [aDecoder decodeObjectForKey:@"expiresTime"];
     }
     return self;
 }
@@ -64,6 +65,7 @@
     [aCoder encodeObject:self.companyName forKey:@"companyName"];
     [aCoder encodeInteger:self.insuranceCompanyId forKey:@"insuranceCompanyId"];
     [aCoder encodeObject:self.medicalId forKey:@"medicalId"];
+    [aCoder encodeObject:self.expiresTime forKey:@"expiresTime"];
 }
 
 @end

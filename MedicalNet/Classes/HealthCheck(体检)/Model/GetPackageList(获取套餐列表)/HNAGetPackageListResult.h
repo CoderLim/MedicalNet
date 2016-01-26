@@ -8,11 +8,12 @@
 
 // 获取套餐列表
 
+#import <Foundation/Foundation.h>
+#import "HNAResult.h"
+
 @class HNAPackageListItem;
 
-#import <Foundation/Foundation.h>
-
-@interface HNAGetPackageListResult : NSObject
+@interface HNAGetPackageListResult : HNAResult
 /**
  *  公司id
  */

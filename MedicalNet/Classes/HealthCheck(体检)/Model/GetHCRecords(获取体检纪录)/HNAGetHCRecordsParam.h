@@ -18,9 +18,11 @@
 /**
  *  按年搜索，为空值时搜索全部
  */
-@property (nonatomic,assign) NSInteger year;
+@property (nonatomic,copy) NSString *year;
 /**
  *  按月搜索，为空值时搜索全部
  */
-@property (nonatomic,assign) NSInteger month;
+@property (nonatomic,copy) NSString *month;
+
++ (instancetype)param;
 @end

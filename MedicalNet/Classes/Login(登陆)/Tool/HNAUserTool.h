@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class HNAUser,HNAChangePwdParam,HNAResult,HNAChangePhoneParam,HNAChangePortraitParam,HNASetMsgNoticeParam;
+@class HNAChangePwdParam,HNAResult,HNAChangePhoneParam,HNAChangePortraitParam,HNASetMsgNoticeParam;
+@class HNAForgetPwdParam;
 
 @interface HNAUserTool : NSObject
 
@@ -36,6 +37,15 @@
  *  @param failure 失败回调
  */
 + (void)changePwdWithParam:(HNAChangePwdParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
+
+/**
+ *  修改密码
+ *
+ *  @param param   修改密码需要提供的参数
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)forgetPwdWithParam:(HNAForgetPwdParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
 
 /**
  *  修改手机号

@@ -9,7 +9,7 @@
 #import "HNAExpensesDetailController.h"
 #import "HNAExpenseDetailCell.h"
 #import "HNAInsuranceTool.h"
-#import "HNAExpenseDetailModel.h"
+#import "HNAGetExpenseDetailResult.h"
 #import "MJPhoto.h"
 #import "MJPhotoBrowser.h"
 
@@ -106,9 +106,11 @@
 - (void)loadData {
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     
-    [HNAInsuranceTool getExpenseDetailsWithRecordId:self.recordId success:^(HNAExpenseDetailModel *expenseDetail) {
+    [HNAInsuranceTool getExpenseDetailsWithRecordId:self.recordId success:^(HNAGetExpenseDetailResult *result) {
         [MBProgressHUD hideHUD];
-        if (expenseDetail != nil) {
+        
+        if (result.success == HNARequestResultSUCCESS) {
+            HNAExpenseDetailModel *expenseDetail = result.expenseDetail;
             self.amoutLabel.text = expenseDetail.amount;
             self.insuranceComLabel.text = expenseDetail.insuranceCompanyName;
             self.applicantNameLabel.text = expenseDetail.name;

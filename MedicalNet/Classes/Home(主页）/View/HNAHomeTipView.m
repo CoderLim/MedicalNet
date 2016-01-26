@@ -73,6 +73,9 @@
 
 #pragma mark - 单击事件
 - (IBAction)close:(UIButton *)sender {
+    // 点击close后tipView将不再显示
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
+    
     sender.enabled = NO;
     [UIView animateWithDuration:HomeTipViewAnimationDuration animations:^{
         CGRect frame = self.frame;

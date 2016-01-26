@@ -117,7 +117,7 @@
 
 - (void)commonInit{
     // 基本属性
-    [self setTitle:@"" forState:UIControlStateNormal];
+    [self setTitle:@"全部" forState:UIControlStateNormal];
     [self setTitle:@"" forState:UIControlStateDisabled];
     
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -188,7 +188,11 @@
 #pragma mrak - HNADatePickerDelegate
 - (void)datePicker:(HNADatePicker *)datePicker didValueChanged:(NSDate *)date {
     // 设置title
-    NSString *title = [date stringWithFormat:@"yyyy-MM"];
+    NSString *title = @"全部";
+    if (date != nil) {
+        title = [date stringWithFormat:@"yyyy-MM"];
+
+    }
     [self setTitle:title forState:UIControlStateNormal];
     
     // 通知代理

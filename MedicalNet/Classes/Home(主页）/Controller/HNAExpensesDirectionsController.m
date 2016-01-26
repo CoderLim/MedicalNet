@@ -15,7 +15,7 @@
 #import "HNAInsuranceTool.h"
 #import "HNAUserTool.h"
 #import "HNAUser.h"
-#import "HNAInsuranceCompanyModel.h"
+#import "HNAGetInsuranceCompanyResult.h"
 #import "MBProgressHUD+MJ.h"
 
 // KeyPath
@@ -51,18 +51,21 @@
  *  可报销医院
  */
 @property (weak, nonatomic) IBOutlet UITableView *hospitalTableView;
-
 /**
  *  更多医院
  */
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender;
-
+/**
+ *  提交
+ */
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)submitButtonClicked:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *projectTableViewConstraint_H;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hospitalTableViewConstraint_H;
-
+/**
+ *  数据数组
+ */
 @property (strong, nonatomic) NSMutableArray *materialArray;
 @property (strong, nonatomic) NSMutableArray<HNASecurityProgram *> *projectArray;
 @property (strong, nonatomic) NSMutableArray *hospitalArray;
@@ -84,10 +87,6 @@
     [self.projectTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [self.hospitalTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
     
-    // 加载数据
-    [self loadDirectionData];
-    [self loadInsuranceCompanyData];
-    
     // 初始化［提交］按钮
     self.submitButton.layer.cornerRadius = self.submitButton.frame.size.height*0.5;
     self.submitButton.layer.shadowOffset = CGSizeMake(5, 5);
@@ -102,6 +101,8 @@
     if (IsEmbededInController(self)) {
         [self.mainScrollView setContentOffset:CGPointZero];
     }
+    
+    [self loadData];
 }
 
 #pragma mark - 数据
@@ -122,35 +123,41 @@
     }
     return _hospitalArray;
 }
-
 /**
  *  加载数据
  */
+- (void)loadData {
+    [self loadDirectionData];
+    [self loadInsuranceCompanyData];
+}
+
 - (void)loadDirectionData{
+    [MBProgressHUD showMessage: MessageWhenLoadingData];
     // 1.参数
     NSString *companyId = [HNAUserTool user].companyId;
     if (companyId == nil) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"companyId为nil"];
         return;
     }
     // 2.请求
     WEAKSELF(weakSelf);
     [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAGetExpenseDirectionResult *result) {
+        [MBProgressHUD hideHUD];
         if (result.expenseDirection != nil) {
             HNAExpenseDirectionModel *direction = result.expenseDirection;
             weakSelf.projectArray = direction.securityPrograms;
             weakSelf.hospitalArray = direction.hospitals;
-            [MBProgressHUD showSuccess:@"获取成功"];
             
             // 3.刷新数据
             [weakSelf.projectTableView reloadData];
             weakSelf.materialLabel.text = direction.materials;
             [weakSelf.hospitalTableView reloadData];
         } else {
-            [MBProgressHUD showError:@"没有数据"];
             [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
         }
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求异常"];
         [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
     }];
@@ -159,18 +166,18 @@
  *  加载保险公司数据
  */
 - (void)loadInsuranceCompanyData {
-    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAInsuranceCompanyModel *insuranceCompany) {
-        if (insuranceCompany != nil) {
-            [MBProgressHUD showSuccess: MessageWhenSuccess];
+    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
+        [MBProgressHUD hideHUD];
+        if (result.success == HNARequestResultSUCCESS) {
+            HNAInsuranceCompanyModel *insuranceCompany = result.insuranceCompany;
             self.insuranceComNameLabel.text = insuranceCompany.name;
             self.insuranceComAddrLabel.text = insuranceCompany.addr;
             self.insuranceComCodeLabel.text = insuranceCompany.code;
             self.insuranceComContactLabel.text = @"没有这个字段";
             self.insuranceComPhoneLabel.text = insuranceCompany.phone;
-        } else {
-            [MBProgressHUD showError:@"没有数据"];
         }
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError: MessageWhenFaild];
     }];
 }

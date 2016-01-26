@@ -9,10 +9,11 @@
 // 获取体检机构列表
 
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
 
 @class HNAHCOrgan;
 
-@interface HNAGetHCOrganListResult : NSObject
+@interface HNAGetHCOrganListResult : HNAResult
 @property (nonatomic,copy) NSString *packageId;
 @property(nonatomic,strong) NSMutableArray<HNAHCOrgan *> *organs;
 @end

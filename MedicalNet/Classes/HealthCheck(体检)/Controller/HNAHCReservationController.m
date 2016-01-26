@@ -22,6 +22,8 @@
 #import "HNAReserveHCResult.h"
 #import "HNAHealthCheckTool.h"
 
+#import "HNAHCReserveOrganTableView.h"
+
 #define NumberOfDefaultInstitutionDisplay 3
 
 #define CKCalendarDisableLegendColor UIColorWithRGB(228.0f, 228.0f, 228.0f)
@@ -31,10 +33,7 @@
 // 跳转到 套餐详情
 #define HCReserve2HCPackageSegue @"hcReserve2hcPackage"
 
-@interface HNAHCReservationController () <UITableViewDataSource,UITableViewDelegate,HNAHCReservePackageScrollViewDelegate, CKCalendarDelegate>{
-    // 标记tableView是否已经展开
-    BOOL _tableViewExpanded;
-}
+@interface HNAHCReservationController () <UITableViewDataSource,UITableViewDelegate,HNAHCReservePackageScrollViewDelegate, CKCalendarDelegate>
 /**
  *  日历
  */
@@ -46,7 +45,7 @@
 /**
  *  体检机构 tableView
  */
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet HNAHCReserveOrganTableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_H;
 /**
  *  体检机构数据
@@ -113,11 +112,8 @@
  *  设置tableView
  */
 - (void)setupTableView {
-    // tableView
-    _tableViewExpanded = NO;
-    
     // 注册Cell
-    [self.tableView registerNib:[UINib nibWithNibName:@"HNAMedicalInstitutionCell" bundle:nil] forCellReuseIdentifier:@"HNAMedicalInstitutionCell"];
+    [self.tableView registerCell];
     
     // 添加监听contentSize
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
@@ -181,9 +177,6 @@
  *  加载医疗机构数据
  */
 - (void)loadInstitutionsWithPackageId:(NSInteger)packageId {
-    _tableViewExpanded = NO;
-    [self.expandButton setTitle:@"展开更多" forState:UIControlStateNormal];
-    
     // 重新加载
     HNAGetHCOrganListParam *param = [[HNAGetHCOrganListParam alloc] init];
     param.packageId = packageId;
@@ -201,30 +194,22 @@
         }
         [self.tableView reloadData];
     } failure:^(NSError *error) {
-        
     }];
 }
 
 #pragma mark -  tableView 代理事件
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _tableViewExpanded ? self.medicalInstitutions.count: MIN(self.medicalInstitutions.count,NumberOfDefaultInstitutionDisplay);
+    return self.tableView.expanded ? self.medicalInstitutions.count: MIN(self.medicalInstitutions.count,NumberOfDefaultInstitutionDisplay);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HNAMedicalInstitutionCell *cell = [HNAMedicalInstitutionCell cellForTableView:tableView];
     // 设置数据
     cell.model = self.medicalInstitutions[indexPath.row];
-    // 设置block（更新当前选中的cell）
-    WEAKSELF(weakSelf);
-    __weak __typeof(HNAMedicalInstitutionCell*) weakCell = cell;
-    cell.selectedBlock = ^{
-        weakSelf.selectedInstitutionCell.checked = NO;
-        weakSelf.selectedInstitutionCell = weakCell;
-    };
-    
-    if (!_tableViewExpanded) {
+
+    if (!self.tableView.expanded) {
         if (indexPath.row == 0) {
-            self.selectedInstitutionCell = cell;
+            self.tableView.selectedCell = cell;
         } else  {
             cell.checked = NO;
         }
@@ -239,18 +224,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }
-/**
- *  tableView：医疗机构 查看更多
- */
-- (IBAction)tableViewFooterClicked:(UIButton *)sender {
-    _tableViewExpanded = !_tableViewExpanded;
-    
-    NSString *title = _tableViewExpanded?@"收回":@"展开更多";
-    [sender setTitle:title forState:UIControlStateNormal];
-    [self.tableView reloadData];
-}
 #pragma mark - HNAHCReservePackageScrollViewDelegate
-
 - (BOOL)packageScrollView:(HNAHCReservePackageScrollView *)scrollView willClickAtIndex:(NSInteger)index {
     NSString *packageIdStr = [NSString stringWithFormat:@"%ld",[scrollView packageIdAtIndex:index]];
     [self performSegueWithIdentifier:HCReserve2HCPackageSegue sender: packageIdStr];
@@ -293,7 +267,7 @@
     }
 }
 /**
- *  自定义：判断该日期是否可选
+ *  判断该日期是否可选
  */
 - (BOOL)canSelectedTheDate:(NSDate *)date {
     return [date compare:[NSDate date]] == NSOrderedDescending
@@ -306,7 +280,7 @@
     // 参数
     HNAReserveHCParam *param = [HNAReserveHCParam param];
     param.packageId = self.packageScrollView.selectedPackageId;
-    param.organId = self.selectedInstitutionCell.model.id;
+    param.organId = self.tableView.selectedCell.model.id;
     param.reserveDate = self.selectedDate;
     // 网络请求
     [HNAHealthCheckTool reserveHCWithParam:param success:^(HNAReserveHCResult *result) {

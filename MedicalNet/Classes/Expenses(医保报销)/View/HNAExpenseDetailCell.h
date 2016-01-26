@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HNAExpenseDetailModel.h"
+#import "HNAGetExpenseDetailResult.h"
 #import "HNAProgressCellBase.h"
 
 @interface HNAExpenseDetailCell : HNAProgressCellBase

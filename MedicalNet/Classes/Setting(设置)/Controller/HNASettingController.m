@@ -21,16 +21,18 @@
 #import "HNALoginController.h"
 #import "MBProgressHUD+MJ.h"
 #import "objc/message.h"
-
 #import "SDImageCache.h"
+#import "HNANavigationController.h"
+#import "MJRefresh.h"
 
 #define Setting2ChangePortraitSegue @"setting2changePortrait"
 #define Setting2ChangePwdSegue @"setting2changePwd"
 #define Setting2ChangePhoneSegue @"setting2changePhone"
 #define Setting2IntroduceSegue @"setting2introduce"
 
-@interface HNASettingController()
-@property (nonatomic,strong) NSMutableArray *data;
+@interface HNASettingController() <MJRefreshBaseViewDelegate>
+@property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, weak) MJRefreshHeaderView *header;
 @end
 
 @implementation HNASettingController
@@ -41,10 +43,21 @@
     self.title = @"设置";
     self.tableView.showsVerticalScrollIndicator = NO;
     
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.delegate = self;
+    self.header = header;
+    
     // 设置cell数据
     [self setupGroup1];
     [self setupGroup2];
     [self setupGroup3];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.header beginRefreshing];
 }
 
 - (NSMutableArray *)data{
@@ -97,7 +110,7 @@
     
     // 退出登录
     HNASettingExecuteItem *logout = [HNASettingExecuteItem itemWithTitle:@"退出登录" option:^{
-        UINavigationController *loginNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+        HNANavigationController *loginNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"LoginNav"];
         KeyWindow.rootViewController = loginNav;
         
         CATransition *ca = [CATransition animation];
@@ -110,7 +123,6 @@
         // 设置动画的起点
         ca.startProgress = 0.5;
         [KeyWindow.layer addAnimation:ca forKey:nil];
-
     }];
     otherAPP.targetController = [HNALoginController class];
     
@@ -156,5 +168,16 @@
         HNASettingExecuteItem *execItem = (HNASettingExecuteItem *)item;
         execItem.option();
     }
+}
+#pragma mark - MJRefreshBaseViewDelegate
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView {
+    [self.tableView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.header endRefreshing];
+    });
+}
+
+- (void)dealloc {
+    [self.header free];
 }
 @end

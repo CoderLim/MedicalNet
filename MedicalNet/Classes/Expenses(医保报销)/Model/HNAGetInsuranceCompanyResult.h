@@ -9,6 +9,13 @@
 // 保险公司信息
 
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
+
+@class HNAInsuranceCompanyModel;
+
+@interface HNAGetInsuranceCompanyResult : HNAResult
+@property (nonatomic, strong) HNAInsuranceCompanyModel *insuranceCompany;
+@end
 
 @interface HNAInsuranceCompanyModel : NSObject
 /**

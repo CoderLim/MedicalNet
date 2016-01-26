@@ -12,6 +12,7 @@
 #import "HNAChangePhoneParam.h"
 #import "HNAChangePortraitParam.h"
 #import "HNAChangePwdParam.h"
+#import "HNAForgetPwdParam.h"
 #import "HNASetMsgNoticeParam.h"
 #import "MJExtension.h"
 
@@ -28,10 +29,10 @@
 
 + (HNAUser *)user{
     HNAUser *u = [NSKeyedUnarchiver unarchiveObjectWithFile:HNAUserFile];
-    if ([u.expiresTime compare:[NSDate date]] == NSOrderedDescending) {
-        return u;
+    if (u.expiresTime == nil || [u.expiresTime compare:[NSDate date]] == NSOrderedAscending) {
+        return nil;
     }
-    return nil;
+    return u;
 }
 
 + (void)saveUser:(HNAUser *)user{
@@ -109,7 +110,25 @@
             failure(error);
         }
     }];
+}
+
++ (void)forgetPwdWithParam:(HNAForgetPwdParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure {
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/forgetPwd", RequestUrlDomain];
     
+    //将参数转化成字典
+    NSDictionary *paramDict = @{@"id" : param.id,
+                                @"newPwd" : param.theNewPwd};
+    
+    [HNAHttpTool postWithURL:urlStr params:paramDict toDisk:NO success:^(id json) {
+        if (success) {
+            HNAResult *result = [HNAResult objectWithKeyValues:json];
+            success(result);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 // 设置消息提醒

@@ -8,7 +8,7 @@
 
 #import "HNAApplySuccessController.h"
 #import "HNAInsuranceTool.h"
-#import "HNAInsuranceCompanyModel.h"
+#import "HNAGetInsuranceCompanyResult.h"
 
 @interface HNAApplySuccessController()
 @property (weak, nonatomic) IBOutlet UILabel *insuranceComNameLabel;
@@ -31,9 +31,10 @@
 - (void)loadInsuranceCompnayData {
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     
-    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAInsuranceCompanyModel *insuranceCompany) {
+    [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
         [MBProgressHUD hideHUD];
-        if (insuranceCompany != nil) {
+        if (result.success == HNARequestResultSUCCESS) {
+            HNAInsuranceCompanyModel *insuranceCompany = result.insuranceCompany;
             self.insuranceComNameLabel.text = insuranceCompany.name;
             self.addrLabel.text = insuranceCompany.addr;
             self.phoneLabel.text = insuranceCompany.phone;

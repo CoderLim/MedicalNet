@@ -23,10 +23,14 @@
 #import "HNAGetHCRecordsParam.h"
 #import "HNAGetHCRecordsResult.h"
 
+#import "MJRefresh.h"
+
 #define HCHome2HCDetailSegue @"HCHome2HCDetail"
 
 @interface HNAHealthCheckController() <UITableViewDataSource,UITableViewDelegate,HNADatePickButtonDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSDate *selectedDate;
+
 /**
  *  体检记录
  */
@@ -48,10 +52,6 @@
  *  查看(预约)体检项目
  */
 - (IBAction)reserveHealthCheck:(UIButton *)sender;
-/**
- *  跳转到 医保报销
- */
-- (IBAction)MedicalExpensesBtnClick:(UIButton *)sender;
 @end
 @implementation HNAHealthCheckController
 
@@ -61,9 +61,13 @@
     self.title = @"体检";
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHealthCheckRecordCell" bundle:nil] forCellReuseIdentifier:@"HealthCheckRecordCell"];
-    [self loadDataWithYear:2015 month:12];
+    
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.delegate = self;
+    self.header = header;
 }
-
+#pragma mark - 数据
 - (NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
@@ -76,35 +80,39 @@
     return _records;
 }
 
-- (void)loadDataWithYear:(NSInteger)year month:(NSInteger)month{
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+- (void)loadData {
     // 参数
-    HNAGetHCRecordsParam *param = [[HNAGetHCRecordsParam alloc] init];
-    param.id = [HNAUserTool user].id;
-    param.year = year;
-    param.month = month;
+    HNAGetHCRecordsParam *param = [HNAGetHCRecordsParam param];
+    if (self.selectedDate != nil) {
+        NSDateComponents *components = [self.selectedDate components];
+        param.year = [NSString stringWithFormat:@"%ld", (long)components.year];
+        param.month = [NSString stringWithFormat:@"%ld", (long)components.month];
+    }
     // 获取记录
     WEAKSELF(weakSelf);
     [HNAHealthCheckTool getHCRecordsWithParam:param success:^(HNAGetHCRecordsResult *result) {
-        [weakSelf.records addObjectsFromArray:result.records];
-        [weakSelf.tableView reloadData];
-        // 没有体检项目则隐藏入口
-//        if (result.hasNewProject == 0) {
-//            weakSelf.reserveButton.hidden = (result.hasNewProject == 0);
-//            weakSelf.reserveButton_H.constant = 0;
-//        }
-        
-        [MBProgressHUD hideHUD];
+        if (result.success == HNARequestResultSUCCESS) {
+            [weakSelf.records addObjectsFromArray:result.records];
+            [weakSelf.tableView reloadData];
+            // 没有体检项目则隐藏入口
+            if (result.hasNewProject == 0) {
+                weakSelf.reserveButton.hidden = (result.hasNewProject == 0);
+                weakSelf.reserveButton_H.constant = 0;
+            }
+        }
+        [self.header endRefreshing];
     } failure:^(NSError *error) {
-        [MBProgressHUD hideHUD];
+        HNALog(@"%@",error);
+        [self.header endRefreshing];
         [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
     }];
 }
 #pragma mark - datePickButton代理
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
     if (date != nil) {
-        NSDateComponents *components = [date components];
-        [self loadDataWithYear:components.year month:components.month];
+//        NSDateComponents *components = [date components];
+//        [self loadDataWithYear:components.year month:components.month];
+        self.selectedDate = date;
     }
 }
 #pragma mark - tableView代理
@@ -138,28 +146,15 @@
     [self performSegueWithIdentifier:@"HCHome2HCReserve" sender:nil];
 }
 
-#pragma mark - 导航按钮事件
-- (IBAction)MedicalExpensesBtnClick:(UIButton *)sender {
-    UINavigationController *nav = [MainStoryboard instantiateViewControllerWithIdentifier:@"HomeNav"];
-    KeyWindow.rootViewController = nav;
-    
-    CATransition *ca = [CATransition animation];
-    // 设置过度效果
-    ca.type = @"oglFlip";
-    // 设置动画的过度方向（向右）
-    ca.subtype=kCATransitionFromLeft;
-    // 设置动画的时间
-    ca.duration=.45;
-    // 设置动画的起点
-    //    ca.startProgress=0.5;
-    [KeyWindow.layer addAnimation:ca forKey:nil];
-}
-
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: HCHome2HCDetailSegue]) {
         HNAHCDetailController *vc = segue.destinationViewController;
         vc.hcRecordId = [sender stringValue];
     }
+}
+
+- (void)dealloc {
+    [self.header free];
 }
 @end

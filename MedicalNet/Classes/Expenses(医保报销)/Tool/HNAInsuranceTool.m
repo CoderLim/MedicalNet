@@ -16,8 +16,8 @@
 
 #import "HNAResult.h"
 #import "HNAApplyExpenseParam.h"
-#import "HNAExpenseDetailModel.h"
-#import "HNAInsuranceCompanyModel.h"
+#import "HNAGetExpenseDetailResult.h"
+#import "HNAGetInsuranceCompanyResult.h"
 
 @implementation HNAInsuranceTool
 
@@ -170,13 +170,13 @@
  *  @param success  成功回调
  *  @param failure  失败回调
  */
-+ (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAExpenseDetailModel *expenseDetail))success failure:(void (^)(NSError *error))failure{
++ (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAGetExpenseDetailResult *result))success failure:(void (^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDetails", RequestUrlDomain];
     
     [HNAHttpTool getWithURL:urlStr params:@{@"id" : recordId} success:^(id json) {
         if (success) {
-            HNAExpenseDetailModel *expenseDetail = [HNAExpenseDetailModel objectWithKeyValues:json];
-            success(expenseDetail);
+            HNAGetExpenseDetailResult *result = [HNAGetExpenseDetailResult objectWithKeyValues:json];
+            success(result);
         }
     } failure:^(NSError *error) {
         if (failure) {
@@ -192,12 +192,12 @@
  *  @param success   成功回调
  *  @param failure   失败回调
  */
-+ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *error))failure{
++ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAGetInsuranceCompanyResult *result))success failure:(void (^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseInfo", RequestUrlDomain];
     [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":@(insurancecompanyId)} success:^(id json) {
         if (success) {
-            HNAInsuranceCompanyModel *insuranceComp = [HNAInsuranceCompanyModel objectWithKeyValues:json];
-            success(insuranceComp);
+            HNAGetInsuranceCompanyResult *result = [HNAGetInsuranceCompanyResult objectWithKeyValues:json];
+            success(result);
         }
     } failure:^(NSError *error) {
         if (failure) {

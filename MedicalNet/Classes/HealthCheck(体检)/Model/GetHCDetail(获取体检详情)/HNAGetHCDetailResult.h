@@ -9,10 +9,11 @@
 // 获取体检详情
 
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
 
 @class HNAHCStatusRecord,HNAHCAppointment;
 
-@interface HNAGetHCDetailResult : NSObject
+@interface HNAGetHCDetailResult : HNAResult
 
 /**
  *  所选套餐id

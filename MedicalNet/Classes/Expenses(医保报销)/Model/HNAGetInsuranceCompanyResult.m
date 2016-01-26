@@ -6,8 +6,10 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-#import "HNAInsuranceCompanyModel.h"
+#import "HNAGetInsuranceCompanyResult.h"
+
+@implementation HNAGetInsuranceCompanyResult
+@end
 
 @implementation HNAInsuranceCompanyModel
-
 @end

@@ -6,7 +6,10 @@
 //  Copyright © 2015年 HaiHang. All rights reserved.
 //
 
-#import "HNAExpenseDetailModel.h"
+#import "HNAGetExpenseDetailResult.h"
+
+@implementation HNAGetExpenseDetailResult
+@end
 
 @implementation HNAExpenseDetailModel
 

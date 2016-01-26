@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-@class HNAExpenseDetailStatusRecord;
+#import "HNAResult.h"
+
+@class HNAExpenseDetailStatusRecord,HNAExpenseDetailModel;
+
+@interface HNAGetExpenseDetailResult : HNAResult
+@property (nonatomic, strong) HNAExpenseDetailModel *expenseDetail;
+@end
+
 
 @interface HNAExpenseDetailModel : NSObject
-
 /**
  *  花费总金额
  */

@@ -5,6 +5,14 @@
 //  Created by mj on 13-3-4.
 //  Copyright (c) 2013年 itcast. All rights reserved.
 
+/*
+ *
+ *
+ *  特别强调，在dealloc中一定要调refreshView的free方法，不然会报错
+ *
+ *
+ */
+
 #import <UIKit/UIKit.h>
 
 /**
@@ -41,6 +49,7 @@ typedef void (^RefreshStateChangeBlock)(MJRefreshBaseView *refreshView, MJRefres
  */
 @protocol MJRefreshBaseViewDelegate <NSObject>
 @optional
+- (void)refreshViewConfiguration:(MJRefreshBaseView *)refreshView;
 // 开始进入刷新状态就会调用
 - (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView;
 // 刷新完毕就会调用

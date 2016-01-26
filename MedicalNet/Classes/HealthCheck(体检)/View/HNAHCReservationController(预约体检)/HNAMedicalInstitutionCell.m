@@ -7,6 +7,7 @@
 //
 
 #import "HNAMedicalInstitutionCell.h"
+#import "HNAHCReserveOrganTableView.h"
 
 @interface HNAMedicalInstitutionCell()
 @property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
@@ -22,10 +23,15 @@
 
 @implementation HNAMedicalInstitutionCell
 
-+ (instancetype)cellForTableView:(UITableView *)tableView {
++ (instancetype)cellForTableView:(HNAHCReserveOrganTableView *)tableView {
     static NSString *identifier = @"HNAMedicalInstitutionCell";
     HNAMedicalInstitutionCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    __weak __typeof(HNAMedicalInstitutionCell*) weakCell = cell;
+    cell.selectedBlock = ^{
+        tableView.selectedCell = weakCell;
+    };
     return cell;
 }
 

@@ -105,7 +105,14 @@
  *  设置“修改密码提示”view
  */
 - (void)setupTipView{
-    // 1.创建tipView
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:UserDefaultsShouldHideTipView];
+    // 如果修改过密码或者点过X号，则不显示tipView
+    BOOL hideTipView = [[NSUserDefaults standardUserDefaults] boolForKey:UserDefaultsShouldHideTipView];
+    if (hideTipView == YES) {
+        return;
+    }
+    
+    // 创建tipView
     HNAHomeTipView *tipView = [HNAHomeTipView tipViewWithChangeCipher:^{
         [self performSegueWithIdentifier:Home2ChangeCipherSegue sender:nil];
     }];
@@ -130,7 +137,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerDidEndDragging) name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerHasNoData) name:ExpenseDierectionControllerHasNoData object:nil];
-
 }
 /**
  *  设置申请报销按钮（大图banner）
@@ -186,6 +192,7 @@
         self.hasRecordsView.hidden = NO;
     } failure:^(NSError *error) {
         self.hasRecordsView.hidden = NO;
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"加载医保报销记录失败"];
     }];
 }

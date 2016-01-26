@@ -65,7 +65,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"体检记录详情";
+    self.title = @"体检详情";
     
     // tableView注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCCheckedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCCheckedCell"];

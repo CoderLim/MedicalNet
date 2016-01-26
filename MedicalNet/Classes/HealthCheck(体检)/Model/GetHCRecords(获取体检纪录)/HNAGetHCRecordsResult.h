@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
+
 @class HNAHealthCheckRecordModel;
 
-@interface HNAGetHCRecordsResult : NSObject
+@interface HNAGetHCRecordsResult : HNAResult
 /**
  *  是否有新体检项目，1= 是z 0= 否
  * 

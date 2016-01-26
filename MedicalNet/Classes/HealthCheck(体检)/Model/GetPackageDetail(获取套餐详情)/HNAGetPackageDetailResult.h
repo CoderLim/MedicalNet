@@ -9,10 +9,11 @@
 // 获取套餐详情
 
 #import <Foundation/Foundation.h>
+#import "HNAResult.h"
 
 @class HNAPackageDetailItem;
 
-@interface HNAGetPackageDetailResult : NSObject
+@interface HNAGetPackageDetailResult : HNAResult
 /**
  *  套餐id
  */

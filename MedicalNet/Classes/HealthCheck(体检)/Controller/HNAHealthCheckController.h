@@ -9,7 +9,7 @@
 //体检主页
 
 #import <UIKit/UIKit.h>
+#import "HNARefreshViewController.h"
 
-@interface HNAHealthCheckController : UIViewController
-
+@interface HNAHealthCheckController : HNARefreshViewController
 @end

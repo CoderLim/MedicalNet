@@ -13,8 +13,8 @@
 @class HNAGetExpenseDirectionResult;
 @class HNAGetExpenseRecordsParam,HNAGetExpenseRecordsResult,HNAResult;
 @class HNAApplyExpenseParam;
-@class HNAExpenseDetailModel;
-@class HNAInsuranceCompanyModel;
+@class HNAGetExpenseDetailResult;
+@class HNAGetInsuranceCompanyResult;
 
 @interface HNAInsuranceTool : NSObject
 
@@ -46,7 +46,7 @@
  *  @param success  成功回调
  *  @param failure  失败回调
  */
-+ (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAExpenseDetailModel *expenseDetail))success failure:(void (^)(NSError *))failure;
++ (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAGetExpenseDetailResult *result))success failure:(void (^)(NSError *))failure;
 
 /**
  *  获取保险公司信息
@@ -55,5 +55,5 @@
  *  @param success   成功回调
  *  @param failure   失败回调
  */
-+ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAInsuranceCompanyModel *insuranceCompany))success failure:(void (^)(NSError *error))failure;
++ (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAGetInsuranceCompanyResult *result))success failure:(void (^)(NSError *error))failure;
 @end
