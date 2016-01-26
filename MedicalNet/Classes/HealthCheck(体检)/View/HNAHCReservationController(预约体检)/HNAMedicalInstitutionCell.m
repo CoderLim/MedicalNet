@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *dialButton;
 @property (weak, nonatomic) IBOutlet UIButton *openHourButton;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
 - (IBAction)dialButtonClicked:(UIButton *)sender;
 - (IBAction)checkButton:(UIButton *)sender;
@@ -38,13 +37,15 @@
 - (void)setModel:(HNAHCOrgan *)model {
     _model = model;
     
+    self.checked = model.checked;
     self.institutionNameLabel.text = model.name;
     [self.addrButton setTitle:model.addr forState:UIControlStateNormal];
     [self.openHourButton setTitle:model.openHour forState:UIControlStateNormal];
 }
 
-- (void)setChecked:(BOOL)checked{
+- (void)setChecked: (BOOL)checked{
     _checked = checked;
+    self.model.checked = checked;
     // 设置 checkBox
     self.checkButton.selected = checked;
 }
@@ -68,9 +69,12 @@
  *  打电话
  */
 - (IBAction)dialButtonClicked:(UIButton *)sender {
-    HNALog(@"打电话");
     // 拼接打电话url
-    NSString *urlStr = [NSString stringWithFormat:@"telprompt://%@", @"10086"];
+    NSString *phoneNum = self.model.phone;
+    if (phoneNum==nil || [phoneNum isEqualToString:@""]) {
+        phoneNum = @"10086";
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"telprompt://%@", phoneNum];
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication] openURL:url];
 }

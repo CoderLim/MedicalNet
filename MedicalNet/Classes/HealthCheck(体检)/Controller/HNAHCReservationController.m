@@ -51,21 +51,10 @@
  *  体检机构数据
  */
 @property (strong, nonatomic) NSMutableArray<HNAHCOrgan *> *medicalInstitutions;
-
-/**
- *  选择的体检机构cell
- */
-@property (nonatomic, weak) HNAMedicalInstitutionCell *selectedInstitutionCell;
 /**
  *  选择的体检日期
  */
 @property (nonatomic, copy) NSString *selectedDate;
-/**
- *  体检机构（tableView）展开更多
- */
-@property (weak, nonatomic) IBOutlet UIButton *expandButton;
-- (IBAction)tableViewFooterClicked:(UIButton *)sender;
-
 /**
  *  提交 按钮
  */
@@ -119,23 +108,13 @@
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
 
-#pragma mark - 
-- (NSString *)selectedOrganId {
-    return nil;
-}
-
+#pragma mark -
 - (NSString *)selectedDate {
     if (self.calendarView.selectedDate != nil) {
         return [self.calendarView.selectedDate stringWithFormat:@"yyyy-MM-dd"];
     }
     return nil;
 }
-
-- (void)setSelectedInstitutionCell:(HNAMedicalInstitutionCell *)selectedInstitutionCell {
-    _selectedInstitutionCell = selectedInstitutionCell;
-    selectedInstitutionCell.checked = YES;
-}
-
 #pragma mark - 数据
 - (NSMutableArray *)medicalInstitutions{
     if (_medicalInstitutions == nil) {
@@ -153,8 +132,7 @@
     HNAGetPackageListParam *param = [HNAGetPackageListParam param];
     [HNAHealthCheckTool getPackageListWithParam: param success:^(HNAGetPackageListResult *result) {
         [MBProgressHUD hideHUD];
-        
-        if (result != nil) {
+        if (result != nil && result.success == HNARequestResultSUCCESS) {
             self.packageScrollView.modelItems = result.packageList;
             for (NSInteger i=0; i<5; i++) {
                 HNAPackageListItem *item = [[HNAPackageListItem alloc] init];
@@ -187,10 +165,15 @@
         [self.medicalInstitutions removeAllObjects];
         for (NSInteger i=0; i<5; i++) {
             HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
+            organ.id = [NSString stringWithFormat:@"%ld",(long)i];
             organ.name = @"雍和宫医院";
             organ.addr = @"雍和航行园";
             organ.openHour = @"2015-10-1 10:30:00";
             [self.medicalInstitutions addObject:organ];
+        }
+        
+        if (self.medicalInstitutions!=nil && self.medicalInstitutions.count > 0) {
+            [self.medicalInstitutions firstObject].checked = YES;
         }
         [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -207,14 +190,23 @@
     // 设置数据
     cell.model = self.medicalInstitutions[indexPath.row];
 
-    if (!self.tableView.expanded) {
-        if (indexPath.row == 0) {
-            self.tableView.selectedCell = cell;
-        } else  {
-            cell.checked = NO;
-        }
+    if (cell.model.checked) {
+        self.tableView.selectedCell = cell;
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row <= NumberOfDefaultInstitutionDisplay) {
+        return;
+    }
+    CGRect frame = cell.frame;
+    CGRect fromFrame = frame;
+    fromFrame.origin.x = -frame.size.width;
+    cell.frame = fromFrame;
+    [UIView animateWithDuration:0.5f animations:^{
+        cell.frame = frame;
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -237,7 +229,7 @@
  */
 - (BOOL)calendar:(CKCalendarView *)calendar willSelectDate:(NSDate *)date {
     if (date != nil) {
-        if ([self canSelectedTheDate:date]) {
+        if ([self canSelectTheDate:date]) {
             return YES;
         } else {
             return NO;
@@ -257,7 +249,7 @@
  */
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
     if (date != nil) {
-        if ([self canSelectedTheDate:date]) {
+        if ([self canSelectTheDate:date]) {
             dateItem.backgroundColor = CKCalendarEnableLegendColor;
             dateItem.selectedBackgroundColor = CKCalendarSelectedLegendColor;
         } else {
@@ -269,7 +261,7 @@
 /**
  *  判断该日期是否可选
  */
-- (BOOL)canSelectedTheDate:(NSDate *)date {
+- (BOOL)canSelectTheDate:(NSDate *)date {
     return [date compare:[NSDate date]] == NSOrderedDescending
             || [date isEqualYMDTo:[NSDate date]];
 }
@@ -313,10 +305,6 @@
     if ([keyPath isEqualToString: @"contentSize"]) {
         CGSize contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
         self.tableView_H.constant = contentSize.height;
-        [self.view layoutIfNeeded];
-//        [UIView animateWithDuration:0.25f animations:^{
-//            [self.view layoutIfNeeded];
-//        }];
     }
 }
 - (void)dealloc {

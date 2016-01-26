@@ -49,4 +49,9 @@
  */
 @property (nonatomic,copy) NSString *lat;
 
+/**
+ *  是否选中
+ */
+@property (nonatomic,assign) BOOL checked;
+
 @end
