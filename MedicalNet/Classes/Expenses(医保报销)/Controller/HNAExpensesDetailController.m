@@ -78,7 +78,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpenseDetailCell" bundle:nil] forCellReuseIdentifier:@"HNAExpenseDetailCell"];
 }
-
 //- (void)tapImageView:(UITapGestureRecognizer *)tap{
 //    NSMutableArray *photoArray = [NSMutableArray array];
 //    for (UIImageView *imageView in self.imageViews) {

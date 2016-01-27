@@ -43,6 +43,8 @@
     self.nameLabel.text = user.name;
     self.companyNameLabel.text = user.companyName;
     
-    [self.portraitButton sd_setImageWithURL:[NSURL URLWithString:user.icon] forState:UIControlStateNormal];
+    NSURL *url = [NSURL URLWithString:[HNAUserTool user].icon];
+    [self.portraitButton sd_setBackgroundImageWithURL:url forState:UIControlStateNormal];
 }
+
 @end

@@ -75,10 +75,9 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView setImageWithURL: [NSURL URLWithString: self.imageUrls[indexPath.row]]];
+    [imageView sd_setImageWithURL: [NSURL URLWithString: self.imageUrls[indexPath.row]]];
     
     cell.backgroundView = imageView;
-    cell.backgroundColor = [UIColor blueColor];
     return  cell;
 }
 #pragma mark - UICollectionViewDelegate

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -598,6 +598,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="m5K-OX-ffS"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="登录"/>
                                         <connections>
                                             <action selector="loginBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c46-RV-JrA"/>
@@ -2973,7 +2974,7 @@
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-80-OQk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="927.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDi-7y-8sV" userLabel="基本信息">
@@ -3141,7 +3142,7 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
                                                 <rect key="frame" x="10" y="238" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3160,7 +3161,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
                                                 <rect key="frame" x="10" y="379" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3179,7 +3180,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
                                                 <rect key="frame" x="10" y="515" width="300" height="61"/>
                                                 <animations/>
                                                 <constraints>
@@ -3206,7 +3207,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
                                                 <rect key="frame" x="10" y="670.5" width="300" height="81.5"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3231,7 +3232,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
                                                 <rect key="frame" x="30" y="857.5" width="260" height="40"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3250,7 +3251,7 @@
                                                     <action selector="submit:" destination="yrz-Bp-wGj" eventType="touchUpInside" id="BMm-8f-4Gg"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="289" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3261,7 +3262,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="ofT-xb-zfc"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="425" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3277,7 +3278,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="qwd-fM-ghz"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="580.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3294,7 +3295,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="23h-1t-BZn"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="757.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3873,14 +3874,14 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5n-ov-fIe" customClass="HNAPortraitButton">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5n-ov-fIe" customClass="HNAPortraitButton">
                                     <rect key="frame" x="120" y="10" width="80" height="80"/>
                                     <animations/>
+                                    <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="SKu-Cb-1cj"/>
                                         <constraint firstAttribute="width" secondItem="u5n-ov-fIe" secondAttribute="height" multiplier="1:1" id="vGc-eq-fRT"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
                                 </button>
                             </subviews>
                             <animations/>
@@ -3932,6 +3933,7 @@
                     <navigationItem key="navigationItem" id="xJT-9i-BHZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="tableViewHeader" destination="4vp-mX-rm5" id="Qn7-Xf-qXz"/>
                         <segue destination="6cQ-2F-CNW" kind="show" identifier="setting2changePortrait" id="lXn-bt-8bN"/>
                         <segue destination="n2x-db-DAW" kind="show" identifier="setting2changePhone" id="2Yb-BU-9yT"/>
                         <segue destination="ELJ-x0-yc7" kind="show" identifier="setting2introduce" id="NL7-hC-JeG"/>
@@ -3941,44 +3943,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZ6-Ep-F8j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="980" y="1053"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="poX-dl-q9t">
-            <objects>
-                <viewController id="6Jj-eW-Dim" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KD8-io-CLW"/>
-                        <viewControllerLayoutGuide type="bottom" id="G6l-T2-3bu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8OA-gC-EDV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hop-vk-yII" customClass="HNAImageScrollBrowser">
-                                <rect key="frame" x="6" y="13" width="240" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Ub8-jr-lFq"/>
-                                    <constraint firstAttribute="width" constant="240" id="d2e-qF-T84"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hop-vk-yII" firstAttribute="top" secondItem="8OA-gC-EDV" secondAttribute="top" constant="13" id="cld-he-LFb"/>
-                            <constraint firstItem="hop-vk-yII" firstAttribute="leading" secondItem="8OA-gC-EDV" secondAttribute="leading" constant="6" id="fCp-Ro-gh0"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="scrollBrowser" destination="hop-vk-yII" id="wyb-0i-319"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ipm-Ei-NvL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-954" y="405"/>
         </scene>
         <!--医保报销-->
         <scene sceneID="r1b-Dc-xtS">
@@ -4031,8 +3995,8 @@
         <image name="tab_setting" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="eVm-bT-buS"/>
+        <segue reference="Lwj-RF-nod"/>
         <segue reference="pKF-3Z-Vt3"/>
-        <segue reference="wzd-N8-71k"/>
-        <segue reference="cc8-ne-zC3"/>
     </inferredMetricsTieBreakers>
 </document>
