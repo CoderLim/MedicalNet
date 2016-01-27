@@ -13,10 +13,8 @@
 @optional
 - (BOOL)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView;
-
 - (BOOL)imagePickerViewWillRemoveImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidRemoveImage:(HNAImagePickerView *)imagePickerView ;
-
 - (void)imagePickerViewDidCancel:(HNAImagePickerView *)imagePickerView;
 @end
 
@@ -27,6 +25,10 @@
  *  选择的图片
  */
 @property(nonatomic,strong) UIImage *image;
+/**
+ *  上传后的url
+ */
+@property (nonatomic, copy) NSString *uploadUrl;
 
 + (instancetype)imagePicker;
 @end

@@ -93,7 +93,7 @@
 }
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView {
     [self.progressView show];
-    [self automaticUpload:imagePickerView.image];
+    [self automaticUpload:imagePickerView];
     
     // 通知代理
     if ([self.delegate respondsToSelector:@selector(autoUploadImagePickerDidSelectImage:)]) {
@@ -110,16 +110,17 @@
 /**
  *  自动上传
  */
-- (void)automaticUpload:(UIImage *)image {
-    NSString *urlStr = @"http://localhost/upload_file.php";
+- (void)automaticUpload:(HNAImagePickerView *)imagePickerView {
+//    NSString *urlStr = @"http://localhost/upload_file.php";
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/uploadPic", RequestUrlDomain];
     NSString *mimeType = @"image/jpeg";
     NSString *extensionName = @".jpg";
     // 数据
     NSData *data = nil;
-    if (UIImageJPEGRepresentation(image, 0.7f)) {
-        data = UIImageJPEGRepresentation(image, 0.7f);
+    if (UIImageJPEGRepresentation(imagePickerView.image, 0.7f)) {
+        data = UIImageJPEGRepresentation(imagePickerView.image, 0.7f);
     } else {
-        data = UIImagePNGRepresentation(image);
+        data = UIImagePNGRepresentation(imagePickerView.image);
         mimeType = @"image/png";
         extensionName = @".png";
     }
@@ -128,15 +129,12 @@
         [self.progressView hide];
         return;
     }
-    
-//    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"big.png"];
-//    data = [NSData dataWithContentsOfFile:path];
     NSParameterAssert(data);
     // 文件名
     NSString *filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString: extensionName];
     // request
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:data name:@"file" fileName:filename mimeType:mimeType];
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:@{@"picNum":@"1"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"pic1" fileName:filename mimeType:mimeType];
     } error:nil];
     // 会话配置
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -146,6 +144,10 @@
     // 上传task
     NSURLSessionUploadTask *uploadTask = [mgr uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
+            NSMutableArray *picList = responseObject[@"picList"];
+            if (picList != nil) {
+                imagePickerView.uploadUrl = [picList firstObject];
+            }
             // 修改uploadState
             self.uploadState = HNAAutoUploadImagePickerUploadStateCompleted;
             // 更新UI
@@ -172,7 +174,7 @@
     if ([keyPath isEqualToString:ProgressKeyPath]) {
         double fractionCompleted = [change[NSKeyValueChangeNewKey] doubleValue];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [NSThread sleepForTimeInterval:0.02];
+            [NSThread sleepForTimeInterval:0.02f];
             self.progressView.progress = fractionCompleted;
         });
     }

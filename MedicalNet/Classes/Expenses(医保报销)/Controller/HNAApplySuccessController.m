@@ -11,6 +11,10 @@
 #import "HNAGetInsuranceCompanyResult.h"
 
 @interface HNAApplySuccessController()
+
+@property (weak, nonatomic) IBOutlet UIImageView *topBgImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *middleBgImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *insuranceComNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;

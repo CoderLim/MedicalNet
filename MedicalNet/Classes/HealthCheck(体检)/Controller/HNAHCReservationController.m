@@ -200,12 +200,12 @@
     if (indexPath.row <= NumberOfDefaultInstitutionDisplay) {
         return;
     }
-    CGRect frame = cell.frame;
-    CGRect fromFrame = frame;
-    fromFrame.origin.x = -frame.size.width;
+    CGRect toframe = cell.frame;
+    CGRect fromFrame = toframe;
+    fromFrame.origin.x = -toframe.size.width;
     cell.frame = fromFrame;
     [UIView animateWithDuration:0.5f animations:^{
-        cell.frame = frame;
+        cell.frame = toframe;
     }];
 }
 

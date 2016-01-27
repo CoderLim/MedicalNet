@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "50placeholder.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "expense_success_bg_320@2x.png",
       "scale" : "2x"
     },
     {

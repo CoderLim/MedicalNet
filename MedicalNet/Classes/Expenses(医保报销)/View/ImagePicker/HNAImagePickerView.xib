@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
@@ -17,15 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYz-Hx-hec">
-                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
-                    <animations/>
-                    <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="移除"/>
-                    <connections>
-                        <action selector="removeBtnClicked:" destination="-1" eventType="touchUpInside" id="jaJ-zW-MKw"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Ik-VMs">
                     <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
                     <animations/>
@@ -36,6 +27,15 @@
                     </state>
                     <connections>
                         <action selector="pickerBtnClicked:" destination="-1" eventType="touchUpInside" id="BJ4-eE-YUA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYz-Hx-hec">
+                    <rect key="frame" x="0.0" y="0.0" width="159" height="155"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="移除"/>
+                    <connections>
+                        <action selector="removeBtnClicked:" destination="-1" eventType="touchUpInside" id="jaJ-zW-MKw"/>
                     </connections>
                 </button>
             </subviews>
