@@ -25,6 +25,10 @@
     [super viewDidLoad];
     
     self.title = @"申请成功";
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/master
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self loadInsuranceCompnayData];

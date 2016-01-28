@@ -32,6 +32,7 @@
 
 @interface HNASettingController() <MJRefreshBaseViewDelegate>
 @property (nonatomic, strong) NSMutableArray *data;
+@property (weak, nonatomic) IBOutlet HNASettingHeaderView *tableViewHeader;
 @property (nonatomic, weak) MJRefreshHeaderView *header;
 @end
 
