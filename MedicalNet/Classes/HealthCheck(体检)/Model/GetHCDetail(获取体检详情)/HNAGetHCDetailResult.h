@@ -59,9 +59,7 @@
 @property (nonatomic, assign) BOOL isSelected;
 @end
 
-/**
- *  预约
- */
+// 预约
 @interface HNAHCAppointment : NSObject
 /**
  *  预约时间

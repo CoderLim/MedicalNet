@@ -15,4 +15,9 @@
     return [self.text boundingRectWithSize: size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : self.font} context:nil].size.height;
 }
 
+- (CGSize)textSize {
+    CGSize size = CGSizeMake(self.frame.size.width, INFINITY);
+    return [self.text boundingRectWithSize: size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : self.font} context:nil].size;
+}
+
 @end

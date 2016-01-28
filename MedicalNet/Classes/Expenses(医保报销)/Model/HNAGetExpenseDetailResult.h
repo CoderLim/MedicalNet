@@ -56,24 +56,19 @@
 /**
  *  身份证扫描件
  */
-@property (nonatomic,copy) NSString *IDcard_1;
-@property (nonatomic,copy) NSString *IDcard_2;
+@property (nonatomic,strong) NSMutableArray *IDcard;
 /**
  *  医保卡扫描件
  */
-@property (nonatomic,copy) NSString *medicalCard_1;
-@property (nonatomic,copy) NSString *medicalCard_2;
+@property (nonatomic,strong) NSMutableArray *medicalCard;
 /**
  *  就诊证明
  */
-@property (nonatomic,copy) NSString *cases_1;
-@property (nonatomic,copy) NSString *cases_2;
+@property (nonatomic,strong) NSMutableArray *cases;
 /**
  *  收费证明
  */
-@property (nonatomic,copy) NSString *charges_1;
-@property (nonatomic,copy) NSString *charges_2;
-
+@property (nonatomic,strong) NSMutableArray *charges;
 /**
  *  状态记录
  */

@@ -155,7 +155,7 @@
         [weakSelf.datePicker layoutIfNeeded];
         
         // 3.缩放原始window
-        _originalKeyWindow.transform = CGAffineTransformMakeScale(0.95f, 0.95f);
+        _originalKeyWindow.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
     } completion:nil];
     
     // 通知代理

@@ -10,7 +10,6 @@
 
 @implementation HNAGetHCDetailResult
 
-
 - (NSDictionary *)objectClassInArray {
     return @{@"statusRecords":[HNAHCStatusRecord class]};
 }

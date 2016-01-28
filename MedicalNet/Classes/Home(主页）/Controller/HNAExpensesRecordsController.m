@@ -12,6 +12,7 @@
 #import "HNAExpensesRecordCell.h"
 #import "HNAGetExpenseRecordsResult.h"
 #import "HNADatePickButton.h"
+#import "HNAExpensesDetailController.h"
 
 #import "HNAInsuranceTool.h"
 #import "HNAGetExpenseRecordsParam.h"
@@ -56,11 +57,6 @@
         _records = [NSMutableArray array];
         //加载本月数据
         [self loadDataWithDate:nil];
-//    // 自定义数据
-//        for (NSInteger i = 0; i < 20; i++) {
-//            HNAExpenseRecordModel *model = [HNAExpenseRecordModel recordeWithAmount:[NSString stringWithFormat:@"%ld",(long)i] date:@"date" state:@"state"];
-//            [self.records addObject:model];
-//        }
     }
     return _records;
 }
@@ -68,16 +64,15 @@
  *  加载指定日期的数据
  */
 - (void)loadDataWithDate:(NSDate *)date{
-    [MBProgressHUD showMessage:@"正在加载..."];
+    [MBProgressHUD showMessage: MessageWhenLoadingData];
     // 1.参数
     HNAGetExpenseRecordsParam *param = [HNAGetExpenseRecordsParam param];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wgnu"
-    date = date?:[NSDate date];
-#pragma clang diagnostic pop
-    NSDateComponents *components = [date components];
-    param.year = components.year;
-    param.month = components.month;
+    
+    if (date!=nil) {
+        NSDateComponents *components = [date components];
+        param.year = components.year;
+        param.month = components.month;
+    }
     
     // 2.请求数据
     WEAKSELF(weakSelf);
@@ -118,7 +113,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:ExpenseRecord2RecordDetailSegue sender:nil];
+    HNAExpenseRecordModel *model = self.records[indexPath.row];
+    [self performSegueWithIdentifier:ExpenseRecord2RecordDetailSegue sender:model];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -126,5 +122,11 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
+}
+
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    HNAExpensesDetailController *destVc = segue.destinationViewController;
+    destVc.recordId = ((HNAExpenseRecordModel *)sender).id;
 }
 @end

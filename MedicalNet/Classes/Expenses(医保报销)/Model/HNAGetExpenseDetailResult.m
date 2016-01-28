@@ -9,10 +9,13 @@
 #import "HNAGetExpenseDetailResult.h"
 
 @implementation HNAGetExpenseDetailResult
+
 @end
 
 @implementation HNAExpenseDetailModel
-
+- (NSDictionary *)objectClassInArray {
+    return @{@"statusRecords":[HNAExpenseDetailStatusRecord class]};
+}
 @end
 
 @implementation HNAExpenseDetailStatusRecord

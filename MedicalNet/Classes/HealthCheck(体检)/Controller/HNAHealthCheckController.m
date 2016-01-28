@@ -71,11 +71,6 @@
 - (NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
-        // 添加记录
-        for (NSInteger i = 0; i < 3; i++) {
-            HNAHealthCheckRecordModel *model = [HNAHealthCheckRecordModel healthCheckRecordWithName:@"白领套餐" state:@"已完成" date:@"2015-11－1"];
-            [_records addObject:model];
-        }
     }
     return _records;
 }
@@ -102,7 +97,6 @@
         }
         [self.header endRefreshing];
     } failure:^(NSError *error) {
-        HNALog(@"%@",error);
         [self.header endRefreshing];
         [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
     }];

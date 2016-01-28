@@ -144,7 +144,7 @@
     WEAKSELF(weakSelf);
     [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId success:^(HNAGetExpenseDirectionResult *result) {
         [MBProgressHUD hideHUD];
-        if (result.expenseDirection != nil) {
+        if (result.success==HNARequestResultSUCCESS && result.expenseDirection!=nil) {
             HNAExpenseDirectionModel *direction = result.expenseDirection;
             weakSelf.projectArray = direction.securityPrograms;
             weakSelf.hospitalArray = direction.hospitals;
@@ -168,7 +168,7 @@
 - (void)loadInsuranceCompanyData {
     [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
         [MBProgressHUD hideHUD];
-        if (result.success == HNARequestResultSUCCESS) {
+        if (result.success==HNARequestResultSUCCESS && result.insuranceCompany.insuranceCompanyId!=nil) {
             HNAInsuranceCompanyModel *insuranceCompany = result.insuranceCompany;
             self.insuranceComNameLabel.text = insuranceCompany.name;
             self.insuranceComAddrLabel.text = insuranceCompany.addr;
@@ -188,7 +188,7 @@
         return self.projectArray.count;
     } else if (tableView == self.hospitalTableView) {
         if (_showMoreHospital == NO) {
-            return MIN(3,self.hospitalArray.count);
+            return MIN(DefaultHospitalCount,self.hospitalArray.count);
         }
         return self.hospitalArray.count;
     }
@@ -249,6 +249,13 @@
 // 可报销医院－查看更多
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
     _showMoreHospital = !_showMoreHospital;
+    
+    NSString *title = @"查看更多";
+    if (_showMoreHospital) {
+        title = @"收起";
+    }
+    [sender setTitle:title forState:UIControlStateNormal];
+    
     [self.hospitalTableView reloadData];
 }
 - (IBAction)submitButtonClicked:(UIButton *)sender {

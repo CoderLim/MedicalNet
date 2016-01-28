@@ -33,8 +33,10 @@
     
     [HNAHttpTool getWithURL:urlStr params:@{@"companyId":companyId} success:^(id json) {
         if (success) {
-            HNAGetExpenseDirectionResult *result = [[HNAGetExpenseDirectionResult alloc] init];
-            result.expenseDirection = [HNAExpenseDirectionModel objectWithKeyValues:json];
+            HNAGetExpenseDirectionResult *result = [HNAGetExpenseDirectionResult objectWithKeyValues:json];
+            if (result.success == HNARequestResultSUCCESS) {
+                result.expenseDirection = [HNAExpenseDirectionModel objectWithKeyValues:json];
+            }
             success(result);
         }
     } failure:^(NSError *error) {
@@ -176,6 +178,9 @@
     [HNAHttpTool getWithURL:urlStr params:@{@"id" : recordId} success:^(id json) {
         if (success) {
             HNAGetExpenseDetailResult *result = [HNAGetExpenseDetailResult objectWithKeyValues:json];
+            if (result.success == HNARequestResultSUCCESS) {
+                result.expenseDetail = [HNAExpenseDetailModel objectWithKeyValues:json];
+            }
             success(result);
         }
     } failure:^(NSError *error) {
@@ -197,6 +202,9 @@
     [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":@(insurancecompanyId)} success:^(id json) {
         if (success) {
             HNAGetInsuranceCompanyResult *result = [HNAGetInsuranceCompanyResult objectWithKeyValues:json];
+            if (result.success == HNARequestResultSUCCESS) {
+                result.insuranceCompany = [HNAInsuranceCompanyModel objectWithKeyValues:json];
+            }
             success(result);
         }
     } failure:^(NSError *error) {

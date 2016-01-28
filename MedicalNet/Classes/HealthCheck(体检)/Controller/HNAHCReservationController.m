@@ -238,13 +238,6 @@
     return YES;
 }
 /**
- *  选择日期
- */
-- (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date {
-//    HNALog(@"%s", __FUNCTION__);
-//    self.selectedDate = [date stringWithFormat:@"yyyy-MM-dd"];
-}
-/**
  *  配置
  */
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
@@ -278,11 +271,11 @@
     [HNAHealthCheckTool reserveHCWithParam:param success:^(HNAReserveHCResult *result) {
         [MBProgressHUD hideHUD];
         if (result != nil) {
-            [MBProgressHUD showSuccess: MessageWhenSuccess];
+            [MBProgressHUD showSuccess: @"申请成功"];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: @"申请失败"];
     }];
 }
 
@@ -293,9 +286,9 @@
         packageVc.type = HNAHCPackageDetailControllerChoose;
         packageVc.packageId = [sender integerValue];
         packageVc.selectBlock = ^(NSInteger packageId){
-            [self.packageScrollView selectWithPackageId:packageId];
+            [self.packageScrollView selectWithPackageId: packageId];
             // 加载套餐对应的体检机构
-            [self loadInstitutionsWithPackageId:packageId];
+            [self loadInstitutionsWithPackageId: packageId];
         };
     }
 }

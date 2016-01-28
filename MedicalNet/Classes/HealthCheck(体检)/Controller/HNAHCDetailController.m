@@ -100,12 +100,13 @@
     WEAKSELF(weakSelf);
     [HNAHealthCheckTool getHCDetailWithParam:param success:^(HNAGetHCDetailResult *result) {
         [MBProgressHUD hideHUD];
-        if (result != nil) {
-//            weakSelf.statusRecords = result.statusRecords;
+        if (result.success==HNARequestResultSUCCESS) {
             weakSelf.appointment = result.appointment;
             weakSelf.alertMessage = result.alertMessage;
             weakSelf.packageId = result.packageId;
             weakSelf.packageNameLabel.text = result.name;
+            
+            weakSelf.statusRecords = result.statusRecords;
             [self.tableView reloadData];
             [MBProgressHUD showSuccess:MessageWhenSuccess];
         }
@@ -165,7 +166,7 @@
 
 #pragma mark - segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:HCDetail2PackageDetailSegue]) {
+    if ([segue.identifier isEqualToString: HCDetail2PackageDetailSegue]) {
         HNAHCPackageDetailController *packageDetailVc = segue.destinationViewController;
         packageDetailVc.packageId = self.packageId;
     }

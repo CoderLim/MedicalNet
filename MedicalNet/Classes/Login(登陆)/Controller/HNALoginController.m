@@ -82,8 +82,6 @@
         if (result.success == HNARequestResultSUCCESS) {
             HNATabBarController *tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
             KeyWindow.rootViewController = tabBarController;
-
-//            KeyWindow.rootViewController = [[HNATabBarController alloc] init];
             
             CATransition *ca = [CATransition animation];
             // 设置过度效果
@@ -100,6 +98,7 @@
             [weakSelf.loginView shakeWithAmplitude:20];
         }
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }

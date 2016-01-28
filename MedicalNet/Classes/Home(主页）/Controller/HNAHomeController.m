@@ -185,15 +185,14 @@
         if (result == nil || result.records.count < 1) {
             self.hasRecordsView.hidden = YES;
         } else {
-            [self.records addObjectsFromArray: result.records];
+            self.records = result.records;
             [self.recordsTableView reloadData];
             self.hasRecordsView.hidden = NO;
         }
-        self.hasRecordsView.hidden = NO;
     } failure:^(NSError *error) {
-        self.hasRecordsView.hidden = NO;
+        self.hasRecordsView.hidden = YES;
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:@"加载医保报销记录失败"];
+        [MBProgressHUD showError:@"加载报销记录失败"];
     }];
 }
 
@@ -226,7 +225,6 @@
 - (IBAction)applyExpenseButtonClicked:(UIButton *)sender {
     [self performSegueWithIdentifier:Home2ApplyExpenseSegue sender:nil];
 }
-
 /**
  *  医保报销说明按钮点击事件
  */
@@ -260,7 +258,6 @@
  *  商业医保报销纪录 按钮点击事件
  */
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender {
-    HNALog(@"%ld", (long)self.navigationController.childViewControllers.count);
     [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
 }
 

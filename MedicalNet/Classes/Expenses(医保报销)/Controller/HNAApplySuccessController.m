@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"申请成功";
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self loadInsuranceCompnayData];
@@ -37,7 +38,7 @@
     
     [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
         [MBProgressHUD hideHUD];
-        if (result.success == HNARequestResultSUCCESS) {
+        if (result.success == HNARequestResultSUCCESS && result.insuranceCompany.insuranceCompanyId!=nil) {
             HNAInsuranceCompanyModel *insuranceCompany = result.insuranceCompany;
             self.insuranceComNameLabel.text = insuranceCompany.name;
             self.addrLabel.text = insuranceCompany.addr;

@@ -16,11 +16,11 @@
 + (void)postWithURL:(NSString *)url params:(NSDictionary *)params toDisk:(BOOL)toDisk success:(void (^)(id))success failure:(void (^)(NSError *))failure{
     
     // 1、先看是否本地有缓存
-    NSDictionary *diskCache = [[LMLocalCache sharedLocalCache] dictFromDiskCacheForUrl:url andParams:params];
-    if (diskCache && success) {
-        success(diskCache);
-        return;
-    }
+//    NSDictionary *diskCache = [[LMLocalCache sharedLocalCache] dictFromDiskCacheForUrl:url andParams:params];
+//    if (diskCache && success) {
+//        success(diskCache);
+//        return;
+//    }
     
     // 2、没有本地缓存，请求网络数据
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
