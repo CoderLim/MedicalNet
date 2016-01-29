@@ -3899,11 +3899,9 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5n-ov-fIe" customClass="HNAPortraitButton">
                                     <rect key="frame" x="120" y="10" width="80" height="80"/>
                                     <animations/>
-<<<<<<< HEAD
+
                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-=======
-                                    <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
->>>>>>> origin/master
+
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="SKu-Cb-1cj"/>
                                         <constraint firstAttribute="width" secondItem="u5n-ov-fIe" secondAttribute="height" multiplier="1:1" id="vGc-eq-fRT"/>
@@ -4024,10 +4022,8 @@
         <segue reference="eVm-bT-buS"/>
         <segue reference="Lwj-RF-nod"/>
         <segue reference="pKF-3Z-Vt3"/>
-<<<<<<< HEAD
         <segue reference="Lwj-RF-nod"/>
         <segue reference="wzd-N8-71k"/>
-=======
->>>>>>> origin/master
+
     </inferredMetricsTieBreakers>
 </document>

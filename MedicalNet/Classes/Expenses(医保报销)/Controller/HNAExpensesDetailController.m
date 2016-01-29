@@ -55,22 +55,6 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpenseDetailCell" bundle:nil] forCellReuseIdentifier:@"HNAExpenseDetailCell"];
 }
-<<<<<<< HEAD
-=======
-//- (void)tapImageView:(UITapGestureRecognizer *)tap{
-//    NSMutableArray *photoArray = [NSMutableArray array];
-//    for (UIImageView *imageView in self.imageViews) {
-//        MJPhoto *photo = [[MJPhoto alloc] init];
-//        photo.url =[NSURL URLWithString: @"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/topnav/music.png?v=md5"];
-//        photo.srcImageView = imageView;
-//        [photoArray addObject:photo];
-//    }
-//    MJPhotoBrowser *photoBrowser = [[MJPhotoBrowser alloc] init];
-//    photoBrowser.photos = photoArray;
-//    photoBrowser.currentPhotoIndex = tap.view.tag;
-//    [photoBrowser show];
-//}
->>>>>>> origin/master
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
