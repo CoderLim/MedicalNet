@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YXA-Mv-rIJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -506,7 +506,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Kg7-0K-rbb">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DJa-ig-pEj" customClass="HNATabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" id="DJa-ig-pEj" customClass="HNATabBarController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="wli-FZ-iCa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1497,7 +1497,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZn-nd-FTg">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZn-nd-FTg">
                                 <rect key="frame" x="266" y="430" width="34" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Back"/>
@@ -1505,7 +1505,7 @@
                                     <action selector="back:" destination="ctL-zg-P59" eventType="touchUpInside" id="Mef-zo-Hrb"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-rQ-pk0">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nVD-rQ-pk0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <animations/>
                             </mapView>
@@ -1529,7 +1529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmF-qu-3hH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2849" y="2908"/>
+            <point key="canvasLocation" x="3464" y="1053"/>
         </scene>
         <!--体检－报告-->
         <scene sceneID="AFp-e3-8WR">
@@ -2134,6 +2134,7 @@
                         <outlet property="tableView" destination="jf6-Vn-aqN" id="dpn-sg-nlQ"/>
                         <outlet property="tableView_H" destination="J92-7W-qg0" id="2dJ-h2-7Qk"/>
                         <segue destination="yy4-hJ-Vo7" kind="show" identifier="hcReserve2hcPackage" id="wzd-N8-71k"/>
+                        <segue destination="ctL-zg-P59" kind="show" identifier="reserve2map" id="ALW-vg-aLt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCD-4z-qiO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2996,7 +2997,7 @@
                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-80-OQk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="927.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDi-7y-8sV" userLabel="基本信息">
@@ -3164,7 +3165,7 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYn-oT-Yxw">
                                                 <rect key="frame" x="10" y="238" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3183,7 +3184,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvK-QF-Hct">
                                                 <rect key="frame" x="10" y="379" width="300" height="41"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3202,7 +3203,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-Dg-mMs">
                                                 <rect key="frame" x="10" y="515" width="300" height="61"/>
                                                 <animations/>
                                                 <constraints>
@@ -3229,7 +3230,7 @@
                                                     </mask>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-PL-hCL">
                                                 <rect key="frame" x="10" y="670.5" width="300" height="81.5"/>
                                                 <animations/>
                                                 <attributedString key="attributedText">
@@ -3254,7 +3255,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-if-lEX">
                                                 <rect key="frame" x="30" y="857.5" width="260" height="40"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3273,7 +3274,7 @@
                                                     <action selector="submit:" destination="yrz-Bp-wGj" eventType="touchUpInside" id="BMm-8f-4Gg"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="289" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3284,7 +3285,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="ofT-xb-zfc"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="425" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3300,7 +3301,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="qwd-fM-ghz"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69q-UN-6ZJ" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="580.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3317,7 +3318,7 @@
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="23h-1t-BZn"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR5-QT-C9V" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="757.5" width="300" height="80"/>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -3832,13 +3833,21 @@
                             <constraint firstAttribute="trailing" secondItem="Oj2-SU-cEj" secondAttribute="trailing" id="97X-As-vGx"/>
                             <constraint firstItem="sZu-4S-42g" firstAttribute="leading" secondItem="7qK-3e-LbV" secondAttribute="leading" id="AAZ-xU-Gsu"/>
                             <constraint firstItem="cnN-X1-Tgp" firstAttribute="top" secondItem="7qK-3e-LbV" secondAttribute="top" constant="214" id="SeH-9z-JhJ"/>
+                            <constraint firstItem="Oj2-SU-cEj" firstAttribute="top" secondItem="sZu-4S-42g" secondAttribute="bottom" id="UaP-lJ-Bs8"/>
                             <constraint firstItem="sZu-4S-42g" firstAttribute="top" secondItem="l9T-de-Wqu" secondAttribute="bottom" id="ZQ7-mO-eyW"/>
                             <constraint firstItem="cnN-X1-Tgp" firstAttribute="leading" secondItem="7qK-3e-LbV" secondAttribute="leading" id="a9G-dy-v8B"/>
+                            <constraint firstItem="cnN-X1-Tgp" firstAttribute="top" secondItem="sZu-4S-42g" secondAttribute="bottom" constant="30" id="s9e-Sn-vPg"/>
                             <constraint firstItem="Oj2-SU-cEj" firstAttribute="leading" secondItem="7qK-3e-LbV" secondAttribute="leading" id="w3q-aP-gSu"/>
                             <constraint firstItem="Oj2-SU-cEj" firstAttribute="top" secondItem="7qK-3e-LbV" secondAttribute="top" constant="184" id="woT-SJ-n9k"/>
                             <constraint firstAttribute="trailing" secondItem="sZu-4S-42g" secondAttribute="trailing" id="y2e-DH-i0a"/>
                             <constraint firstAttribute="trailing" secondItem="cnN-X1-Tgp" secondAttribute="trailing" id="yEd-ls-YZk"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="woT-SJ-n9k"/>
+                                <exclude reference="SeH-9z-JhJ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="mlV-8I-axO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -3847,6 +3856,7 @@
                         <outlet property="HasRecordsViewConstraint_Top" destination="SeH-9z-JhJ" id="2NB-cQ-1mI"/>
                         <outlet property="NoRecordsViewConstraint_Top" destination="woT-SJ-n9k" id="XdM-Se-OXf"/>
                         <outlet property="applyExpenseButton" destination="sZu-4S-42g" id="aBE-u2-0IF"/>
+                        <outlet property="applyExpenseButton_H" destination="tzr-I8-jkA" id="MhM-ua-XaL"/>
                         <outlet property="directionButton" destination="Md0-Gs-7Gy" id="OBp-T9-GdR"/>
                         <outlet property="expenseRecordsButton" destination="l5n-ZH-qPk" id="gCn-Qz-hvm"/>
                         <outlet property="hasRecordsView" destination="cnN-X1-Tgp" id="ulj-R2-fh5"/>
@@ -3899,9 +3909,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5n-ov-fIe" customClass="HNAPortraitButton">
                                     <rect key="frame" x="120" y="10" width="80" height="80"/>
                                     <animations/>
-
                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-
                                     <constraints>
                                         <constraint firstAttribute="width" constant="80" id="SKu-Cb-1cj"/>
                                         <constraint firstAttribute="width" secondItem="u5n-ov-fIe" secondAttribute="height" multiplier="1:1" id="vGc-eq-fRT"/>
@@ -4019,11 +4027,8 @@
         <image name="tab_setting" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eVm-bT-buS"/>
-        <segue reference="Lwj-RF-nod"/>
         <segue reference="pKF-3Z-Vt3"/>
-        <segue reference="Lwj-RF-nod"/>
         <segue reference="wzd-N8-71k"/>
-
+        <segue reference="cc8-ne-zC3"/>
     </inferredMetricsTieBreakers>
 </document>

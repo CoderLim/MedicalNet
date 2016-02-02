@@ -134,7 +134,7 @@
 // 设置消息提醒
 + (void)setMsgNoticeWithParam:(HNASetMsgNoticeParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure{
     // 地址
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/MsgNotice", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/setMsgNotice", RequestUrlDomain];
     // 请求
     NSLog(@"%@",param.keyValues);
     [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:NO success:^(id json) {

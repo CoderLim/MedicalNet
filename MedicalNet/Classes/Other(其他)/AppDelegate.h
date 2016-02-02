@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HNATabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
-
+@property (strong, nonatomic) HNATabBarController *tabBarController;
 @end
 

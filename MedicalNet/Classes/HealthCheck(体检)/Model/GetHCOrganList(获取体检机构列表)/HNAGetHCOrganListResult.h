@@ -15,7 +15,7 @@
 
 @interface HNAGetHCOrganListResult : HNAResult
 @property (nonatomic,copy) NSString *packageId;
-@property(nonatomic,strong) NSMutableArray<HNAHCOrgan *> *organs;
+@property(nonatomic,strong) NSMutableArray<HNAHCOrgan *> *organList;
 @end
 
 

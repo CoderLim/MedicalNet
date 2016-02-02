@@ -19,6 +19,7 @@
 #import "HNAImagePickersScrollView.h"
 
 #import "HNATabBarController.h"
+#import "AppDelegate.h"
 
 #import "HNAHttpTool.h"
 
@@ -79,8 +80,10 @@
     WEAKSELF(weakSelf);
     [HNALoginTool loginWithParam:param success:^(HNALoginInfoResult *result) {
         [MBProgressHUD hideHUD];
-        if (result.success == HNARequestResultSUCCESS) {
-            HNATabBarController *tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+        if (result.success==HNARequestResultSUCCESS) {
+            // 如果用下面这句会出现内存泄漏，没搞明白为什么
+//            HNATabBarController * tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+            HNATabBarController *tabBarController = ((AppDelegate *)SharedApplication.delegate).tabBarController;
             KeyWindow.rootViewController = tabBarController;
             
             CATransition *ca = [CATransition animation];

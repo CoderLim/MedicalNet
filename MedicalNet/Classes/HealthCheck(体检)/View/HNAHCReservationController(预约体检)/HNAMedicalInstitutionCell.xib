@@ -34,6 +34,9 @@
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="北京市朝阳区安立路马克波罗28号"/>
+                        <connections>
+                            <action selector="addrButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AbS-BZ-GXR"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyO-sS-PTo">
                         <rect key="frame" x="35" y="45" width="133" height="19"/>

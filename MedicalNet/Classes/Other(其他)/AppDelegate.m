@@ -17,10 +17,16 @@
 #define AppKey @"IS9W73XQJ51J"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
+
+- (HNATabBarController *)tabBarController {
+    if (_tabBarController == nil) {
+        _tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+    }
+    return _tabBarController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     

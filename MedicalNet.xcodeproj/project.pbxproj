@@ -37,7 +37,6 @@
 		9F3BDFA51C17C9C9001D8A6B /* HNAProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BDFA41C17C9C9001D8A6B /* HNAProjectCell.m */; };
 		9F3E56F81C2106DA00AA47C3 /* HNAHCReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3E56F71C2106DA00AA47C3 /* HNAHCReportController.m */; };
 		9F44FDED1C59A4E000A530A3 /* HNARightArrowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F44FDEC1C59A4E000A530A3 /* HNARightArrowButton.m */; };
-		9F61B2481C322F480068F417 /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489351BFEB86D0031DE48 /* MBProgressHUD.h */; };
 		9F61B2491C322F6E0068F417 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB489361BFEB86D0031DE48 /* MBProgressHUD.m */; };
 		9F6A4FA31C57019B004D43CA /* HNAApplyExpenseParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A4F9A1C57019B004D43CA /* HNAApplyExpenseParam.m */; };
 		9F6A4FA41C57019B004D43CA /* HNAGetExpenseDirectionResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6A4F9D1C57019B004D43CA /* HNAGetExpenseDirectionResult.m */; };
@@ -68,7 +67,6 @@
 		9F79A77B1C50D39700487F48 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79A77A1C50D39700487F48 /* libsqlite3.tbd */; };
 		9F87210C1C51D5DF00D443A0 /* LMLocalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F87210B1C51D5DF00D443A0 /* LMLocalCache.m */; };
 		9F8723381C0C31C300DA68FE /* HNAChangeBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8723371C0C31C300DA68FE /* HNAChangeBaseController.m */; };
-		9F87233B1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F87233A1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m */; };
 		9F8723411C0C402100DA68FE /* HNAHCPackageDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8723401C0C402100DA68FE /* HNAHCPackageDetailController.m */; };
 		9F8723441C0C42C300DA68FE /* HNAHCReservationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8723431C0C42C300DA68FE /* HNAHCReservationController.m */; };
 		9F8C0A011C18005C0084EAD9 /* HNALoginTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C0A001C18005C0084EAD9 /* HNALoginTool.m */; };
@@ -318,8 +316,6 @@
 		9F87210B1C51D5DF00D443A0 /* LMLocalCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLocalCache.m; sourceTree = "<group>"; };
 		9F8723361C0C31C300DA68FE /* HNAChangeBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAChangeBaseController.h; sourceTree = "<group>"; };
 		9F8723371C0C31C300DA68FE /* HNAChangeBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAChangeBaseController.m; sourceTree = "<group>"; };
-		9F8723391C0C3A4E00DA68FE /* HNAHealthCheckDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHealthCheckDetailController.h; sourceTree = "<group>"; };
-		9F87233A1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHealthCheckDetailController.m; sourceTree = "<group>"; };
 		9F87233F1C0C402100DA68FE /* HNAHCPackageDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCPackageDetailController.h; sourceTree = "<group>"; };
 		9F8723401C0C402100DA68FE /* HNAHCPackageDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCPackageDetailController.m; sourceTree = "<group>"; };
 		9F8723421C0C42C300DA68FE /* HNAHCReservationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCReservationController.h; sourceTree = "<group>"; };
@@ -802,8 +798,6 @@
 				9F3E56F71C2106DA00AA47C3 /* HNAHCReportController.m */,
 				9FC33EAD1C1E995D004D4139 /* HNAMapController.h */,
 				9FC33EAE1C1E995D004D4139 /* HNAMapController.m */,
-				9F8723391C0C3A4E00DA68FE /* HNAHealthCheckDetailController.h */,
-				9F87233A1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1636,14 +1630,12 @@
 				9F6A4FA41C57019B004D43CA /* HNAGetExpenseDirectionResult.m in Sources */,
 				9F11A2FF1C526D9C00F81417 /* UIImage+GIF.m in Sources */,
 				9F61B2491C322F6E0068F417 /* MBProgressHUD.m in Sources */,
-				9F61B2481C322F480068F417 /* MBProgressHUD.h in Sources */,
 				9FC33EA61C1E97D2004D4139 /* HNAGetPackageDetailParam.m in Sources */,
 				9FB4898D1BFEB86D0031DE48 /* MJRefreshHeaderView.m in Sources */,
 				9FB489831BFEB86D0031DE48 /* MJMethod.m in Sources */,
 				9FC7C7301BFD85E9007E2C49 /* HNASettingHeaderView.m in Sources */,
 				9FC7C72D1BFD7746007E2C49 /* HNASettingCell.m in Sources */,
 				9F734C651BFEC72E00434B90 /* HNAChangePortraitController.m in Sources */,
-				9F87233B1C0C3A4E00DA68FE /* HNAHealthCheckDetailController.m in Sources */,
 				9F38736C1BFEF405002AB971 /* HNASettingExecuteItem.m in Sources */,
 				9FB767821C52022B004E3E6D /* HNAImagePickersScrollView.m in Sources */,
 				9FB4898A1BFEB86D0031DE48 /* MJRefreshBaseView.m in Sources */,

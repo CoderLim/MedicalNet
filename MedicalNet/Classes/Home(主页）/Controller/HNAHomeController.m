@@ -39,7 +39,10 @@
  *  有记录view的top约束
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hasRecordsViewConstraint_Top;
-
+/**
+ *  申请报销按钮的height约束
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *applyExpenseButton_H;
 /**
  *  修改密码提示 view
  */
@@ -57,7 +60,6 @@
  */
 @property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
 @property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
-
 /**
  *  申请报销 按钮
  */
@@ -142,11 +144,16 @@
  *  设置申请报销按钮（大图banner）
  */
 - (void)setupBanner {
-    if ([HNAUserTool user].insuranceCompanyId && [HNAUserTool user].insuranceCompanyId >= 0) {
-        [self.applyExpenseButton setBackgroundImage:[UIImage imageWithName:@"home_banner_1"] forState:UIControlStateNormal];
+    UIImage *image = nil;
+    if (![HNAUserTool user].insuranceCompanyId && [HNAUserTool user].insuranceCompanyId >= 0) {
+        image = [UIImage imageWithName:@"home_banner_1"];
     } else {
-        [self.applyExpenseButton setBackgroundImage:[UIImage imageWithName:@"home_banner_2"] forState:UIControlStateNormal];
+        image = [UIImage imageWithName:@"home_banner_2"];
     }
+    // 根据图片大小更改按钮的高度
+    self.applyExpenseButton_H.constant = image.size.height;
+    [self.view layoutIfNeeded];
+    [self.applyExpenseButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 #pragma mark - 响应通知
 /**
@@ -175,7 +182,6 @@
     }
     return _records;
 }
-
 /**
  *  加载报销记录
  */

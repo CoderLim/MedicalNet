@@ -14,6 +14,7 @@
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 #import "MBProgressHUD+MJ.h"
+#import "HNAResult.h"
 
 
 @interface HNASettingCell()
@@ -75,7 +76,12 @@
 
     // 3.请求地址
     [HNAUserTool setMsgNoticeWithParam:param success:^(HNAResult *result) {
-        [MBProgressHUD showSuccess:@"修改成功"];
+        if (result.success==HNARequestResultSUCCESS) {
+            [MBProgressHUD showSuccess:@"修改成功"];
+        } else {
+            [MBProgressHUD showError:@"修改失败了"];
+        }
+        
     } failure:^(NSError *error) {
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];

@@ -10,7 +10,6 @@
 
 #import "HNAHealthCheckController.h"
 #import "HNAHealthCheckRecordModel.h"
-#import "HNAHealthCheckDetailController.h"
 #import "HNAHCDetailController.h"
 #import "HNAHCReservationController.h"
 #import "HNAHealthCheckRecordCell.h"
@@ -59,9 +58,20 @@
     [super viewDidLoad];
     
     self.title = @"体检";
+    
+    // 设置tableView
+    [self setupTableView];
+    
+    // 设置刷新控件
+    [self setupRefreshView];
+}
+
+- (void)setupTableView {
     // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHealthCheckRecordCell" bundle:nil] forCellReuseIdentifier:@"HealthCheckRecordCell"];
-    
+}
+
+- (void)setupRefreshView {
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
     header.scrollView = self.tableView;
     header.delegate = self;
@@ -74,9 +84,11 @@
     }
     return _records;
 }
-
+/**
+ *  加载数据
+ */
 - (void)loadData {
-    // 参数
+    // 拼参数
     HNAGetHCRecordsParam *param = [HNAGetHCRecordsParam param];
     if (self.selectedDate != nil) {
         NSDateComponents *components = [self.selectedDate components];
@@ -104,8 +116,6 @@
 #pragma mark - datePickButton代理
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
     if (date != nil) {
-//        NSDateComponents *components = [date components];
-//        [self loadDataWithYear:components.year month:components.month];
         self.selectedDate = date;
     }
 }

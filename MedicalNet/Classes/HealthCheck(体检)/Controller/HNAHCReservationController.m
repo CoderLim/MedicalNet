@@ -159,24 +159,21 @@
     HNAGetHCOrganListParam *param = [[HNAGetHCOrganListParam alloc] init];
     param.packageId = packageId;
     [HNAHealthCheckTool getHCOrganListWithParam:param success:^(HNAGetHCOrganListResult *result) {
-        if (result.organs != nil) {
-            self.medicalInstitutions = result.organs;
-        }
-        [self.medicalInstitutions removeAllObjects];
-        for (NSInteger i=0; i<5; i++) {
-            HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
-            organ.id = [NSString stringWithFormat:@"%ld",(long)i];
-            organ.name = @"雍和宫医院";
-            organ.addr = @"雍和航行园";
-            organ.openHour = @"2015-10-1 10:30:00";
-            [self.medicalInstitutions addObject:organ];
-        }
-        
-        if (self.medicalInstitutions!=nil && self.medicalInstitutions.count > 0) {
+        if (result.success==HNARequestResultSUCCESS && result.organList != nil) {
+            self.medicalInstitutions = result.organList;
             [self.medicalInstitutions firstObject].checked = YES;
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
+//        [self.medicalInstitutions removeAllObjects];
+//        for (NSInteger i=0; i<5; i++) {
+//            HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
+//            organ.id = [NSString stringWithFormat:@"%ld",(long)i];
+//            organ.name = @"雍和宫医院";
+//            organ.addr = @"雍和航行园";
+//            organ.openHour = @"2015-10-1 10:30:00";
+//            [self.medicalInstitutions addObject:organ];
+//        }
+        } failure:^(NSError *error) {
     }];
 }
 
@@ -302,5 +299,10 @@
 }
 - (void)dealloc {
     [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    HNALog(@"%s", __FUNCTION__);
 }
 @end

@@ -111,7 +111,8 @@
     
     // 退出登录
     HNASettingExecuteItem *logout = [HNASettingExecuteItem itemWithTitle:@"退出登录" option:^{
-        HNANavigationController *loginNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+//        HNANavigationController *loginNav = [MainStoryboard instantiateViewControllerWithIdentifier:@"LoginNav"];
+        HNANavigationController *loginNav = [MainStoryboard instantiateInitialViewController];
         KeyWindow.rootViewController = loginNav;
         
         CATransition *ca = [CATransition animation];

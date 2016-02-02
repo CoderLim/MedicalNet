@@ -161,4 +161,9 @@
     [DefaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [DefaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    HNALog(@"%s", __FUNCTION__);
+}
 @end

@@ -23,4 +23,7 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)dealloc {
+    HNALog(@"tabbarcontroller deallc");
+}
 @end

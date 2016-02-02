@@ -24,7 +24,6 @@
 #import "HNAHCCheckedCell.h"
 #import "HNAHCDetailReminderCell.h"
 #import "HNAHCDetailReservedCell.h"
-
 /**
  *  体检详情 跳转到 套餐详情
  */
@@ -57,7 +56,9 @@
  *  体检套餐id
  */
 @property (nonatomic, assign) NSInteger packageId;
-
+/**
+ *  查看 套餐详情
+ */
 - (IBAction)checkPackageDetail:(UIButton *)sender;
 @end
 @implementation HNAHCDetailController
@@ -67,14 +68,20 @@
     
     self.title = @"体检详情";
     
+    // 设置tableView
+    [self setupTableView];
+    
+    // 加载数据
+    [self loadData];
+}
+
+- (void)setupTableView {
     // tableView注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCCheckedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCCheckedCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReminderCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReminderCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
-    
-    [self loadData];
 }
-
+#pragma mark - 数据
 - (NSMutableArray<HNAHCStatusRecord *> *)statusRecords {
     if (_statusRecords == nil) {
         _statusRecords = [NSMutableArray array];
@@ -90,8 +97,9 @@
     }
     return _statusRecords;
 }
-
-// 加载数据
+/**
+ *  加载数据
+ */
 - (void)loadData{
     [MBProgressHUD showMessage:MessageWhenLoadingData];
     

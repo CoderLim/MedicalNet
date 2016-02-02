@@ -38,6 +38,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    self.title = @"我的地图";
+    
     // 0.提示用户是否允许使用其位置
     if ([self.clmgr respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.clmgr requestWhenInUseAuthorization];

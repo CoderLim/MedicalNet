@@ -12,6 +12,7 @@
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 #import "MBProgressHUD+MJ.h"
+#import "HNAResult.h"
 
 @interface HNAChangePortraitController () <UINavigationControllerDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate>
 - (IBAction)pickImageClick:(UIButton *)sender;
@@ -37,7 +38,11 @@
     // 2.请求地址
     [HNAUserTool changePortraitWithParam:param success:^(HNAResult *result) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showSuccess:@"修改成功"];
+        if (result.success==HNARequestResultSUCCESS) {
+            [MBProgressHUD showSuccess:@"修改成功"];
+        } else {
+            [MBProgressHUD showError:@"修改失败"];
+        }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];

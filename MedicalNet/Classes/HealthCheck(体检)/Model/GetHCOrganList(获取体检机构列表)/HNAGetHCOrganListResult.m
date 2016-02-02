@@ -11,7 +11,7 @@
 @implementation HNAGetHCOrganListResult
 
 - (NSDictionary *)objectClassInArray {
-    return @{@"organs":[HNAHCOrgan class]};
+    return @{@"organList":[HNAHCOrgan class]};
 }
 
 @end

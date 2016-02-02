@@ -8,6 +8,7 @@
 
 #import "HNAMedicalInstitutionCell.h"
 #import "HNAHCReserveOrganTableView.h"
+#import "UIView+HNA.h"
 
 @interface HNAMedicalInstitutionCell()
 @property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *openHourButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
+- (IBAction)addrButtonClicked:(UIButton *)sender;
 - (IBAction)dialButtonClicked:(UIButton *)sender;
 - (IBAction)checkButton:(UIButton *)sender;
 @end
@@ -77,5 +79,8 @@
     NSString *urlStr = [NSString stringWithFormat:@"telprompt://%@", phoneNum];
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication] openURL:url];
+}
+- (IBAction)addrButtonClicked:(UIButton *)sender {
+    [self.viewController performSegueWithIdentifier:@"reserve2map" sender:nil];
 }
 @end
