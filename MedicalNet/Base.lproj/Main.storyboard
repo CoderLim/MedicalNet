@@ -635,13 +635,7 @@
                                     <constraint firstItem="FKA-rS-vKw" firstAttribute="leading" secondItem="bfq-D6-0GZ" secondAttribute="leading" constant="10" id="qbE-Ob-5DR"/>
                                     <constraint firstItem="EuB-hY-NTs" firstAttribute="top" secondItem="4Lk-wT-A4p" secondAttribute="bottom" constant="10" id="rgz-UO-Ky5"/>
                                     <constraint firstItem="AUn-96-ciV" firstAttribute="top" secondItem="i0B-mz-ckk" secondAttribute="bottom" constant="10" id="urQ-XR-ZBg"/>
-                                    <constraint firstItem="AUn-96-ciV" firstAttribute="top" secondItem="i0B-mz-ckk" secondAttribute="bottom" constant="9.5" id="yhg-Cf-2Mn"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="yhg-Cf-2Mn"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
                         <animations/>
@@ -658,8 +652,8 @@
                         <outlet property="cipherTextField" destination="FKA-rS-vKw" id="aF4-1B-8OG"/>
                         <outlet property="loginBtn" destination="4Lk-wT-A4p" id="xYc-ih-DKI"/>
                         <outlet property="loginView" destination="bfq-D6-0GZ" id="Pag-0c-AWW"/>
-                        <outlet property="loginViewLeadingConstraint" destination="nio-cw-Y9c" id="Wrd-ne-8jK"/>
-                        <outlet property="loginViewTrailingConstraint" destination="nZl-e8-a4A" id="pEU-81-Vro"/>
+                        <outlet property="loginView_Leading" destination="nio-cw-Y9c" id="Cjy-SL-vc7"/>
+                        <outlet property="loginView_Trailing" destination="nZl-e8-a4A" id="wT6-4A-4fN"/>
                         <outlet property="phoneTextField" destination="AUn-96-ciV" id="E9c-28-SNp"/>
                     </connections>
                 </viewController>
@@ -2353,8 +2347,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osm-qc-tEO" customClass="HNADatePickButton">
-                                <rect key="frame" x="10" y="42" width="200" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osm-qc-tEO" customClass="HNADatePickButton">
+                                <rect key="frame" x="10" y="84" width="100" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="8XS-TX-WSa"/>
@@ -2376,6 +2370,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="datePickerBtnClicked:" destination="Bql-YV-Ovr" eventType="touchUpInside" id="P2G-GK-ENa"/>
+                                    <outlet property="delegate" destination="Bql-YV-Ovr" id="pop-aQ-4Tr"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ddJ-Ha-c8Q">

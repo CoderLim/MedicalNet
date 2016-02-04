@@ -46,12 +46,11 @@
     
     self.title = @"报销记录";
     
-    self.datePickButton.delegate = self;
-    
     // 注册自定义Cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:RecordCellIdentifier];
 }
 
+#pragma mark - 数据
 -(NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];

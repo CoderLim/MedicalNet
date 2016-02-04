@@ -44,10 +44,8 @@
     self.title = @"设置";
     self.tableView.showsVerticalScrollIndicator = NO;
     
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.delegate = self;
-    self.header = header;
+    // 设置刷新控件
+    [self setupRefreshView];
     
     // 设置cell数据
     [self setupGroup1];
@@ -61,6 +59,15 @@
     [self.header beginRefreshing];
 }
 
+- (void)setupRefreshView {
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.delegate = self;
+    self.header = header;
+
+}
+
+#pragma mark - 数据
 - (NSMutableArray *)data{
     if (_data == nil) {
         _data = [NSMutableArray array];
@@ -68,7 +75,6 @@
     return _data;
 }
 
-#pragma mark - 设置cell数据
 - (void)setupGroup1{
     // 修改头像
     HNASettingArrowItem *changePortrait = [HNASettingArrowItem itemWithTitle:@"修改头像"];
@@ -95,7 +101,6 @@
     group.header = @"消息提醒设置";
     group.items = @[healthCheckupNotification, medicalExpensesNotification];
     [self.data addObject:group];
-    
 }
 
 - (void)setupGroup3{

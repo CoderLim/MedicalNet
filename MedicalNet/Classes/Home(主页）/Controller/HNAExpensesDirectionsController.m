@@ -83,16 +83,11 @@
     
     _showMoreHospital = NO;
     
-    // 根据数据量动态调整tableView的高度约束
-    [self.projectTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
-    [self.hospitalTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    // 设置监听
+    [self setupObserver];
     
-    // 初始化［提交］按钮
-    self.submitButton.layer.cornerRadius = self.submitButton.frame.size.height*0.5;
-    self.submitButton.layer.shadowOffset = CGSizeMake(5, 5);
-    self.submitButton.layer.shadowOpacity = 0.5;
-    self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
+    // 设置提交按钮
+    [self setupSubmitButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -101,8 +96,22 @@
     if (IsEmbededInController(self)) {
         [self.mainScrollView setContentOffset:CGPointZero];
     }
-    
     [self loadData];
+}
+
+- (void)setupObserver {
+    // 根据数据量动态调整tableView的高度约束
+    [self.projectTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+    [self.hospitalTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)setupSubmitButton {
+    // 初始化［提交］按钮
+    self.submitButton.layer.cornerRadius = self.submitButton.frame.size.height*0.5;
+    self.submitButton.layer.shadowOffset = CGSizeMake(5, 5);
+    self.submitButton.layer.shadowOpacity = 0.5;
+    self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
 }
 
 #pragma mark - 数据
@@ -130,7 +139,9 @@
     [self loadDirectionData];
     [self loadInsuranceCompanyData];
 }
-
+/**
+ *  加载 说明
+ */
 - (void)loadDirectionData{
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     // 1.参数
@@ -163,7 +174,7 @@
     }];
 }
 /**
- *  加载保险公司数据
+ *  加载 保险公司数据
  */
 - (void)loadInsuranceCompanyData {
     [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
@@ -203,7 +214,6 @@
     }
     return nil;
 }
-
 /**
  *   保障方案 cell
  */
@@ -227,7 +237,7 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
+    // 当停止拖动后，通知首页跳转
     [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object: nil];
 }
 
@@ -246,7 +256,9 @@
 
     [self.view layoutIfNeeded];
 }
-// 可报销医院－查看更多
+/**
+ *  可报销医院－查看更多
+ */
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
     _showMoreHospital = !_showMoreHospital;
     
@@ -258,6 +270,7 @@
     
     [self.hospitalTableView reloadData];
 }
+
 - (IBAction)submitButtonClicked:(UIButton *)sender {
 }
 
