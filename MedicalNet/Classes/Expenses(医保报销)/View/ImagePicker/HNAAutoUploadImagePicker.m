@@ -29,6 +29,10 @@
  *  进度显示
  */
 @property (nonatomic, weak) HNAImagePickerProgressView *progressView;
+/**
+ *  重传按钮
+ */
+@property (nonatomic, weak) UIButton *reuploadBtn;
 @end
 @implementation HNAAutoUploadImagePicker
 
@@ -48,15 +52,27 @@
 
 - (void)commonInit {
     self.uploadState = HNAAutoUploadImagePickerUploadStateDefault;
+    
     // 添加一个imagePickerView
     HNAImagePickerView *ipv = [HNAImagePickerView imagePicker];
     ipv.delegate = self;
     [self addSubview:ipv];
     self.imagePickerView = ipv;
+    
+    // 添加重传控件
+    UIButton *reuploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [reuploadBtn setTitle:@"重传" forState:UIControlStateNormal];
+    [reuploadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [reuploadBtn setBackgroundColor: UIColorWithRGBA(1.0f, 1.0f, 1.0f, 0.5f)];
+    [reuploadBtn addTarget:self action:@selector(reuploadBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [reuploadBtn setHidden:YES];
+    [self addSubview:reuploadBtn];
+    self.reuploadBtn = reuploadBtn;
 }
 
 - (void)layoutSubviews {
     self.imagePickerView.frame = self.bounds;
+    self.reuploadBtn.frame = self.bounds;
 }
 #pragma mark - 公开属性方法
 - (HNAImagePickerProgressView *)progressView {
@@ -91,6 +107,7 @@
     }
     return YES;
 }
+
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView {
     [self.progressView show];
     [self automaticUpload:imagePickerView];
@@ -111,7 +128,6 @@
  *  自动上传
  */
 - (void)automaticUpload:(HNAImagePickerView *)imagePickerView {
-//    NSString *urlStr = @"http://localhost/upload_file.php";
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/uploadPic", RequestUrlDomain];
     NSString *mimeType = @"image/jpeg";
     NSString *extensionName = @".jpg";
@@ -143,6 +159,8 @@
     NSProgress *progress = nil;
     // 上传task
     NSURLSessionUploadTask *uploadTask = [mgr uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        [self.progressView hide];
+        
         if (!error) {
             NSMutableArray *picList = responseObject[@"picList"];
             if (picList != nil) {
@@ -150,23 +168,23 @@
             }
             // 修改uploadState
             self.uploadState = HNAAutoUploadImagePickerUploadStateCompleted;
-            // 更新UI
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.progressView hide];
-            });
         } else {
             self.uploadState = HNAAutoUploadImagePickerUploadStateFailed;
             // 更新UI
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.progressView hide];
-                [MBProgressHUD showError: [NSString stringWithFormat:@"error: %@", error]];
-            });
+            [self.reuploadBtn setHidden:NO];
+            [MBProgressHUD showError: [NSString stringWithFormat:@"error: %@", error]];
         }
     }];
     self.uploadTask = uploadTask;
     self.progress = progress;
     [progress addObserver:self forKeyPath:ProgressKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [uploadTask resume];
+}
+#pragma mark - 按钮事件
+- (void)reuploadBtnClicked:(UIButton *)button {
+    [button setHidden:YES];
+    
+    [self automaticUpload:self.imagePickerView];
 }
 
 #pragma mark - KVO
