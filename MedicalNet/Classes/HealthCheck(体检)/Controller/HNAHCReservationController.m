@@ -86,7 +86,6 @@
  */
 - (void)setupCalendarView {
     self.calendarView.delegate = self;
-    self.calendarView.backgroundColor = UIColorWithRGB(211.f, 211.f, 211.f);
     
     self.calendarView.locale = [NSLocale currentLocale];
     
@@ -162,18 +161,21 @@
         if (result.success==HNARequestResultSUCCESS && result.organList != nil) {
             self.medicalInstitutions = result.organList;
             [self.medicalInstitutions firstObject].checked = YES;
+            
+            [self.medicalInstitutions removeAllObjects];
+            for (NSInteger i=0; i<2; i++) {
+                HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
+                organ.id = [NSString stringWithFormat:@"%ld",(long)i];
+                organ.name = @"雍和宫医院";
+                organ.addr = @"雍和航行园";
+                organ.openHour = @"2015-10-1 10:30:00";
+                [self.medicalInstitutions addObject:organ];
+            }
+            
+            // 刷新表格
             [self.tableView reloadData];
         }
-//        [self.medicalInstitutions removeAllObjects];
-//        for (NSInteger i=0; i<5; i++) {
-//            HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
-//            organ.id = [NSString stringWithFormat:@"%ld",(long)i];
-//            organ.name = @"雍和宫医院";
-//            organ.addr = @"雍和航行园";
-//            organ.openHour = @"2015-10-1 10:30:00";
-//            [self.medicalInstitutions addObject:organ];
-//        }
-        } failure:^(NSError *error) {
+    } failure:^(NSError *error) {
     }];
 }
 
@@ -194,6 +196,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row <= NumberOfDefaultInstitutionDisplay) {
         return;
     }
@@ -213,6 +216,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }
+
 #pragma mark - HNAHCReservePackageScrollViewDelegate
 - (BOOL)packageScrollView:(HNAHCReservePackageScrollView *)scrollView willClickAtIndex:(NSInteger)index {
     NSString *packageIdStr = [NSString stringWithFormat:@"%ld",[scrollView packageIdAtIndex:index]];
@@ -233,6 +237,12 @@
         }
     }
     return YES;
+}
+/**
+ *  选择日期后
+ */
+- (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date {
+    
 }
 /**
  *  配置

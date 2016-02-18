@@ -15,6 +15,15 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
+/**
+ *
+ *
+ *
+ *  此框架已经被glm修改的面目全非，如果需要请到网上自行下载
+ *
+ *
+ *
+ */
 @protocol CKCalendarDelegate;
 
 @interface CKDateItem : NSObject

@@ -19,7 +19,12 @@
 @end
 
 @interface HNAImagePickerView : UIView
++ (instancetype)imagePicker;
+
 @property(nonatomic,strong) IBOutlet UIView *view;
+/**
+ *  代理
+ */
 @property(nonatomic,weak) id<HNAImagePickerViewDelegate> delegate;
 /**
  *  选择的图片
@@ -29,6 +34,4 @@
  *  上传后的url
  */
 @property (nonatomic, copy) NSString *uploadUrl;
-
-+ (instancetype)imagePicker;
 @end

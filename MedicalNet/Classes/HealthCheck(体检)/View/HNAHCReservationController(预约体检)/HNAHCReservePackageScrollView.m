@@ -9,14 +9,13 @@
 #import "HNAHCReservePackageScrollView.h"
 #import "HNAHCReservePackageButton.h"
 
-#define Padding 10
-#define Height 80
-#define Width 80
+#define Padding 5
 
 @interface HNAHCReservePackageScrollView()
 
 @end
 @implementation HNAHCReservePackageScrollView
+
 #pragma mark - 初始化
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
@@ -37,6 +36,21 @@
     self.showsVerticalScrollIndicator = NO;
 }
 
+- (void)layoutSubviews {
+    // 放置button
+    CGFloat w = self.frame.size.height-2*Padding;
+    for (NSInteger i=0; i<self.buttons.count; i++) {
+        CGFloat x = i*(Padding+w);
+        CGFloat y = Padding;
+        CGRect frame = CGRectMake(x, y, w, w);
+        self.buttons[i].frame = frame;
+    }
+    
+    // 设置contentSize
+    CGSize contentSize = CGSizeMake(self.buttons.count*(Padding+w)+Padding, self.frame.size.height);
+    self.contentSize = contentSize;
+}
+
 #pragma mark - 添加数据
 - (NSMutableArray *)buttons {
     if (_buttons == nil) {
@@ -49,10 +63,6 @@
     _modelItems = modelItems;
     
     NSInteger count = modelItems.count;
-    // 计算conentSize
-    CGFloat contentWidth = (Width + Padding) * count;
-    CGSize contentSize = CGSizeMake(contentWidth, Height);
-    self.contentSize = contentSize;
     
     // 添加items到scrollView
     for (NSInteger i = 0; i < count; i++) {
@@ -68,11 +78,6 @@
     
     [self.modelItems addObject:model];
     
-    // 计算contentSize
-    CGSize contentSize = self.contentSize;
-    contentSize.width += Width + Padding;
-    self.contentSize = contentSize;
-    
     // 添加button
     NSInteger index = self.modelItems.count - 1;
     [self addButton:button withIndex:index];
@@ -81,15 +86,8 @@
 - (void)addButton:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
     [self.buttons addObject:button];
     
-    // 计算frame
-    CGFloat x = index * (Width + Padding);
-    CGFloat w = Width;
-    CGFloat h = Height;
-    CGRect frame = CGRectMake(x, 0, w, h);
-    
     // 设置标签
     button.tag = index;
-    button.frame = frame;
     [self addSubview:button];
     
     // 添加事件

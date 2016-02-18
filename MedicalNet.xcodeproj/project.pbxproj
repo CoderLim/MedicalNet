@@ -500,7 +500,7 @@
 		9FC7C6F11BFD5A3B007E2C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FC7C70F1BFD5D18007E2C49 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FC7C7101BFD5D18007E2C49 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9FC7C7131BFD5D18007E2C49 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9FC7C7131BFD5D18007E2C49 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Classes/Other(其他)/main.m"; sourceTree = "<group>"; };
 		9FC7C71C1BFD6B93007E2C49 /* HNASettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASettingController.h; sourceTree = "<group>"; };
 		9FC7C71D1BFD6B93007E2C49 /* HNASettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNASettingController.m; sourceTree = "<group>"; };
 		9FC7C71F1BFD6BFA007E2C49 /* HNASettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASettingItem.h; sourceTree = "<group>"; };
@@ -1158,6 +1158,7 @@
 		9FC7C6CA1BFD5A3B007E2C49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9FC7C7131BFD5D18007E2C49 /* main.m */,
 				9FB767851C52080D004E3E6D /* MedicalNet-Bridging-Header.h */,
 				9FC7C6D31BFD5A3B007E2C49 /* Main.storyboard */,
 				9FC7C6D81BFD5A3B007E2C49 /* LaunchScreen.storyboard */,
@@ -1300,7 +1301,6 @@
 				9FC7C7101BFD5D18007E2C49 /* AppDelegate.m */,
 				9FC7C7111BFD5D18007E2C49 /* Category */,
 				9FC7C7121BFD5D18007E2C49 /* Lib */,
-				9FC7C7131BFD5D18007E2C49 /* main.m */,
 				9FC7C7141BFD5D18007E2C49 /* Tool */,
 				9FC7C7341BFD8DAB007E2C49 /* HNACommon.h */,
 				9FE222991C194E2D003678BB /* HNATheme.h */,

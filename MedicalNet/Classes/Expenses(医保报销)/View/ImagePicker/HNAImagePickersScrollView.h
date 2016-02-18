@@ -15,6 +15,10 @@
 @end
 
 @interface HNAImagePickersScrollView : UIScrollView
++ (instancetype)imagePickersScrollView;
+/**
+ *  代理
+ */
 @property (nonatomic, weak) IBOutlet id<HNAImagePickersScrollViewDelegate> ipsvDelegate;
 /**
  *  父控件
@@ -24,6 +28,4 @@
  *  获取所有选择的图片
  */
 @property (nonatomic, strong, readonly) NSMutableArray<UIImage *> *images;
-
-+ (instancetype)imagePickersScrollView;
 @end

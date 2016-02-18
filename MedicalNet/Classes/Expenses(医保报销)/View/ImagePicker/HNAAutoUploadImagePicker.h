@@ -12,17 +12,11 @@
  *  图片上传状态
  */
 typedef NS_ENUM(NSInteger,HNAAutoUploadImagePickerUploadState) {
-    /**
-     *  默认
-     */
+    // 默认
     HNAAutoUploadImagePickerUploadStateDefault,
-    /**
-     *  完成
-     */
+    // 完成
     HNAAutoUploadImagePickerUploadStateCompleted,
-    /**
-     *  报错
-     */
+    // 报错
     HNAAutoUploadImagePickerUploadStateFailed
 };
 

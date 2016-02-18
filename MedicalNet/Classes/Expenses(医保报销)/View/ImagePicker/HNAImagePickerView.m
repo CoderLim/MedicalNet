@@ -92,7 +92,7 @@
         [self.delegate imagePickerViewWillSelectImage:self];
     }
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择图片" delegate:self cancelButtonTitle:@"删除" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
     [actionSheet showInView: self.viewControllerReduplicate.view];
 }
 

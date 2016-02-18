@@ -10,12 +10,13 @@
 #import "AFNetworking.h"
 #import "HNAImagePickerView.h"
 #import "HNAImagePickerProgressView.h"
+#import "UIView+HNA.h"
 
 #define ProgressKeyPath @"fractionCompleted"
 
 #define MaxFileSize 5*1024*1024
 
-@interface HNAAutoUploadImagePicker() <HNAImagePickerViewDelegate>
+@interface HNAAutoUploadImagePicker() <HNAImagePickerViewDelegate,UIActionSheetDelegate>
 @property (nonatomic, strong) NSProgress *progress;
 /**
  *  上传任务
@@ -180,11 +181,24 @@
     [progress addObserver:self forKeyPath:ProgressKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [uploadTask resume];
 }
+#pragma mark - UIAlertViewDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) return;
+    
+    [self.reuploadBtn setHidden:YES];
+    
+    if (buttonIndex == 0) {
+        [self.imagePickerView setImage:nil];
+    } else if(buttonIndex == 1) {
+        [self automaticUpload:self.imagePickerView];
+    }
+}
+
 #pragma mark - 按钮事件
 - (void)reuploadBtnClicked:(UIButton *)button {
-    [button setHidden:YES];
-    
-    [self automaticUpload:self.imagePickerView];
+    // 弹出actionSheet
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传失败" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"重新选择",@"重新上传", nil];
+    [actionSheet showInView:self.viewController.view];
 }
 
 #pragma mark - KVO

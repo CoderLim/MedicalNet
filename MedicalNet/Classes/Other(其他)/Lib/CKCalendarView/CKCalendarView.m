@@ -15,6 +15,15 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
+/**
+ *
+ *
+ *
+ *  此框架已经被glm修改的面目全非，如果需要请到网上自行下载
+ *
+ *
+ *
+ */
 
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
@@ -83,7 +92,7 @@
     _date = date;
     if (date) {
         NSDateComponents *comps = [self.calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:date];
-        [self setTitle:[NSString stringWithFormat:@"%d", comps.day] forState:UIControlStateNormal];
+        [self setTitle:[NSString stringWithFormat:@"%ld", comps.day] forState:UIControlStateNormal];
     } else {
         [self setTitle:@"" forState:UIControlStateNormal];
     }
@@ -108,7 +117,6 @@
 
 @interface CKCalendarView ()
 
-@property(nonatomic, strong) UIView *highlight;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UIButton *prevButton;
 @property(nonatomic, strong) UIButton *nextButton;
@@ -158,14 +166,7 @@
     self.onlyShowCurrentMonth = YES;
     self.adaptHeightToNumberOfWeeksInMonth = YES;
 
-    self.layer.cornerRadius = 1.0f;// glm：6.0-->1.0
-
-    UIView *highlight = [[UIView alloc] initWithFrame:CGRectZero];
-    highlight.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-    highlight.layer.cornerRadius = 6.0f;
-    highlight = nil; // glm：去掉highlight
-    [self addSubview:highlight];
-    self.highlight = highlight;
+    self.layer.cornerRadius = 1.0f;
 
     // SET UP THE HEADER
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -223,8 +224,8 @@
 
     // THE CALENDAR ITSELF
     UIView *calendarContainer = [[UIView alloc] initWithFrame:CGRectZero];
-    calendarContainer.layer.borderWidth = 1.0f;
-    calendarContainer.layer.borderColor = [UIColor blackColor].CGColor;
+//    calendarContainer.layer.borderWidth = 1.0f;
+//    calendarContainer.layer.borderColor = [UIColor blackColor].CGColor;
     calendarContainer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     calendarContainer.layer.cornerRadius = 1.0f; // glm:4.0-->1.0
     calendarContainer.clipsToBounds = YES;
@@ -241,9 +242,6 @@
         UILabel *dayOfWeekLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         dayOfWeekLabel.textAlignment = NSTextAlignmentCenter;
         dayOfWeekLabel.backgroundColor = [UIColor clearColor];
-        // glm：注释
-//        dayOfWeekLabel.shadowColor = [UIColor whiteColor];
-//        dayOfWeekLabel.shadowOffset = CGSizeMake(0, 1);
         [labels addObject:dayOfWeekLabel];
         [self.calendarContainer addSubview:dayOfWeekLabel];
     }
@@ -332,8 +330,6 @@
     CGRect newFrame = self.frame;
     newFrame.size.height = containerHeight + CALENDAR_MARGIN + TOP_HEIGHT;
     self.frame = newFrame;
-
-    self.highlight.frame = CGRectMake(1, 1, self.bounds.size.width - 2, 1);
 
     self.titleLabel.text = [self.dateFormatter stringFromDate:_monthShowing];
     self.titleLabel.frame = CGRectMake(GetMaxX(self.prevButton), 0, 90, TOP_HEIGHT);
@@ -510,9 +506,10 @@
 }
 
 - (void)_setDefaultStyle {
-    self.backgroundColor = UIColorFromRGB(0x393B40);
-
-    [self setTitleColor:[UIColor whiteColor]];
+//    self.backgroundColor = UIColorFromRGB(0x393B40);
+    self.backgroundColor = [UIColor whiteColor];
+    
+    [self setTitleColor:UIColorWithRGB(233, 135, 98)];
     [self setTitleFont:[UIFont boldSystemFontOfSize:17.0]];
 
     [self setDayOfWeekFont:[UIFont boldSystemFontOfSize:12.0]];
