@@ -110,7 +110,7 @@
  *  移除imagePicker
  */
 - (void)removeImagePicker:(HNAAutoUploadImagePicker *)imagePicker {
-    // 直有一个imagePicker时不操作
+    // 只有一个imagePicker时不操作
     if (self.imagePickers.count <= 1) {
         return;
     }
@@ -139,5 +139,8 @@
 
 - (void)autoUploadImagePickerDidRemoveImage:(HNAAutoUploadImagePicker *)autoUploadImagePicker {
     [self removeImagePicker: autoUploadImagePicker];
+}
+
+- (void)dealloc {
 }
 @end

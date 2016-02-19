@@ -160,7 +160,7 @@
 
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-    self.dateFormatter.dateFormat = @"yyyy年M月";
+    self.dateFormatter.dateFormat = @"yyyy－M";
 
     self.calendarStartDay = firstDay;
     self.onlyShowCurrentMonth = YES;
@@ -355,7 +355,7 @@
     self.disableLegend.frame = CGRectMake(GetMinX(self.enableLegend)-legendW-lengendM, 0, legendW, legendH);
     //End
 
-    self.daysHeader.frame = CGRectMake(0, 0, self.calendarContainer.frame.size.width, DAYS_HEADER_HEIGHT);
+//    self.daysHeader.frame = CGRectMake(0, 0, self.calendarContainer.frame.size.width, DAYS_HEADER_HEIGHT);
 
     CGRect lastDayFrame = CGRectZero;
     for (UILabel *dayLabel in self.dayOfWeekLabels) {
@@ -385,7 +385,8 @@
     NSUInteger dateButtonPosition = 0;
     while ([date laterDate:endDate] != date) {
         DateButton *dateButton = [self.dateButtons objectAtIndex:dateButtonPosition];
-
+        dateButton.layer.borderWidth = 1;
+        dateButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
         dateButton.date = date;
 
         CKDateItem *item = [[CKDateItem alloc] init];
@@ -517,7 +518,7 @@
     [self setDayOfWeekBottomColor:UIColorFromRGB(0xCCCFD5) topColor:[UIColor whiteColor]];
 
     [self setDateFont:[UIFont boldSystemFontOfSize:16.0f]];
-    [self setDateBorderColor:UIColorFromRGB(0xDAE1E6)];
+    [self setDateBorderColor:[UIColor whiteColor]];
 }
 
 - (CGRect)_calculateDayCellFrame:(NSDate *)date {

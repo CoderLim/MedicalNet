@@ -163,7 +163,7 @@
             [self.medicalInstitutions firstObject].checked = YES;
             
             [self.medicalInstitutions removeAllObjects];
-            for (NSInteger i=0; i<2; i++) {
+            for (NSInteger i=0; i<2+self.packageScrollView.selectedPackageId; i++) {
                 HNAHCOrgan *organ = [[HNAHCOrgan alloc] init];
                 organ.id = [NSString stringWithFormat:@"%ld",(long)i];
                 organ.name = @"雍和宫医院";
@@ -172,6 +172,8 @@
                 [self.medicalInstitutions addObject:organ];
             }
             
+            [self.medicalInstitutions firstObject].checked = YES;
+            self.tableView.expanded = NO;
             // 刷新表格
             [self.tableView reloadData];
         }

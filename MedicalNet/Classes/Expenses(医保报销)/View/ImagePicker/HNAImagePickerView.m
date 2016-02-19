@@ -74,7 +74,7 @@
 
 - (void)setImage:(UIImage *)image{
     _image = image;
-    
+        
     if (self.pickerBtn) {
         [self.pickerBtn setImage:image forState:UIControlStateNormal];
     }
@@ -167,12 +167,16 @@
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
         self.image = image;
-        
+    
         // 通知代理
         if ([self.delegate respondsToSelector:@selector(imagePickerViewDidSelectImage:)]) {
             [self.delegate imagePickerViewDidSelectImage:self];
         }
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dealloc {
+    self.image = nil;
 }
 @end

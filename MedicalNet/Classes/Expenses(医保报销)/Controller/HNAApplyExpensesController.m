@@ -164,6 +164,5 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    HNALog(@"%s", __FUNCTION__);
 }
 @end
