@@ -14,7 +14,7 @@
 /**
  *  申请人id
  */
-@property (nonatomic,copy) NSString *id;
+@property (nonatomic,assign) long long id;
 /**
  *  申报人姓名
  */

@@ -10,9 +10,9 @@
 
 @interface HNAChangePwdParam : NSObject
 
-@property (nonatomic,copy) NSString *id;
-@property (nonatomic,copy) NSString *theOldPwd;
-@property (nonatomic,copy) NSString *theNewPwd;
+@property (nonatomic, assign) long long id;
+@property (nonatomic, copy) NSString *theOldPwd;
+@property (nonatomic, copy) NSString *theNewPwd;
 
 + (instancetype)param;
 @end

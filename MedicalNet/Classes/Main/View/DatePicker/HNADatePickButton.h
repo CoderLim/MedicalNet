@@ -16,7 +16,7 @@
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date;
 @end
 
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface HNADatePickButton : UIButton
 @property(nonatomic,weak) IBOutlet id<HNADatePickButtonDelegate> delegate;
 /**

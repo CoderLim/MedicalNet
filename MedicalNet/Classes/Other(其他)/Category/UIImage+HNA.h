@@ -16,4 +16,8 @@
  *  根据机型适配
  */
 + (instancetype)imageWithName:(NSString *)name;
+/**
+ *  生成纯色图片
+ */
++ (instancetype)imageWithColor:(UIColor *)color andSize:(CGSize)size;
 @end

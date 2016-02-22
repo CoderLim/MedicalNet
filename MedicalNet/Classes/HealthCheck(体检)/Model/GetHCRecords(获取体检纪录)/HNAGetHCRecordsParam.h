@@ -14,7 +14,7 @@
 /**
  *  申请人ID，调用“登陆接口”时返回该值
  */
-@property (nonatomic,copy) NSString *id;
+@property (nonatomic,assign) long long id;
 /**
  *  按年搜索，为空值时搜索全部
  */

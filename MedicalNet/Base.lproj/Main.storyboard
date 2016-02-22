@@ -1027,8 +1027,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWz-s6-Zcw">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWz-s6-Zcw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSU-mS-V9v" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="597"/>
@@ -1041,7 +1041,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buX-pQ-BAT">
-                                                <rect key="frame" x="10" y="40.5" width="300" height="1"/>
+                                                <rect key="frame" x="10" y="40" width="300" height="1"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1049,14 +1049,14 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-to-Yak">
-                                                <rect key="frame" x="20" y="51.5" width="32.5" height="17"/>
+                                                <rect key="frame" x="20" y="51" width="32.5" height="17"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国人寿保险公司（北京东城区地坛分公司）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEm-UH-FgI">
-                                                <rect key="frame" x="57" y="51.5" width="260" height="18"/>
+                                                <rect key="frame" x="57" y="51" width="260" height="18"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="260" id="WRn-wC-3Yg"/>
@@ -1066,63 +1066,63 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evT-Et-InF">
-                                                <rect key="frame" x="20" y="78.5" width="34.5" height="18"/>
+                                                <rect key="frame" x="20" y="78" width="34.5" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="北京东城区和平里西街78号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-zl-kTQ">
-                                                <rect key="frame" x="59" y="78.5" width="260" height="18"/>
+                                                <rect key="frame" x="59" y="78" width="260" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邮编:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxI-XW-jcf">
-                                                <rect key="frame" x="20" y="106.5" width="34.5" height="18"/>
+                                                <rect key="frame" x="20" y="106" width="34.5" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfg-5b-xeh">
-                                                <rect key="frame" x="59" y="106.5" width="260" height="18"/>
+                                                <rect key="frame" x="59" y="106" width="260" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系人:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IN3-38-apa">
-                                                <rect key="frame" x="20" y="134.5" width="49.5" height="18"/>
+                                                <rect key="frame" x="20" y="134" width="49.5" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黎明（医疗理赔部）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-4V-Mga">
-                                                <rect key="frame" x="74" y="134.5" width="260" height="18"/>
+                                                <rect key="frame" x="74" y="134" width="260" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOh-fh-07F">
-                                                <rect key="frame" x="20" y="162.5" width="64.5" height="18"/>
+                                                <rect key="frame" x="20" y="162" width="64.5" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15201590333" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCz-9z-gOk">
-                                                <rect key="frame" x="89" y="162.5" width="260" height="18"/>
+                                                <rect key="frame" x="89" y="162" width="260" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报销说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oX8-IU-qMr">
-                                                <rect key="frame" x="10" y="200.5" width="300" height="20.5"/>
+                                                <rect key="frame" x="10" y="200" width="300" height="20.5"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1301,21 +1301,21 @@
                                                 </connections>
                                             </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2、报销所需材料。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5V-ia-5GY">
-                                                <rect key="frame" x="10" y="406.5" width="300" height="20.5"/>
+                                                <rect key="frame" x="10" y="406" width="300" height="20.5"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3、可报销的医院。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qm-41-EgQ">
-                                                <rect key="frame" x="10" y="467.5" width="300" height="20"/>
+                                                <rect key="frame" x="10" y="467" width="300" height="20"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wcJ-2m-xUY">
-                                                <rect key="frame" x="10" y="497.5" width="300" height="100"/>
+                                                <rect key="frame" x="10" y="497" width="300" height="100"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -1460,9 +1460,17 @@
                             <constraint firstAttribute="trailingMargin" secondItem="KMg-ya-Wdm" secondAttribute="trailing" constant="20" id="RH1-LS-fkn"/>
                             <constraint firstAttribute="trailing" secondItem="dWz-s6-Zcw" secondAttribute="trailing" id="WBQ-ho-CKj"/>
                             <constraint firstItem="zwM-s8-2d2" firstAttribute="top" secondItem="dWz-s6-Zcw" secondAttribute="bottom" id="myM-qt-U1n"/>
+                            <constraint firstAttribute="bottom" secondItem="KMg-ya-Wdm" secondAttribute="bottom" constant="20" id="sKp-wB-tHl"/>
                             <constraint firstItem="zwM-s8-2d2" firstAttribute="top" secondItem="KMg-ya-Wdm" secondAttribute="bottom" constant="20" id="uJX-Li-0T9"/>
                             <constraint firstItem="dWz-s6-Zcw" firstAttribute="leading" secondItem="9Wu-0Q-Rji" secondAttribute="leading" id="y4a-Sw-oEM"/>
+                            <constraint firstAttribute="bottom" secondItem="dWz-s6-Zcw" secondAttribute="bottom" id="zfa-Ya-WJ3"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="myM-qt-U1n"/>
+                                <exclude reference="uJX-Li-0T9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="MuX-NV-cNo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -1932,7 +1940,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cyh-vD-rpz">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cyh-vD-rpz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lw-JW-vDX" userLabel="contentView">
@@ -2098,6 +2106,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cyh-vD-rpz" firstAttribute="top" secondItem="SBU-Io-N5d" secondAttribute="top" id="O02-3c-Uh1"/>
+                            <constraint firstAttribute="bottom" secondItem="Cyh-vD-rpz" secondAttribute="bottom" id="O4L-L6-UEQ"/>
                             <constraint firstItem="XAV-aL-Kbe" firstAttribute="top" secondItem="Cyh-vD-rpz" secondAttribute="bottom" id="TKQ-4U-cGp"/>
                             <constraint firstAttribute="trailing" secondItem="Cyh-vD-rpz" secondAttribute="trailing" id="WQy-Aq-Fg5"/>
                             <constraint firstItem="Cyh-vD-rpz" firstAttribute="top" secondItem="08g-m4-UYP" secondAttribute="bottom" id="c0R-xe-gdG"/>
@@ -2106,6 +2115,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="c0R-xe-gdG"/>
+                                <exclude reference="TKQ-4U-cGp"/>
                             </mask>
                         </variation>
                     </view>
@@ -2362,7 +2372,7 @@
                                     <outlet property="delegate" destination="Bql-YV-Ovr" id="pop-aQ-4Tr"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ddJ-Ha-c8Q">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ddJ-Ha-c8Q">
                                 <rect key="frame" x="0.0" y="124" width="320" height="307"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2383,11 +2393,13 @@
                             <constraint firstItem="Dy1-tm-LL9" firstAttribute="top" secondItem="ddJ-Ha-c8Q" secondAttribute="bottom" id="qwm-uD-cls"/>
                             <constraint firstItem="osm-qc-tEO" firstAttribute="leading" secondItem="nEN-wC-9H7" secondAttribute="leading" constant="10" id="rUZ-fK-446"/>
                             <constraint firstItem="osm-qc-tEO" firstAttribute="top" secondItem="VIm-5i-LrB" secondAttribute="bottom" constant="20" id="xEv-6C-WFQ"/>
+                            <constraint firstAttribute="bottom" secondItem="ddJ-Ha-c8Q" secondAttribute="bottom" id="zRY-Kw-0qg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="ecl-6u-p9Q"/>
                                 <exclude reference="oov-Zc-TfZ"/>
+                                <exclude reference="qwm-uD-cls"/>
                             </mask>
                         </variation>
                     </view>
@@ -2978,7 +2990,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-80-OQk">
+                            <scrollView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm7-80-OQk">
                                 <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZr-Ht-kwk" userLabel="contentView">
@@ -3258,17 +3270,6 @@
                                                     <action selector="submit:" destination="yrz-Bp-wGj" eventType="touchUpInside" id="BMm-8f-4Gg"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
-                                                <rect key="frame" x="10" y="289" width="300" height="80"/>
-                                                <animations/>
-                                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="yxA-6U-Eds"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="ofT-xb-zfc"/>
-                                                </connections>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQP-G5-rOY" customClass="HNAImagePickersScrollView">
                                                 <rect key="frame" x="10" y="425" width="300" height="80"/>
                                                 <animations/>
@@ -3317,6 +3318,17 @@
                                                 </variation>
                                                 <connections>
                                                     <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="pbf-Lu-uH3"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EV7-wP-mXn" customClass="HNAImagePickersScrollView">
+                                                <rect key="frame" x="10" y="291" width="300" height="80"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="yxA-6U-Eds"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="ipsvDelegate" destination="yrz-Bp-wGj" id="ofT-xb-zfc"/>
                                                 </connections>
                                             </view>
                                         </subviews>
@@ -3399,6 +3411,7 @@
                             <constraint firstItem="gm7-80-OQk" firstAttribute="top" secondItem="iKs-ZB-kJ1" secondAttribute="top" id="KQo-hm-gKG"/>
                             <constraint firstItem="gm7-80-OQk" firstAttribute="top" secondItem="exT-d8-5zm" secondAttribute="bottom" id="afl-zZ-Wnu"/>
                             <constraint firstItem="gm7-80-OQk" firstAttribute="leading" secondItem="iKs-ZB-kJ1" secondAttribute="leading" id="dKO-Na-sIg"/>
+                            <constraint firstAttribute="bottom" secondItem="gm7-80-OQk" secondAttribute="bottom" id="eyn-Hb-kw8"/>
                             <constraint firstAttribute="trailing" secondItem="gm7-80-OQk" secondAttribute="trailing" id="fzq-MX-XpE"/>
                             <constraint firstItem="gm7-80-OQk" firstAttribute="top" secondItem="iKs-ZB-kJ1" secondAttribute="top" constant="200" id="g2I-QC-QHY"/>
                             <constraint firstItem="fJE-gj-8pS" firstAttribute="top" secondItem="gm7-80-OQk" secondAttribute="bottom" id="rje-cP-kNP"/>
@@ -3410,25 +3423,30 @@
                                 <exclude reference="KQo-hm-gKG"/>
                                 <exclude reference="g2I-QC-QHY"/>
                                 <exclude reference="sjd-dB-fJj"/>
+                                <exclude reference="rje-cP-kNP"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="IDCardImagePickersScrollView" destination="EV7-wP-mXn" id="cZt-rv-gzW"/>
                         <outlet property="amountField" destination="bil-gp-TUB" id="5ee-hx-Y0f"/>
                         <outlet property="applicantNameLabel" destination="Dq7-hM-L17" id="J49-2V-ZPq"/>
                         <outlet property="cardNumField" destination="OKA-uh-7uy" id="q0x-zu-L7B"/>
+                        <outlet property="casesImagePickersScrollView" destination="69q-UN-6ZJ" id="yus-cQ-or9"/>
+                        <outlet property="chargesImagePickersScrollView" destination="DR5-QT-C9V" id="jnB-cy-jO2"/>
                         <outlet property="contactLabel" destination="Gbi-1T-cHn" id="uTu-dt-gv4"/>
                         <outlet property="contentView" destination="mZr-Ht-kwk" id="Hrw-qU-AX5"/>
                         <outlet property="insuranceComNameLabel" destination="qpI-pg-d5F" id="DO8-cG-KrN"/>
                         <outlet property="mainScrollView" destination="gm7-80-OQk" id="Hc0-7t-sVc"/>
-                        <outletCollection property="imagePickersScrollViews" destination="EV7-wP-mXn" id="UcL-6w-zBK"/>
+                        <outlet property="medicalCardImagePickersScrollView" destination="eQP-G5-rOY" id="FXT-jr-dlc"/>
+                        <outlet property="submitButton" destination="QF2-if-lEX" id="bXn-Up-NCj"/>
                         <segue destination="jr4-G5-xeg" kind="show" identifier="applyExpense2applySuccess" id="teb-lB-XL4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAG-mo-aNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="256" y="1849"/>
+            <point key="canvasLocation" x="277" y="1840"/>
         </scene>
         <!--首页-->
         <scene sceneID="3tf-Un-pKS">

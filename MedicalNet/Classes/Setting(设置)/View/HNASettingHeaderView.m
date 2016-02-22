@@ -43,6 +43,11 @@
     self.nameLabel.text = user.name;
     self.companyNameLabel.text = user.companyName;
     
+    [self refresh];
+}
+
+#pragma mark - 公开方法
+- (void)refresh {
     NSURL *url = [NSURL URLWithString:[HNAUserTool user].icon];
     [self.portraitButton sd_setBackgroundImageWithURL:url forState:UIControlStateNormal];
 }

@@ -28,4 +28,6 @@ typedef NS_ENUM(NSInteger,HNARequestResult){
  *  错误信息
  */
 @property (nonatomic,copy) NSString *errorInfo;
+
+
 @end

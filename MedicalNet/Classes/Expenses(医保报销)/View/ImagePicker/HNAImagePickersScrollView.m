@@ -76,7 +76,7 @@
 
 - (NSMutableArray<UIImage *> *)images {
     NSMutableArray<UIImage *> *array = [NSMutableArray array];
-    for (HNAImagePickerView *ipv in self.imagePickers) {
+    for (HNAAutoUploadImagePicker *ipv in self.imagePickers) {
         if (ipv.image != nil) {
             [array addObject:ipv.image];
         }
@@ -84,6 +84,15 @@
     return array;
 }
 
+- (NSMutableArray *)imageUrls {
+    NSMutableArray *urls = [NSMutableArray array];
+    for (HNAAutoUploadImagePicker *aip in self.imagePickers) {
+        if (aip.uploadUrl != nil) {
+            [urls addObject:aip.uploadUrl];
+        }
+    }
+    return urls;
+}
 #pragma mark -
 /**
  *  是否需要添加新的imagePicker

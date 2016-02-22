@@ -10,6 +10,7 @@
 
 @class HNAChangePwdParam,HNAResult,HNAChangePhoneParam,HNAChangePortraitParam,HNASetMsgNoticeParam;
 @class HNAForgetPwdParam;
+@class HNAChangePortraitResult;
 
 @interface HNAUserTool : NSObject
 
@@ -63,7 +64,7 @@
  *  @param success 成功回调
  *  @param failure 失败回调
  */
-+ (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
++ (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void(^)(HNAChangePortraitResult *))success failure:(void(^)(NSError *error))failure;
 
 /**
  *  设置消息提醒

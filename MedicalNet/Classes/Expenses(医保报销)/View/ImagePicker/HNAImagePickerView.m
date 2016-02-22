@@ -175,8 +175,4 @@
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)dealloc {
-    self.image = nil;
-}
 @end

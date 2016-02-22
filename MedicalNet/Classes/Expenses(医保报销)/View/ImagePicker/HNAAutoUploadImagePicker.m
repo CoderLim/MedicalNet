@@ -165,7 +165,7 @@
         if (!error) {
             NSMutableArray *picList = responseObject[@"picList"];
             if (picList != nil) {
-                imagePickerView.uploadUrl = [picList firstObject];
+                self.uploadUrl = [picList firstObject];
             }
             // 修改uploadState
             self.uploadState = HNAAutoUploadImagePickerUploadStateCompleted;

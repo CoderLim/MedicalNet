@@ -12,7 +12,7 @@
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 #import "MBProgressHUD+MJ.h"
-#import "HNAResult.h"
+#import "HNAChangePortraitResult.h"
 
 @interface HNAChangePortraitController () <UINavigationControllerDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate>
 - (IBAction)pickImageClick:(UIButton *)sender;
@@ -36,12 +36,17 @@
     HNAChangePortraitParam *param = [HNAChangePortraitParam param];
     param.theNewIcon = self.pickImageBtn.currentImage;
     // 2.请求地址
-    [HNAUserTool changePortraitWithParam:param success:^(HNAResult *result) {
+    [HNAUserTool changePortraitWithParam:param success:^(HNAChangePortraitResult *result) {
         [MBProgressHUD hideHUD];
         if (result.success==HNARequestResultSUCCESS) {
             [MBProgressHUD showSuccess:@"修改成功"];
+            
+            HNAUser *user = [HNAUserTool user];
+            user.icon = result.theNewIconUrl;
+            [HNAUserTool saveUser:user];
         } else {
             [MBProgressHUD showError:@"修改失败"];
+            HNALog(@"%@",result.description);
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];

@@ -13,6 +13,7 @@
 #import "HNAForgetPwdParam.h"
 #import "HNAUserTool.h"
 #import "HNAUser.h"
+#import "HNAResult.h"
 #import "MBProgressHUD+MJ.h"
 
 @interface HNAChangeCipherController ()
@@ -58,6 +59,11 @@
  *  修改密码
  */
 - (void)changePwd {
+    // 0.验证两次新密码输入是否相同
+    if (![self validateInput]) {
+        return;
+    }
+    
     // 1.拼修改密码的参数
     HNAChangePwdParam *param = [HNAChangePwdParam param];
     param.theOldPwd = self.oldCipher.text;
@@ -65,9 +71,13 @@
     
     // 3.请求地址
     [HNAUserTool changePwdWithParam:param success:^(HNAResult *result) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
-        
-        [MBProgressHUD showSuccess:@"修改成功"];
+        if (result.success==HNARequestResultSUCCESS) {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
+            
+            [MBProgressHUD showSuccess:@"修改成功"];
+        } else {
+            [MBProgressHUD showSuccess:@"修改失败"];
+        }
     } failure:^(NSError *error) {
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
         [self.cipherField becomeFirstResponder];
@@ -77,6 +87,10 @@
  *  忘记密码
  */
 - (void)forgetPwd {
+    if (![self validateInput]) {
+        return;
+    }
+    
     // 拼忘记密码的参数
     HNAForgetPwdParam *param = [HNAForgetPwdParam param];
     param.theNewPwd = self.cipherField.text;
@@ -89,6 +103,14 @@
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
         [self.cipherField becomeFirstResponder];
     }];
+}
+
+- (BOOL)validateInput {
+    if (![self.cipherField.text isEqualToString:self.confirmCipherField.text]) {
+        [MBProgressHUD showError:@"两次新密码输入不同"];
+        return NO;
+    }
+    return YES;
 }
 
 @end

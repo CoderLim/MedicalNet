@@ -40,4 +40,14 @@
     return [UIImage imageNamed:name];
 }
 
++ (instancetype)imageWithColor:(UIColor *)color andSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [color set];
+    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end

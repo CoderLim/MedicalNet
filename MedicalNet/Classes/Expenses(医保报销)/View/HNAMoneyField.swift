@@ -28,7 +28,8 @@ class HNAMoneyField: UITextField, UITextFieldDelegate {
     // 得到正确的字符串
     var originalText: String? {
         get {
-            return self.text?.stringByReplacingOccurrencesOfString(",", withString: "")
+            let str = self.text?.stringByReplacingOccurrencesOfString(",", withString: "")
+            return str?.stringByReplacingOccurrencesOfString("¥", withString: "")
         }
     }
 
@@ -38,6 +39,7 @@ class HNAMoneyField: UITextField, UITextFieldDelegate {
         var text = textField.text
         text = (text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         text = text?.stringByReplacingOccurrencesOfString(",", withString: "")
+        text = text?.stringByReplacingOccurrencesOfString("¥", withString: "")
         
         //
         var newString = ""
@@ -51,7 +53,7 @@ class HNAMoneyField: UITextField, UITextFieldDelegate {
             count++
         }
         
-        textField.text = newString
+        textField.text = "¥\(newString)"
         
         return false
     }

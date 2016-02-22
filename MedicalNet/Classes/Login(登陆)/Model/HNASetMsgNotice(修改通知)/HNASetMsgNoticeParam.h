@@ -12,7 +12,7 @@
 /**
  *  用户id
  */
-@property (nonatomic,copy) NSString *id;
+@property (nonatomic,assign) long long id;
 
 /**
  *  体检通知：1=通知，0=不通知

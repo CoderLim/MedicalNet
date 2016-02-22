@@ -15,6 +15,7 @@
 #import "HNAForgetPwdParam.h"
 #import "HNASetMsgNoticeParam.h"
 #import "MJExtension.h"
+#import "HNAChangePortraitResult.h"
 
 // 账号信息保存路径
 #define HNAUserFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user.data"]
@@ -52,7 +53,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePhoneNum", RequestUrlDomain];
     
     //将参数转化成字典
-    NSDictionary *paramDict = @{@"id" : param.id,
+    NSDictionary *paramDict = @{@"id" : @(param.id),
                                 @"newPhoneNum" : param.theNewPhoneNum};
     
     [HNAHttpTool postWithURL:urlStr params:paramDict toDisk:NO success:^(id json) {
@@ -68,19 +69,23 @@
 }
 
 // 修改头像
-+ (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure{
++ (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void (^)(HNAChangePortraitResult *))success failure:(void (^)(NSError *))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changeIcon", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changeIcon?id=%lld", RequestUrlDomain,param.id];
     // 将参数转化成字典
-    NSDictionary *paramDict = @{@"id" : param.id};
+    // 这样不知道为啥id好像传过去有问题，所以把id直接拼接到url后面
+    // NSDictionary *paramDict = @{@"id" : [NSString stringWithFormat:@"%lld", param.id]};
     // 图片
-    HNAFormData *data = [HNAFormData formDataWithImage:param.theNewIcon];
+    HNAFormData *data = [HNAFormData formDataWithFilename:@"newIcon" image:param.theNewIcon];
     
     NSArray *formDataArray = @[data];
     // post
-    [HNAHttpTool postWithURL:urlStr params:paramDict formDataArray:formDataArray  success:^(id json) {
+    [HNAHttpTool postWithURL:urlStr params:nil formDataArray:formDataArray success:^(id json) {
         if (success) {
-            HNAResult *result = [HNAResult objectWithKeyValues:json];
+            HNAChangePortraitResult *result = [HNAChangePortraitResult objectWithKeyValues:json];
+            if (result.success==HNARequestResultSUCCESS) {
+                result.theNewIconUrl = json[@"newIconUrl"];
+            }
             success(result);
         }
     } failure:^(NSError *error) {
@@ -96,7 +101,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePwd", RequestUrlDomain];
     
     //将参数转化成字典
-    NSDictionary *paramDict = @{@"id" : param.id,
+    NSDictionary *paramDict = @{@"id" : @(param.id),
                                 @"newPwd" : param.theNewPwd,
                                 @"oldPwd" : param.theOldPwd};
     
@@ -116,7 +121,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/forgetPwd", RequestUrlDomain];
     
     //将参数转化成字典
-    NSDictionary *paramDict = @{@"id" : param.id,
+    NSDictionary *paramDict = @{@"id" : @(param.id),
                                 @"newPwd" : param.theNewPwd};
     
     [HNAHttpTool postWithURL:urlStr params:paramDict toDisk:NO success:^(id json) {

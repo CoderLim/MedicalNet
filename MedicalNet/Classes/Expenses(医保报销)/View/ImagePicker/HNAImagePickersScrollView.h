@@ -28,4 +28,5 @@
  *  获取所有选择的图片
  */
 @property (nonatomic, strong, readonly) NSMutableArray<UIImage *> *images;
+@property (nonatomic, strong, readonly) NSMutableArray *imageUrls;
 @end

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAForgetPwdParam : NSObject
-@property (nonatomic,copy) NSString *id;
-@property (nonatomic,copy) NSString *theNewPwd;
+@property (nonatomic, assign) long long id;
+@property (nonatomic, copy) NSString *theNewPwd;
 
 + (instancetype)param;
 @end

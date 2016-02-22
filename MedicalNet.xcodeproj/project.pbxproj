@@ -30,6 +30,7 @@
 		9F29C3BA1C4384DF0073387F /* HNAHCCheckedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29C3B71C437DA20073387F /* HNAHCCheckedCell.m */; };
 		9F29C3BC1C43865F0073387F /* HNAHCCheckedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F29C3BB1C43865F0073387F /* HNAHCCheckedCell.xib */; };
 		9F29C4021C43A72E0073387F /* HNAHCReservePackageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F29C4011C43A72E0073387F /* HNAHCReservePackageButton.m */; };
+		9F32FFE31C7AE8F90085FF8C /* HNAChangePortraitResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F32FFE21C7AE8F90085FF8C /* HNAChangePortraitResult.m */; };
 		9F38736C1BFEF405002AB971 /* HNASettingExecuteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38736B1BFEF405002AB971 /* HNASettingExecuteItem.m */; };
 		9F38736F1BFEFFEE002AB971 /* HNAExpensesRecordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F38736E1BFEFFEE002AB971 /* HNAExpensesRecordsController.m */; };
 		9F3873751BFF04E3002AB971 /* HNAExpensesRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3873741BFF04E3002AB971 /* HNAExpensesRecordCell.m */; };
@@ -251,6 +252,8 @@
 		9F29C3FE1C43A7000073387F /* HNAHCReservePackageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCReservePackageScrollView.m; sourceTree = "<group>"; };
 		9F29C4001C43A72E0073387F /* HNAHCReservePackageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAHCReservePackageButton.h; sourceTree = "<group>"; };
 		9F29C4011C43A72E0073387F /* HNAHCReservePackageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAHCReservePackageButton.m; sourceTree = "<group>"; };
+		9F32FFE11C7AE8F90085FF8C /* HNAChangePortraitResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAChangePortraitResult.h; sourceTree = "<group>"; };
+		9F32FFE21C7AE8F90085FF8C /* HNAChangePortraitResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNAChangePortraitResult.m; sourceTree = "<group>"; };
 		9F38736A1BFEF405002AB971 /* HNASettingExecuteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNASettingExecuteItem.h; sourceTree = "<group>"; };
 		9F38736B1BFEF405002AB971 /* HNASettingExecuteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNASettingExecuteItem.m; sourceTree = "<group>"; };
 		9F38736D1BFEFFEE002AB971 /* HNAExpensesRecordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNAExpensesRecordsController.h; sourceTree = "<group>"; };
@@ -1397,6 +1400,8 @@
 				9FC7C7291BFD7587007E2C49 /* HNASettingSwitchItem.m */,
 				9F38736A1BFEF405002AB971 /* HNASettingExecuteItem.h */,
 				9F38736B1BFEF405002AB971 /* HNASettingExecuteItem.m */,
+				9F32FFE11C7AE8F90085FF8C /* HNAChangePortraitResult.h */,
+				9F32FFE21C7AE8F90085FF8C /* HNAChangePortraitResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1648,6 +1653,7 @@
 				9F8723411C0C402100DA68FE /* HNAHCPackageDetailController.m in Sources */,
 				9FC7C7151BFD5D18007E2C49 /* AppDelegate.m in Sources */,
 				9FC33EB21C1EB049004D4139 /* HNAAnnotation.m in Sources */,
+				9F32FFE31C7AE8F90085FF8C /* HNAChangePortraitResult.m in Sources */,
 				9FC33EA41C1E97D2004D4139 /* HNAGetHCRecordsParam.m in Sources */,
 				9F38736F1BFEFFEE002AB971 /* HNAExpensesRecordsController.m in Sources */,
 				9F734C6E1BFEE16800434B90 /* UIImage+HNA.m in Sources */,

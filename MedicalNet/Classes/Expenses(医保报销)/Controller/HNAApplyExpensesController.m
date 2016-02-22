@@ -15,6 +15,7 @@
 #import "HNAResult.h"
 #import "MJExtension.h"
 #import "HNAImagePickersScrollView.h"
+#import "UIImage+HNA.h"
 #import "MedicalNet-swift.h"
 
 #define TextField2KeyboardMargin 40
@@ -41,12 +42,17 @@
  *  联系方式
  */
 @property (weak, nonatomic) IBOutlet UILabel *contactLabel;
-
 /**
- *  所有选择图片控件
+ *  提交按钮
  */
-@property (strong, nonatomic) IBOutletCollection(HNAImagePickersScrollView) NSArray *imagePickersScrollViews;
-
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+/**
+ *  图片选择控件
+ */
+@property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *IDCardImagePickersScrollView;
+@property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *medicalCardImagePickersScrollView;
+@property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *casesImagePickersScrollView;
+@property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *chargesImagePickersScrollView;
 /**
  *  花费总额
  */
@@ -78,6 +84,8 @@
     
     // 设置基本信息
     [self setupBasicInfo];
+    
+    [self setupSubmitButton];
 }
 /**
  *  设置通知
@@ -86,7 +94,10 @@
     // 监听键盘的弹出与收回
     [DefaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [DefaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // TextField
     [DefaultCenter addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [DefaultCenter addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
 }
 /**
  *  设置基本信息
@@ -97,20 +108,26 @@
     self.contactLabel.text = user.phoneNum;
     self.insuranceComNameLabel.text = [NSString stringWithFormat:@"%ld", (long)user.insuranceCompanyId];
 }
+
+- (void)setupSubmitButton {
+    [self.submitButton setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor] andSize:self.submitButton.bounds.size] forState:UIControlStateNormal];
+    [self.submitButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor] andSize:self.submitButton.bounds.size] forState:UIControlStateDisabled];
+    [self.submitButton setEnabled:NO];
+}
 #pragma mark - 按钮事件
 /**
  *  提交
  */
 - (IBAction)submit:(UIButton *)sender {
-    [self performSegueWithIdentifier:ApplyExpense2ApplySuccessSegue sender:nil];
-    return;
-    
     // 构造网络请求参数
     HNAApplyExpenseParam *param = [HNAApplyExpenseParam param];
     param.cardNum = self.cardNumField.text;
-    param.cardNum = @"00000000";
+    param.cardNum = @"00000000000";
+    param.IDcards = self.IDCardImagePickersScrollView.imageUrls;
+    param.medicalCards = self.medicalCardImagePickersScrollView.imageUrls;
+    param.cases = self.casesImagePickersScrollView.imageUrls;
+    param.charges = self.chargesImagePickersScrollView.imageUrls;
     
-    HNALog(@"%@",param.companyId);
     // 网络请求
     [HNAInsuranceTool applyExpenseWithParam:param success:^(HNAResult *result) {
         if (result.success == HNARequestResultSUCCESS) {
@@ -139,6 +156,14 @@
     _currentEditTextField = aNotification.object;
 }
 
+- (void)textFieldDidChange:(NSNotification *)aNotification {
+    if (self.cardNumField.text&&self.amountField.text) {
+        [self.submitButton setEnabled:YES];
+    } else {
+        [self.submitButton setEnabled:NO];
+    }
+}
+
 - (void)keyboardWillShow:(NSNotification *)aNotification{
     self.contentView.transform = CGAffineTransformIdentity;
     
@@ -160,6 +185,8 @@
 - (void)dealloc {
     [DefaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [DefaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [DefaultCenter removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [DefaultCenter removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

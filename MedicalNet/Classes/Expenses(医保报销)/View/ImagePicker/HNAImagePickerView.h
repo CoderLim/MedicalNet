@@ -30,8 +30,4 @@
  *  选择的图片
  */
 @property(nonatomic,strong) UIImage *image;
-/**
- *  上传后的url
- */
-@property (nonatomic, copy) NSString *uploadUrl;
 @end

@@ -68,4 +68,5 @@
 @property (nonatomic, copy) NSString *mimeType;
 
 + (instancetype)formDataWithImage:(UIImage *)image;
++ (instancetype)formDataWithFilename:(NSString *)filename image:(UIImage *)image;
 @end

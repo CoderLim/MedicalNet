@@ -14,7 +14,7 @@
 /**
  *  用户id
  */
-@property (nonatomic,copy) NSString *id;
+@property (nonatomic,assign) long long id;
 /**
  *  员工姓名
  */

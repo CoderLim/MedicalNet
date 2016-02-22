@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAChangePhoneParam : NSObject
-@property (nonatomic,copy) NSString *id;
-@property (nonatomic,copy) NSString *theNewPhoneNum;
+@property (nonatomic, assign) long long id;
+@property (nonatomic, copy) NSString *theNewPhoneNum;
 
 + (instancetype)param;
 @end

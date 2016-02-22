@@ -28,9 +28,10 @@ typedef NS_ENUM(NSInteger,HNAAutoUploadImagePickerUploadState) {
 @end
 
 @interface HNAAutoUploadImagePicker : UIView
++ (instancetype)autoUploadImagePicker;
+
 @property (nonatomic, weak) id<HNAAutoUploadImagePickerDelegate> delegate;
 @property (nonatomic, assign) HNAAutoUploadImagePickerUploadState uploadState;
-
-- (UIImage *)image;
-+ (instancetype)autoUploadImagePicker;
+@property (nonatomic, strong, readonly) UIImage* image;
+@property (nonatomic, copy) NSString *uploadUrl;
 @end

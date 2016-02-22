@@ -54,7 +54,6 @@
 
 #pragma mark - TextField 代理事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    HNALog(@"textFieldShouldReturn");
     if (textField.returnKeyType == UIReturnKeyNext) {
         if (self.keyboardNextBtnClicked) {
             self.keyboardNextBtnClicked();
