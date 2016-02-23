@@ -63,6 +63,9 @@ import UIKit
         
         textField.text = newString
         
+        // 发送文本变化的通知
+        NSNotificationCenter.defaultCenter().postNotificationName(UITextFieldTextDidChangeNotification, object: nil)
+        
         return false
     }
 }

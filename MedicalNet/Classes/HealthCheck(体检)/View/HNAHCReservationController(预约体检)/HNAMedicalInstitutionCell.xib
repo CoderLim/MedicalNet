@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,32 +15,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtR-py-Ncj">
-                        <rect key="frame" x="5" y="5" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtR-py-Ncj">
+                        <rect key="frame" x="5" y="5" width="20" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="EsZ-69-mba"/>
-                            <constraint firstAttribute="width" constant="30" id="yvO-Nl-8io"/>
+                            <constraint firstAttribute="width" secondItem="wtR-py-Ncj" secondAttribute="height" multiplier="1:1" id="X1I-dt-OTr"/>
+                            <constraint firstAttribute="width" constant="20" id="yvO-Nl-8io"/>
                         </constraints>
-                        <state key="normal" title="B"/>
-                        <state key="selected">
-                            <color key="titleColor" red="1" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" backgroundImage="checkbox_false">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
+                        <state key="selected" backgroundImage="checkbox_true">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EsZ-69-mba"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <action selector="checkButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dvq-8e-7qZ"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-ra-cSC">
-                        <rect key="frame" x="35" y="31" width="183" height="12.5"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGa-ra-cSC">
+                        <rect key="frame" x="35" y="31" width="227" height="12"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="北京市朝阳区安立路马克波罗28号"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="北京市朝阳区安立路马克波罗28号">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                         <connections>
                             <action selector="addrButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AbS-BZ-GXR"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YyO-sS-PTo">
-                        <rect key="frame" x="35" y="45" width="133" height="19"/>
+                        <rect key="frame" x="25" y="45" width="133" height="19"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="jEs-Nm-Lqu"/>
@@ -48,7 +59,7 @@
                         <state key="normal" title="周一至周六 9:00—17:00"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医联体检中心（海渔广场）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sb-BY-jp0">
-                        <rect key="frame" x="35" y="11" width="180" height="18"/>
+                        <rect key="frame" x="25" y="6" width="180" height="18"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -59,7 +70,7 @@
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <state key="normal" title="📞"/>
+                        <state key="normal" backgroundImage="phone"/>
                         <connections>
                             <action selector="dialButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yup-pU-fvv"/>
                         </connections>
@@ -101,4 +112,9 @@
             <point key="canvasLocation" x="314" y="183.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="checkbox_false" width="22" height="22"/>
+        <image name="checkbox_true" width="22" height="22"/>
+        <image name="phone" width="24" height="24"/>
+    </resources>
 </document>

@@ -157,7 +157,7 @@
 }
 
 - (void)textFieldDidChange:(NSNotification *)aNotification {
-    if (self.cardNumField.text&&self.amountField.text) {
+    if (self.cardNumField.text && self.amountField.text && self.cardNumField.text.length>0 && self.amountField.text.length>0) {
         [self.submitButton setEnabled:YES];
     } else {
         [self.submitButton setEnabled:NO];

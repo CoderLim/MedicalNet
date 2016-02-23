@@ -53,7 +53,13 @@ class HNAMoneyField: UITextField, UITextFieldDelegate {
             count++
         }
         
-        textField.text = "¥\(newString)"
+        if !newString.isEmpty {
+            textField.text = "¥\(newString)"
+        } else {
+            textField.text = ""
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(UITextFieldTextDidChangeNotification, object: nil)
         
         return false
     }

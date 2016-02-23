@@ -19,11 +19,16 @@
     self.tabBar.tintColor = [UIColor orangeColor];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.selectedIndex = 0;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc {
-    HNALog(@"tabbarcontroller deallc");
 }
 @end

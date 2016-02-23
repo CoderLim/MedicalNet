@@ -88,6 +88,8 @@
     
     // 设置提交按钮
     [self setupSubmitButton];
+    
+    [self setupTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,7 +98,7 @@
     if (IsEmbededInController(self)) {
         [self.mainScrollView setContentOffset:CGPointZero];
     }
-    [self loadData];
+//    [self loadData];
 }
 
 - (void)setupObserver {
@@ -112,6 +114,11 @@
     self.submitButton.layer.shadowOpacity = 0.5;
     self.submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.submitButton.hidden = ![[self.navigationController.childViewControllers lastObject] isKindOfClass:[self class]];
+}
+
+- (void)setupTableView {
+    self.hospitalTableView.layer.borderWidth = 1;
+    self.hospitalTableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
 #pragma mark - 数据
@@ -232,6 +239,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
     cell.textLabel.text = self.hospitalArray[indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
