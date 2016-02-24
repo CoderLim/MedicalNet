@@ -132,12 +132,12 @@
     [HNAHealthCheckTool getPackageListWithParam: param success:^(HNAGetPackageListResult *result) {
         [MBProgressHUD hideHUD];
         if (result != nil && result.success == HNARequestResultSUCCESS) {
-            self.packageScrollView.modelItems = result.packageList;
+            self.packageScrollView.models = result.packageList;
             for (NSInteger i=0; i<5; i++) {
                 HNAPackageListItem *item = [[HNAPackageListItem alloc] init];
                 item.packageId = i + 1000;
                 item.packageName = [NSString stringWithFormat:@"TC%ld",(long)i];
-                [self.packageScrollView addButtonWithModel:item];
+                [self.packageScrollView addItemWithModel:item];
             }
             // 选中第一条
             [self.packageScrollView selectAtIndex:0];
@@ -178,6 +178,8 @@
             [self.tableView reloadData];
         }
     } failure:^(NSError *error) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"请求错误"];
     }];
 }
 

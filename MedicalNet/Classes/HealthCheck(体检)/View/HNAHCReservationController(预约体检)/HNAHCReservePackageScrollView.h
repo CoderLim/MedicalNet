@@ -39,33 +39,28 @@ IB_DESIGNABLE
 /**
  *  当前选中的button
  */
-@property (nonatomic, weak) HNAHCReservePackageButton *selectedButton;
+@property (nonatomic, weak) HNAHCReservePackageButton *selectedItem;
 /**
  *  一组数据
  */
-@property(nonatomic,strong) NSMutableArray *modelItems;
-@property (nonatomic, strong) NSMutableArray<HNAHCReservePackageButton *> *buttons;
-
+@property(nonatomic,strong) NSMutableArray *models;
+@property (nonatomic, strong) NSMutableArray<HNAHCReservePackageButton *> *items;
 /**
  *  根据数据模型添加button
  */
-- (void)addButtonWithModel:(HNAPackageListItem *)model;
-
+- (void)addItemWithModel:(HNAPackageListItem *)model;
 /**
  *  根据packageId选中对应套餐
  */
 - (void)selectWithPackageId:(NSInteger)packageId;
-
 /**
  *  返回指定index的套餐id
  */
 - (NSInteger)packageIdAtIndex:(NSInteger)index;
-
 /**
  *  根据索引选中套餐
  */
 - (void)selectAtIndex:(NSInteger)index;
-
 /**
  *  点击button
  */

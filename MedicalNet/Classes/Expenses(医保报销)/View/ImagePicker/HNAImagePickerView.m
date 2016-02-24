@@ -140,12 +140,17 @@
             break;
         }
     }
+    // 修改状态栏样式
+    if (buttonIndex <= 1) {
+        SharedApplication.statusBarStyle = UIStatusBarStyleDefault;
+    }
 }
 
 - (void)takeAPhoto{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+        [ipc.navigationBar setBarTintColor: HNANavBackgroundColor];
         ipc.sourceType = sourceType;
         ipc.allowsEditing = YES;
         ipc.delegate = self;
@@ -155,6 +160,7 @@
 
 - (void)pickALocalPicture{
     UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    [ipc.navigationBar setBarTintColor: HNANavBackgroundColor];
     ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     ipc.delegate = self;
     ipc.allowsEditing = YES;
@@ -173,6 +179,9 @@
             [self.delegate imagePickerViewDidSelectImage:self];
         }
     }
+    // 修改状态栏样式
+    SharedApplication.statusBarStyle = UIStatusBarStyleLightContent;
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 @end

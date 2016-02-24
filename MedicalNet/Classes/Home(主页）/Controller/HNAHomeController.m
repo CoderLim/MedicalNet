@@ -241,10 +241,11 @@
         [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
         return;
     }
+    
     CGFloat hasRecordsViewConstraint_Top = self.hasRecordsViewConstraint_Top.constant;
     CGFloat noRecordsViewConstraint_Top = self.noRecordsViewConstraint_Top.constant;
     self.hasRecordsViewConstraint_Top.constant = self.view.frame.size.height;
-    self.noRecordsViewConstraint_Top.constant = 64.0;
+    self.noRecordsViewConstraint_Top.constant = -self.noRecordsView.frame.origin.y+64;
     self.tipView.alpha = 0.0;
     self.view.userInteractionEnabled = NO;
     

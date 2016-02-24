@@ -85,6 +85,7 @@
         sender.enabled = YES;
     }];
 }
+
 - (IBAction)changeCipher:(UIButton *)sender {
     self.changeCipher();
 }

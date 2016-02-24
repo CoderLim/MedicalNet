@@ -23,9 +23,9 @@
     // 设置导航控制器
     HNAMutiStateButton *rightBtn = [HNAMutiStateButton buttonWithType: UIButtonTypeCustom];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightBtn setTitleColor:NavDisabledBtnTextColor forState:UIControlStateDisabled];
-    [rightBtn setBackgroundColor:NavNormalBtnBgColor forState:UIControlStateNormal];
-    [rightBtn setBackgroundColor:NavNormalBtnBgColor forState:UIControlStateDisabled];
+    [rightBtn setTitleColor: HNANavDisabledBtnTextColor forState:UIControlStateDisabled];
+    [rightBtn setBackgroundColor: HNANavNormalBtnBgColor forState:UIControlStateNormal];
+    [rightBtn setBackgroundColor: HNANavNormalBtnBgColor forState:UIControlStateDisabled];
     [rightBtn setTitle:@"保存" forState:UIControlStateNormal];
     rightBtn.frame = CGRectMake(0, 0, 50, 30);
     [rightBtn addTarget:self action:@selector(saveOperation) forControlEvents : UIControlEventTouchUpInside];

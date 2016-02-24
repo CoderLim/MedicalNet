@@ -32,13 +32,12 @@
     UINavigationBar *appearance = [UINavigationBar appearance];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = NavTextColor;
+    attributes[NSForegroundColorAttributeName] = HNANavTextColor;
     [appearance setTitleTextAttributes:attributes];
     
-    [self.navigationBar setTintColor: NavTextColor];
+    [self.navigationBar setTintColor: HNANavTextColor];
     // 背景色
-    [self.navigationBar setBarTintColor: NavBackgroundColor];
-    
+    [self.navigationBar setBarTintColor: HNANavBackgroundColor];
     //
     self.navigationBar.translucent = YES;
 }
@@ -49,7 +48,7 @@
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = NavTextColor;
+    attributes[NSForegroundColorAttributeName] = HNANavTextColor;
     
     [appearance setTitleTextAttributes:attributes forState: UIControlStateNormal];
 }
