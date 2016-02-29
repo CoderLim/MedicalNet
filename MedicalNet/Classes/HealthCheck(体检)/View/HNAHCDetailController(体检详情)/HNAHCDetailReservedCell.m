@@ -14,19 +14,20 @@
 #import "HNAGetHCDetailResult.h"
 
 @interface HNAHCDetailReservedCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *descButton;
-
 @property (weak, nonatomic) IBOutlet UILabel *medicalTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openHourButton;
 @property (weak, nonatomic) IBOutlet UIButton *addrButton;
 @property (weak, nonatomic) IBOutlet UIButton *phoneButton;
-- (IBAction)dial:(UIButton *)sender;
 
+- (IBAction)dial:(UIButton *)sender;
 - (IBAction)descButtonClicked:(UIButton *)sender;
 
 @end
+
 @implementation HNAHCDetailReservedCell
 
 - (void)setModel:(HNAHCStatusRecord *)model {
@@ -68,4 +69,5 @@
 - (IBAction)descButtonClicked:(UIButton *)sender {
     [super descBtnClicked:sender];
 }
+
 @end

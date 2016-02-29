@@ -14,10 +14,13 @@
 @class HNAInsuranceCompanyModel;
 
 @interface HNAGetInsuranceCompanyResult : HNAResult
+
 @property (nonatomic, strong) HNAInsuranceCompanyModel *insuranceCompany;
+
 @end
 
 @interface HNAInsuranceCompanyModel : NSObject
+
 /**
  *  保险公司id
  */
@@ -38,4 +41,5 @@
  *  电话
  */
 @property (nonatomic,copy) NSString *phone;
+
 @end

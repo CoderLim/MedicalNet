@@ -15,6 +15,7 @@
 @class HNAHCReservePackageScrollView;
 
 @protocol HNAHCReservePackageScrollViewDelegate <NSObject>
+
 @optional
 /**
  *  将要点击button
@@ -24,10 +25,12 @@
  *  当点击button
  */
 - (void)packageScrollView:(HNAHCReservePackageScrollView *)scrollView didClickedAtIndex:(NSInteger)index;
+
 @end
 
 IB_DESIGNABLE
 @interface HNAHCReservePackageScrollView : UIScrollView
+
 /**
  *  当前选择的套餐id
  */
@@ -41,9 +44,12 @@ IB_DESIGNABLE
  */
 @property (nonatomic, weak) HNAHCReservePackageButton *selectedItem;
 /**
- *  一组数据
+ *  所有数据
  */
 @property(nonatomic,strong) NSMutableArray *models;
+/**
+ *  所有控件
+ */
 @property (nonatomic, strong) NSMutableArray<HNAHCReservePackageButton *> *items;
 /**
  *  根据数据模型添加button
@@ -65,4 +71,5 @@ IB_DESIGNABLE
  *  点击button
  */
 - (void)itemClicked:(HNAHCReservePackageButton *)sender;
+
 @end

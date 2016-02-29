@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAReserveHCParam : NSObject
+
++ (instancetype)param;
 /**
  *  申请人id
  */
@@ -40,5 +42,4 @@
  */
 @property (nonatomic,copy) NSString *reserveDate;
 
-+ (instancetype)param;
 @end

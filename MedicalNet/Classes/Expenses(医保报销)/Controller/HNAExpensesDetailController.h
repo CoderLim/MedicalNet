@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HNAExpensesDetailController : UIViewController
+
 @property (nonatomic, strong) NSString *recordId;
+
 @end

@@ -9,10 +9,12 @@
 #import "HNAHCCheckedCell.h"
 
 @interface HNAHCCheckedCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 
 @end
+
 @implementation HNAHCCheckedCell
 
 - (void)setModel:(HNAHCStatusRecord *)model {
@@ -30,4 +32,5 @@
     HNAHCCheckedCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
     return cell;
 }
+
 @end

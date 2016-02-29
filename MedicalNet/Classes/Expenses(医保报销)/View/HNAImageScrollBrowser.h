@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface HNAImageScrollBrowser : UIView
+
 @property (nonatomic, strong) NSMutableArray<NSString *> *imageUrls;
+
 @end
 
 @interface HNAImageScrollBrowserLayout : UICollectionViewLayout
+
 @end

@@ -9,12 +9,14 @@
 #import "HNAHealthCheckRecordCell.h"
 
 @interface HNAHealthCheckRecordCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UIView *superContainer;
 
 @end
+
 @implementation HNAHealthCheckRecordCell
 
 - (void)setModel:(HNAHealthCheckRecordModel *)model{
@@ -35,4 +37,5 @@
     cell.superContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
     return cell;
 }
+
 @end

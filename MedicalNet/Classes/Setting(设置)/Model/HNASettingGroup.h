@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class HNASettingItem;
 
 @interface HNASettingGroup : NSObject

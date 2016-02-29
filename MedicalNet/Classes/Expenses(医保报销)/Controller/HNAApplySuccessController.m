@@ -19,8 +19,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *addrLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *codeLabel;
+
 @end
+
 @implementation HNAApplySuccessController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,4 +54,5 @@
         [MBProgressHUD showError:MessageWhenFaild];
     }];
 }
+
 @end

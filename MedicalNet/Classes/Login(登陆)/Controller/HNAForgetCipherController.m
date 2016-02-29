@@ -29,6 +29,7 @@
     
     self.title = @"忘记密码";
 }
+
 #pragma mark - TextField 代理事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.returnKeyType == UIReturnKeyNext) {
@@ -38,16 +39,22 @@
     }
     return YES;
 }
+
 #pragma mark - view事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
+
 #pragma mark - 按钮事件
-// 获取验证码
+/**
+ *  获取验证码
+ */
 - (IBAction)getValidationCodeBtnClicked:(HNACountDownButton *)sender {
     HNALog(@"%s", __FUNCTION__);
 }
-// 提交－跳转到修改密码
+/**
+ *  提交－跳转到修改密码
+ */
 - (IBAction)submit:(UIButton *)sender {
     [self performSegueWithIdentifier:ForgetCipher2ChangeCipherSegue sender:nil];
 }
@@ -58,4 +65,5 @@
         changeCipherVc.type = HNAChangeCipherControllerTypeViaPhoneValidation;
     }
 }
+
 @end

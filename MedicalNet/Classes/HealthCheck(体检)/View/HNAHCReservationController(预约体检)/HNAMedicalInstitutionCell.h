@@ -15,12 +15,19 @@
 typedef void(^HNAMedicalInstitutionCellSelectedBlock)();
 
 @interface HNAMedicalInstitutionCell : UITableViewCell
+
++ (instancetype)cellForTableView:(UITableView *)tableView;
+/**
+ *  数据模型
+ */
 @property (nonatomic, strong) HNAHCOrgan *model;
+/**
+ *  checkbox选中状态
+ */
 @property (nonatomic, assign, getter=isChecked) BOOL checked;
 /**
  *  当点击checkbox时调用
  */
 @property (nonatomic, copy) HNAMedicalInstitutionCellSelectedBlock selectedBlock;
 
-+ (instancetype)cellForTableView:(UITableView *)tableView;
 @end

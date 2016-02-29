@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HNASetMsgNoticeParam : NSObject
+
 /**
  *  用户id
  */
@@ -23,4 +24,5 @@
  *  报销通知：1=通知，0=不通知
  */
 @property (nonatomic,copy) NSString *expenseNotice;
+
 @end

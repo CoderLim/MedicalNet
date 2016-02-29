@@ -12,9 +12,9 @@
 
 - (instancetype)initWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate{
     if (self = [super init]) {
-        self.name = aName;
-        self.status = aState;
-        self.date = aDate;
+        _name = aName;
+        _status = aState;
+        _date = aDate;
     }
     return self;
 }
@@ -22,6 +22,5 @@
 + (instancetype)healthCheckRecordWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate{
     return [[self alloc] initWithName:aName state:aState date:aDate];
 }
-
 
 @end

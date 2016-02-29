@@ -11,8 +11,10 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAGetHCOrganListParam : NSObject
+
 /**
  *  套餐id
  */
 @property (nonatomic,assign) NSInteger packageId;
+
 @end

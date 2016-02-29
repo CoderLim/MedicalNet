@@ -17,5 +17,7 @@ typedef NS_ENUM(NSInteger,HNAChangeCipherControllerType) {
 };
 
 @interface HNAChangeCipherController : HNAChangeBaseController
+
 @property (nonatomic, assign) HNAChangeCipherControllerType type;
+
 @end

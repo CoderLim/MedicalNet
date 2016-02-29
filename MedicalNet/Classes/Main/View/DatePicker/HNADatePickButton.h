@@ -10,14 +10,17 @@
 @class HNADatePickButton;
 
 @protocol HNADatePickButtonDelegate <NSObject>
+
 @optional
 - (void)datePickButton:(HNADatePickButton *)button didBeginSelectDate:(NSDate *)date;
 - (void)datePickButton:(HNADatePickButton *)button dateChanged:(NSDate *)date;
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date;
+
 @end
 
-//IB_DESIGNABLE
+
 @interface HNADatePickButton : UIButton
+
 @property(nonatomic,weak) IBOutlet id<HNADatePickButtonDelegate> delegate;
 /**
  *  圆角
@@ -33,4 +36,5 @@
  *  边框 颜色
  */
 @property (nonatomic, strong) UIColor *borderColor;
+
 @end

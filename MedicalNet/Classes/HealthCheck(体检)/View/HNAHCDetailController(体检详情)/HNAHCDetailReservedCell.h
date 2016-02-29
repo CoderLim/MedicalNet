@@ -21,4 +21,5 @@
 @property (nonatomic, strong) HNAHCAppointment *appointment;
 
 + (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment;
+
 @end

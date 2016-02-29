@@ -12,7 +12,9 @@
 #define RecordCellIdentifier @"RecordCell"
 
 @interface HNAExpensesRecordCell : UITableViewCell
+
 @property(nonatomic,strong) HNAExpenseRecordModel *model;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
 @end

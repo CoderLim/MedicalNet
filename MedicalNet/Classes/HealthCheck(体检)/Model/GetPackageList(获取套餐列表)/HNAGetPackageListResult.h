@@ -14,6 +14,7 @@
 @class HNAPackageListItem;
 
 @interface HNAGetPackageListResult : HNAResult
+
 /**
  *  公司id
  */
@@ -22,10 +23,11 @@
  *  套餐列表
  */
 @property(nonatomic,strong) NSMutableArray<HNAPackageListItem *> *packageList;
+
 @end
 
-
 @interface HNAPackageListItem : NSObject
+
 /**
  *  套餐id
  */

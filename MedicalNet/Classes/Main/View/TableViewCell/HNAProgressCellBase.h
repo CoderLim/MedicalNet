@@ -6,6 +6,8 @@
 //  Copyright © 2016年 HaiHang. All rights reserved.
 //
 
+//带左侧进度的cell
+
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger,HNAProgressCellPositionType) {
@@ -14,9 +16,7 @@ typedef NS_ENUM(NSInteger,HNAProgressCellPositionType) {
     HNAProgressCellPositionTypeEnd
 };
 
-/**
- *  带左侧进度的cell
- */
+
 @interface HNAProgressCellBase : UITableViewCell
 
 /*

@@ -11,7 +11,6 @@
 @interface UIImage (HNA)
 
 - (instancetype)circleImageWithDiameter:(CGFloat)diameter;
-
 /**
  *  根据机型适配
  */
@@ -20,4 +19,5 @@
  *  生成纯色图片
  */
 + (instancetype)imageWithColor:(UIColor *)color andSize:(CGSize)size;
+
 @end

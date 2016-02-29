@@ -11,6 +11,7 @@
 @class HNALoginInfoResult;
 
 @interface HNAUser : NSObject <NSCoding>
+
 /**
  *  用户id
  */

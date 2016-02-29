@@ -18,6 +18,7 @@
 
 IB_DESIGNABLE
 @implementation HNACountDownButton
+
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -54,7 +55,7 @@ IB_DESIGNABLE
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
-#pragma mark timer事件
+#pragma mark - timer事件
 - (void)timerCountDown{
     _currentCountDownNumber--;
     

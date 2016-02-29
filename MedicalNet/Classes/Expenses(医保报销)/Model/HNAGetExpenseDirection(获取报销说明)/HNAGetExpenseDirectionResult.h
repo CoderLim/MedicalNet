@@ -12,11 +12,15 @@
 @class HNASecurityProgram, HNAExpenseDirectionModel;
 
 @interface HNAGetExpenseDirectionResult : HNAResult
+
 @property (nonatomic, strong) HNAExpenseDirectionModel *expenseDirection;
+
 @end
 
-
 @interface HNAExpenseDirectionModel : NSObject
+
+- (instancetype)initWithDict:(NSDictionary *)dict;
++ (instancetype)directionWithDict:(NSDictionary *)dict;
 /**
  *  公司id
  */
@@ -42,15 +46,11 @@
  */
 @property(nonatomic,strong) NSMutableArray *hospitals;
 
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)directionWithDict:(NSDictionary *)dict;
-
 @end
 
-/**
- *  医保报销说明－保障方案
- */
+// 医保报销说明－保障方案
 @interface HNASecurityProgram : NSObject
+
 /**
  *  项目
  */

@@ -17,6 +17,7 @@
 #import "MBProgressHUD+MJ.h"
 
 @interface HNAChangeCipherController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *cipherField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmCipherField;
 

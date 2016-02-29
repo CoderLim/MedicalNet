@@ -14,14 +14,17 @@
 @class HNAExpenseRecordModel;
 
 @interface HNAGetExpenseRecordsResult : HNAResult
+
 @property (nonatomic, copy) NSString *phoneNum;
 @property (nonatomic, copy) NSString *year;
 @property (nonatomic, copy) NSString *month;
 @property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
+
 @end
 
 
 @interface HNAExpenseRecordModel : NSObject
+
 /**
  *  记录id
  */
@@ -38,4 +41,5 @@
  *  状态
  */
 @property (nonatomic,copy) NSString *status;
+
 @end

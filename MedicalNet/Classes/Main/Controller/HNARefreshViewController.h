@@ -14,7 +14,8 @@
 @class MJRefreshHeaderView;
 
 @interface HNARefreshViewController : UIViewController <MJRefreshBaseViewDelegate>
-@property (nonatomic, weak) MJRefreshHeaderView *header;
 
+@property (nonatomic, weak) MJRefreshHeaderView *header;
 - (void)loadData;
+
 @end

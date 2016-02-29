@@ -10,15 +10,18 @@
 @class HNAImagePickerView;
 
 @protocol HNAImagePickerViewDelegate <NSObject>
+
 @optional
 - (BOOL)imagePickerViewWillSelectImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidSelectImage:(HNAImagePickerView *)imagePickerView;
 - (BOOL)imagePickerViewWillRemoveImage:(HNAImagePickerView *)imagePickerView;
 - (void)imagePickerViewDidRemoveImage:(HNAImagePickerView *)imagePickerView ;
 - (void)imagePickerViewDidCancel:(HNAImagePickerView *)imagePickerView;
+
 @end
 
 @interface HNAImagePickerView : UIView
+
 + (instancetype)imagePicker;
 
 @property(nonatomic,strong) IBOutlet UIView *view;
@@ -30,4 +33,5 @@
  *  选择的图片
  */
 @property(nonatomic,strong) UIImage *image;
+
 @end

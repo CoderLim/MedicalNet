@@ -60,7 +60,9 @@
  *  查看 套餐详情
  */
 - (IBAction)checkPackageDetail:(UIButton *)sender;
+
 @end
+
 @implementation HNAHCDetailController
 
 - (void)viewDidLoad {
@@ -81,6 +83,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReminderCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReminderCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
 }
+
 #pragma mark - 数据
 - (NSMutableArray<HNAHCStatusRecord *> *)statusRecords {
     if (_statusRecords == nil) {
@@ -179,4 +182,5 @@
         packageDetailVc.packageId = self.packageId;
     }
 }
+
 @end

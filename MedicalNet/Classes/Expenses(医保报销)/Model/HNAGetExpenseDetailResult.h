@@ -17,6 +17,7 @@
 
 
 @interface HNAExpenseDetailModel : NSObject
+
 /**
  *  花费总金额
  */
@@ -74,13 +75,11 @@
  */
 @property(nonatomic,strong) NSMutableArray<HNAExpenseDetailStatusRecord *> *statusRecords;
 
-
-- (instancetype)initWithDict:(NSDictionary *)dict;
-+ (instancetype)expenseDetailWithDict:(NSDictionary *)dict;
 @end
 
 #pragma mark - 对应节点－statusRecords
 @interface HNAExpenseDetailStatusRecord : NSObject
+
 /**
  *  状态记录id
  */
@@ -93,4 +92,5 @@
  *  状态描述
  */
 @property (nonatomic,copy) NSString *desc;
+
 @end

@@ -13,6 +13,7 @@
 @interface HNAChangeBaseController () <UITextFieldDelegate>{
     __weak HNAMutiStateButton *_navRightBtn;
 }
+
 @end
 
 @implementation HNAChangeBaseController
@@ -76,4 +77,5 @@
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"textFieldTextChanged" object:nil];
 }
+
 @end

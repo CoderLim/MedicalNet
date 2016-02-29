@@ -14,5 +14,7 @@ typedef NS_ENUM(NSInteger,HNARightArrowButtonArrowDirection) {
 };
 
 @interface HNARightArrowButton : UIButton
+
 @property (nonatomic, assign) HNARightArrowButtonArrowDirection direction;
+
 @end

@@ -10,6 +10,7 @@
 #import "UIView+HNA.h"
 
 @interface HNAImagePickerView() <UINavigationControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+
 /**
  *  选择图片 按钮
  */
@@ -25,8 +26,11 @@
 
 - (IBAction)pickerBtnClicked:(UIButton *)sender;
 - (IBAction)removeBtnClicked:(UIButton *)sender;
+
 @end
+
 @implementation HNAImagePickerView
+
 @synthesize image = _image;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -184,4 +188,5 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
 @end

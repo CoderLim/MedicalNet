@@ -12,4 +12,5 @@
 #import "HNARefreshViewController.h"
 
 @interface HNAHealthCheckController : HNARefreshViewController
+
 @end

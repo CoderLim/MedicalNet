@@ -18,8 +18,11 @@
 
 
 @interface HNASettingCell()
+
 @property (nonatomic,strong) UISwitch *switchView;
+
 @end
+
 @implementation HNASettingCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView{

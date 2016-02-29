@@ -13,6 +13,7 @@
 }
 
 @end
+
 @implementation HNAPortraitButton
 
 #pragma mark - 初始化
@@ -48,4 +49,5 @@
 
 - (void)setHighlighted:(BOOL)highlighted{
 }
+
 @end

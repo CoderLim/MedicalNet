@@ -11,7 +11,9 @@
 #define BorderWidth 1
 
 @interface HNAHCReservePackageButton()
+
 @end
+
 @implementation HNAHCReservePackageButton
 
 - (instancetype)initWithFrame:(CGRect)frame {

@@ -12,10 +12,14 @@
 #import "HNAHCDetailReminderCell.h"
 
 @interface HNAHCDetailReminderCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alertMessageLabel;
+
 - (IBAction)reminderBtnClicked:(UIButton *)sender;
+
 @end
+
 @implementation HNAHCDetailReminderCell
 
 - (void)setModel:(HNAHCStatusRecord *)model {
@@ -42,4 +46,5 @@
 - (IBAction)reminderBtnClicked:(UIButton *)sender {
     [super descBtnClicked:sender];
 }
+
 @end

@@ -9,5 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface CALayer (HNA)
+
 - (void)setBorderColorFromUIColor:(UIColor *)color;
+
 @end

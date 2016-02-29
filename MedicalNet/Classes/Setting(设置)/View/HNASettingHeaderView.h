@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HNASettingHeaderView : UIView
+
 - (void)refresh;
+
 @end

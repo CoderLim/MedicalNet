@@ -12,13 +12,16 @@
 
 
 @interface HNASettingHeaderView()
+
 @property (weak, nonatomic) IBOutlet HNAPortraitButton *portraitButton;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *companyNameLabel;
 
 @end
+
 @implementation HNASettingHeaderView
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self commonInit];

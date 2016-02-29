@@ -825,9 +825,9 @@
 			children = (
 				9F29C3FC1C43A7000073387F /* HNAHCReservationController(预约体检) */,
 				9F9D46F11C3BA95E00DCBE16 /* HNAHCDetailController(体检详情) */,
+				9FAAB0B41C06E8B3007D5E61 /* HNAHealthCheckRecordCell.xib */,
 				9FAAB0B21C06E8B3007D5E61 /* HNAHealthCheckRecordCell.h */,
 				9FAAB0B31C06E8B3007D5E61 /* HNAHealthCheckRecordCell.m */,
-				9FAAB0B41C06E8B3007D5E61 /* HNAHealthCheckRecordCell.xib */,
 				9FC33EB01C1EB049004D4139 /* HNAAnnotation.h */,
 				9FC33EB11C1EB049004D4139 /* HNAAnnotation.m */,
 			);

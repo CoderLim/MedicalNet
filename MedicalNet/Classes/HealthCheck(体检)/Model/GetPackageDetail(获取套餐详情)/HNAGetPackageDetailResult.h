@@ -14,6 +14,7 @@
 @class HNAPackageDetailItem;
 
 @interface HNAGetPackageDetailResult : HNAResult
+
 /**
  *  套餐id
  */
@@ -38,4 +39,5 @@
  *  描述
  */
 @property (nonatomic,copy) NSString *desc;
+
 @end

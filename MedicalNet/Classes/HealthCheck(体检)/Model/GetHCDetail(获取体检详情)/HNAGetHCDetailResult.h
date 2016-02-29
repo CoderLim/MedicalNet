@@ -40,6 +40,7 @@
 
 
 @interface HNAHCStatusRecord : NSObject
+
 /**
  *  状态记录id
  */
@@ -57,10 +58,12 @@
  *  用于控制显示样式
  */
 @property (nonatomic, assign) BOOL isSelected;
+
 @end
 
 // 预约
 @interface HNAHCAppointment : NSObject
+
 /**
  *  预约时间
  */
@@ -89,4 +92,5 @@
  *  纬度
  */
 @property (nonatomic,copy) NSString *lat;
+
 @end

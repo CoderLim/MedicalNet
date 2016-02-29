@@ -11,15 +11,17 @@
 #import <UIKit/UIKit.h>
 
 @class HNACountDownButton;
+
 @protocol HNACountDownButtonDelegate <NSObject>
+
 @optional
 - (void)buttonCountDownCompleted:(HNACountDownButton *)button;
+
 @end
 
 @interface HNACountDownButton : UIButton
 
 @property(nonatomic,weak) id<HNACountDownButtonDelegate> delegate;
-
 /**
  *  倒计时数
  */
@@ -34,4 +36,5 @@
  *  禁用时的背景色
  */
 @property(nonatomic,strong) IBInspectable UIColor *disabledBackgroundColor;
+
 @end

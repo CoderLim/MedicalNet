@@ -13,20 +13,8 @@
 }
 
 @end
+
 @implementation HNAMutiStateButton
-
-
-//- (void)setEnabled:(BOOL)enabled{
-//    [super setEnabled:enabled];
-//    
-//    if (enabled == NO) {
-//        if (_disbledBackgroundColor != nil) {
-//            [self setBackgroundColor :_disbledBackgroundColor];
-//        } else {
-//            [self setBackgroundColor :[UIColor lightGrayColor]];
-//        }
-//    }
-//}
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state{
     if (state == UIControlStateDisabled) {

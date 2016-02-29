@@ -53,10 +53,12 @@
     [appearance setTitleTextAttributes:attributes forState: UIControlStateNormal];
 }
 
+#pragma mark - 重写
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 隐藏底部tabar
     [viewController setHidesBottomBarWhenPushed:YES];
     
     [super pushViewController:viewController animated:YES];
 }
+
 @end

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 @objc class HNABankNoField: UITextField,UITextFieldDelegate {
+    
     // MARK:- property
     var originalText: String? {
         get {
@@ -68,4 +69,5 @@ import UIKit
         
         return false
     }
+    
 }

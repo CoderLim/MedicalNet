@@ -14,12 +14,15 @@
 @class HNAHCOrgan;
 
 @interface HNAGetHCOrganListResult : HNAResult
+
 @property (nonatomic,copy) NSString *packageId;
 @property(nonatomic,strong) NSMutableArray<HNAHCOrgan *> *organList;
+
 @end
 
 
 @interface HNAHCOrgan : NSObject
+
 /**
  *  体检机构id
  */
@@ -48,7 +51,6 @@
  *  纬度
  */
 @property (nonatomic,copy) NSString *lat;
-
 /**
  *  是否选中
  */

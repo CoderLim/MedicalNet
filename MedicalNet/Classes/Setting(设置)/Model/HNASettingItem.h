@@ -10,10 +10,10 @@
 
 @interface HNASettingItem : NSObject
 
-// 标题
-@property (nonatomic,copy) NSString *title;
-
 - (instancetype)initWithTitle:(NSString *)title;
 + (instancetype)itemWithTitle:(NSString *)title;
+
+// 标题
+@property (nonatomic,copy) NSString *title;
 
 @end

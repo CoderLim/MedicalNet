@@ -10,12 +10,15 @@
 #import "UILabel+HNA.h"
 
 @interface HNAExpenseDetailCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tipLabel_H;
+
 @end
+
 @implementation HNAExpenseDetailCell
 
 - (void)setModel:(HNAExpenseDetailStatusRecord *)model{
@@ -41,6 +44,5 @@
 
 - (void)awakeFromNib {
 }
-
 
 @end

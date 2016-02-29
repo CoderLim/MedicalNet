@@ -731,6 +731,9 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="countNumber">
                                         <integer key="value" value="60"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getValidationCodeBtnClicked:" destination="FkO-uJ-2qY" eventType="touchUpInside" id="gD5-wz-fDJ"/>
@@ -2339,10 +2342,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osm-qc-tEO" customClass="HNADatePickButton">
-                                <rect key="frame" x="10" y="84" width="100" height="25"/>
+                                <rect key="frame" x="10" y="84" width="120" height="25"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="8XS-TX-WSa"/>
+                                    <constraint firstAttribute="width" constant="120" id="8XS-TX-WSa"/>
                                     <constraint firstAttribute="height" constant="25" id="Nec-TD-wfd"/>
                                 </constraints>
                                 <state key="normal">
@@ -3452,7 +3455,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZu-4S-42g">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZu-4S-42g">
                                 <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.87058830261230469" green="0.93725496530532837" blue="0.9647059440612793" alpha="1" colorSpace="deviceRGB"/>
@@ -4007,8 +4010,8 @@
         <image name="tab_setting" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pKF-3Z-Vt3"/>
-        <segue reference="6EA-U9-CX0"/>
         <segue reference="wzd-N8-71k"/>
+        <segue reference="pKF-3Z-Vt3"/>
+        <segue reference="cc8-ne-zC3"/>
     </inferredMetricsTieBreakers>
 </document>

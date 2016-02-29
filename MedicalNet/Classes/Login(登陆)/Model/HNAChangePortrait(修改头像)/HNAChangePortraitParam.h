@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAChangePortraitParam : NSObject
+
 @property (nonatomic, assign) long long id;
 @property (nonatomic, copy) UIImage *theNewIcon;
 
 + (instancetype)param;
+
 @end
+

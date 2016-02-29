@@ -28,6 +28,7 @@
 @interface HNAExpensesRecordsController() <HNADatePickButtonDelegate>{
     NSDate *_selectedDate;
 }
+
 /**
  *  报销记录 数据
  */
@@ -38,7 +39,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet HNADatePickButton *datePickButton;
+
 @end
+
 @implementation HNAExpensesRecordsController
 
 -(void)viewDidLoad{
@@ -128,4 +131,5 @@
     HNAExpensesDetailController *destVc = segue.destinationViewController;
     destVc.recordId = ((HNAExpenseRecordModel *)sender).id;
 }
+
 @end

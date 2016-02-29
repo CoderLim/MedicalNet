@@ -11,15 +11,18 @@
 #import "UIView+HNA.h"
 
 @interface HNAMedicalInstitutionCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *institutionNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addrButton;
 @property (weak, nonatomic) IBOutlet UIButton *dialButton;
 @property (weak, nonatomic) IBOutlet UIButton *openHourButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *checkButton;
+
 - (IBAction)addrButtonClicked:(UIButton *)sender;
 - (IBAction)dialButtonClicked:(UIButton *)sender;
 - (IBAction)checkButton:(UIButton *)sender;
+
 @end
 
 @implementation HNAMedicalInstitutionCell
@@ -80,7 +83,9 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication] openURL:url];
 }
+
 - (IBAction)addrButtonClicked:(UIButton *)sender {
     [self.viewController performSegueWithIdentifier:@"reserve2map" sender:nil];
 }
+
 @end

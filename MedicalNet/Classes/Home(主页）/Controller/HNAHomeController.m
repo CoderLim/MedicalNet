@@ -31,6 +31,7 @@
 #define Home2ApplyExpenseSegue @"home2applyExpense"
 
 @interface HNAHomeController() <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+
 /**
  *  没记录view的top约束
  */
@@ -75,6 +76,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *expenseRecordsButton;
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender;
+
 @end
 
 @implementation HNAHomeController
@@ -155,6 +157,7 @@
     [self.view layoutIfNeeded];
     [self.applyExpenseButton setBackgroundImage:image forState:UIControlStateNormal];
 }
+
 #pragma mark - 响应通知
 /**
  *  报销说明控制器 停止拖动
@@ -175,6 +178,7 @@
         self.hasRecordsViewConstraint_Top.constant = self.noRecordsViewConstraint_Top.constant;
     }
 }
+
 #pragma mark - 数据
 - (NSMutableArray<HNAExpenseRecordModel *> *)records {
     if (_records == nil) {
@@ -272,4 +276,5 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDierectionControllerHasNoData object:nil];
 }
+
 @end

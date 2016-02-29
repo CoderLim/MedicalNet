@@ -11,8 +11,10 @@
 #import <UIKit/UIKit.h>
 
 @interface HNAHCDetailController : UIViewController
+
 /**
  *  体检hc记录id
  */
 @property (copy, nonatomic) NSString *hcRecordId;
+
 @end

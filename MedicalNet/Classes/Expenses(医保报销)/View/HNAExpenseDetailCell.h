@@ -11,6 +11,7 @@
 #import "HNAProgressCellBase.h"
 
 @interface HNAExpenseDetailCell : HNAProgressCellBase
+
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property(nonatomic,strong) HNAExpenseDetailStatusRecord *model;
@@ -18,4 +19,5 @@
  *    是否显示下方的文字
  */
 @property (nonatomic,assign) BOOL showTip;
+
 @end

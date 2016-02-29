@@ -9,4 +9,5 @@
 #import "HNASettingItem.h"
 
 @interface HNASettingSwitchItem : HNASettingItem
+
 @end

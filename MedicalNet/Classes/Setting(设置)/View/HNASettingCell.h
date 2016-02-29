@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class HNASettingItem;
 
 @interface HNASettingCell : UITableViewCell
-@property(nonatomic,strong) HNASettingItem *item;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property(nonatomic,strong) HNASettingItem *item;
+
 @end

@@ -15,4 +15,5 @@
 @property (nonatomic, copy) NSString *theNewPwd;
 
 + (instancetype)param;
+
 @end

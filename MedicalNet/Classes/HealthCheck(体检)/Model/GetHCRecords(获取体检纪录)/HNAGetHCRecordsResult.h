@@ -12,6 +12,7 @@
 @class HNAHealthCheckRecordModel;
 
 @interface HNAGetHCRecordsResult : HNAResult
+
 /**
  *  是否有新体检项目，1= 是z 0= 否
  * 
@@ -21,6 +22,7 @@
 @property (nonatomic,copy) NSString *year;
 @property (nonatomic,copy) NSString *month;
 @property(nonatomic,strong) NSMutableArray<HNAHealthCheckRecordModel *> *records;
+
 @end
 
 

@@ -34,6 +34,7 @@
 #define HCReserve2HCPackageSegue @"hcReserve2hcPackage"
 
 @interface HNAHCReservationController () <UITableViewDataSource,UITableViewDelegate,HNAHCReservePackageScrollViewDelegate, CKCalendarDelegate>
+
 /**
  *  日历
  */
@@ -60,6 +61,7 @@
  */
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)submit:(id)sender;
+
 @end
 
 @implementation HNAHCReservationController
@@ -114,6 +116,7 @@
     }
     return nil;
 }
+
 #pragma mark - 数据
 - (NSMutableArray *)medicalInstitutions{
     if (_medicalInstitutions == nil) {
@@ -319,4 +322,5 @@
     [super didReceiveMemoryWarning];
     HNALog(@"%s", __FUNCTION__);
 }
+
 @end

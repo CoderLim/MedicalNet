@@ -11,10 +11,12 @@
 typedef void(^cancelUpload)();
 
 @interface HNAImagePickerProgressView : UIView
+
 + (instancetype)progressView;
 @property (nonatomic, assign) float progress;
 @property (nonatomic, copy) cancelUpload cancelUploadBlock;
 
 - (void)show;
 - (void)hide;
+
 @end

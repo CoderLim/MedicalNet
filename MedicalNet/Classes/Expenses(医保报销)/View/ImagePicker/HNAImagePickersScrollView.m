@@ -15,8 +15,11 @@
 #define DefaultBackgroundColor [UIColor clearColor]
 
 @interface HNAImagePickersScrollView() <HNAAutoUploadImagePickerDelegate>
+
 @property (nonatomic, strong) NSMutableArray<HNAAutoUploadImagePicker *> *imagePickers;
+
 @end
+
 @implementation HNAImagePickersScrollView
 
 #pragma mark - 初始化
@@ -93,6 +96,7 @@
     }
     return urls;
 }
+
 #pragma mark -
 /**
  *  是否需要添加新的imagePicker
@@ -152,4 +156,5 @@
 
 - (void)dealloc {
 }
+
 @end

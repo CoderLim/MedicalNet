@@ -11,8 +11,10 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAGetHCDetailParam : NSObject
+
 /**
  *  体检纪录id
  */
 @property (nonatomic,copy) NSString *id;
+
 @end

@@ -14,6 +14,7 @@
 @interface HNARefreshViewController() 
 
 @end
+
 @implementation HNARefreshViewController
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -34,4 +35,5 @@
 - (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView {
     
 }
+
 @end

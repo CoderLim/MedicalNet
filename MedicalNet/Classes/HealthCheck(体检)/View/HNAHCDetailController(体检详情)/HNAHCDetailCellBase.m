@@ -11,9 +11,10 @@
 #import "HNAHCDetailCellBase.h"
 
 @interface HNAHCDetailCellBase()
-@end
-@implementation HNAHCDetailCellBase
 
+@end
+
+@implementation HNAHCDetailCellBase
 
 - (void)setModel:(HNAHCStatusRecord *)model {
     _model = model;
@@ -30,6 +31,7 @@
     static NSString *identifier = @"HNAHCDetailCellBase";
     return identifier;
 }
+
 - (void)descBtnClicked:(UIButton *)sender {
     self.model.isSelected = !self.model.isSelected;
     if (self.indexPath != nil) {

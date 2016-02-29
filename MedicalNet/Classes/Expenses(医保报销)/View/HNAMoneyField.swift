@@ -9,6 +9,7 @@
 import UIKit
 
 class HNAMoneyField: UITextField, UITextFieldDelegate {
+    
     override init(frame: CGRect) {
         super.init(frame: frame);
         commonInit()
@@ -63,4 +64,5 @@ class HNAMoneyField: UITextField, UITextFieldDelegate {
         
         return false
     }
+    
 }

@@ -12,9 +12,10 @@
 typedef void(^HNASettingItemClick)();
 
 @interface HNASettingExecuteItem : HNASettingItem
-@property (nonatomic,copy) HNASettingItemClick option;
 
 - (instancetype)initWithTitle:(NSString *)title option:(HNASettingItemClick)option;
 + (instancetype)itemWithTitle:(NSString *)title option:(HNASettingItemClick)option;
+
+@property (nonatomic,copy) HNASettingItemClick option;
 
 @end

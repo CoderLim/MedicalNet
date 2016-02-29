@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAGetHCRecordsParam : NSObject
+
 /**
  *  申请人ID，调用“登陆接口”时返回该值
  */
@@ -25,4 +26,5 @@
 @property (nonatomic,copy) NSString *month;
 
 + (instancetype)param;
+
 @end

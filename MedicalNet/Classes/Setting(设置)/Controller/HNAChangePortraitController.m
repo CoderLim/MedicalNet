@@ -15,8 +15,10 @@
 #import "HNAChangePortraitResult.h"
 
 @interface HNAChangePortraitController () <UINavigationControllerDelegate,UIActionSheetDelegate, UIImagePickerControllerDelegate>
-- (IBAction)pickImageClick:(UIButton *)sender;
+
 @property (weak, nonatomic) IBOutlet UIButton *pickImageBtn;
+- (IBAction)pickImageClick:(UIButton *)sender;
+
 @end
 
 @implementation HNAChangePortraitController
@@ -53,6 +55,7 @@
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
+
 #pragma mark - actionSheet代理方法
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.cancelButtonIndex) return;
@@ -110,9 +113,11 @@
     }
     
 }
+
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     HNALog(@"取消选择头像");
     [picker dismissViewControllerAnimated:YES
                                completion:nil];
 }
+
 @end

@@ -11,6 +11,9 @@
 #import "HNAProgressCellBase.h"
 
 @interface HNAHCDetailCellBase : HNAProgressCellBase
+
++(instancetype) alloc __attribute__((unavailable("不可用，请使用cellFor开头的方法")));
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath;
 /**
  *  模型数据
  */
@@ -29,8 +32,6 @@
  */
 + (NSString *)getIdentifier;
 
-+(instancetype) alloc __attribute__((unavailable("不可用，请使用cellFor开头的方法")));
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath;
-
 - (void)descBtnClicked:(UIButton *)sender;
+
 @end

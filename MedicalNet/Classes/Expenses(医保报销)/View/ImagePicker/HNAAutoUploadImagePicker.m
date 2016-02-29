@@ -17,6 +17,7 @@
 #define MaxFileSize 5*1024*1024
 
 @interface HNAAutoUploadImagePicker() <HNAImagePickerViewDelegate,UIActionSheetDelegate>
+
 @property (nonatomic, strong) NSProgress *progress;
 /**
  *  上传任务
@@ -34,7 +35,9 @@
  *  重传按钮
  */
 @property (nonatomic, weak) UIButton *reuploadBtn;
+
 @end
+
 @implementation HNAAutoUploadImagePicker
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -181,6 +184,7 @@
     [progress addObserver:self forKeyPath:ProgressKeyPath options:NSKeyValueObservingOptionNew context:nil];
     [uploadTask resume];
 }
+
 #pragma mark - UIAlertViewDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.cancelButtonIndex) return;
@@ -215,4 +219,5 @@
 - (void)dealloc {
     [self.progress removeObserver:self forKeyPath: ProgressKeyPath];
 }
+
 @end

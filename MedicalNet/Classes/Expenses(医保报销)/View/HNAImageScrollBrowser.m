@@ -12,14 +12,21 @@
 #define CellMargin 5
 
 @interface HNAImageScrollBrowserLayout()
+
 @end
+
 @implementation HNAImageScrollBrowserLayout
+
 @end
 
 @interface HNAImageScrollBrowser() <UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+
 @property (nonatomic, weak) UICollectionView *collectionView;
+
 @end
+
 @implementation HNAImageScrollBrowser
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self commonInit];
@@ -80,7 +87,9 @@
     cell.backgroundView = imageView;
     return  cell;
 }
+
 #pragma mark - UICollectionViewDelegate
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat w = self.frame.size.height-2*CellMargin;

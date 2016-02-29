@@ -13,15 +13,18 @@
 typedef void(^keyboardReturnButtonClicked)();
 
 @interface HNAChangeBaseController : UIViewController
+
 /**
  *  软键盘Return为Next按钮时事件
  */
 @property (nonatomic,copy) keyboardReturnButtonClicked keyboardNextBtnClicked;
-
 /**
  *  软键盘Return为Done或Go
  */
 @property (nonatomic,copy) keyboardReturnButtonClicked keyboardDoneOrGoBtnClicked;
-
+/**
+ *  导航栏右按钮是否可用
+ */
 @property (nonatomic,assign)  BOOL navRightBtnEnabled;
+
 @end

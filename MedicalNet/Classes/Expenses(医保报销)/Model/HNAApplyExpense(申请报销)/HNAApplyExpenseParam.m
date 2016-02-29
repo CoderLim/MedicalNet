@@ -9,6 +9,7 @@
 #import "HNAApplyExpenseParam.h"
 
 @implementation HNAApplyExpenseParam
+
 + (instancetype)param {
     HNAUser *currentUser = [HNAUserTool user];
     
@@ -57,4 +58,5 @@
     }
     return dict;
 }
+
 @end

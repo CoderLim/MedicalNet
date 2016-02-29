@@ -15,4 +15,5 @@
     param.id = [HNAUserTool user].id;
     return param;
 }
+
 @end

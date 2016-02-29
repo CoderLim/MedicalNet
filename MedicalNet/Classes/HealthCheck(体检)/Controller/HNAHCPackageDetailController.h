@@ -10,6 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^selectThePackageBlock)(NSInteger packageId);
+
 typedef NS_ENUM(NSInteger, HNAHCPackageDetailControllerType) {
     /**
      *  仅显示套餐详情
@@ -21,8 +23,6 @@ typedef NS_ENUM(NSInteger, HNAHCPackageDetailControllerType) {
     HNAHCPackageDetailControllerChoose
 };
 
-typedef void(^selectThePackageBlock)(NSInteger packageId);
-
 @interface HNAHCPackageDetailController : UIViewController
 
 @property (nonatomic, assign) HNAHCPackageDetailControllerType type;
@@ -30,6 +30,9 @@ typedef void(^selectThePackageBlock)(NSInteger packageId);
  *  点击选择此套餐时执行
  */
 @property (nonatomic, copy) selectThePackageBlock selectBlock;
+/**
+ *  套餐id
+ */
 @property (nonatomic, assign) NSInteger packageId;
 
 @end

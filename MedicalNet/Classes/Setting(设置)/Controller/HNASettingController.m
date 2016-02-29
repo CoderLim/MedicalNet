@@ -31,9 +31,11 @@
 #define Setting2IntroduceSegue @"setting2introduce"
 
 @interface HNASettingController() <MJRefreshBaseViewDelegate>
+
 @property (nonatomic, strong) NSMutableArray *data;
 @property (weak, nonatomic) IBOutlet HNASettingHeaderView *tableViewHeader;
 @property (nonatomic, weak) MJRefreshHeaderView *header;
+
 @end
 
 @implementation HNASettingController
@@ -182,6 +184,7 @@
         execItem.option();
     }
 }
+
 #pragma mark - MJRefreshBaseViewDelegate
 - (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView {
     [self.tableView reloadData];
@@ -193,4 +196,5 @@
 - (void)dealloc {
     [self.header free];
 }
+
 @end

@@ -11,8 +11,8 @@
 
 @interface HNAHealthCheckRecordCell : UITableViewCell
 
-@property(nonatomic,strong) HNAHealthCheckRecordModel *model;
-
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+
+@property(nonatomic,strong) HNAHealthCheckRecordModel *model;
 
 @end

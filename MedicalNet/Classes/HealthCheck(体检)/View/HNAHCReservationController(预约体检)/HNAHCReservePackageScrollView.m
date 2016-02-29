@@ -14,6 +14,7 @@
 @interface HNAHCReservePackageScrollView()
 
 @end
+
 @implementation HNAHCReservePackageScrollView
 
 #pragma mark - 初始化
@@ -146,4 +147,5 @@
         [self.hcDelegate packageScrollView:self didClickedAtIndex:sender.tag];
     }
 }
+
 @end

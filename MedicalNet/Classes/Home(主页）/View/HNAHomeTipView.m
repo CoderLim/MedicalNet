@@ -12,6 +12,7 @@
 #define HomeTipViewAnimationDuration 1.f
 
 @interface HNAHomeTipView()
+
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UIButton *changeCipherBtn;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -20,6 +21,7 @@
 - (IBAction)changeCipher:(UIButton *)sender;
 
 @end
+
 @implementation HNAHomeTipView
 
 #pragma mark - 初始化
@@ -39,6 +41,7 @@
         self.tipLabel.font = [UIFont systemFontOfSize:15.f];
     }
 }
+
 #pragma mark - 属性
 - (void)setFrame:(CGRect)frame {
     frame.size.height = HomeTipViewHeight;
@@ -89,4 +92,5 @@
 - (IBAction)changeCipher:(UIButton *)sender {
     self.changeCipher();
 }
+
 @end

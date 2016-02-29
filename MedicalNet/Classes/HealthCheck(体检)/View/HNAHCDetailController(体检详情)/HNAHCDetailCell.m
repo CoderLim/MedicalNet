@@ -10,10 +10,13 @@
 #import "HNAHCReportController.h"
 
 @interface HNAHCDetailCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *descButton;
 - (IBAction)descButtonClicked:(UIButton *)sender;
+
 @end
+
 @implementation HNAHCDetailCell
 
 - (void)setModel:(HNAHCStatusRecord *)model {
@@ -47,4 +50,5 @@
         self.descBlock();
     }
 }
+
 @end

@@ -10,5 +10,7 @@
 #import "HNAGetExpenseDirectionResult.h"
 
 @interface HNAProjectCell : UITableViewCell
+
 @property(nonatomic,strong) HNASecurityProgram *model;
+
 @end

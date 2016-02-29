@@ -26,6 +26,7 @@
 @interface HNAExpensesDirectionsController () <UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     BOOL _showMoreHospital;
 }
+
 /**
  *  保险公司信息
  */
@@ -34,7 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *insuranceComContactLabel;
 @property (weak, nonatomic) IBOutlet UILabel *insuranceComCodeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *insuranceComPhoneLabel;
-
 /**
  *  主ScrollView
  */
@@ -290,4 +290,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 @end

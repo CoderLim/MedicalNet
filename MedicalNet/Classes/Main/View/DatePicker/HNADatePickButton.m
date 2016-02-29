@@ -11,31 +11,54 @@
 #import "NSDate+HNA.h"
 
 #define DatePickerHeight 162
+#define ImageWidth 20
+#define ImagePaddingRight 10
 
 @interface HNADatePickButton() <HNADatePickerDelegate> {
     UIWindow *_originalKeyWindow;
 }
+
 @property (weak, nonatomic) UIView *mask;
 @property (weak, nonatomic) HNADatePicker *datePicker;
 @property (weak, nonatomic) UIView *pickerContainer;
 @property (strong, nonatomic) UIWindow *window;
+
 @end
 
 @implementation HNADatePickButton
 
-- (void)setCornerRadius:(CGFloat)cornerRadius{
-    _cornerRadius = cornerRadius;
-    self.layer.cornerRadius = cornerRadius;
+#pragma mark - 初始化
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self commonInit];
+    }
+    return self;
 }
 
-- (void)setBorderWidth:(CGFloat)borderWidth{
-    _borderWidth = borderWidth;
-    self.layer.borderWidth = borderWidth;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
 }
 
-- (void)setBorderColor:(UIColor *)borderColor {
-    _borderColor = borderColor;
-    self.layer.borderColor = borderColor.CGColor;
+- (void)commonInit{
+    // 基本属性
+    [self setTitle:@"全部" forState:UIControlStateNormal];
+    [self setTitle:@"" forState:UIControlStateDisabled];
+    
+    // 设置layer
+    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderWidth = 1.0f;
+    
+    // 设置图片
+    [self setImage:[UIImage imageNamed:@"arrow_down"] forState:UIControlStateNormal];
+    self.imageView.contentMode = UIViewContentModeCenter;
+    self.adjustsImageWhenHighlighted = NO;
+    
+    // 添加手势
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMySelf:)];
+    [self addGestureRecognizer:tapRecognizer];
 }
 
 #pragma mark - 懒加载
@@ -100,37 +123,38 @@
     return _datePicker;
 }
 
-#pragma mark - 初始化
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
-        [self commonInit];
-    }
-    return self;
+#pragma mark - 公开属性
+- (void)setCornerRadius:(CGFloat)cornerRadius{
+    _cornerRadius = cornerRadius;
+    self.layer.cornerRadius = cornerRadius;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    if (self = [super initWithCoder:aDecoder]) {
-        [self commonInit];
-    }
-    return self;
+- (void)setBorderWidth:(CGFloat)borderWidth{
+    _borderWidth = borderWidth;
+    self.layer.borderWidth = borderWidth;
 }
 
-- (void)commonInit{
-    // 基本属性
-    [self setTitle:@"全部" forState:UIControlStateNormal];
-    [self setTitle:@"" forState:UIControlStateDisabled];
-    
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.layer.borderWidth = 1.0f;
-    
-    // 添加手势
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMySelf:)];
-    [self addGestureRecognizer:tapRecognizer];
+- (void)setBorderColor:(UIColor *)borderColor {
+    _borderColor = borderColor;
+    self.layer.borderColor = borderColor.CGColor;
 }
+
 #pragma mark - 重写
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
+    
     self.layer.cornerRadius = 0.5*frame.size.height;
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect {
+    CGFloat x = contentRect.size.width - ImageWidth - ImagePaddingRight;
+    CGFloat y = 0;
+    return CGRectMake(x, y, ImageWidth, contentRect.size.height);
+}
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect {
+    CGFloat w = contentRect.size.width - ImageWidth;
+    return CGRectMake(ImagePaddingRight, 0, w, contentRect.size.height);
 }
 
 #pragma mark - 手势
@@ -156,6 +180,9 @@
         
         // 3.缩放原始window
         _originalKeyWindow.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+        
+        // 4.旋转向下箭头
+        self.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     } completion:nil];
     
     // 通知代理
@@ -174,6 +201,9 @@
         
         // 缩放原始window
         _originalKeyWindow.transform = CGAffineTransformIdentity;
+        
+        // 旋转箭头
+        self.imageView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         self.mask.hidden = YES;
         [_originalKeyWindow makeKeyAndVisible];
@@ -200,4 +230,5 @@
         [self.delegate datePickButton:self dateChanged:date];
     }
 }
+
 @end

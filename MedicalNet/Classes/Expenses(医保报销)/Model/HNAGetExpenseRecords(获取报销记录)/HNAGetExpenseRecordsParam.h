@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAGetExpenseRecordsParam : NSObject
+
++ (instancetype)param;
 /**
  *  申请人id，调用“ 登陆接口 ”时返回该值
  */
@@ -22,5 +24,4 @@
  */
 @property (nonatomic,assign) NSInteger month;
 
-+ (instancetype)param;
 @end

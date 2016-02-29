@@ -19,7 +19,6 @@
  */
 + (HNAUser *)user;
 + (void)saveUser:(HNAUser *)user;
-
 /**
  *  通过id获取用户信息
  *
@@ -29,7 +28,6 @@
  *
  */
 + (void)getUserById:(NSString *)id success:(void(^)(HNAUser *user))success failure:(void(^)(NSError *error))failure;
-
 /**
  *  修改密码
  *
@@ -38,7 +36,6 @@
  *  @param failure 失败回调
  */
 + (void)changePwdWithParam:(HNAChangePwdParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
-
 /**
  *  修改密码
  *
@@ -47,7 +44,6 @@
  *  @param failure 失败回调
  */
 + (void)forgetPwdWithParam:(HNAForgetPwdParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
-
 /**
  *  修改手机号
  *
@@ -56,7 +52,6 @@
  *  @param failure 失败回调
  */
 + (void)changePhoneWithParam:(HNAChangePhoneParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
-
 /**
  *  修改头像
  *
@@ -65,7 +60,6 @@
  *  @param failure 失败回调
  */
 + (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void(^)(HNAChangePortraitResult *))success failure:(void(^)(NSError *error))failure;
-
 /**
  *  设置消息提醒
  *
@@ -74,4 +68,5 @@
  *  @param failure 失败回调
  */
 + (void)setMsgNoticeWithParam:(HNASetMsgNoticeParam *)param success:(void(^)(HNAResult *))success failure:(void(^)(NSError *error))failure;
+
 @end

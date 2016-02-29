@@ -13,6 +13,7 @@
 #import "MBProgressHUD+MJ.h"
 
 @interface HNAChangePhoneController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
 @property (weak, nonatomic) IBOutlet UITextField *validationCodeField;
 @property (weak, nonatomic) IBOutlet UIButton *getValidationCodeBtn;
@@ -56,4 +57,5 @@
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
+
 @end

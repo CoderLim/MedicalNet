@@ -35,6 +35,7 @@
 @interface HNALoginController() <UITextFieldDelegate,NSURLSessionDelegate>{
     __weak UITextField *_currentEditTextField;
 }
+
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -44,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginView_Trailing;
 
 - (IBAction)loginBtnClick:(UIButton *)sender;
+
 @end
 
 @implementation HNALoginController
@@ -79,6 +81,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self textFieldTextChanged:nil];
 }
+
 #pragma mark - 键盘
 - (void)keyboardWillShow:(NSNotification *)aNotification{
     NSDictionary *userInfo = [aNotification userInfo];
@@ -121,6 +124,7 @@
         [weakSelf.view layoutIfNeeded];
     }];
 }
+
 #pragma mark - textField
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     _currentEditTextField = textField;
@@ -186,4 +190,5 @@
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
+
 @end

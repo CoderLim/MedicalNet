@@ -12,9 +12,12 @@
 @interface LMLocalCache() {
     NSFileManager *_fileManager;
 }
+
 @property (nonatomic, copy) NSString *diskCachePath;
 @property (nonatomic, strong) dispatch_queue_t ioQueue;
+
 @end
+
 @implementation LMLocalCache
 
 + (instancetype)sharedLocalCache {

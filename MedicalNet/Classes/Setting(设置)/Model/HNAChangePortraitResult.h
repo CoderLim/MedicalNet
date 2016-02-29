@@ -9,8 +9,10 @@
 #import "HNAResult.h"
 
 @interface HNAChangePortraitResult : HNAResult
+
 /**
  *  新头像url
  */
 @property (nonatomic, copy) NSString *theNewIconUrl;
+
 @end

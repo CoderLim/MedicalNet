@@ -13,10 +13,14 @@
 #define ProgressLineColor [UIColor whiteColor].CGColor
 
 @interface HNAImagePickerProgressView() <UIActionSheetDelegate>
+
 @property (nonatomic, strong) UIBezierPath *bezierPath;
 @property (nonatomic, weak) CAShapeLayer *shapeLayer;
+
 @end
+
 @implementation HNAImagePickerProgressView
+
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -111,4 +115,5 @@
         self.cancelUploadBlock();
     }
 }
+
 @end

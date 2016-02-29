@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAHealthCheckRecordModel : NSObject
+
+- (instancetype)initWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate;
++ (instancetype)healthCheckRecordWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate;
 /**
  *  记录id
  */
@@ -30,6 +33,4 @@
  */
 @property (nonatomic,copy) NSString *date;
 
-- (instancetype)initWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate;
-+ (instancetype)healthCheckRecordWithName:(NSString *)aName state:(NSString *)aState date:(NSString *)aDate;
 @end

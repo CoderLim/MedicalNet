@@ -9,11 +9,12 @@
 #import "HNAProjectCell.h"
 
 @interface HNAProjectCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 
-
 @end
+
 @implementation HNAProjectCell
 
 - (void)setModel:(HNASecurityProgram *)model{

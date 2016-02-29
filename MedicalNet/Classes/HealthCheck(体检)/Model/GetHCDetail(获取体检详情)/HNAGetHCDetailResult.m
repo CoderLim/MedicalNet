@@ -18,12 +18,15 @@
 
 
 @implementation HNAHCAppointment
+
 - (NSString *)phone {
+    
     if (_phone == nil) {
         return @"10086";
     }
     return _phone;
 }
+
 @end
 
 

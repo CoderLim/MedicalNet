@@ -47,6 +47,9 @@
  *  用来封装文件数据的模型
  */
 @interface HNAFormData : NSObject
+
++ (instancetype)formDataWithImage:(UIImage *)image;
++ (instancetype)formDataWithFilename:(NSString *)filename image:(UIImage *)image;
 /**
  *  文件数据
  */
@@ -67,6 +70,4 @@
  */
 @property (nonatomic, copy) NSString *mimeType;
 
-+ (instancetype)formDataWithImage:(UIImage *)image;
-+ (instancetype)formDataWithFilename:(NSString *)filename image:(UIImage *)image;
 @end

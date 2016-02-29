@@ -10,11 +10,14 @@
 @class HNAImagePickersScrollView;
 
 @protocol HNAImagePickersScrollViewDelegate <NSObject>
+
 @optional
 - (BOOL)imagePickersScrollViewWillSelectImage:(HNAImagePickersScrollView *)imagePickerScrollView;
+
 @end
 
 @interface HNAImagePickersScrollView : UIScrollView
+
 + (instancetype)imagePickersScrollView;
 /**
  *  代理
@@ -29,4 +32,5 @@
  */
 @property (nonatomic, strong, readonly) NSMutableArray<UIImage *> *images;
 @property (nonatomic, strong, readonly) NSMutableArray *imageUrls;
+
 @end

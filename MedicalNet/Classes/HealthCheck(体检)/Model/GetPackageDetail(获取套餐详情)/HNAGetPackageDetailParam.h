@@ -11,8 +11,10 @@
 #import <Foundation/Foundation.h>
 
 @interface HNAGetPackageDetailParam : NSObject
+
 /**
  *  套餐id，通过“体检记录详情”接口获取
  */
 @property (nonatomic,assign) NSInteger id;
+
 @end

@@ -27,9 +27,12 @@
 #define HCHome2HCDetailSegue @"HCHome2HCDetail"
 
 @interface HNAHealthCheckController() <UITableViewDataSource,UITableViewDelegate,HNADatePickButtonDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSDate *selectedDate;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+/**
+ *  当前选择的日期
+ */
+@property (nonatomic, strong) NSDate *selectedDate;
 /**
  *  体检记录
  */
@@ -51,7 +54,9 @@
  *  查看(预约)体检项目
  */
 - (IBAction)reserveHealthCheck:(UIButton *)sender;
+
 @end
+
 @implementation HNAHealthCheckController
 
 -(void)viewDidLoad{
@@ -113,12 +118,14 @@
         [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
     }];
 }
+
 #pragma mark - datePickButton代理
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
     if (date != nil) {
         self.selectedDate = date;
     }
 }
+
 #pragma mark - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
@@ -144,6 +151,7 @@
     return UITableViewAutomaticDimension;
     
 }
+
 #pragma mark - 单击事件
 - (IBAction)reserveHealthCheck:(UIButton *)sender {
     // 体检首页 跳转到 预约体检
@@ -161,4 +169,5 @@
 - (void)dealloc {
     [self.header free];
 }
+
 @end

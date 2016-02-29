@@ -29,7 +29,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *mainScrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
-
 /**
  *   保险公司名称
  */
@@ -49,9 +48,13 @@
 /**
  *  图片选择控件
  */
+// 身份证
 @property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *IDCardImagePickersScrollView;
+// 医保卡
 @property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *medicalCardImagePickersScrollView;
+// 就医
 @property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *casesImagePickersScrollView;
+// 缴费
 @property (weak, nonatomic) IBOutlet HNAImagePickersScrollView *chargesImagePickersScrollView;
 /**
  *  花费总额
@@ -66,6 +69,7 @@
  *  提交
  */
 - (IBAction)submit:(UIButton *)sender;
+
 @end
 
 @implementation HNAApplyExpensesController
@@ -97,7 +101,6 @@
     // TextField
     [DefaultCenter addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
     [DefaultCenter addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    
 }
 /**
  *  设置基本信息
@@ -114,6 +117,7 @@
     [self.submitButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor] andSize:self.submitButton.bounds.size] forState:UIControlStateDisabled];
     [self.submitButton setEnabled:NO];
 }
+
 #pragma mark - 按钮事件
 /**
  *  提交
@@ -192,4 +196,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
 @end

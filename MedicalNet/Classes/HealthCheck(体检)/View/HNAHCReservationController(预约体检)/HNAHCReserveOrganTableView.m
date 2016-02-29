@@ -15,9 +15,12 @@
 #define BorderColor UIColorWithRGB(236, 236, 236).CGColor
 
 @interface HNAHCReserveOrganTableView()
+
 @property (weak, nonatomic) IBOutlet UIButton *expandButton;
 - (IBAction)expandButtonClicked:(UIButton *)sender;
+
 @end
+
 @implementation HNAHCReserveOrganTableView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -80,9 +83,11 @@
 - (void)registerCell {
     [self registerNib:[UINib nibWithNibName:@"HNAMedicalInstitutionCell" bundle:nil] forCellReuseIdentifier:@"HNAMedicalInstitutionCell"];
 }
+
 #pragma mark - 单击事件
 - (IBAction)expandButtonClicked:(UIButton *)sender {
     self.expanded = !self.expanded;
     [self reloadData];
 }
+
 @end

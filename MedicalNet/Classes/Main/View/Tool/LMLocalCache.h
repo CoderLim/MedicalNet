@@ -10,10 +10,8 @@
 
 @interface LMLocalCache : NSObject
 
-
 + (instancetype)sharedLocalCache;
 - (instancetype)initWithNamespace:(NSString *)ns;
-
 /**
  *  获取NSDictionary
  */
@@ -29,4 +27,5 @@
  */
 - (void)clearDisk;
 - (void)clearDiskWithCompletionBlock:(void (^)())completion;
+
 @end

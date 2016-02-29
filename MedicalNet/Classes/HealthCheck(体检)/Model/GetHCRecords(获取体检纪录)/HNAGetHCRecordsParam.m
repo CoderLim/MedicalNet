@@ -9,6 +9,7 @@
 #import "HNAGetHCRecordsParam.h"
 
 @implementation HNAGetHCRecordsParam
+
 + (instancetype)param {
     HNAGetHCRecordsParam *p = [[HNAGetHCRecordsParam alloc] init];
     p.id = [HNAUserTool user].id;
@@ -16,4 +17,5 @@
     p.month = @"";
     return p;
 }
+
 @end

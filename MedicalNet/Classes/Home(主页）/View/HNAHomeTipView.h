@@ -10,6 +10,7 @@
 typedef void(^TipViewElementClick)();
 
 @interface HNAHomeTipView : UIView
+
 /**
  *  父控件
  */
@@ -27,4 +28,5 @@ typedef void(^TipViewElementClick)();
  *  显示tipView
  */
 - (void)show;
+
 @end

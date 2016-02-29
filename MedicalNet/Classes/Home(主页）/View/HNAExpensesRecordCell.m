@@ -9,11 +9,13 @@
 #import "HNAExpensesRecordCell.h"
 
 @interface HNAExpensesRecordCell()
+
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 
 @end
+
 @implementation HNAExpensesRecordCell
 
 - (instancetype)initWithFrame:(CGRect)frame {

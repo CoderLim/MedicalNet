@@ -9,7 +9,9 @@
 #import "HNAGetInsuranceCompanyResult.h"
 
 @implementation HNAGetInsuranceCompanyResult
+
 @end
 
 @implementation HNAInsuranceCompanyModel
+
 @end

@@ -12,6 +12,7 @@
 @class HNAHCOrgan;
 
 @interface HNAHCReserveOrganTableView : UITableView
+
 /**
  *  是否已展开
  */
@@ -21,5 +22,10 @@
  */
 @property (nonatomic, weak) HNAMedicalInstitutionCell *selectedCell;
 
+/**
+ *  注册单元格
+ */
 - (void)registerCell;
+
 @end
+
