@@ -23,6 +23,7 @@
 
 @implementation HNAChangePhoneController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -33,10 +34,7 @@
     };
 }
 
-- (IBAction)getValidationCodeBtnClicked:(UIButton *)sender {
-
-}
-
+#pragma mark - Private
 - (void)textFieldTextChanged:(NSNotification *)notification{
     self.getValidationCodeBtn.enabled = self.phoneField.text.length > 0;
     self.navRightBtnEnabled = self.phoneField.text.length > 0 && self.validationCodeField.text.length > 0;
@@ -58,4 +56,8 @@
     }];
 }
 
+#pragma mark - IBActions
+- (IBAction)getValidationCodeBtnClicked:(UIButton *)sender {
+    
+}
 @end

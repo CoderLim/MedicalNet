@@ -17,14 +17,12 @@
 
 @implementation HNAProjectCell
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNASecurityProgram *)model{
     _model = model;
     
     self.nameLabel.text = model.project;
     self.moneyLabel.text = model.amount;
-}
-
-- (void)awakeFromNib {
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

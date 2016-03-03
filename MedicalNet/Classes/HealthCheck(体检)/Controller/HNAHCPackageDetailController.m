@@ -24,10 +24,12 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *packageNameLabel;
 /**
- *  “选择此套餐按钮” 的父视图
+ *  “选择此套餐按钮” 父视图
  */
 @property (weak, nonatomic) IBOutlet UIView *selectBtnContainer;
-
+/**
+ *  记录 数据
+ */
 @property (strong, nonatomic) NSMutableArray<HNAPackageDetailItem *> *records;
 /**
  *  选择此套餐
@@ -38,6 +40,7 @@
 
 @implementation HNAHCPackageDetailController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -49,6 +52,7 @@
     }
 }
 
+#pragma mark - Custom Accessors
 - (NSMutableArray<HNAPackageDetailItem *> *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
@@ -56,6 +60,7 @@
     return _records;
 }
 
+#pragma mark - Private
 - (void)loadData{
     // 提示
     [MBProgressHUD showMessage: MessageWhenLoadingData];
@@ -95,7 +100,7 @@
     }];
 }
 
-#pragma mark - tableView delegate
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
 }
@@ -111,6 +116,7 @@
     return cell;
 }
 
+#pragma mark - IBActions
 /**
  *  选择此套餐
  */

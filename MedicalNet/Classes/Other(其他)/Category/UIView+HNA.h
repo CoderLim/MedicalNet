@@ -15,10 +15,10 @@
  *
  *  @param amplitudu 震动幅度
  */
-- (void)shakeWithAmplitude:(CGFloat)amplitudu;
+- (void)hna_shakeWithAmplitude:(CGFloat)amplitudu;
 /**
  *  获取view所属控制器
  */
-- (UIViewController *)viewController;
+- (UIViewController *)hna_viewController;
 
 @end

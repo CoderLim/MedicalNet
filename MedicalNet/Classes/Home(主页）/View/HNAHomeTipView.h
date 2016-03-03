@@ -11,6 +11,7 @@ typedef void(^TipViewElementClick)();
 
 @interface HNAHomeTipView : UIView
 
++ (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher;
 /**
  *  父控件
  */
@@ -21,9 +22,11 @@ typedef void(^TipViewElementClick)();
 @property (nonatomic,copy) TipViewElementClick changeCipher;
 
 /**
- *  初始化
+ *  表示是否可用
+ *
+ *  如果修改过密码或者点过X号，则不显示tipView
  */
-+ (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher;
++ (BOOL)avaliable;
 /**
  *  显示tipView
  */

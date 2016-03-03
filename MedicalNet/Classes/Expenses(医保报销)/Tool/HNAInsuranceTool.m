@@ -21,13 +21,6 @@
 
 @implementation HNAInsuranceTool
 
-/**
- *  通过companyId获取医保报销说明
- *
- *  @param companyId 公司id,调用登录接口时返回的
- *  @param success   success
- *  @param failure   failure
- */
 + (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAGetExpenseDirectionResult *result))success failure:(void(^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDesc", RequestUrlDomain];
     
@@ -46,9 +39,7 @@
     }];
 
 }
-/**
- *  获取报销纪录
- */
+
 + (void)getExpenseRecordsWithParam:(HNAGetExpenseRecordsParam *)param success:(void (^)(HNAGetExpenseRecordsResult *result))success failure:(void (^)(NSError *error))failure{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseRecords", RequestUrlDomain];
@@ -64,11 +55,7 @@
     }];
     
 }
-/**
- *  申请报销
- *
- *  POST
- */
+
 + (void)applyExpenseWithParam:(HNAApplyExpenseParam *)param success:(void (^)(HNAResult * result))success failure:(void (^)(NSError *error))failure{
     
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/applyExpense", RequestUrlDomain];
@@ -85,13 +72,7 @@
     }];
     
 }
-/**
- *  获取报销详情
- *
- *  @param recordId 记录id
- *  @param success  成功回调
- *  @param failure  失败回调
- */
+
 + (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAGetExpenseDetailResult *result))success failure:(void (^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDetails", RequestUrlDomain];
     
@@ -109,13 +90,7 @@
         }
     }];
 }
-/**
- *  获取保险公司信息
- *
- *  @param companyId 保险公司id
- *  @param success   成功回调
- *  @param failure   失败回调
- */
+
 + (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAGetInsuranceCompanyResult *result))success failure:(void (^)(NSError *error))failure{
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseInfo", RequestUrlDomain];
     [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":@(insurancecompanyId)} success:^(id json) {

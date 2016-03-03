@@ -61,15 +61,16 @@
     }
 }
 
+- (void)layoutSubviews {
+    self.collectionView.frame = self.bounds;
+}
+
+#pragma mark - Custom Accessors
 - (NSMutableArray<NSString *> *)imageUrls {
     if (_imageUrls == nil) {
         _imageUrls = [NSMutableArray array];
     }
     return _imageUrls;
-}
-
-- (void)layoutSubviews {
-    self.collectionView.frame = self.bounds;
 }
 
 #pragma mark - UICollectionViewDataSource

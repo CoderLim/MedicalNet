@@ -10,7 +10,7 @@
 
 @implementation UIImage (HNA)
 
-- (instancetype)circleImageWithDiameter:(CGFloat)diameter{
+- (instancetype)hna_circleImageWithDiameter:(CGFloat)diameter{
     // 1.图形上下文
     UIGraphicsBeginImageContext(CGSizeMake(diameter, diameter));
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -29,7 +29,7 @@
     return newimg;
 }
 
-+ (instancetype)imageWithName:(NSString *)name {
++ (instancetype)hna_imageWithName:(NSString *)name {
     if (IS_IPHONE_6X) {
         name = [NSString stringWithFormat:@"%@_375",name];
     } else if (IS_IPHONE_6X_PLUS) {
@@ -40,7 +40,7 @@
     return [UIImage imageNamed:name];
 }
 
-+ (instancetype)imageWithColor:(UIColor *)color andSize:(CGSize)size {
++ (instancetype)hna_imageWithColor:(UIColor *)color andSize:(CGSize)size {
     UIGraphicsBeginImageContext(size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [color set];

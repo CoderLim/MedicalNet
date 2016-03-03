@@ -23,7 +23,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/login", RequestUrlDomain];
     
     [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:YES success:^(id json) {
-        if (success) {
+        if (success && json!=nil) {
             HNALoginInfoResult *result = [HNALoginInfoResult objectWithKeyValues:json];
             // glm:测试数据
 //            result.name = param.username;
@@ -35,6 +35,11 @@
             [HNAUserTool saveUser:user];
             
             // 回调
+            success(result);
+        } else {
+            HNALoginInfoResult *result = [[HNALoginInfoResult alloc] init];
+            result.success = HNARequestResultFaild;
+            result.errorInfo = @"没有数据";
             success(result);
         }
     } failure:^(NSError *error) {

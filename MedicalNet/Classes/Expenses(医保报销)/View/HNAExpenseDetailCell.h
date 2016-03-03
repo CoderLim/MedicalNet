@@ -13,7 +13,9 @@
 @interface HNAExpenseDetailCell : HNAProgressCellBase
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-
+/**
+ *  数据模型
+ */
 @property(nonatomic,strong) HNAExpenseDetailStatusRecord *model;
 /*
  *    是否显示下方的文字

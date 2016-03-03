@@ -22,7 +22,7 @@
 
 @implementation HNAImagePickersScrollView
 
-#pragma mark - 初始化
+#pragma mark - View lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self commonInit];
@@ -43,16 +43,10 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.clipsToBounds = YES;
     self.backgroundColor = DefaultBackgroundColor;
-    
     // 添加第一个imagePicker
     [self addImagePicker];
 }
 
-+ (instancetype)imagePickersScrollView {
-    return [[HNAImagePickersScrollView alloc] init];
-}
-
-#pragma mark - life cycle
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -64,7 +58,7 @@
     }
 }
 
-#pragma mark - 属性
+#pragma mark - Custom Accessors
 - (NSMutableArray<HNAAutoUploadImagePicker *> *)imagePickers {
     if (_imagePickers == nil) {
         _imagePickers = [NSMutableArray array];
@@ -97,10 +91,12 @@
     return urls;
 }
 
-#pragma mark -
-/**
- *  是否需要添加新的imagePicker
- */
++ (instancetype)imagePickersScrollView {
+    return [[HNAImagePickersScrollView alloc] init];
+}
+
+#pragma mark - Private
+/** 是否需要添加新的imagePicker */
 - (BOOL)needAddNewImagePicker {
     for (HNAAutoUploadImagePicker *imagePicker in self.imagePickers) {
         if (imagePicker.image == nil) {
@@ -109,9 +105,7 @@
     }
     return YES;
 }
-/**
- *  添加新的imagePicker
- */
+
 - (void)addImagePicker {
     HNAAutoUploadImagePicker *imagePicker = [HNAAutoUploadImagePicker autoUploadImagePicker];
     imagePicker.delegate = self;
@@ -119,9 +113,7 @@
     [self addSubview: imagePicker];
     [self layoutIfNeeded];
 }
-/**
- *  移除imagePicker
- */
+
 - (void)removeImagePicker:(HNAAutoUploadImagePicker *)imagePicker {
     // 只有一个imagePicker时不操作
     if (self.imagePickers.count <= 1) {
@@ -152,9 +144,6 @@
 
 - (void)autoUploadImagePickerDidRemoveImage:(HNAAutoUploadImagePicker *)autoUploadImagePicker {
     [self removeImagePicker: autoUploadImagePicker];
-}
-
-- (void)dealloc {
 }
 
 @end

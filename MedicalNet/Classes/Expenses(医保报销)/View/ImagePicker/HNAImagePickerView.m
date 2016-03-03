@@ -30,7 +30,6 @@
 @end
 
 @implementation HNAImagePickerView
-
 @synthesize image = _image;
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -55,23 +54,21 @@
     containerView.frame = newFrame;
     [self addSubview:containerView];
     
-    // 隐藏“移除”按钮
     self.removeBtn.hidden = YES;
     
-    // 添加“长按”手势
     UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pickerBtnLongPressed:)];
     longPressRecognizer.minimumPressDuration = 1.f;
     [self.pickerBtn addGestureRecognizer:longPressRecognizer];
 }
 
+#pragma mark - Custom Accessors
 + (instancetype)imagePicker {
     return [[HNAImagePickerView alloc] init];
 }
 
-#pragma mark - 属性
 - (UIViewController *)viewControllerReduplicate {
     if (_viewControllerReduplicate == nil) {
-        _viewControllerReduplicate = self.viewController;
+        _viewControllerReduplicate = self.hna_viewController;
     }
     return _viewControllerReduplicate;
 }
@@ -82,48 +79,45 @@
     if (self.pickerBtn) {
         [self.pickerBtn setImage:image forState:UIControlStateNormal];
     }
-    
-    // 通知代理
+
     if (image == nil && [self.delegate respondsToSelector:@selector(imagePickerViewDidRemoveImage:)]) {
         [self.delegate imagePickerViewDidRemoveImage:self];
     }
 }
 
-#pragma mark - 按钮事件
+#pragma mark - IBActions
 - (IBAction)pickerBtnClicked:(UIButton *)sender {
-    // 通知代理将要选择图片
     if ([self.delegate respondsToSelector:@selector(imagePickerViewWillSelectImage:)]) {
         [self.delegate imagePickerViewWillSelectImage:self];
     }
-    
+
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
     [actionSheet showInView: self.viewControllerReduplicate.view];
 }
 
 - (IBAction)removeBtnClicked:(UIButton *)sender {
-    // 问问代理让不让移除
     if ([self.delegate respondsToSelector:@selector(imagePickerViewWillRemoveImage:)]&&
         ![self.delegate imagePickerViewWillRemoveImage:self]) {
         return;
     }
-    // 隐藏“移除”按钮
+    
     sender.hidden = YES;
-    // 删除pickerBtn的Image
+  
     [self.pickerBtn setImage:nil forState: UIControlStateNormal];
-    // 通知代理
+  
     if ([self.delegate respondsToSelector:@selector(imagePickerViewDidRemoveImage:)]) {
         [self.delegate imagePickerViewDidRemoveImage:self];
     }
 }
 
-#pragma mark - 手势
+#pragma mark - Private
 - (void)pickerBtnLongPressed:(UILongPressGestureRecognizer *)recognizer{
     if (self.image != nil) {
         self.removeBtn.hidden = NO;
     }
 }
 
-#pragma mark - UIActionSheet代理方法
+#pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
@@ -171,21 +165,20 @@
     [self.viewControllerReduplicate presentViewController:ipc animated:YES completion:nil];
 }
 
-#pragma mark - UIImagePickerController代理方法
+#pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey: UIImagePickerControllerOriginalImage];
         self.image = image;
     
-        // 通知代理
         if ([self.delegate respondsToSelector:@selector(imagePickerViewDidSelectImage:)]) {
             [self.delegate imagePickerViewDidSelectImage:self];
         }
     }
     // 修改状态栏样式
     SharedApplication.statusBarStyle = UIStatusBarStyleLightContent;
-    
+
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

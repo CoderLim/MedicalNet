@@ -160,12 +160,12 @@
     
     void (^successBlock)(void) = ^(void){
         //成功之后的处理
-        NSLog(@"[XGPush Demo]register successBlock");
+        NSLog(@"[XGPush]register successBlock");
     };
     
     void (^errorBlock)(void) = ^(void){
         //失败之后的处理
-        NSLog(@"[XGPush Demo]register errorBlock");
+        NSLog(@"[XGPush]register errorBlock");
     };
     
     // 注册设备

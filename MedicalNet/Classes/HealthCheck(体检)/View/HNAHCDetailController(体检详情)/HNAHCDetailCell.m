@@ -19,6 +19,15 @@
 
 @implementation HNAHCDetailCell
 
+
+#pragma mark - Public
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath descBlock:(HNAHCDetailCellBtnClicked)descBlock {
+    HNAHCDetailCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.descBlock = descBlock;
+    return cell;
+}
+
+#pragma mark - SuperClass
 - (void)setModel:(HNAHCStatusRecord *)model {
     [super setModel:model];
 
@@ -37,12 +46,7 @@
     return cell;
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath descBlock:(HNAHCDetailCellBtnClicked)descBlock {
-    HNAHCDetailCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
-    cell.descBlock = descBlock;
-    return cell;
-}
-
+#pragma mark - IBActions
 - (IBAction)descButtonClicked:(UIButton *)sender {
     [super descBtnClicked:sender];
     

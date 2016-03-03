@@ -20,18 +20,13 @@
 #import "HNAUserTool.h"
 #import "HNAUser.h"
 
-/**
- *  报销记录页跳转到记录详情
- */
+/** 报销记录页跳转到记录详情 */
 #define ExpenseRecord2RecordDetailSegue @"expenseRecord2recordDetail"
 
 @interface HNAExpensesRecordsController() <HNADatePickButtonDelegate>{
     NSDate *_selectedDate;
 }
 
-/**
- *  报销记录 数据
- */
 @property (nonatomic,strong) NSMutableArray *records;
 
 @property (nonatomic,strong) NSMutableArray *filterRecords;
@@ -44,16 +39,16 @@
 
 @implementation HNAExpensesRecordsController
 
+#pragma mark - View lifecycle
 -(void)viewDidLoad{
     [super viewDidLoad];
     
     self.title = @"报销记录";
-    
-    // 注册自定义Cell
+
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:RecordCellIdentifier];
 }
 
-#pragma mark - 数据
+#pragma mark - Custom Accessors
 -(NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
@@ -62,20 +57,17 @@
     }
     return _records;
 }
-/**
- *  加载指定日期的数据
- */
+
+#pragma mark - Private
 - (void)loadDataWithDate:(NSDate *)date{
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     // 1.参数
     HNAGetExpenseRecordsParam *param = [HNAGetExpenseRecordsParam param];
-    
     if (date!=nil) {
-        NSDateComponents *components = [date components];
+        NSDateComponents *components = [date hna_components];
         param.year = components.year;
         param.month = components.month;
     }
-    
     // 2.请求数据
     WEAKSELF(weakSelf);
     [HNAInsuranceTool getExpenseRecordsWithParam:param success:^(HNAGetExpenseRecordsResult *result) {
@@ -87,12 +79,11 @@
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:[NSString stringWithFormat:@"获取报销纪录失败:%@", error]];
     }];
-    
     // 3.刷新表格
     [self.tableView reloadData];
 }
 
-#pragma mark - datePickButtonDelegate
+#pragma mark - HNADatePickButtonDelegate
 - (void)datePickButton:(HNADatePickButton *)button dateChanged:(NSDate *)date{
     _selectedDate = date;
 }
@@ -101,7 +92,7 @@
     [self loadDataWithDate:_selectedDate];
 }
 
-#pragma mark - tableView代理方法
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
 }
@@ -114,6 +105,7 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HNAExpenseRecordModel *model = self.records[indexPath.row];
     [self performSegueWithIdentifier:ExpenseRecord2RecordDetailSegue sender:model];
@@ -126,7 +118,7 @@
     return UITableViewAutomaticDimension;
 }
 
-#pragma mark - segue
+#pragma mark - UIViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     HNAExpensesDetailController *destVc = segue.destinationViewController;
     destVc.recordId = ((HNAExpenseRecordModel *)sender).id;

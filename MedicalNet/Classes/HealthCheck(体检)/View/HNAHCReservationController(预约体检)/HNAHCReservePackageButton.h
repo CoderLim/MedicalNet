@@ -11,6 +11,13 @@
 
 @interface HNAHCReservePackageButton : UIButton
 
+/**
+ *  根据model添加button
+ *
+ *  @param model 数据model
+ *
+ *  @return 当前实例
+ */
 + (instancetype)packageButtonWithModel:(HNAPackageListItem *)model;
 /**
  *  数据模型

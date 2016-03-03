@@ -46,6 +46,7 @@
 
 @implementation HNAExpensesDetailController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -65,7 +66,7 @@
     [self.view layoutIfNeeded];
 }
 
-#pragma mark - 请求数据
+#pragma mark - Custom Accessors
 - (NSMutableArray *)statusRecords{
     if (_statusRecords == nil) {
         _statusRecords = [NSMutableArray array];
@@ -93,6 +94,7 @@
     return _statusRecords;
 }
 
+#pragma mark - Private
 - (void)loadData {
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     
@@ -115,7 +117,7 @@
     }];
 }
 
-#pragma  mark - 单击事件
+#pragma  mark - IBActions
 - (IBAction)checkDetailBtnClick:(UIButton *)sender {
     if (self.detailView.hidden) {
         [self spreadDetailView];
@@ -123,9 +125,7 @@
         [self closeDetailView];
     }
 }
-/**
- *  detailView展开
- */
+
 - (void)spreadDetailView{
     CGFloat height = _detailViewHeight;
     // 隐藏detailView
@@ -133,21 +133,16 @@
     // 设置“查看明细”文字
     self.checkDetailBtn.direction = HNARightArrowButtonArrowDirectionUp;
     
-    // 展开动画
     WEAKSELF(weakSelf);
     self.detailView_H.constant = height;
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
         [weakSelf.view layoutIfNeeded];
     } completion:nil];
 }
-/**
- *  detailView收起
- */
+
 - (void)closeDetailView{
-    // 设置“查看明细”按钮文字
     self.checkDetailBtn.direction = HNARightArrowButtonArrowDirectionDown;
-    
-    // 收起动画
+
     WEAKSELF(weakSelf);
     self.detailView_H.constant = 0;
     [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveLinear animations:^{
@@ -156,7 +151,8 @@
         self.detailView.hidden = YES;
     }];
 }
-#pragma mark - tableView 代理
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.statusRecords.count;
 }
@@ -176,6 +172,7 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }

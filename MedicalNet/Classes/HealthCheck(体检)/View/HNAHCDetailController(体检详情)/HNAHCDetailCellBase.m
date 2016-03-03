@@ -16,10 +16,12 @@
 
 @implementation HNAHCDetailCellBase
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAHCStatusRecord *)model {
     _model = model;
 }
 
+#pragma mark - Public
 + (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath {
     HNAHCDetailCellBase *cell = [tableView dequeueReusableCellWithIdentifier: [self getIdentifier]];
     cell.tableView = tableView;
@@ -32,6 +34,7 @@
     return identifier;
 }
 
+#pragma mark - IBActions
 - (void)descBtnClicked:(UIButton *)sender {
     self.model.isSelected = !self.model.isSelected;
     if (self.indexPath != nil) {

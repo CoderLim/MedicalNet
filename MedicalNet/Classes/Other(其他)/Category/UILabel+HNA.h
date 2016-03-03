@@ -10,7 +10,7 @@
 
 @interface UILabel (HNA)
 
-- (CGFloat)correctHeight;
-- (CGSize)textSize;
+- (CGFloat)hna_correctHeight;
+- (CGSize)hna_textSize;
 
 @end

@@ -24,6 +24,7 @@
 
 #import "MJRefresh.h"
 
+/**  跳转到体检详情 */
 #define HCHome2HCDetailSegue @"HCHome2HCDetail"
 
 @interface HNAHealthCheckController() <UITableViewDataSource,UITableViewDelegate,HNADatePickButtonDelegate>
@@ -59,6 +60,11 @@
 
 @implementation HNAHealthCheckController
 
+- (void)dealloc {
+    [self.header free];
+}
+
+#pragma mark - View lifecycle
 -(void)viewDidLoad{
     [super viewDidLoad];
     
@@ -71,8 +77,16 @@
     [self setupRefreshView];
 }
 
+#pragma mark - Custom Accessors
+- (NSMutableArray *)records{
+    if (_records == nil) {
+        _records = [NSMutableArray array];
+    }
+    return _records;
+}
+
+#pragma mark - Private
 - (void)setupTableView {
-    // 注册cell
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAHealthCheckRecordCell" bundle:nil] forCellReuseIdentifier:@"HealthCheckRecordCell"];
 }
 
@@ -82,51 +96,42 @@
     header.delegate = self;
     self.header = header;
 }
-#pragma mark - 数据
-- (NSMutableArray *)records{
-    if (_records == nil) {
-        _records = [NSMutableArray array];
-    }
-    return _records;
-}
-/**
- *  加载数据
- */
+
 - (void)loadData {
-    // 拼参数
     HNAGetHCRecordsParam *param = [HNAGetHCRecordsParam param];
     if (self.selectedDate != nil) {
-        NSDateComponents *components = [self.selectedDate components];
+        NSDateComponents *components = [self.selectedDate hna_components];
         param.year = [NSString stringWithFormat:@"%ld", (long)components.year];
         param.month = [NSString stringWithFormat:@"%ld", (long)components.month];
     }
     // 获取记录
     WEAKSELF(weakSelf);
-    [HNAHealthCheckTool getHCRecordsWithParam:param success:^(HNAGetHCRecordsResult *result) {
-        if (result.success == HNARequestResultSUCCESS) {
-            [weakSelf.records addObjectsFromArray:result.records];
-            [weakSelf.tableView reloadData];
-            // 没有体检项目则隐藏入口
-            if (result.hasNewProject == 0) {
-                weakSelf.reserveButton.hidden = (result.hasNewProject == 0);
-                weakSelf.reserveButton_H.constant = 0;
-            }
-        }
-        [self.header endRefreshing];
-    } failure:^(NSError *error) {
-        [self.header endRefreshing];
-        [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
-    }];
+    [HNAHealthCheckTool getHCRecordsWithParam:param
+                                      success:^(HNAGetHCRecordsResult *result) {
+                                          if (result.success == HNARequestResultSUCCESS){
+                                              [weakSelf.records addObjectsFromArray:result.records];
+                                              [weakSelf.tableView reloadData];
+                                              // 没有体检项目则隐藏入口
+                                              if (result.hasNewProject == 0) {
+                                                  //                weakSelf.reserveButton.hidden = (result.hasNewProject == 0);
+                                                  weakSelf.reserveButton_H.constant = 0;
+                                              }
+                                          }
+                                          [self.header endRefreshing];
+                                      } failure:^(NSError *error) {
+                                          [self.header endRefreshing];
+                                          [MBProgressHUD showError:[NSString stringWithFormat:@"error:%@",error]];
+                                      }];
 }
 
-#pragma mark - datePickButton代理
+#pragma mark - HNADatePickButtonDelegate
 - (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
     if (date != nil) {
         self.selectedDate = date;
     }
 }
 
-#pragma mark - tableView代理
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
 }
@@ -138,8 +143,8 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // 跳转到 体检详情
     [self performSegueWithIdentifier:HCHome2HCDetailSegue sender:self.records[indexPath.row].id];
 }
 
@@ -152,22 +157,18 @@
     
 }
 
-#pragma mark - 单击事件
+#pragma mark - IBActions
 - (IBAction)reserveHealthCheck:(UIButton *)sender {
     // 体检首页 跳转到 预约体检
     [self performSegueWithIdentifier:@"HCHome2HCReserve" sender:nil];
 }
 
-#pragma mark - segue
+#pragma mark - UIViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: HCHome2HCDetailSegue]) {
         HNAHCDetailController *vc = segue.destinationViewController;
         vc.hcRecordId = [sender stringValue];
     }
-}
-
-- (void)dealloc {
-    [self.header free];
 }
 
 @end

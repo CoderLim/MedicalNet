@@ -50,6 +50,14 @@
 
 @implementation HNALoginController
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -62,6 +70,11 @@
     [self setupNotification];
 }
 
+- (void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Private
 - (void)setupLoginView {
     CALayer *loginViewLayer = self.loginView.layer;
     loginViewLayer.cornerRadius = 20;
@@ -82,7 +95,6 @@
     [self textFieldTextChanged:nil];
 }
 
-#pragma mark - 键盘
 - (void)keyboardWillShow:(NSNotification *)aNotification{
     NSDictionary *userInfo = [aNotification userInfo];
     // 键盘frame
@@ -125,7 +137,7 @@
     }];
 }
 
-#pragma mark - textField
+#pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     _currentEditTextField = textField;
 }
@@ -134,12 +146,12 @@
     self.loginBtn.enabled = self.phoneTextField.text.length > 0 && self.cipherTextField.text.length > 0;
 }
 
-#pragma mark - view 事件
+#pragma mark - UIResponder
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }
 
-#pragma mark - button 事件
+#pragma mark - IBActions
 - (IBAction)loginBtnClick:(UIButton *)sender {
     [MBProgressHUD showMessage:@"正在登录"];
     
@@ -152,43 +164,37 @@
     param.password = password;
     
     WEAKSELF(weakSelf);
-    [HNALoginTool loginWithParam:param success:^(HNALoginInfoResult *result) {
-        [MBProgressHUD hideHUD];
-        if (result.success==HNARequestResultSUCCESS) {
-            // 如果用下面这句会出现内存泄漏，没搞明白为什么
-            //            HNATabBarController * tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
-            HNATabBarController *tabBarController = ((AppDelegate *)SharedApplication.delegate).tabBarController;
-            KeyWindow.rootViewController = tabBarController;
-            
-            CATransition *ca = [CATransition animation];
-            // 设置过度效果
-            ca.type= kCATransitionPush;
-            // 设置动画的过度方向（向右）
-            ca.subtype=kCATransitionFromRight;
-            // 设置动画的时间
-            ca.duration=.25;
-            // 设置动画的起点
-            ca.startProgress = 0.5;
-            [KeyWindow.layer addAnimation:ca forKey:nil];
-        } else {
-            [MBProgressHUD showError:@"账号或密码不正确"];
-            [weakSelf.loginView shakeWithAmplitude:20];
-        }
-    } failure:^(NSError *error) {
-        [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
-    }];
-}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
-}
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
+    [HNALoginTool loginWithParam:param
+                         success:^(HNALoginInfoResult *result) {
+                             [MBProgressHUD hideHUD];
+                             if (result.success==HNARequestResultSUCCESS) {
+                                 // 如果用下面这句会出现内存泄漏，没搞明白为什么
+                                 //            HNATabBarController * tabBarController = [MainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+                                 HNATabBarController *tabBarController = ((AppDelegate *)SharedApplication.delegate).tabBarController;
+                                 KeyWindow.rootViewController = tabBarController;
+                                
+                                 CATransition *ca = [CATransition animation];
+                                 // 设置过度效果
+                                 ca.type= kCATransitionPush;
+                                 // 设置动画的过度方向（向右）
+                                 ca.subtype=kCATransitionFromRight;
+                                 // 设置动画的时间
+                                 ca.duration=.25;
+                                 // 设置动画的起点
+                                 ca.startProgress = 0.5;
+                                 [KeyWindow.layer addAnimation:ca forKey:nil];
+                             } else {
+                                 if (result.errorInfo!=nil) {
+                                     [MBProgressHUD showError: result.errorInfo];
+                                 } else {
+                                     [MBProgressHUD showError:@"账号或密码不正确"];
+                                 }
+                                 [weakSelf.loginView hna_shakeWithAmplitude:20];
+                             }
+                         } failure:^(NSError *error) {
+                             [MBProgressHUD hideHUD];
+                             [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
+                         }];
 }
 
 @end

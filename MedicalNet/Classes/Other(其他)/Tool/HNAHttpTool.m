@@ -96,11 +96,11 @@
     NSData *data = UIImageJPEGRepresentation(image, 0.7);
     if (data) {
         formData.data = data;
-        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".jpg"];
+        formData.filename = [[[NSDate date] hna_stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".jpg"];
         formData.mimeType = @"image/jpeg";
     } else {
         formData.data = UIImagePNGRepresentation(image);
-        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".png"];
+        formData.filename = [[[NSDate date] hna_stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".png"];
         formData.mimeType = @"image/png";
     }
     return formData;
@@ -113,11 +113,11 @@
     NSData *data = UIImageJPEGRepresentation(image, 0.7);
     if (data) {
         formData.data = data;
-        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".jpg"];
+        formData.filename = [[[NSDate date] hna_stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".jpg"];
         formData.mimeType = @"image/jpeg";
     } else {
         formData.data = UIImagePNGRepresentation(image);
-        formData.filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".png"];
+        formData.filename = [[[NSDate date] hna_stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString:@".png"];
         formData.mimeType = @"image/png";
     }
     return formData;

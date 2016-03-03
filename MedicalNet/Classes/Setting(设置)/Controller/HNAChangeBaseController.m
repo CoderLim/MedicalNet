@@ -18,6 +18,11 @@
 
 @implementation HNAChangeBaseController
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"textFieldTextChanged" object:nil];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,21 +44,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldTextChanged:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
+#pragma mark - Custom Accessors
 - (void)setNavRightBtnEnabled:(BOOL)navRightBtnEnabled{
     [_navRightBtn setEnabled:navRightBtnEnabled];
 }
 
-#pragma mark - 通知
+#pragma mark - Private
 - (void)textFieldTextChanged:(NSNotification *)notification{
     
 }
 
-#pragma mark - 导航栏按钮事件
 - (void)saveOperation{
     HNALog(@"%s %s", class_getName([self class]),__FUNCTION__);
 }
 
-#pragma mark - TextField 代理事件
+#pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.returnKeyType == UIReturnKeyNext) {
         if (self.keyboardNextBtnClicked) {
@@ -69,13 +74,9 @@
     return YES;
 }
 
-#pragma mark - 触摸事件
+#pragma mark - UIResponder
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
-}
-
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"textFieldTextChanged" object:nil];
 }
 
 @end

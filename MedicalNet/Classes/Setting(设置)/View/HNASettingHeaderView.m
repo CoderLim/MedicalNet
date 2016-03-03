@@ -49,7 +49,7 @@
     [self refresh];
 }
 
-#pragma mark - 公开方法
+#pragma mark - Public
 - (void)refresh {
     NSURL *url = [NSURL URLWithString:[HNAUserTool user].icon];
     [self.portraitButton sd_setBackgroundImageWithURL:url forState:UIControlStateNormal];

@@ -59,13 +59,17 @@
 /**
  *  提交 按钮
  */
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)submit:(id)sender;
 
 @end
 
 @implementation HNAHCReservationController
 
+- (void)dealloc {
+    [self.tableView removeObserver:self forKeyPath:@"contentSize"];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -78,14 +82,30 @@
     [self loadPackagesData];
 }
 
-/**
- *  设置套餐列表
- */
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    HNALog(@"%s", __FUNCTION__);
+}
+
+#pragma mark - Custom Accessors
+- (NSString *)selectedDate {
+    if (self.calendarView.selectedDate != nil) {
+        return [self.calendarView.selectedDate hna_stringWithFormat:@"yyyy-MM-dd"];
+    }
+    return nil;
+}
+- (NSMutableArray *)medicalInstitutions{
+    if (_medicalInstitutions == nil) {
+        _medicalInstitutions = [NSMutableArray array];
+    }
+    return _medicalInstitutions;
+}
+
+#pragma mark - Private
+/** 设置套餐列表 */
 - (void)setupPackageScrollView {
 }
-/**
- *  设置日历
- */
+/** 设置日历 */
 - (void)setupCalendarView {
     self.calendarView.delegate = self;
     
@@ -98,9 +118,7 @@
     // 默认选中当天
     [self.calendarView selectDate:[NSDate date] makeVisible:YES];
 }
-/**
- *  设置tableView
- */
+/** 设置tableView */
 - (void)setupTableView {
     // 注册Cell
     [self.tableView registerCell];
@@ -108,26 +126,7 @@
     // 添加监听contentSize
     [self.tableView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 }
-
-#pragma mark -
-- (NSString *)selectedDate {
-    if (self.calendarView.selectedDate != nil) {
-        return [self.calendarView.selectedDate stringWithFormat:@"yyyy-MM-dd"];
-    }
-    return nil;
-}
-
-#pragma mark - 数据
-- (NSMutableArray *)medicalInstitutions{
-    if (_medicalInstitutions == nil) {
-        _medicalInstitutions = [NSMutableArray array];
-    }
-    return _medicalInstitutions;
-}
-
-/**
- *  加载体检套餐列表数据
- */
+/** 加载体检套餐列表数据 */
 - (void)loadPackagesData {
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     
@@ -152,10 +151,7 @@
         [MBProgressHUD showError: MessageWhenFaild];
     }];
 }
-
-/**
- *  加载医疗机构数据
- */
+/** 加载医疗机构数据 */
 - (void)loadInstitutionsWithPackageId:(NSInteger)packageId {
     // 重新加载
     HNAGetHCOrganListParam *param = [[HNAGetHCOrganListParam alloc] init];
@@ -186,7 +182,7 @@
     }];
 }
 
-#pragma mark -  tableView 代理事件
+#pragma mark -  UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.tableView.expanded ? self.medicalInstitutions.count: MIN(self.medicalInstitutions.count,NumberOfDefaultInstitutionDisplay);
 }
@@ -202,6 +198,7 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row <= NumberOfDefaultInstitutionDisplay) {
@@ -245,15 +242,11 @@
     }
     return YES;
 }
-/**
- *  选择日期后
- */
+/** 选择日期后 */
 - (void)calendar:(CKCalendarView *)calendar didSelectDate:(NSDate *)date {
     
 }
-/**
- *  配置
- */
+/**  配置 */
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
     if (date != nil) {
         if ([self canSelectTheDate:date]) {
@@ -265,15 +258,13 @@
         }
     }
 }
-/**
- *  判断该日期是否可选
- */
+/** 判断该日期是否可选 */
 - (BOOL)canSelectTheDate:(NSDate *)date {
     return [date compare:[NSDate date]] == NSOrderedDescending
-            || [date isEqualYMDTo:[NSDate date]];
+            || [date hna_isEqualYMDTo:[NSDate date]];
 }
 
-#pragma mark - 按钮事件
+#pragma mark - IBActions
 - (IBAction)submit:(id)sender {
     [MBProgressHUD showMessage:@"正在提交..."];
     // 参数
@@ -293,7 +284,7 @@
     }];
 }
 
-#pragma mark -
+#pragma mark - UIViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: HCReserve2HCPackageSegue]) {
         HNAHCPackageDetailController *packageVc = segue.destinationViewController;
@@ -307,20 +298,12 @@
     }
 }
 
-#pragma mark - KVO
+#pragma mark - NSObject
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString: @"contentSize"]) {
         CGSize contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
         self.tableView_H.constant = contentSize.height;
     }
-}
-- (void)dealloc {
-    [self.tableView removeObserver:self forKeyPath:@"contentSize"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    HNALog(@"%s", __FUNCTION__);
 }
 
 @end

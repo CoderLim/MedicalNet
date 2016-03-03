@@ -31,20 +31,13 @@
     return cell;
 }
 
+#pragma mark - Custom Accessors
 -(UISwitch *)switchView{
     if (_switchView == nil) {
         _switchView = [[UISwitch alloc] init];
         [_switchView addTarget:self action:@selector(switchViewChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _switchView;
-}
-
-- (void)switchViewChanged:(UISwitch *)switchView{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:switchView.isOn forKey:self.item.title];
-    
-    // 修改消息通知
-    [self setMsgNoticeWithItem:self.item isOn:switchView.isOn];
 }
 
 - (void)setItem:(HNASettingItem *)item{
@@ -59,15 +52,21 @@
     }
 }
 
-- (void)setMsgNoticeWithItem:(HNASettingItem *)item isOn:(BOOL)on{
+#pragma mark - Private
+- (void)switchViewChanged:(UISwitch *)switchView{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:switchView.isOn forKey:self.item.title];
     
+    [self setMsgNoticeWithItem:self.item isOn:switchView.isOn];
+}
+
+- (void)setMsgNoticeWithItem:(HNASettingItem *)item isOn:(BOOL)on{
     // 1.获取登录用户信息
     HNAUser *user = [HNAUserTool user];
     if (user == nil) {
         [MBProgressHUD showError:@"账号没有正常登录"];
         return;
     }
-    
     // 2.拼修改密码的参数
     HNASetMsgNoticeParam *param = [[HNASetMsgNoticeParam alloc] init];
     param.id = user.id;
@@ -76,7 +75,6 @@
     } else if ([item.title isEqualToString: @"报销通知"]){
         param.expenseNotice =  on ? @"1" : @"0";
     }
-
     // 3.请求地址
     [HNAUserTool setMsgNoticeWithParam:param success:^(HNAResult *result) {
         if (result.success==HNARequestResultSUCCESS) {

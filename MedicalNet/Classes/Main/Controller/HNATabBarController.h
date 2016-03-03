@@ -10,4 +10,6 @@
 
 @interface HNATabBarController : UITabBarController
 
+- (void)setTarbarHidden:(BOOL)hidden animate:(BOOL)animate;
+
 @end

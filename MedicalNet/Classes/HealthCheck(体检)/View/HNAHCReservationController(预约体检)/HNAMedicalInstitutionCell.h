@@ -14,8 +14,11 @@
  */
 typedef void(^HNAMedicalInstitutionCellSelectedBlock)();
 
-@interface HNAMedicalInstitutionCell : UITableViewCell
 
+@interface HNAMedicalInstitutionCell : UITableViewCell
+/**
+ *  tableView
+ */
 + (instancetype)cellForTableView:(UITableView *)tableView;
 /**
  *  数据模型

@@ -24,7 +24,6 @@
 
 @implementation HNAHomeTipView
 
-#pragma mark - 初始化
 + (instancetype)tipViewWithChangeCipher:(TipViewElementClick)changeCipher{
     HNAHomeTipView *tipView = [[[NSBundle mainBundle] loadNibNamed:@"HNAHomeTipView" owner:nil options:nil] lastObject];
     tipView.changeCipher = changeCipher;
@@ -34,6 +33,14 @@
     return tipView;
 }
 
+#pragma mark - Custom Accessors
+- (void)setFrame:(CGRect)frame {
+    frame.size.height = HomeTipViewHeight;
+    frame.size.width = MainScreen.bounds.size.width;
+    [super setFrame:frame];
+}
+
+#pragma mark - Private
 - (void)setupFontSize {
     if (IS_IPHONE_6X) {
         self.tipLabel.font = [UIFont systemFontOfSize:13.f];
@@ -42,14 +49,9 @@
     }
 }
 
-#pragma mark - 属性
-- (void)setFrame:(CGRect)frame {
-    frame.size.height = HomeTipViewHeight;
-    frame.size.width = MainScreen.bounds.size.width;
-    [super setFrame:frame];
-}
 - (void)setSuperViewDuplicate:(UIView *)superViewDuplicate {
     _superViewDuplicate = superViewDuplicate;
+    
     CGFloat x = 0;
     CGFloat y = 0;
     CGFloat w = MainScreen.bounds.size.width;
@@ -63,7 +65,11 @@
     [_superViewDuplicate addSubview: self];
 }
 
-#pragma mark - 公开方法
+#pragma mark - Public
++ (BOOL)avaliable {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:UserDefaultsShouldHideTipView];
+}
+
 - (void)show {
     [UIView animateWithDuration:HomeTipViewAnimationDuration animations:^{
         CGFloat x = 0;
@@ -74,7 +80,7 @@
     }];
 }
 
-#pragma mark - 单击事件
+#pragma mark - IBActions
 - (IBAction)close:(UIButton *)sender {
     // 点击close后tipView将不再显示
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];

@@ -34,7 +34,7 @@
 #define IOS7 [[UIDevice currentDevice].systemVersion doubleValue] >= 7.0
 
 // 7. 数据请求地址的domain
-#define RequestUrlDomain @"http://mdm.bestchain.net"
+#define RequestUrlDomain @"http://112.126.82.194:8080"
 
 /**
  *  8.加载数据时的提示信息
@@ -67,14 +67,17 @@
  */
 // 报销记录页面停止拖动
 #define ExpenseRecordsControllerDidEndDraggingNotification @"ERControllerDidEndDraggingNotification"
-// 医保报销说明页面停止拖动
+
+// 商业医保报销说明页将要显示
+#define ExpenseDirectionControllerViewWillAppear @"ExpenseDirectionControllerViewWillApear"
+// 商业医保报销说明页面停止拖动
 #define ExpenseDirectionControllerDidEndDraggingNotification @"EDControllerDidEndDraggingNotification"
 // 医保报销说明页没有网络数据
 #define ExpenseDierectionControllerHasNoData @"ExpenseDierectionControllerHasNoData"
 
 // 12.判断vc的view是否嵌入到其他控制器的view中
 #define IsEmbededInController(vc) \
-        (vc.navigationController!=nil && \
+        (vc.navigationController!=nil || \
         ![[vc.navigationController.childViewControllers lastObject] isKindOfClass:[vc class]] && \
         [self.navigationController.childViewControllers containsObject:vc])
 

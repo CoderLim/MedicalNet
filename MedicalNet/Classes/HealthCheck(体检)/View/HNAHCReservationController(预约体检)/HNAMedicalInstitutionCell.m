@@ -39,6 +39,7 @@
     return cell;
 }
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAHCOrgan *)model {
     _model = model;
     
@@ -59,7 +60,7 @@
     return self.checkButton.isSelected;
 }
 
-#pragma mark - 单击事件
+#pragma mark - IBActions
 /**
  *  选中
  */
@@ -83,9 +84,11 @@
     NSURL *url = [NSURL URLWithString:urlStr];
     [[UIApplication sharedApplication] openURL:url];
 }
-
+/**
+ *  打开地图
+ */
 - (IBAction)addrButtonClicked:(UIButton *)sender {
-    [self.viewController performSegueWithIdentifier:@"reserve2map" sender:nil];
+    [self.hna_viewController performSegueWithIdentifier:@"reserve2map" sender:nil];
 }
 
 @end

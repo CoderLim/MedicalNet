@@ -17,7 +17,6 @@
 
 @implementation HNAHCReservePackageScrollView
 
-#pragma mark - 初始化
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
         [self commonInit];
@@ -37,6 +36,7 @@
     self.showsVerticalScrollIndicator = NO;
 }
 
+#pragma mark - View lifecycle
 - (void)layoutSubviews {
     // 放置button
     CGFloat w = self.frame.size.height-2*Padding;
@@ -52,7 +52,7 @@
     self.contentSize = contentSize;
 }
 
-#pragma mark - 添加数据
+#pragma mark - Custom Accessors
 - (NSMutableArray *)items {
     if (_items == nil) {
         _items = [NSMutableArray array];
@@ -74,6 +74,18 @@
     [self layoutIfNeeded];
 }
 
+
+- (NSInteger)selectedPackageId {
+    return self.selectedItem.model.packageId;
+}
+
+- (void)setSelectedItem:(HNAHCReservePackageButton *)selectedItem {
+    _selectedItem.selected = NO;
+    _selectedItem = selectedItem;
+    _selectedItem.selected = YES;
+}
+
+#pragma mark - Public
 - (void)addItemWithModel:(HNAPackageListItem *)model {
     HNAHCReservePackageButton *button = [HNAHCReservePackageButton packageButtonWithModel:model];
     
@@ -82,17 +94,6 @@
     // 添加button
     NSInteger index = self.models.count - 1;
     [self addButton:button withIndex:index];
-}
-
-- (void)addButton:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
-    [self.items addObject:button];
-    
-    // 设置标签
-    button.tag = index;
-    [self addSubview:button];
-    
-    // 添加事件
-    [button addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)selectWithPackageId:(NSInteger)packageId {
@@ -117,27 +118,25 @@
     return -1;
 }
 
-#pragma mark - 属性
-- (NSInteger)selectedPackageId {
-    return self.selectedItem.model.packageId;
+#pragma mark - Private
+- (void)addButton:(HNAHCReservePackageButton *)button withIndex:(NSInteger)index{
+    [self.items addObject:button];
+    
+    // 设置标签
+    button.tag = index;
+    [self addSubview:button];
+    
+    // 添加事件
+    [button addTarget:self action:@selector(itemClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)setSelectedItem:(HNAHCReservePackageButton *)selectedItem {
-    _selectedItem.selected = NO;
-    _selectedItem = selectedItem;
-    _selectedItem.selected = YES;
-}
-
-#pragma mark - 单击事件
+#pragma mark - IBActions
 - (void)itemClicked:(HNAHCReservePackageButton *)sender{
-    // 问代理能不能点击
     if ([self.hcDelegate respondsToSelector:@selector(packageScrollView:willClickAtIndex:)] && ![self.hcDelegate packageScrollView:self willClickAtIndex:sender.tag]) {
         return;
     }
     
-    if (sender == nil) {
-        sender = [self.items firstObject];
-    }
+    sender = sender?:[self.items firstObject];
     
     // 修改button的选中状态
     self.selectedItem = sender;

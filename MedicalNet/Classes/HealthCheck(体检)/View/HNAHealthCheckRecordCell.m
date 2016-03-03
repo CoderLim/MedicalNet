@@ -19,6 +19,7 @@
 
 @implementation HNAHealthCheckRecordCell
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAHealthCheckRecordModel *)model{
     _model = model;
     
@@ -27,6 +28,7 @@
     self.stateLabel.text = model.status;
 }
 
+#pragma mark - Public
 + (instancetype)cellWithTableView:(UITableView *)tableView{
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

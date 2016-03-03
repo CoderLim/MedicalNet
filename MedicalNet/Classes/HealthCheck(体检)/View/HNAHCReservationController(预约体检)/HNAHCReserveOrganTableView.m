@@ -57,16 +57,7 @@
     self.expandButton = expandButton;
 }
 
-- (void)setTitleAttributeString:(NSString *)str forButton:(UIButton *)button {
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:str];
-    NSRange titleRange = {0, title.length};
-    [title addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:titleRange];
-    [title addAttribute:NSForegroundColorAttributeName value:UIColorWithRGB(234, 111, 75) range:titleRange];
-    [title addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:titleRange];
-    [button setAttributedTitle:title forState:UIControlStateNormal];
-}
-
-#pragma mark - 公开方法
+#pragma mark - Custom Accessors
 - (void)setExpanded:(BOOL)expanded {
     _expanded = expanded;
     
@@ -80,11 +71,22 @@
     _selectedCell.checked = YES;
 }
 
+#pragma mark - Public
 - (void)registerCell {
     [self registerNib:[UINib nibWithNibName:@"HNAMedicalInstitutionCell" bundle:nil] forCellReuseIdentifier:@"HNAMedicalInstitutionCell"];
 }
 
-#pragma mark - 单击事件
+#pragma mark - Private 
+- (void)setTitleAttributeString:(NSString *)str forButton:(UIButton *)button {
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:str];
+    NSRange titleRange = {0, title.length};
+    [title addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:titleRange];
+    [title addAttribute:NSForegroundColorAttributeName value:UIColorWithRGB(234, 111, 75) range:titleRange];
+    [title addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:titleRange];
+    [button setAttributedTitle:title forState:UIControlStateNormal];
+}
+
+#pragma mark - IBActions
 - (IBAction)expandButtonClicked:(UIButton *)sender {
     self.expanded = !self.expanded;
     [self reloadData];

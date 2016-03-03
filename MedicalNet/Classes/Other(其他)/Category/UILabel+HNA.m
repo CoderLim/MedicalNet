@@ -10,12 +10,12 @@
 
 @implementation UILabel (HNA)
 
-- (CGFloat)correctHeight{
+- (CGFloat)hna_correctHeight{
     CGSize size = CGSizeMake(self.frame.size.width, INFINITY);
     return [self.text boundingRectWithSize: size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : self.font} context:nil].size.height;
 }
 
-- (CGSize)textSize {
+- (CGSize)hna_textSize {
     CGSize size = CGSizeMake(self.frame.size.width, INFINITY);
     return [self.text boundingRectWithSize: size options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName : self.font} context:nil].size;
 }

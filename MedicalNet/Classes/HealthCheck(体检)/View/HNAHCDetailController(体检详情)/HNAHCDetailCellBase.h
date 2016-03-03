@@ -31,7 +31,9 @@
  *  获取cell的reuse标示
  */
 + (NSString *)getIdentifier;
-
+/**
+ *  描述按钮 点击事件
+ */
 - (void)descBtnClicked:(UIButton *)sender;
 
 @end

@@ -24,13 +24,14 @@
 
 @implementation HNAForgetCipherController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"忘记密码";
 }
 
-#pragma mark - TextField 代理事件
+#pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField.returnKeyType == UIReturnKeyNext) {
         [self.validationCodeField becomeFirstResponder];
@@ -45,20 +46,16 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - 按钮事件
-/**
- *  获取验证码
- */
+#pragma mark - IBActions
 - (IBAction)getValidationCodeBtnClicked:(HNACountDownButton *)sender {
     HNALog(@"%s", __FUNCTION__);
 }
-/**
- *  提交－跳转到修改密码
- */
+
 - (IBAction)submit:(UIButton *)sender {
     [self performSegueWithIdentifier:ForgetCipher2ChangeCipherSegue sender:nil];
 }
 
+#pragma mark - UIViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:ForgetCipher2ChangeCipherSegue]) {
         HNAChangeCipherController *changeCipherVc = segue.destinationViewController;

@@ -24,6 +24,7 @@
 
 @implementation HNAApplySuccessController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,9 +35,8 @@
     [self loadInsuranceCompnayData];
 }
 
-/**
- *  加载保险公司数据
- */
+#pragma mark - Private
+/** 加载保险公司数据 */
 - (void)loadInsuranceCompnayData {
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     

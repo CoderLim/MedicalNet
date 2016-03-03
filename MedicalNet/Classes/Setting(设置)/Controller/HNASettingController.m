@@ -40,6 +40,11 @@
 
 @implementation HNASettingController
 
+- (void)dealloc {
+    [self.header free];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -63,24 +68,23 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self.header beginRefreshing];
 }
 
-- (void)setupRefreshView {
-    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.delegate = self;
-    self.header = header;
-
-}
-
-#pragma mark - 数据
+#pragma mark - Custom Accessors
 - (NSMutableArray *)data{
     if (_data == nil) {
         _data = [NSMutableArray array];
     }
     return _data;
+}
+
+#pragma mark - Private
+- (void)setupRefreshView {
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.delegate = self;
+    self.header = header;
+    
 }
 
 - (void)setupGroup1{
@@ -146,7 +150,7 @@
     [self.data addObject:group];
 }
 
-#pragma mark - tableView代理方法
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.data.count;
 }
@@ -172,6 +176,7 @@
     return group.header;
 }
 
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // item数据
     HNASettingGroup *group = self.data[indexPath.section];
@@ -191,10 +196,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.header endRefreshing];
     });
-}
-
-- (void)dealloc {
-    [self.header free];
 }
 
 @end

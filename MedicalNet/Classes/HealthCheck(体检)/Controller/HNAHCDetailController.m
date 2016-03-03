@@ -65,6 +65,7 @@
 
 @implementation HNAHCDetailController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -77,14 +78,7 @@
     [self loadData];
 }
 
-- (void)setupTableView {
-    // tableView注册cell
-    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCCheckedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCCheckedCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReminderCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReminderCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
-}
-
-#pragma mark - 数据
+#pragma mark - Custom Accessors
 - (NSMutableArray<HNAHCStatusRecord *> *)statusRecords {
     if (_statusRecords == nil) {
         _statusRecords = [NSMutableArray array];
@@ -99,6 +93,14 @@
         }
     }
     return _statusRecords;
+}
+
+#pragma mark - Private
+- (void)setupTableView {
+    // tableView注册cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCCheckedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCCheckedCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReminderCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReminderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HNAHCDetailReservedCell" bundle:nil] forCellReuseIdentifier:@"HNAHCDetailReservedCell"];
 }
 /**
  *  加载数据
@@ -127,18 +129,17 @@
     }];
 }
 
-#pragma mark - 按钮点击事件
+#pragma mark - IBActions
 - (IBAction)checkPackageDetail:(UIButton *)sender {
     // 跳转 套餐详情页
     [self performSegueWithIdentifier: HCDetail2PackageDetailSegue sender:nil];
 }
 
-#pragma mark - tableView datasource
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.statusRecords.count;
 }
 
-#pragma mark - tableView delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 1.数据模型
     HNAHCStatusRecord *record = self.statusRecords[indexPath.row];
@@ -167,6 +168,7 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
@@ -175,7 +177,7 @@
     return UITableViewAutomaticDimension;
 }
 
-#pragma mark - segue
+#pragma mark - UIViewController
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: HCDetail2PackageDetailSegue]) {
         HNAHCPackageDetailController *packageDetailVc = segue.destinationViewController;

@@ -30,6 +30,14 @@
 
 @implementation HNAHCDetailReservedCell
 
+#pragma mark - Public
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment{
+    HNAHCDetailReservedCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.appointment = appointment;
+    return cell;
+}
+
+#pragma mark - SuperClass
 - (void)setModel:(HNAHCStatusRecord *)model {
     [super setModel:model];
     self.dateLabel.text = model.date;
@@ -50,12 +58,7 @@
     return identifier;
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment{
-    HNAHCDetailReservedCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
-    cell.appointment = appointment;
-    return cell;
-}
-
+#pragma mark - IBActions
 /**
  *  打电话
  */

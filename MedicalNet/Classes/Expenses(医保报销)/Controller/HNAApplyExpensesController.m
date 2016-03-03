@@ -74,6 +74,14 @@
 
 @implementation HNAApplyExpensesController
 
+- (void)dealloc {
+    [DefaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [DefaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [DefaultCenter removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [DefaultCenter removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -91,37 +99,12 @@
     
     [self setupSubmitButton];
 }
-/**
- *  设置通知
- */
-- (void)setupNotification {
-    // 监听键盘的弹出与收回
-    [DefaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [DefaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    // TextField
-    [DefaultCenter addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
-    [DefaultCenter addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
-}
-/**
- *  设置基本信息
- */
-- (void)setupBasicInfo {
-    HNAUser *user = [HNAUserTool user];
-    self.applicantNameLabel.text = user.name;
-    self.contactLabel.text = user.phoneNum;
-    self.insuranceComNameLabel.text = [NSString stringWithFormat:@"%ld", (long)user.insuranceCompanyId];
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
-- (void)setupSubmitButton {
-    [self.submitButton setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor] andSize:self.submitButton.bounds.size] forState:UIControlStateNormal];
-    [self.submitButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor] andSize:self.submitButton.bounds.size] forState:UIControlStateDisabled];
-    [self.submitButton setEnabled:NO];
-}
-
-#pragma mark - 按钮事件
-/**
- *  提交
- */
+#pragma mark - IBActions
 - (IBAction)submit:(UIButton *)sender {
     // 构造网络请求参数
     HNAApplyExpenseParam *param = [HNAApplyExpenseParam param];
@@ -144,7 +127,30 @@
     }];
 }
 
-#pragma mark - 手势
+#pragma mark - Private
+- (void)setupBasicInfo {
+    HNAUser *user = [HNAUserTool user];
+    self.applicantNameLabel.text = user.name;
+    self.contactLabel.text = user.phoneNum;
+    self.insuranceComNameLabel.text = [NSString stringWithFormat:@"%ld", (long)user.insuranceCompanyId];
+}
+
+- (void)setupNotification {
+    // 监听键盘的弹出与收回
+    [DefaultCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [DefaultCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    // TextField
+    [DefaultCenter addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [DefaultCenter addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)setupSubmitButton {
+    [self.submitButton setBackgroundImage:[UIImage hna_imageWithColor:[UIColor orangeColor] andSize:self.submitButton.bounds.size] forState:UIControlStateNormal];
+    [self.submitButton setBackgroundImage:[UIImage hna_imageWithColor:[UIColor grayColor] andSize:self.submitButton.bounds.size] forState:UIControlStateDisabled];
+    [self.submitButton setEnabled:NO];
+}
+
+
 - (void)tapContentView:(UITapGestureRecognizer *)tap {
     [self.contentView endEditing:YES];
 }
@@ -184,17 +190,6 @@
 
 - (void)keyboardWillHide:(NSNotification *)aNotification{
     self.contentView.transform = CGAffineTransformIdentity;
-}
-
-- (void)dealloc {
-    [DefaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [DefaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    [DefaultCenter removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
-    [DefaultCenter removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

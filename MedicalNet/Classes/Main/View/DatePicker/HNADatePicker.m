@@ -60,7 +60,7 @@
 
 - (void)loadYears{
     [_years removeAllObjects];
-    for (NSInteger i = self.minimumDate.components.year; i <= self.maximumDate.components.year; i++) {
+    for (NSInteger i = self.minimumDate.hna_components.year; i <= self.maximumDate.hna_components.year; i++) {
         [_years addObject: [NSString stringWithFormat:@"%ld", i]];
     }
     [_years insertObject:All atIndex:0];
@@ -74,10 +74,10 @@
     NSInteger year = [yearStr integerValue];
     NSInteger start = 1;
     NSInteger end = 12;
-    if (year == self.minimumDate.components.year) {
-        start = self.minimumDate.components.month;
-    } else if (year == self.maximumDate.components.year){
-        end = self.maximumDate.components.month;
+    if (year == self.minimumDate.hna_components.year) {
+        start = self.minimumDate.hna_components.month;
+    } else if (year == self.maximumDate.hna_components.year){
+        end = self.maximumDate.hna_components.month;
     }
     
     [_months removeAllObjects];
@@ -101,7 +101,7 @@
 
 - (NSDate *)minimumDate{
     if (_minimumDate == nil) {
-        _minimumDate = [NSDate minimumDate];
+        _minimumDate = [NSDate hna_minimumDate];
     }
     return _minimumDate;
 }
@@ -117,7 +117,7 @@
     }
     NSInteger currentYear = [self.years[[self selectedRowInComponent:0]] integerValue];
     NSInteger currentMonth = [self.months[[self selectedRowInComponent:1]] integerValue];
-    return [NSDate dateWithYear:currentYear month:currentMonth day:1 hour:0 minute:1 second:1];
+    return [NSDate hna_dateWithYear:currentYear month:currentMonth day:1 hour:0 minute:1 second:1];
 }
 
 #pragma mark - UIPickerViewDataSource

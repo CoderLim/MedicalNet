@@ -21,6 +21,7 @@
 
 @implementation HNAExpenseDetailCell
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAExpenseDetailStatusRecord *)model{
     _model = model;
     
@@ -31,18 +32,16 @@
 - (void)setShowTip:(BOOL)showTip{
     _showTip = showTip;
     
-    self.tipLabel_H.constant = showTip ? [self.tipLabel correctHeight] : 0;
+    self.tipLabel_H.constant = showTip ? [self.tipLabel hna_correctHeight] : 0;
     [self layoutIfNeeded];
 }
 
+#pragma mark - Public
 + (instancetype)cellWithTableView:(UITableView *)tableView{
     static NSString *identifier = @"HNAExpenseDetailCell";
     HNAExpenseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     return cell;
-}
-
-- (void)awakeFromNib {
 }
 
 @end

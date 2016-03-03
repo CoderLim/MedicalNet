@@ -21,7 +21,7 @@
 
 @implementation HNAImagePickerProgressView
 
-#pragma mark - 初始化
+#pragma mark - View lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self commonInit];
@@ -52,7 +52,6 @@
     self.shapeLayer = shapeLayer;
 }
 
-#pragma mark - life cycle
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -60,7 +59,7 @@
 }
 
 
-#pragma mark -
+#pragma mark - Custom Accessors
 - (UIBezierPath *)bezierPath {
     if (_bezierPath == nil) {
         _bezierPath = [UIBezierPath bezierPath];
@@ -68,24 +67,15 @@
     return _bezierPath;
 }
 
-- (void)updateBezierPathWithProgress:(CGFloat)progress {
-    CGFloat radius = MIN(self.frame.size.width, self.frame.size.height) * 0.4;
-    CGFloat startAngle = 1.5*M_PI;
-    CGFloat endAngle = progress*M_PI*2 + startAngle;
-    [self.bezierPath removeAllPoints];
-    [self.bezierPath addArcWithCenter:CGPointMake(self.shapeLayer.frame.size.width*0.5, self.shapeLayer.frame.size.height*0.5) radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
-    self.shapeLayer.path = self.bezierPath.CGPath;
-}
-
-#pragma mark - 公开方法
-+ (instancetype)progressView {
-    return [[self alloc] init];
-}
-
 - (void)setProgress:(float)progress {
     // 如何上传完成，则直接置0
     _progress = progress == 1?0:progress;
     [self updateBezierPathWithProgress: _progress];
+}
+
+#pragma mark - Public
++ (instancetype)progressView {
+    return [[self alloc] init];
 }
 
 - (void)show {
@@ -96,11 +86,20 @@
     self.hidden = YES;
 }
 
-#pragma mark - 手势
+#pragma mark - Private 
+- (void)updateBezierPathWithProgress:(CGFloat)progress {
+    CGFloat radius = MIN(self.frame.size.width, self.frame.size.height) * 0.4;
+    CGFloat startAngle = 1.5*M_PI;
+    CGFloat endAngle = progress*M_PI*2 + startAngle;
+    [self.bezierPath removeAllPoints];
+    [self.bezierPath addArcWithCenter:CGPointMake(self.shapeLayer.frame.size.width*0.5, self.shapeLayer.frame.size.height*0.5) radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+    self.shapeLayer.path = self.bezierPath.CGPath;
+}
+
 - (void)activityIndicatorViewLongPressed:(UILongPressGestureRecognizer *)longGesture {
     if (longGesture.state == UIGestureRecognizerStateBegan) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"是否继续上传" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"继续",@"取消", nil];
-        [actionSheet showInView: self.viewController.view];
+        [actionSheet showInView: self.hna_viewController.view];
         NSLog(@"%s",__FUNCTION__);
     }
 }

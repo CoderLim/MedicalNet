@@ -17,6 +17,7 @@
 
 @implementation HNAHCCheckedCell
 
+#pragma mark - SuperClass
 - (void)setModel:(HNAHCStatusRecord *)model {
     [super setModel:model];
     self.dateLabel.text = model.date;

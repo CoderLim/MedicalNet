@@ -23,15 +23,12 @@
 
 @implementation HNAChangePortraitController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (IBAction)pickImageClick:(UIButton *)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
-    [actionSheet showInView:self.view];
-}
-
+#pragma mark - Private
 - (void)saveOperation{
     [MBProgressHUD showMessage:@"正在保存头像"];
     // 1.拼修改头像的参数
@@ -56,21 +53,6 @@
     }];
 }
 
-#pragma mark - actionSheet代理方法
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == actionSheet.cancelButtonIndex) return;
-    
-    switch (buttonIndex) {
-        case 0:
-            [self takeAPhoto];
-            break;
-        case 1:
-            [self pickALocalPhoto];
-        default:
-            break;
-    }
-}
-// 照一张
 - (void)takeAPhoto{
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     NSAssert([UIImagePickerController isSourceTypeAvailable:sourceType], @"不能使用相机");
@@ -84,7 +66,7 @@
         [self presentViewController:picker animated:YES completion:nil];
     }
 }
-// 选择本地相册
+
 - (void)pickALocalPhoto{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -93,12 +75,27 @@
     [self presentViewController:picker animated:YES completion:nil];
 }
 
-#pragma mark - UIImagePickerController 代理方法
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == actionSheet.cancelButtonIndex) return;
+    
+    switch (buttonIndex) {
+        case 0:
+            [self takeAPhoto];
+            break;
+        case 1:
+            [self pickALocalPhoto];
+        default:
+            break;
+    }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     if ([type isEqualToString:@"public.image"]) {
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        [self.pickImageBtn setImage:[image circleImageWithDiameter:self.pickImageBtn.frame.size.width] forState:UIControlStateNormal];
+        [self.pickImageBtn setImage:[image hna_circleImageWithDiameter:self.pickImageBtn.frame.size.width] forState:UIControlStateNormal];
         self.navRightBtnEnabled = YES;
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
@@ -114,10 +111,16 @@
     
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     HNALog(@"取消选择头像");
     [picker dismissViewControllerAnimated:YES
                                completion:nil];
+}
+
+#pragma mark - IBActions
+- (IBAction)pickImageClick:(UIButton *)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"选择头像" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"相机",@"相册", nil];
+    [actionSheet showInView:self.view];
 }
 
 @end

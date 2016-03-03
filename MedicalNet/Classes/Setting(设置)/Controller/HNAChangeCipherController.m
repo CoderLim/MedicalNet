@@ -29,6 +29,7 @@
 
 @implementation HNAChangeCipherController
 
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,6 +46,7 @@
     }
 }
 
+#pragma mark - Private
 - (void)textFieldTextChanged:(NSNotification *)notification{
     self.navRightBtnEnabled = self.cipherField.text.length > 0 && self.confirmCipherField.text.length > 0;
 }
@@ -56,9 +58,7 @@
         [self forgetPwd];
     }
 }
-/**
- *  修改密码
- */
+
 - (void)changePwd {
     // 0.验证两次新密码输入是否相同
     if (![self validateInput]) {
@@ -84,19 +84,15 @@
         [self.cipherField becomeFirstResponder];
     }];
 }
-/**
- *  忘记密码
- */
+
 - (void)forgetPwd {
     if (![self validateInput]) {
         return;
     }
     
-    // 拼忘记密码的参数
     HNAForgetPwdParam *param = [HNAForgetPwdParam param];
     param.theNewPwd = self.cipherField.text;
     
-    // 调接口
     [HNAUserTool forgetPwdWithParam:param success:^(HNAResult *result) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
         [MBProgressHUD showSuccess:@"修改成功"];

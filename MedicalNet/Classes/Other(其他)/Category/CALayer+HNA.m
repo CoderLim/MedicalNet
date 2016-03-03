@@ -10,7 +10,7 @@
 
 @implementation CALayer (HNA)
 
-- (void)setBorderColorFromUIColor:(UIColor *)color {
+- (void)setHna_borderColorFromUIColor:(UIColor *)color {
     self.borderColor = color.CGColor;
 }
 

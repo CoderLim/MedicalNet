@@ -7,6 +7,7 @@
 //
 
 #import "HNAHomeController.h"
+#import "HNATabBarController.h"
 #import "HNAHomeTipView.h"
 #import "UIImage+HNA.h"
 #import "HNAChangeCipherController.h"
@@ -14,181 +15,174 @@
 #import "HNAExpensesDirectionsController.h"
 #import "HNAHealthCheckController.h"
 #import "HNAExpensesRecordCell.h"
+#import "HNAProjectCell.h"
 
 #import "HNAInsuranceTool.h"
+#import "HNAGetInsuranceCompanyResult.h"
 #import "HNAGetExpenseDirectionResult.h"
 
 #import "HNAGetExpenseRecordsParam.h"
 #import "HNAGetExpenseRecordsResult.h"
 
+// KeyPath
+#define KeyPathContentSize @"contentSize"
+#define KeyPathContentOffset @"contentOffset"
+// 默认显示医院个数
+#define DefaultHospitalCount 3
+
 // 主页跳转到报销记录页面
 #define Home2MedicalRecordsSegue @"Home2MedicalRecords"
-// 主页跳转到报销说明页面
-#define Home2MedicalDirectionSegue @"Home2MedicalDirection"
 // 主页跳转到修改密码页面
 #define Home2ChangeCipherSegue @"home2changeCipher"
 // 主页跳转到申请报销页面
 #define Home2ApplyExpenseSegue @"home2applyExpense"
 
-@interface HNAHomeController() <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface HNAHomeController() <UITableViewDataSource,UITableViewDelegate> {
+    BOOL _showMoreHospital;
+}
 
-/**
- *  没记录view的top约束
- */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *noRecordsViewConstraint_Top;
-/**
- *  有记录view的top约束
- */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hasRecordsViewConstraint_Top;
-/**
- *  申请报销按钮的height约束
- */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *applyExpenseButton_H;
-/**
- *  修改密码提示 view
- */
+@property (strong, nonatomic) IBOutlet UIScrollView *mainScrollView;
+/** 修改密码提示 view*/
 @property (nonatomic,weak) HNAHomeTipView *tipView;
-/**
- *  没记录 view
- */
+/** 没记录 view */
 @property (weak, nonatomic) IBOutlet UIView *noRecordsView;
-/**
- *  有记录 view
- */
+/** 有记录 view */
 @property (weak, nonatomic) IBOutlet UIView *hasRecordsView;
-/**
- *  报销记录 数据
- */
+/** 报销记录 */
 @property (weak, nonatomic) IBOutlet UITableView *recordsTableView;
+/** 报销记录 */
 @property (nonatomic, strong) NSMutableArray<HNAExpenseRecordModel *> *records;
-/**
- *  申请报销 按钮
- */
-@property (weak, nonatomic) IBOutlet UIButton *applyExpenseButton;
+/** 申请按钮 */
 - (IBAction)applyExpenseButtonClicked:(UIButton *)sender;
-/**
- *  商业医保报销说明按钮
- */
-@property (weak, nonatomic) IBOutlet UIButton *directionButton;
-- (IBAction)expensesDirectionsBtnClicked:(UIButton *)sender;
-/**
- *  商业医保报销纪录按钮
- */
-@property (weak, nonatomic) IBOutlet UIButton *expenseRecordsButton;
+/** 报销记录按钮 */
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender;
+
+///=============================================================================
+/// 报销说明
+///=============================================================================
+
+/** 保险公司信息 */
+// 公司名称
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComNameLabel;
+// 公司地址
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComAddrLabel;
+// 公司联系人
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComContactLabel;
+// 公司邮编
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComCodeLabel;
+// 公司电话
+@property (weak, nonatomic) IBOutlet UILabel *insuranceComPhoneLabel;
+/** 保障方案 */
+@property (weak, nonatomic) IBOutlet UITableView *projectTableView;
+/** 理赔所需材料 */
+@property (weak, nonatomic) IBOutlet UILabel *materialLabel;
+/** 可报销医院 */
+@property (weak, nonatomic) IBOutlet UITableView *hospitalTableView;
+/** 更多医院 */
+- (IBAction)moreHospitalBtnClicked:(UIButton *)sender;
+/** 保障方案 高度约束 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *projectTableViewConstraint_H;
+/** 可报销医院 高度约束 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hospitalTableViewConstraint_H;
+/** 保障方案 数据 */
+@property (strong, nonatomic) NSMutableArray<HNASecurityProgram *> *projectArray;
+/** 可报销医院 数据 */
+@property (strong, nonatomic) NSMutableArray *hospitalArray;
 
 @end
 
 @implementation HNAHomeController
 
+- (void)dealloc {
+    [self.mainScrollView removeObserver:self forKeyPath: KeyPathContentOffset];
+    [self.projectTableView removeObserver:self forKeyPath: KeyPathContentSize];
+    [self.hospitalTableView removeObserver:self forKeyPath: KeyPathContentSize];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
     
     // 1.设置控制器
-    self.title = @"医保报销";
+    self.title = @"商业医保报销";
     
-    // 2.设置报销记录tableView
-    [self setupRecordsTableView];
+    // 2.设置tableView
+    [self setupTableView];
     
     // 3.设置tipView
     [self setupTipView];
     
-    // 4.设置通知
-    [self setupNotification];
+    // 4.设置kvo
+    [self setupObserver];
     
-    // 5.设置banner
-    [self setupBanner];
+    // 5.加载数据
+    [self loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    // 显示tipView
+
     [self.tipView show];
 }
-/**
- *  设置“修改密码提示”view
- */
-- (void)setupTipView{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:UserDefaultsShouldHideTipView];
-    // 如果修改过密码或者点过X号，则不显示tipView
-    BOOL hideTipView = [[NSUserDefaults standardUserDefaults] boolForKey:UserDefaultsShouldHideTipView];
-    if (hideTipView == YES) {
-        return;
-    }
-    
-    // 创建tipView
-    HNAHomeTipView *tipView = [HNAHomeTipView tipViewWithChangeCipher:^{
-        [self performSegueWithIdentifier:Home2ChangeCipherSegue sender:nil];
-    }];
-    tipView.superViewDuplicate = self.view;
-    self.tipView = tipView;
-}
-/**
- *  设置 报销记录tableView
- */
-- (void)setupRecordsTableView {
-    // 注册cell
-    [self.recordsTableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:@"HNAExpensesRecordCell"];
-    // 加载数据
-    [self loadExpenseRecords];
-}
-/**
- *  设置通知
- */
-- (void)setupNotification {
-    // 先移除再添加
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerDidEndDragging) name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expenseDirectionControllerHasNoData) name:ExpenseDierectionControllerHasNoData object:nil];
-}
-/**
- *  设置申请报销按钮（大图banner）
- */
-- (void)setupBanner {
-    UIImage *image = nil;
-    if (![HNAUserTool user].insuranceCompanyId && [HNAUserTool user].insuranceCompanyId >= 0) {
-        image = [UIImage imageWithName:@"home_banner_1"];
-    } else {
-        image = [UIImage imageWithName:@"home_banner_2"];
-    }
-    // 根据图片大小更改按钮的高度
-    self.applyExpenseButton_H.constant = image.size.height;
-    [self.view layoutIfNeeded];
-    [self.applyExpenseButton setBackgroundImage:image forState:UIControlStateNormal];
-}
 
-#pragma mark - 响应通知
-/**
- *  报销说明控制器 停止拖动
- */
-- (void)expenseDirectionControllerDidEndDragging {
-    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
-        HNAExpensesDirectionsController *vc = [MainStoryboard instantiateViewControllerWithIdentifier:@"HNAExpensesDirectionsController"];
-        [self.navigationController pushViewController:vc animated:YES];
-//        [self performSegueWithIdentifier: Home2MedicalDirectionSegue sender:nil];
-    }
-}
-/**
- *  报销说明控制器 没有数据
- */
-- (void)expenseDirectionControllerHasNoData {
-    if (![[self.navigationController.childViewControllers lastObject] isKindOfClass:[HNAExpensesDirectionsController class]]) {
-        self.noRecordsView.hidden = YES;
-        self.hasRecordsViewConstraint_Top.constant = self.noRecordsViewConstraint_Top.constant;
-    }
-}
-
-#pragma mark - 数据
+#pragma mark - Custom Accessors
 - (NSMutableArray<HNAExpenseRecordModel *> *)records {
     if (_records == nil) {
         _records = [NSMutableArray array];
     }
     return _records;
 }
-/**
- *  加载报销记录
- */
+
+- (NSMutableArray<HNASecurityProgram *> *)projectArray{
+    if (_projectArray == nil) {
+        _projectArray = [NSMutableArray array];
+    }
+    return _projectArray;
+}
+
+- (NSMutableArray *)hospitalArray{
+    if (_hospitalArray == nil) {
+        _hospitalArray = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < 10; i++) {
+            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
+        }
+    }
+    return _hospitalArray;
+}
+
+#pragma mark - Private
+- (void)setupTipView{
+    if ([HNAHomeTipView avaliable]) {
+        HNAHomeTipView *tipView = [HNAHomeTipView tipViewWithChangeCipher:^{
+            [self performSegueWithIdentifier:Home2ChangeCipherSegue sender:nil];
+        }];
+        tipView.superViewDuplicate = self.view;
+        self.tipView = tipView;
+    }
+}
+
+- (void)setupTableView {
+    [self.recordsTableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:@"HNAExpensesRecordCell"];
+    
+    _showMoreHospital = NO;
+}
+
+- (void)setupObserver {
+    [self.mainScrollView addObserver:self forKeyPath:KeyPathContentOffset options:NSKeyValueObservingOptionNew context:nil];
+    
+    [self.projectTableView addObserver:self forKeyPath: KeyPathContentSize options:NSKeyValueObservingOptionNew context:nil];
+    [self.hospitalTableView addObserver:self forKeyPath: KeyPathContentSize options:NSKeyValueObservingOptionNew context:nil];
+}
+
+
+- (void)loadData {
+    [self loadExpenseRecords];
+    //    [self loadDirectionData];
+    [self loadInsuranceCompanyData];
+}
+
+/** 报销记录 */
 - (void)loadExpenseRecords {
     HNAGetExpenseRecordsParam *param = [HNAGetExpenseRecordsParam param];
     [HNAInsuranceTool getExpenseRecordsWithParam:param success:^(HNAGetExpenseRecordsResult *result) {
@@ -206,75 +200,157 @@
     }];
 }
 
-#pragma mark - scrollView事件
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self expensesRecordsBtnClicked:nil];
+/** 报销说明 */
+- (void)loadDirectionData{
+    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    // 1.参数
+    NSString *companyId = [HNAUserTool user].companyId;
+    if (companyId == nil) {
+        [MBProgressHUD hideHUD];
+        [MBProgressHUD showError:@"companyId为nil"];
+        return;
+    }
+    // 2.请求
+    WEAKSELF(weakSelf);
+    [HNAInsuranceTool getExpenseDirectionsWithCompanyId:companyId
+                                                success:^(HNAGetExpenseDirectionResult *result) {
+                                                    [MBProgressHUD hideHUD];
+                                                    if (result.success==HNARequestResultSUCCESS && result.expenseDirection!=nil) {
+                                                        HNAExpenseDirectionModel *direction = result.expenseDirection;
+                                                        weakSelf.projectArray = direction.securityPrograms;
+                                                        weakSelf.hospitalArray = direction.hospitals;
+                                                        
+                                                        // 刷新数据
+                                                        [weakSelf.projectTableView reloadData];
+                                                        weakSelf.materialLabel.text = direction.materials;
+                                                        [weakSelf.hospitalTableView reloadData];
+                                                    } else {
+                                                        [MBProgressHUD showError:result.errorInfo];
+                                                    }
+                                                } failure:^(NSError *error) {
+                                                    [MBProgressHUD hideHUD];
+                                                    [MBProgressHUD showError:@"请求异常"];
+                                                }];
 }
 
-#pragma mark - tableView代理
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.records.count;
+/** 保险公司数据 */
+- (void)loadInsuranceCompanyData {
+    //NSInteger insuranceCompanyId = [HNAUserTool user].insuranceCompanyId;
+    NSInteger insuranceCompanyId = 1;
+    [HNAInsuranceTool getInsuranceCompayWithId:insuranceCompanyId
+                                       success:^(HNAGetInsuranceCompanyResult *result) {
+                                           [MBProgressHUD hideHUD];
+                                           if (result.success==HNARequestResultSUCCESS && result.insuranceCompany.insuranceCompanyId!=nil) {
+                                               HNAInsuranceCompanyModel *insuranceCompany = result.insuranceCompany;
+                                               self.insuranceComNameLabel.text = insuranceCompany.name;
+                                               self.insuranceComAddrLabel.text = insuranceCompany.addr;
+                                               self.insuranceComCodeLabel.text = insuranceCompany.code;
+                                               self.insuranceComContactLabel.text = @"没有这个字段";
+                                               self.insuranceComPhoneLabel.text = insuranceCompany.phone;
+                                           }
+                                        } failure:^(NSError *error) {
+                                            [MBProgressHUD hideHUD];
+                                            [MBProgressHUD showError: MessageWhenFaild];
+                                        }];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCell *)recordCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView {
     static NSString *idenfitifer = @"HNAExpensesRecordCell";
     HNAExpensesRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:idenfitifer];
     cell.model = self.records[indexPath.row];
     return cell;
 }
+
+- (HNAProjectCell *)projectCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
+    static NSString *projectIdentifier = @"projectCell";
+    
+    HNAProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:projectIdentifier];
+    cell.model = self.projectArray[indexPath.row];
+    return cell;
+}
+
+- (UITableViewCell *)hospitalCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
+    static NSString *hospitalIdentifier = @"hospitalCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
+    cell.textLabel.text = self.hospitalArray[indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    return cell;
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (tableView == self.projectTableView){
+        return self.projectArray.count;
+    } else if (tableView == self.hospitalTableView) {
+        if (_showMoreHospital == NO) {
+            return MIN(DefaultHospitalCount,self.hospitalArray.count);
+        }
+        return self.hospitalArray.count;
+    } else {
+        return self.records.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == self.projectTableView) { // 保障方案
+        return [self projectCellForRowAtIndexPath:indexPath withTableView:tableView];
+    } else if (tableView == self.hospitalTableView){  // 可报销医院
+        return [self hospitalCellForRowAtIndexPath:indexPath withTableView:tableView];
+    } else { // 报销记录
+        return [self recordCellForRowAtIndexPath:indexPath withTableView:tableView];
+    }
+}
+
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
 }
 
-#pragma mark - 按钮点击事件
-/**
- *  申请医保报销按钮
- */
+#pragma mark - IBActions
 - (IBAction)applyExpenseButtonClicked:(UIButton *)sender {
     [self performSegueWithIdentifier:Home2ApplyExpenseSegue sender:nil];
 }
-/**
- *  医保报销说明按钮点击事件
- */
-- (IBAction)expensesDirectionsBtnClicked:(UIButton *)sender {
-    // 如果有记录view是隐藏的，就直接跳转，而不添加动画
-    if (self.hasRecordsView.hidden == YES) {
-        // 跳转到医保报销说明页
-        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
-        return;
-    }
-    
-    CGFloat hasRecordsViewConstraint_Top = self.hasRecordsViewConstraint_Top.constant;
-    CGFloat noRecordsViewConstraint_Top = self.noRecordsViewConstraint_Top.constant;
-    self.hasRecordsViewConstraint_Top.constant = self.view.frame.size.height;
-    self.noRecordsViewConstraint_Top.constant = -self.noRecordsView.frame.origin.y+64;
-    self.tipView.alpha = 0.0;
-    self.view.userInteractionEnabled = NO;
-    
-    WEAKSELF(weakSelf);
-    [UIView animateWithDuration:1.0f animations:^{
-        [weakSelf.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        // 跳转到医保报销说明页
-        [self performSegueWithIdentifier:Home2MedicalDirectionSegue sender:nil];
-        // 恢复动画前的相关属性
-        weakSelf.hasRecordsViewConstraint_Top.constant = hasRecordsViewConstraint_Top;
-        weakSelf.noRecordsViewConstraint_Top.constant = noRecordsViewConstraint_Top;
-        weakSelf.view.userInteractionEnabled = YES;
-    }];
-}
-/**
- *  商业医保报销纪录 按钮点击事件
- */
+
 - (IBAction)expensesRecordsBtnClicked:(UIButton *)sender {
     [self performSegueWithIdentifier:Home2MedicalRecordsSegue sender:nil];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDirectionControllerDidEndDraggingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ExpenseDierectionControllerHasNoData object:nil];
+- (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
+    _showMoreHospital = !_showMoreHospital;
+    
+    NSString *title = @"查看更多";
+    if (_showMoreHospital) {
+        title = @"收起";
+    }
+    [sender setTitle:title forState:UIControlStateNormal];
+    
+    [self.hospitalTableView reloadData];
+}
+
+#pragma mark - NSObject
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqualToString: KeyPathContentSize]) {
+        CGSize contentSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
+        if (object == self.projectTableView) {
+            self.projectTableViewConstraint_H.constant = contentSize.height;
+        } else if  (object == self.hospitalTableView) {
+            self.hospitalTableViewConstraint_H.constant = contentSize.height;
+        }
+        [self.view layoutIfNeeded];
+    } else if ([keyPath isEqualToString:KeyPathContentOffset]) {
+        CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
+        
+        [((HNATabBarController *)self.tabBarController) setTarbarHidden:(contentOffset.y>100)
+                                                                animate:YES];
+    }
 }
 
 @end

@@ -74,7 +74,12 @@
 
 @implementation HNAExpensesDirectionsController
 
-#pragma mark - life cycle
+- (void)dealloc{
+    [self.projectTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
+    [self.hospitalTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -95,12 +100,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (IsEmbededInController(self)) {
-        [self.mainScrollView setContentOffset:CGPointZero];
-    }
 //    [self loadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super  viewDidAppear:animated];
+    if (IsEmbededInController(self)) {
+        [self.mainScrollView setContentOffset:CGPointZero];
+        NSLog(@"%@", NSStringFromCGSize(self.mainScrollView.contentSize));
+        [DefaultCenter postNotificationName:ExpenseDirectionControllerViewWillAppear object:self.mainScrollView userInfo:@{@"contentSize" : [NSValue valueWithCGSize:self.mainScrollView.contentSize]}];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Private
 - (void)setupObserver {
     // 根据数据量动态调整tableView的高度约束
     [self.projectTableView addObserver:self forKeyPath: ContentSizeKeyPath options:NSKeyValueObservingOptionNew context:nil];
@@ -121,34 +137,11 @@
     self.hospitalTableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
-#pragma mark - 数据
-- (NSMutableArray<HNASecurityProgram *> *)projectArray{
-    if (_projectArray == nil) {
-        _projectArray = [NSMutableArray array];
-    }
-    return _projectArray;
-}
-
-- (NSMutableArray *)hospitalArray{
-    if (_hospitalArray == nil) {
-        _hospitalArray = [NSMutableArray array];
-        
-        for (NSInteger i = 0; i < 10; i++) {
-            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
-        }
-    }
-    return _hospitalArray;
-}
-/**
- *  加载数据
- */
 - (void)loadData {
     [self loadDirectionData];
     [self loadInsuranceCompanyData];
 }
-/**
- *  加载 说明
- */
+
 - (void)loadDirectionData{
     [MBProgressHUD showMessage: MessageWhenLoadingData];
     // 1.参数
@@ -180,9 +173,7 @@
         [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
     }];
 }
-/**
- *  加载 保险公司数据
- */
+
 - (void)loadInsuranceCompanyData {
     [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
         [MBProgressHUD hideHUD];
@@ -200,7 +191,44 @@
     }];
 }
 
-#pragma mark - tableView代理方法
+/** 保障方案 */
+- (HNAProjectCell *)projectCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
+    static NSString *projectIdentifier = @"projectCell";
+    
+    HNAProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:projectIdentifier];
+    cell.model = self.projectArray[indexPath.row];
+    return cell;
+}
+/** 可报销医院 */
+- (UITableViewCell *)hospitalCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
+    static NSString *hospitalIdentifier = @"hospitalCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
+    cell.textLabel.text = self.hospitalArray[indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    return cell;
+}
+
+#pragma mark - Custom Accessors
+- (NSMutableArray<HNASecurityProgram *> *)projectArray{
+    if (_projectArray == nil) {
+        _projectArray = [NSMutableArray array];
+    }
+    return _projectArray;
+}
+
+- (NSMutableArray *)hospitalArray{
+    if (_hospitalArray == nil) {
+        _hospitalArray = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < 10; i++) {
+            [_hospitalArray addObject: [NSString stringWithFormat:@"医院%ld",(long)i]];
+        }
+    }
+    return _hospitalArray;
+}
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.projectTableView){
         return self.projectArray.count;
@@ -221,35 +249,14 @@
     }
     return nil;
 }
-/**
- *   保障方案 cell
- */
-- (HNAProjectCell *)projectCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
-    static NSString *projectIdentifier = @"projectCell";
-    
-    HNAProjectCell *cell = [tableView dequeueReusableCellWithIdentifier:projectIdentifier];
-    cell.model = self.projectArray[indexPath.row];
-    return cell;
-}
-/**
- *   可报销医院 cell
- */
-- (UITableViewCell *)hospitalCellForRowAtIndexPath:(NSIndexPath *)indexPath withTableView:(UITableView *)tableView{
-    static NSString *hospitalIdentifier = @"hospitalCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:hospitalIdentifier];
-    cell.textLabel.text = self.hospitalArray[indexPath.row];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    return cell;
-}
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     // 当停止拖动后，通知首页跳转
-    [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object: nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:ExpenseDirectionControllerDidEndDraggingNotification object: nil];
 }
 
-#pragma mark - KVO
+#pragma mark - NSObject
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
     if (![keyPath isEqualToString: ContentSizeKeyPath])  return;
@@ -264,9 +271,8 @@
 
     [self.view layoutIfNeeded];
 }
-/**
- *  可报销医院－查看更多
- */
+
+#pragma mark - IBActions
 - (IBAction)moreHospitalBtnClicked:(UIButton *)sender {
     _showMoreHospital = !_showMoreHospital;
     
@@ -280,15 +286,6 @@
 }
 
 - (IBAction)submitButtonClicked:(UIButton *)sender {
-}
-
-- (void)dealloc{
-    [self.projectTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
-    [self.hospitalTableView removeObserver:self forKeyPath: ContentSizeKeyPath];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

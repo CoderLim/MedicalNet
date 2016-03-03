@@ -220,7 +220,7 @@
     // 设置title
     NSString *title = @"全部";
     if (date != nil) {
-        title = [date stringWithFormat:@"yyyy-MM"];
+        title = [date hna_stringWithFormat:@"yyyy-MM"];
 
     }
     [self setTitle:title forState:UIControlStateNormal];

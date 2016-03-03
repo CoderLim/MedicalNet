@@ -10,7 +10,7 @@
 
 @implementation UIView (HNA)
 
-- (void)shakeWithAmplitude:(CGFloat)amplitudu{
+- (void)hna_shakeWithAmplitude:(CGFloat)amplitudu{
     
     CGPoint currentPoint = self.center;
     CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
@@ -29,7 +29,7 @@
 
 }
 
-- (UIViewController *)viewController {
+- (UIViewController *)hna_viewController {
     for (UIView *next = [self superview]; next;next = next.superview) {
         UIResponder *responder = next.nextResponder;
         if ([responder isKindOfClass:[UIViewController class]]) {

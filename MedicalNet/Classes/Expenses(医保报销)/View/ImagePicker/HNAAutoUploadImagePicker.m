@@ -40,6 +40,11 @@
 
 @implementation HNAAutoUploadImagePicker
 
+- (void)dealloc {
+    [self.progress removeObserver:self forKeyPath: ProgressKeyPath];
+}
+
+#pragma mark - View lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self commonInit];
@@ -56,13 +61,11 @@
 
 - (void)commonInit {
     self.uploadState = HNAAutoUploadImagePickerUploadStateDefault;
-    
     // 添加一个imagePickerView
     HNAImagePickerView *ipv = [HNAImagePickerView imagePicker];
     ipv.delegate = self;
     [self addSubview:ipv];
     self.imagePickerView = ipv;
-    
     // 添加重传控件
     UIButton *reuploadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [reuploadBtn setTitle:@"重传" forState:UIControlStateNormal];
@@ -78,7 +81,8 @@
     self.imagePickerView.frame = self.bounds;
     self.reuploadBtn.frame = self.bounds;
 }
-#pragma mark - 公开属性方法
+
+#pragma mark - Custom Accessors
 - (HNAImagePickerProgressView *)progressView {
     if (_progressView == nil) {
         HNAImagePickerProgressView *progressview = [HNAImagePickerProgressView progressView];
@@ -96,12 +100,13 @@
     return _progressView;
 }
 
-+ (instancetype)autoUploadImagePicker {
-    return [[HNAAutoUploadImagePicker alloc] init];
-}
-
 - (UIImage *)image {
     return self.imagePickerView.image;
+}
+
+#pragma mark - Public
++ (instancetype)autoUploadImagePicker {
+    return [[HNAAutoUploadImagePicker alloc] init];
 }
 
 #pragma mark - HNAImagePickerViewDelegate
@@ -128,9 +133,8 @@
         [self.delegate autoUploadImagePickerDidRemoveImage:self];
     }
 }
-/**
- *  自动上传
- */
+
+#pragma mark - Private
 - (void)automaticUpload:(HNAImagePickerView *)imagePickerView {
     NSString *urlStr = [NSString stringWithFormat:@"%@/medical/uploadPic", RequestUrlDomain];
     NSString *mimeType = @"image/jpeg";
@@ -151,7 +155,7 @@
     }
     NSParameterAssert(data);
     // 文件名
-    NSString *filename = [[[NSDate date] stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString: extensionName];
+    NSString *filename = [[[NSDate date] hna_stringWithFormat:@"yyyyMMddHHmmss"] stringByAppendingString: extensionName];
     // request
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlStr parameters:@{@"picNum":@"1"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"pic1" fileName:filename mimeType:mimeType];
@@ -198,14 +202,14 @@
     }
 }
 
-#pragma mark - 按钮事件
+#pragma mark - IBActions
 - (void)reuploadBtnClicked:(UIButton *)button {
     // 弹出actionSheet
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"上传失败" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"重新选择",@"重新上传", nil];
-    [actionSheet showInView:self.viewController.view];
+    [actionSheet showInView:self.hna_viewController.view];
 }
 
-#pragma mark - KVO
+#pragma mark - NSObject
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if ([keyPath isEqualToString:ProgressKeyPath]) {
         double fractionCompleted = [change[NSKeyValueChangeNewKey] doubleValue];
@@ -214,10 +218,6 @@
             self.progressView.progress = fractionCompleted;
         });
     }
-}
-
-- (void)dealloc {
-    [self.progress removeObserver:self forKeyPath: ProgressKeyPath];
 }
 
 @end

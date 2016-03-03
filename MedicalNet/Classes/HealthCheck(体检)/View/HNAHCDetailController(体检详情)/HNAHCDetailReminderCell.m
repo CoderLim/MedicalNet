@@ -22,6 +22,14 @@
 
 @implementation HNAHCDetailReminderCell
 
+#pragma mark - Public
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath alertMessage:(NSString *)alertMessage{
+    HNAHCDetailReminderCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
+    cell.alertMessage = alertMessage;
+    return cell;
+}
+
+#pragma mark - SuperClass
 - (void)setModel:(HNAHCStatusRecord *)model {
     [super setModel:model];
     self.dateLabel.text = model.date;
@@ -37,12 +45,8 @@
     return identifier;
 }
 
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath alertMessage:(NSString *)alertMessage{
-    HNAHCDetailReminderCell *cell = [super cellForTableView:tableView withIndexPath:indexPath];
-    cell.alertMessage = alertMessage;
-    return cell;
-}
 
+#pragma mark - IBActions
 - (IBAction)reminderBtnClicked:(UIButton *)sender {
     [super descBtnClicked:sender];
 }

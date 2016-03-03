@@ -15,11 +15,10 @@
 
 @interface HNAHCDetailReservedCell : HNAHCDetailCellBase
 
++ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment;
 /**
  *  预约
  */
 @property (nonatomic, strong) HNAHCAppointment *appointment;
-
-+ (instancetype)cellForTableView:(UITableView *)tableView withIndexPath:(NSIndexPath *)indexPath appointment:(HNAHCAppointment *)appointment;
 
 @end

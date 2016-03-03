@@ -10,14 +10,21 @@
 
 @interface UIImage (HNA)
 
-- (instancetype)circleImageWithDiameter:(CGFloat)diameter;
+/**
+ *  剪切成圆形图片
+ *
+ *  @param diameter 直径
+ *
+ *  @return 裁剪后的圆形图片
+ */
+- (instancetype)hna_circleImageWithDiameter:(CGFloat)diameter;
 /**
  *  根据机型适配
  */
-+ (instancetype)imageWithName:(NSString *)name;
++ (instancetype)hna_imageWithName:(NSString *)name;
 /**
  *  生成纯色图片
  */
-+ (instancetype)imageWithColor:(UIColor *)color andSize:(CGSize)size;
++ (instancetype)hna_imageWithColor:(UIColor *)color andSize:(CGSize)size;
 
 @end

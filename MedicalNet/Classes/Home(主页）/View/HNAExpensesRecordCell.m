@@ -36,6 +36,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAExpenseRecordModel *)model{
     _model = model;
     
@@ -44,6 +45,7 @@
     self.stateLabel.text = model.status;
 }
 
+#pragma mark - Public
 + (instancetype)cellWithTableView:(UITableView *)tableView{
     HNAExpensesRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:RecordCellIdentifier];
     return cell;

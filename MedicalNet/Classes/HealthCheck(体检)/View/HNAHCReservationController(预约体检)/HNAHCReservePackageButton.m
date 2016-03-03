@@ -38,7 +38,7 @@
     [self.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
 }
 
-#pragma mark -
+#pragma mark - Custom Accessors
 - (void)setModel:(HNAPackageListItem *)model {
     _model = model;
     
@@ -46,6 +46,7 @@
     [self setTitle:title forState:UIControlStateNormal];
 }
 
+#pragma mark - Public
 + (instancetype)packageButtonWithModel:(HNAPackageListItem *)model {
     HNAHCReservePackageButton *button  = [HNAHCReservePackageButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundColor:[UIColor whiteColor]];

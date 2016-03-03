@@ -10,7 +10,7 @@
 
 @implementation NSDate (HNA)
 
-+ (instancetype)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
++ (instancetype)hna_dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.calendar = calendar;
@@ -24,11 +24,11 @@
     return components.date;
 }
 
-+ (instancetype)minimumDate{
-    return [self dateWithYear:1990 month:1 day:1 hour:0 minute:1 second:1];
++ (instancetype)hna_minimumDate{
+    return [self hna_dateWithYear:1990 month:1 day:1 hour:0 minute:1 second:1];
 }
 
-- (NSDateComponents *)components{
+- (NSDateComponents *)hna_components{
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
     NSInteger unitFlag = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
                          NSMinuteCalendarUnit | NSSecondCalendarUnit;
@@ -36,28 +36,28 @@
     return [calendar components:unitFlag fromDate:self];
 }
 
-- (NSString *)stringWithFormat:(NSString *)format{
+- (NSString *)hna_stringWithFormat:(NSString *)format{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];
     return [formatter stringFromDate:self];
 }
 
-- (BOOL)isEqualYMDTo:(NSDate *)date {
-    NSDateComponents *c1 = [self components];
-    NSDateComponents *c2 = [date components];
+- (BOOL)hna_isEqualYMDTo:(NSDate *)date {
+    NSDateComponents *c1 = [self hna_components];
+    NSDateComponents *c2 = [date hna_components];
     return c1.era == c2.era &&
            c1.year == c2.year &&
            c1.month == c2.month &&
            c1.day == c2.day;
 }
 
-+ (instancetype)fromString:(NSString *)dateString withFormat:(NSString *)format{
++ (instancetype)hna_fromString:(NSString *)dateString withFormat:(NSString *)format{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:format];
     return [formatter dateFromString:dateString];
 }
 
-+ (NSInteger)daysOfMonth:(NSInteger)month inYear:(NSInteger)year{
++ (NSInteger)hna_daysOfMonth:(NSInteger)month inYear:(NSInteger)year{
     if (month < 1 || month > 12 || year < 1990) {
         return 0;
     }
