@@ -19,10 +19,10 @@
     9、CoreGraphics画图；
     10、自动布局、各种自定义控件；
     11、工具：cocopod、github，cornerStone；
-    12、读过源码的框架：afn2.0、sdwebimage、MBprogresshud、MJExtension老版本的、ckcalendar、MJRefresh，最近在看YYKit；
+    12、读过源码的框架：afn2.0、Sdwebimage、MBProgressHUD、MJExtension老版本的、ckcalendar、MJRefresh，最近在看YYKit；
   
 
-###截图
+###本项目截图
 ![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/2.png)
 ![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/3.png)
 ![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/4.png)
