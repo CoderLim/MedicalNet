@@ -13,7 +13,6 @@
 #import "HNAGetExpenseRecordsResult.h"
 #import "HNADatePickButton.h"
 #import "HNAExpensesDetailController.h"
-
 #import "HNAInsuranceTool.h"
 #import "HNAGetExpenseRecordsParam.h"
 #import "MBProgressHUD+MJ.h"
@@ -21,7 +20,7 @@
 #import "HNAUser.h"
 
 /** 报销记录页跳转到记录详情 */
-#define ExpenseRecord2RecordDetailSegue @"expenseRecord2recordDetail"
+#define SegueExpenseRecord2RecordDetail @"expenseRecord2recordDetail"
 
 @interface HNAExpensesRecordsController() <HNADatePickButtonDelegate>{
     NSDate *_selectedDate;
@@ -33,8 +32,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) IBOutlet HNADatePickButton *datePickButton;
-
 @end
 
 @implementation HNAExpensesRecordsController
@@ -42,13 +39,11 @@
 #pragma mark - View lifecycle
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
-    self.title = @"报销记录";
 
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpensesRecordCell" bundle:nil] forCellReuseIdentifier:RecordCellIdentifier];
 }
 
-#pragma mark - Custom Accessors
+#pragma mark - Custom accessors
 -(NSMutableArray *)records{
     if (_records == nil) {
         _records = [NSMutableArray array];
@@ -83,15 +78,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - HNADatePickButtonDelegate
-- (void)datePickButton:(HNADatePickButton *)button dateChanged:(NSDate *)date{
-    _selectedDate = date;
-}
-
-- (void)datePickButton:(HNADatePickButton *)button didFinishSelectDate:(NSDate *)date{
-    [self loadDataWithDate:_selectedDate];
-}
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.records.count;
@@ -108,7 +94,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HNAExpenseRecordModel *model = self.records[indexPath.row];
-    [self performSegueWithIdentifier:ExpenseRecord2RecordDetailSegue sender:model];
+    [self performSegueWithIdentifier: SegueExpenseRecord2RecordDetail sender:model];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

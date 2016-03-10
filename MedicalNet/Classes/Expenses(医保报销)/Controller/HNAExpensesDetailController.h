@@ -10,6 +10,6 @@
 
 @interface HNAExpensesDetailController : UIViewController
 
-@property (nonatomic, strong) NSString *recordId;
+@property (nonatomic, copy) NSString *recordId;
 
 @end

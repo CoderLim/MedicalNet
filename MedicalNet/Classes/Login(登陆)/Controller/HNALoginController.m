@@ -97,20 +97,22 @@
 
 - (void)keyboardWillShow:(NSNotification *)aNotification{
     NSDictionary *userInfo = [aNotification userInfo];
-    // 键盘frame
+
     CGRect keyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    // 键盘动画持续时间
     NSNumber *keyboardAnimationDuration = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    // 键盘动画曲线
     NSNumber  *keyboardAnimationCurve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
-    // 当前编辑的输入框frame(self.view坐标系）
-    // 注意：下面的XX.superview不要写成XX
-    CGRect currentTextFieldFrame = [_currentEditTextField.superview convertRect:_currentEditTextField.frame toView: KeyWindow];
-    // 计算self.view需要移动的距离
-    CGRect viewBounds = self.view.bounds;
-    CGFloat deltaY = keyboardFrame.origin.y - currentTextFieldFrame.size.height - currentTextFieldFrame.origin.y - CurrentTextField2KeyboardPadding;
-    viewBounds.origin.y += -deltaY;
-    self.view.bounds = viewBounds;
+    
+    self.view.bounds = ({
+        // 当前编辑的输入框frame(self.view坐标系）
+        // 注意：下面的XX.superview不要写成XX
+        CGRect currentTextFieldFrame = [_currentEditTextField.superview convertRect:_currentEditTextField.frame toView: KeyWindow];
+
+        CGRect viewBounds = self.view.bounds;
+        CGFloat deltaY = keyboardFrame.origin.y - currentTextFieldFrame.size.height - currentTextFieldFrame.origin.y - CurrentTextField2KeyboardPadding;
+        viewBounds.origin.y += -deltaY;
+        viewBounds;
+    });
+    
     // 设置动画
     WEAKSELF(weakSelf);
     [UIView setAnimationCurve:[keyboardAnimationCurve intValue]];
@@ -126,9 +128,11 @@
     // 键盘动画曲线
     NSNumber  *keyboardAnimationCurve = [userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
     
-    CGRect viewBounds = self.view.bounds;
-    viewBounds.origin.y = 0;
-    self.view.bounds = viewBounds;
+    self.view.bounds = ({
+        CGRect viewBounds = self.view.bounds;
+        viewBounds.origin.y = 0;
+        viewBounds;
+    });
     
     WEAKSELF(weakSelf);
     [UIView setAnimationCurve:[keyboardAnimationCurve intValue]];

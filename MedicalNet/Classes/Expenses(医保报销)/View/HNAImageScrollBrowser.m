@@ -26,6 +26,7 @@
 @end
 
 @implementation HNAImageScrollBrowser
+@synthesize imageUrls = _imageUrls;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -52,13 +53,14 @@
     [collectionView setBackgroundColor:[UIColor clearColor]];
     
     [self addSubview:collectionView];
-    self.collectionView = collectionView;
+    _collectionView = collectionView;
     
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"HNAImageScrollBrowserCell"];
+    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"HNAImageScrollBrowserCell"];
     
-    for (NSInteger i=0; i<20; i++) {
-        [self.imageUrls addObject:@"https://www.baidu.com/img/bd_logo1.png"];
-    }
+//    测试
+//    for (NSInteger i=0; i<20; i++) {
+//        [_imageUrls addObject:@"https://www.baidu.com/img/bd_logo1.png"];
+//    }
 }
 
 - (void)layoutSubviews {
@@ -71,6 +73,12 @@
         _imageUrls = [NSMutableArray array];
     }
     return _imageUrls;
+}
+
+- (void)setImageUrls:(NSMutableArray<NSString *> *)imageUrls {
+    _imageUrls = imageUrls;
+    
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource

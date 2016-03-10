@@ -57,7 +57,7 @@
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                     <integer key="value" value="1"/>
                 </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                <userDefinedRuntimeAttribute type="color" keyPath="layer.hna_borderColorFromUIColor">
                     <color key="value" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>

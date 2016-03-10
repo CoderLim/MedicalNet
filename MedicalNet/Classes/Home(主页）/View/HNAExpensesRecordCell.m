@@ -33,6 +33,7 @@
 }
 
 - (void)commonInit {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

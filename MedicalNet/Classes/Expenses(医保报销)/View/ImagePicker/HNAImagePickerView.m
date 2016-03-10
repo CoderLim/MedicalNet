@@ -48,14 +48,17 @@
 
 - (void)commonInit {
     // 主动加载xib
-    UIView *containerView = [[MainBundle loadNibNamed:@"HNAImagePickerView" owner:self options:nil] lastObject];
+    UIView *containerView = [[MainBundle loadNibNamed:@"HNAImagePickerView"
+                                                owner:self
+                                              options:nil]
+                             lastObject];
     // 设置view大小
     CGRect newFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     containerView.frame = newFrame;
     [self addSubview:containerView];
     
     self.removeBtn.hidden = YES;
-    
+    // 添加手势
     UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pickerBtnLongPressed:)];
     longPressRecognizer.minimumPressDuration = 1.f;
     [self.pickerBtn addGestureRecognizer:longPressRecognizer];

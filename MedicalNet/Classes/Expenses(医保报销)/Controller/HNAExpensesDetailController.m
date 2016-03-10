@@ -52,9 +52,9 @@
     
     self.title = @"报销详情";
     
-    [self loadData];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"HNAExpenseDetailCell" bundle:nil] forCellReuseIdentifier:@"HNAExpenseDetailCell"];
+    
+    [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -75,21 +75,6 @@
 //        record1.date = @"2015-11-11";
 //        record1.desc = @"已报销￥1,800";
 //        [_statusRecords addObject:record1];
-//        
-//        HNAExpenseDetailStatusRecord *record2 = [[HNAExpenseDetailStatusRecord alloc] init];
-//        record2.date = @"2015-11-11";
-//        record2.desc = @"开始处理";
-//        [_statusRecords addObject:record2];
-//        
-//        HNAExpenseDetailStatusRecord *record3 = [[HNAExpenseDetailStatusRecord alloc] init];
-//        record3.date = @"2015-11-11";
-//        record3.desc = @"需补交材料";
-//        [_statusRecords addObject:record3];
-//        
-//        HNAExpenseDetailStatusRecord *record4 = [[HNAExpenseDetailStatusRecord alloc] init];
-//        record4.date = @"2015-11-11";
-//        record4.desc = @"提交申请";
-//        [_statusRecords addObject:record4];
     }
     return _statusRecords;
 }
@@ -107,6 +92,10 @@
             self.insuranceComLabel.text = expenseDetail.insuranceCompanyName;
             self.applicantNameLabel.text = expenseDetail.name;
             self.bankNoLabel.text = expenseDetail.cardNum;
+            
+            self.IDCardBrowser.imageUrls = expenseDetail.IDcard;
+            self.casesBrowser.imageUrls = expenseDetail.cases;
+            self.chargeBrowser.imageUrls = expenseDetail.charges;
             
             self.statusRecords = expenseDetail.statusRecords;
             [self.tableView reloadData];

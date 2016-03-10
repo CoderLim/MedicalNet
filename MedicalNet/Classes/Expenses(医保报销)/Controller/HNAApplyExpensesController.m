@@ -150,7 +150,6 @@
     [self.submitButton setEnabled:NO];
 }
 
-
 - (void)tapContentView:(UITapGestureRecognizer *)tap {
     [self.contentView endEditing:YES];
 }
