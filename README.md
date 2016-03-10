@@ -27,8 +27,8 @@
   
 
 ###本项目截图
-![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/2.png)
-![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/3.png)
-![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/4.png)
-![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/5.png)
+![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/2.png)<br/>
+![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/3.png)<br/>
+![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/4.png)<br/>
+![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/5.png)<br/>
 ![image](https://github.com/ZAIJIANLUOYE110/MedicalNet/blob/master/screenshots/6.png)
