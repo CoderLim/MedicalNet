@@ -16,10 +16,14 @@
     6、性能优化的几点关键tip；
     7、ios编码的艺术：oc和禅；
     8、事件的传递：从手指到app；
-    9、CoreGraphics画图；
+    9、CoreGraphics画图、UIDynamic物理引擎；
     10、自动布局、各种自定义控件；
     11、工具：cocopod、github，cornerStone；
-    12、读过源码的框架：afn2.0、Sdwebimage、MBProgressHUD、MJExtension老版本的、ckcalendar、MJRefresh，最近在看YYKit；
+    12、读过源码的框架：afn2.0、Sdwebimage、MBProgressHUD、MJExtension老版本的、CKCalendar、MJRefresh，最近在看YYKit；
+    13、其他像分享、推送、地图做过demo了，还想接触支付（无奈没有账号）、音频、视频等常用技术；
+
+    等闲下来一定要看看AsyncDisplayKit源码，然后学习swift（还好在github上看到了30天学习swift的demmo，已经fork了）
+    还是要多看看歪果仁的技术博客，大多数看后都有很多收获；
   
 
 ###本项目截图
