@@ -108,7 +108,7 @@
     if (IsEmbededInController(self)) {
         [self.mainScrollView setContentOffset:CGPointZero];
         NSLog(@"%@", NSStringFromCGSize(self.mainScrollView.contentSize));
-        [DefaultCenter postNotificationName:ExpenseDirectionControllerViewWillAppear object:self.mainScrollView userInfo:@{@"contentSize" : [NSValue valueWithCGSize:self.mainScrollView.contentSize]}];
+        [DefaultCenter postNotificationName: kExpenseDirectionControllerViewWillAppear object:self.mainScrollView userInfo:@{@"contentSize" : [NSValue valueWithCGSize:self.mainScrollView.contentSize]}];
     }
 }
 
@@ -143,7 +143,7 @@
 }
 
 - (void)loadDirectionData{
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     // 1.参数
     NSString *companyId = [HNAUserTool user].companyId;
     if (companyId == nil) {
@@ -165,12 +165,12 @@
             weakSelf.materialLabel.text = direction.materials;
             [weakSelf.hospitalTableView reloadData];
         } else {
-            [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
+            [DefaultCenter postNotificationName: kExpenseDierectionControllerHasNoData object:nil];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
         [MBProgressHUD showError:@"请求异常"];
-        [DefaultCenter postNotificationName:ExpenseDierectionControllerHasNoData object:nil];
+        [DefaultCenter postNotificationName: kExpenseDierectionControllerHasNoData object:nil];
     }];
 }
 
@@ -187,7 +187,7 @@
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 

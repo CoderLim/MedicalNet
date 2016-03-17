@@ -166,6 +166,23 @@
     HNALoginInfoParam *param = [[HNALoginInfoParam alloc] init];
     param.username = username;
     param.password = password;
+//    
+//    if ([username isEqualToString:@"123"] && [password isEqualToString:@"123"]) {
+//        HNATabBarController *tabBarController = ((AppDelegate *)SharedApplication.delegate).tabBarController;
+//        KeyWindow.rootViewController = tabBarController;
+//        
+//        CATransition *ca = [CATransition animation];
+//        ca.type= kCATransitionPush;
+//        ca.subtype=kCATransitionFromRight;
+//        ca.duration=.25;
+//        ca.startProgress = 0.5;
+//        [KeyWindow.layer addAnimation:ca forKey:nil];
+//    } else {
+//        [MBProgressHUD hideHUD];
+//        [MBProgressHUD showError:@"账号或密码不正确"];
+//        [self.loginView hna_shakeWithAmplitude:20];
+//    }
+//    return;
     
     WEAKSELF(weakSelf);
     [HNALoginTool loginWithParam:param

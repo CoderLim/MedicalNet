@@ -34,19 +34,19 @@
 #define IOS7 [[UIDevice currentDevice].systemVersion doubleValue] >= 7.0
 
 // 7. 数据请求地址的domain
-#define RequestUrlDomain @"http://112.126.82.194:8080"
+#define kRequestUrlDomain @"http://mdm.bestchain.net"
 
 /**
  *  8.加载数据时的提示信息
  */
 // 正在加载
-#define MessageWhenLoadingData @"正在加载..."
+#define kMessageWhenLoadingData @"正在加载..."
 // 加载成功
-#define MessageWhenSuccess @"加载成功"
+#define kMessageWhenSuccess @"加载成功"
 // 没有数据
-#define MessageWhenNoData @"没有数据"
+#define kMessageWhenNoData @"没有数据"
 // 加载报错
-#define MessageWhenFaild @"加载出错"
+#define kMessageWhenFaild @"加载出错"
 
 // 9.定义颜色
 #define UIColorWithRGB(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
@@ -66,14 +66,14 @@
  *  11.自定义通知名称
  */
 // 报销记录页面停止拖动
-#define ExpenseRecordsControllerDidEndDraggingNotification @"ERControllerDidEndDraggingNotification"
+#define kExpenseRecordsControllerDidEndDraggingNotification @"ERControllerDidEndDraggingNotification"
 
 // 商业医保报销说明页将要显示
-#define ExpenseDirectionControllerViewWillAppear @"ExpenseDirectionControllerViewWillApear"
+#define kExpenseDirectionControllerViewWillAppear @"ExpenseDirectionControllerViewWillApear"
 // 商业医保报销说明页面停止拖动
-#define ExpenseDirectionControllerDidEndDraggingNotification @"EDControllerDidEndDraggingNotification"
+#define kExpenseDirectionControllerDidEndDraggingNotification @"EDControllerDidEndDraggingNotification"
 // 医保报销说明页没有网络数据
-#define ExpenseDierectionControllerHasNoData @"ExpenseDierectionControllerHasNoData"
+#define kExpenseDierectionControllerHasNoData @"ExpenseDierectionControllerHasNoData"
 
 // 12.判断vc的view是否嵌入到其他控制器的view中
 #define IsEmbededInController(vc) \
@@ -84,6 +84,6 @@
 /**
  *  13.全局UserDefaults键名
  */
-#define UserDefaultsShouldHideTipView @"UserDefaultsShouldHideTipView"
+#define kUserDefaultsShouldHideTipView @"UserDefaultsShouldHideTipView"
 
 

@@ -118,7 +118,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
+    [self.mainScrollView setContentOffset: CGPointZero];
+    
     [self.tipView show];
 }
 
@@ -240,7 +242,7 @@
 
 /** 报销说明 */
 - (void)loadDirectionData{
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     // 1.参数
     NSString *companyId = [HNAUserTool user].companyId;
     if (companyId == nil) {
@@ -288,7 +290,7 @@
                                            }
                                        } failure:^(NSError *error) {
                                            [MBProgressHUD hideHUD];
-                                           [MBProgressHUD showError: MessageWhenFaild];
+                                           [MBProgressHUD showError: kMessageWhenFaild];
                                        }];
 }
 
@@ -363,7 +365,7 @@
     } else if ([keyPath isEqualToString:KeyPathContentOffset]) {
         CGPoint contentOffset = [change[NSKeyValueChangeNewKey] CGPointValue];
         [((HNATabBarController *)self.tabBarController) setTarbarHidden:(contentOffset.y>100)
-                                                                animate:YES];
+                                                                animate:NO];
     }
 }
 

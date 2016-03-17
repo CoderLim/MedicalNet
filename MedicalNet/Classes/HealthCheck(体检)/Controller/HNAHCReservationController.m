@@ -128,7 +128,7 @@
 }
 /** 加载体检套餐列表数据 */
 - (void)loadPackagesData {
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     
     HNAGetPackageListParam *param = [HNAGetPackageListParam param];
     [HNAHealthCheckTool getPackageListWithParam: param success:^(HNAGetPackageListResult *result) {
@@ -144,11 +144,11 @@
             // 选中第一条
             [self.packageScrollView selectAtIndex:0];
             [self loadInstitutionsWithPackageId:self.packageScrollView.selectedPackageId];
-            [MBProgressHUD showSuccess: MessageWhenSuccess];
+            [MBProgressHUD showSuccess: kMessageWhenSuccess];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 /** 加载医疗机构数据 */

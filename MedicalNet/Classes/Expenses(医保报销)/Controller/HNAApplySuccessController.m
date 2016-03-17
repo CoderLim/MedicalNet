@@ -38,7 +38,7 @@
 #pragma mark - Private
 /** 加载保险公司数据 */
 - (void)loadInsuranceCompnayData {
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     
     [HNAInsuranceTool getInsuranceCompayWithId:[HNAUserTool user].insuranceCompanyId success:^(HNAGetInsuranceCompanyResult *result) {
         [MBProgressHUD hideHUD];
@@ -51,7 +51,7 @@
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError:MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 

@@ -22,7 +22,7 @@
 @implementation HNAInsuranceTool
 
 + (void)getExpenseDirectionsWithCompanyId:(NSString *)companyId success:(void(^)(HNAGetExpenseDirectionResult *result))success failure:(void(^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDesc", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDesc", kRequestUrlDomain];
     
     [HNAHttpTool getWithURL:urlStr params:@{@"companyId":companyId} success:^(id json) {
         if (success) {
@@ -42,7 +42,7 @@
 
 + (void)getExpenseRecordsWithParam:(HNAGetExpenseRecordsParam *)param success:(void (^)(HNAGetExpenseRecordsResult *result))success failure:(void (^)(NSError *error))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseRecords", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseRecords", kRequestUrlDomain];
     [HNAHttpTool getWithURL:urlStr params:param.keyValues success:^(id json) {
         if (success) {
             HNAGetExpenseRecordsResult *result = [HNAGetExpenseRecordsResult objectWithKeyValues:json];
@@ -58,7 +58,7 @@
 
 + (void)applyExpenseWithParam:(HNAApplyExpenseParam *)param success:(void (^)(HNAResult * result))success failure:(void (^)(NSError *error))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/applyExpense", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/applyExpense", kRequestUrlDomain];
     
     [HNAHttpTool postWithURL:urlStr params:[param toDict] toDisk:NO success:^(id json) {
         if (success) {
@@ -74,7 +74,7 @@
 }
 
 + (void)getExpenseDetailsWithRecordId:(NSString *)recordId success:(void (^)(HNAGetExpenseDetailResult *result))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDetails", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseDetails", kRequestUrlDomain];
     
     [HNAHttpTool getWithURL:urlStr params:@{@"id" : recordId} success:^(id json) {
         if (success) {
@@ -92,7 +92,7 @@
 }
 
 + (void)getInsuranceCompayWithId:(NSInteger)insurancecompanyId success:(void (^)(HNAGetInsuranceCompanyResult *result))success failure:(void (^)(NSError *error))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseInfo", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/expenseInfo", kRequestUrlDomain];
     [HNAHttpTool getWithURL:urlStr params:@{@"insuranceCompanyId":@(insurancecompanyId)} success:^(id json) {
         if (success) {
             HNAGetInsuranceCompanyResult *result = [HNAGetInsuranceCompanyResult objectWithKeyValues:json];

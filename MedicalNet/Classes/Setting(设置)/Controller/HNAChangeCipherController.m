@@ -73,7 +73,7 @@
     // 3.请求地址
     [HNAUserTool changePwdWithParam:param success:^(HNAResult *result) {
         if (result.success==HNARequestResultSUCCESS) {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey: kUserDefaultsShouldHideTipView];
             
             [MBProgressHUD showSuccess:@"修改成功"];
         } else {
@@ -94,7 +94,7 @@
     param.theNewPwd = self.cipherField.text;
     
     [HNAUserTool forgetPwdWithParam:param success:^(HNAResult *result) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey: kUserDefaultsShouldHideTipView];
         [MBProgressHUD showSuccess:@"修改成功"];
     } failure:^(NSError *error) {
         [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];

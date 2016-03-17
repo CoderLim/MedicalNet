@@ -63,7 +63,7 @@
 #pragma mark - Private
 - (void)loadData{
     // 提示
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     
     // 参数
     HNAGetPackageDetailParam *param = [[HNAGetPackageDetailParam alloc] init];
@@ -81,7 +81,7 @@
         } else {
             weakSelf.packageNameLabel.text = @"";
             [MBProgressHUD hideHUD];
-            [MBProgressHUD showError: MessageWhenNoData];
+            [MBProgressHUD showError: kMessageWhenNoData];
         }
         
     } failure:^(NSError *error) {
@@ -96,7 +96,7 @@
         weakSelf.packageNameLabel.text = @"套餐A";
         [weakSelf.tableView reloadData];
         
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 

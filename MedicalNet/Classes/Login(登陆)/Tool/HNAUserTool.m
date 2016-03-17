@@ -50,7 +50,7 @@
 // 修改手机号
 + (void)changePhoneWithParam:(HNAChangePhoneParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePhoneNum", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePhoneNum", kRequestUrlDomain];
     
     //将参数转化成字典
     NSDictionary *paramDict = @{@"id" : @(param.id),
@@ -71,7 +71,7 @@
 // 修改头像
 + (void)changePortraitWithParam:(HNAChangePortraitParam *)param success:(void (^)(HNAChangePortraitResult *))success failure:(void (^)(NSError *))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changeIcon?id=%lld", RequestUrlDomain,param.id];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changeIcon?id=%lld", kRequestUrlDomain,param.id];
     // 将参数转化成字典
     // 这样不知道为啥id好像传过去有问题，所以把id直接拼接到url后面
     // NSDictionary *paramDict = @{@"id" : [NSString stringWithFormat:@"%lld", param.id]};
@@ -98,7 +98,7 @@
 
 // 修改密码
 + (void)changePwdWithParam:(HNAChangePwdParam *)param success:(void (^)(HNAResult *result))success failure:(void (^)(NSError *))failure{
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePwd", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/changePwd", kRequestUrlDomain];
     
     //将参数转化成字典
     NSDictionary *paramDict = @{@"id" : @(param.id),
@@ -118,7 +118,7 @@
 }
 
 + (void)forgetPwdWithParam:(HNAForgetPwdParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/forgetPwd", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/forgetPwd", kRequestUrlDomain];
     
     //将参数转化成字典
     NSDictionary *paramDict = @{@"id" : @(param.id),
@@ -139,7 +139,7 @@
 // 设置消息提醒
 + (void)setMsgNoticeWithParam:(HNASetMsgNoticeParam *)param success:(void (^)(HNAResult *))success failure:(void (^)(NSError *))failure{
     // 地址
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/setMsgNotice", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/setMsgNotice", kRequestUrlDomain];
     // 请求
     NSLog(@"%@",param.keyValues);
     [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:NO success:^(id json) {

@@ -67,7 +67,7 @@
 
 #pragma mark - Public
 + (BOOL)avaliable {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:UserDefaultsShouldHideTipView];
+    return [[NSUserDefaults standardUserDefaults] boolForKey: kUserDefaultsShouldHideTipView];
 }
 
 - (void)show {
@@ -83,7 +83,7 @@
 #pragma mark - IBActions
 - (IBAction)close:(UIButton *)sender {
     // 点击close后tipView将不再显示
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:UserDefaultsShouldHideTipView];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey: kUserDefaultsShouldHideTipView];
     
     sender.enabled = NO;
     [UIView animateWithDuration:HomeTipViewAnimationDuration animations:^{

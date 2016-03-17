@@ -20,7 +20,7 @@
 
 + (void)loginWithParam:(HNALoginInfoParam *)param success:(void (^)(HNALoginInfoResult *))success failure:(void (^)(NSError *))failure{
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/login", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/login", kRequestUrlDomain];
     
     [HNAHttpTool postWithURL:urlStr params:param.keyValues toDisk:YES success:^(id json) {
         if (success && json!=nil) {

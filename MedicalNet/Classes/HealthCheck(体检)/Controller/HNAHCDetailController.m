@@ -106,7 +106,7 @@
  *  加载数据
  */
 - (void)loadData{
-    [MBProgressHUD showMessage:MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     
     HNAGetHCDetailParam *param = [[HNAGetHCDetailParam alloc] init];
     param.id = self.hcRecordId;
@@ -121,11 +121,11 @@
             
             weakSelf.statusRecords = result.statusRecords;
             [self.tableView reloadData];
-            [MBProgressHUD showSuccess:MessageWhenSuccess];
+            [MBProgressHUD showSuccess: kMessageWhenSuccess];
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 

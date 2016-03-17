@@ -81,7 +81,7 @@
 
 #pragma mark - Private
 - (void)loadData {
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     
     [HNAInsuranceTool getExpenseDetailsWithRecordId:self.recordId success:^(HNAGetExpenseDetailResult *result) {
         [MBProgressHUD hideHUD];
@@ -102,7 +102,7 @@
         }
     } failure:^(NSError *error) {
         [MBProgressHUD hideHUD];
-        [MBProgressHUD showError: MessageWhenFaild];
+        [MBProgressHUD showError: kMessageWhenFaild];
     }];
 }
 

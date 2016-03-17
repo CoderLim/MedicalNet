@@ -14,6 +14,10 @@
 
 @implementation HNATabBarController
 
+- (void)dealloc {
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -42,13 +46,5 @@
                      animations:^{
                          self.tabBar.transform = transform;
                      }];
-}
-
-
-- (void)dealloc {
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 @end

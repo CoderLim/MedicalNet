@@ -55,7 +55,7 @@
 
 #pragma mark - Private
 - (void)loadDataWithDate:(NSDate *)date{
-    [MBProgressHUD showMessage: MessageWhenLoadingData];
+    [MBProgressHUD showMessage: kMessageWhenLoadingData];
     // 1.参数
     HNAGetExpenseRecordsParam *param = [HNAGetExpenseRecordsParam param];
     if (date!=nil) {

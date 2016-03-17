@@ -136,7 +136,7 @@
 
 #pragma mark - Private
 - (void)automaticUpload:(HNAImagePickerView *)imagePickerView {
-    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/uploadPic", RequestUrlDomain];
+    NSString *urlStr = [NSString stringWithFormat:@"%@/medical/uploadPic", kRequestUrlDomain];
     NSString *mimeType = @"image/jpeg";
     NSString *extensionName = @".jpg";
     // 数据
