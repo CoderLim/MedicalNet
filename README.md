@@ -21,8 +21,8 @@
     9、CoreGraphics画图、UIDynamic物理引擎；
     10、自动布局、各种自定义控件；
     11、工具：cocopod、github，cornerStone；
-    12、读过源码的框架：afn2.0、Sdwebimage、MBProgressHUD、MJExtension老版本的、CKCalendar、MJRefresh，最近在看YYKit；
-    13、其他像分享、推送、地图做过demo了，还想接触支付（无奈没有账号）、音频、视频等常用技术；
+    12、简单看了看下面这个几个框架的源码：afn2.0、Sdwebimage、MBProgressHUD、MJExtension老版本的、
+    CKCalendar、MJRefresh，最近在看YYKit；
   
 
 ### 本项目截图
